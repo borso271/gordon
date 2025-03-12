@@ -15,7 +15,6 @@ export function attachStreamHandlers(
   {
     onTextCreated,
     onTextDelta,
-  
     onToolCallCreated,
     onToolCallDelta,
     onRequiresAction,

@@ -1,8 +1,9 @@
 
 export interface ConversationPair {
-  user: string;
-  assistant: string;
-  code?: string;
-  analysisData?: any;
-  suggestionData?: any;
-}
+    id: string; // ✅ Unique identifier
+    user: string;
+    assistant: string;
+    code?: string;
+    analysisData?: any;
+    suggestionData?: any;
+  }

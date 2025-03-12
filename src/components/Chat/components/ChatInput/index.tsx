@@ -35,7 +35,7 @@ const TypingHeading = ({ text, speed = 40, initialDelay=0, onTypingComplete = ()
           clearInterval(typingInterval);
           clearInterval(caretInterval); // Stop blinking when typing is done
           setShowCaret(false); // Remove caret when complete
-          onTypingComplete(true);
+          onTypingComplete();
         }
       }, speed);
     }, initialDelay); // Optional delay before starting

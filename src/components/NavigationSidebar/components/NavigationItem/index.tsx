@@ -1,22 +1,22 @@
 import React from "react";
 import styles from "./NavigationItem.module.css";
-
 interface NavigationItemProps {
-  label: string;
-  index: number;
-  isSelected: boolean;
-  onSelect: (index: number) => void;
-}
-
-const NavigationItem: React.FC<NavigationItemProps> = ({ label, index, isSelected, onSelect }) => {
-  return (
-    <div
-      className={`${styles.item} ${isSelected ? styles.selected : ""}`}
-      onClick={() => onSelect(index)}
-    >
-      {label}
-    </div>
-  );
-};
-
-export default NavigationItem;
+    label: string;
+    index: string;
+    isSelected: boolean;
+    onSelect: () => void;
+  }
+  
+  const NavigationItem: React.FC<NavigationItemProps> = ({ label, isSelected, onSelect }) => {
+    return (
+      <div
+        className={`${styles.item} ${isSelected ? styles.active : ""}`} // ✅ Apply active class
+        onClick={onSelect}
+      >
+        {label}
+      </div>
+    );
+  };
+  
+  export default NavigationItem;
+  

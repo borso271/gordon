@@ -9,7 +9,6 @@ import Loading from "../../../Loading";
 import styles from "./ConversationPairView.module.css";
 
 
-
 function extractTwoValues(inputString) {
   const pattern = /"([^"]+)":"/g; // Matches: `"any-key":"` capturing `any-key`
   let matches = [...inputString.matchAll(pattern)];
@@ -42,7 +41,6 @@ function extractTwoValues(inputString) {
 
 function ConversationPairView({ pair, direction, responseRef, handleManualFunctionCall, newSearch}) {
   // Check if the assistant's response is still "empty"
-  console.log("PAIR IS: ", pair)
   const nothingYet = !pair.assistant && !pair.code && !pair.analysisData && !pair.suggestionData;
 
     console.log("NOTHING YET IS :", nothingYet)

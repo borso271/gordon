@@ -1,16 +1,9 @@
 import { useCallback } from "react";
+import { useConversation } from "../../../app/context/conversationContext";
 
-interface UseStreamHandlersProps {
-  updateLastPair: (update: Partial<any>) => void;
-  appendAssistantText: (text: string) => void;
-  setConversationPairs: React.Dispatch<React.SetStateAction<any>>;
-}
+export function useStreamHandlers() {
+  const { updateLastPair, appendAssistantText, setConversationPairs } = useConversation(); // ✅ Use context
 
-export function useStreamHandlers({
-  updateLastPair,
-  appendAssistantText,
-  setConversationPairs,
-}: UseStreamHandlersProps) {
   const onTextCreated = useCallback(() => {
     updateLastPair({ assistant: "" });
   }, [updateLastPair]);
@@ -29,7 +22,8 @@ export function useStreamHandlers({
 
   const onToolCallDelta = useCallback((delta: any) => {
     if (delta.type === "code_interpreter" && delta.code_interpreter?.input) {
-      setConversationPairs((prev: any) => {
+      setConversationPairs((prev) => {
+        if (prev.length === 0) return prev;
         const last = { ...prev[prev.length - 1] };
         last.code = (last.code || "") + delta.code_interpreter.input;
         return [...prev.slice(0, -1), last];
@@ -44,10 +38,10 @@ export function useStreamHandlers({
         toolCalls.map(async (toolCall: any) => {
           const result = await functionCallHandler(toolCall);
           const parsedResult = JSON.parse(result);
-          setConversationPairs((prev: any) => {
+          setConversationPairs((prev) => {
+            if (prev.length === 0) return prev;
             const last = { ...prev[prev.length - 1] };
-            // Remove the assistant's text response:
-            last.assistant = "";
+            last.assistant = ""; // ✅ Clear assistant text
             if (toolCall.function?.name === "analyze_security") {
               last.analysisData = parsedResult;
             } else if (toolCall.function?.name === "suggest_securities") {

@@ -8,7 +8,7 @@ import { attachStreamHandlers } from "./utils/streamHandlers";
 import { createThread, sendMessage, submitActionResult } from "./utils/apiActions";
 import ConversationPairView from "./components/ConversationPairView";
 import { useSlideshowNavigation } from "../../app/hooks/useSlideShowNavigation";
-import { handleManualFunctionCall } from "./utils/handleManualFunctionCall";
+import { useManualFunctionCall } from "./hooks/useHandleManualFunctionCall";
 import { useThread } from "./hooks/useThread";
 import { useConversation } from "../../app/context/conversationContext";
 import { useStreamHandlers } from "./hooks/useStreamHandlers";
@@ -19,9 +19,7 @@ interface ChatProps {
 export default function BotChat({ functionCallHandler = () => Promise.resolve("") }: ChatProps) {
   // Custom hook for thread management
   const { threadId, initThread } = useThread();
-
-  // // Custom hook for conversation state management
-  // const { conversationPairs, addUserMessage, appendAssistantText, updateLastPair, setConversationPairs } = useConversation();
+  const { handleManualFunctionCall } = useManualFunctionCall(); // ✅ Get function from hook
 
   const {
     conversationPairs,
@@ -31,15 +29,20 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
     addUserMessage,
     appendAssistantText,
     updateLastPair,
+    currentIndex,
+    setCurrentIndex
   } = useConversation();
 
 
+  console.log("params are: ", conversationPairs, currentIndex)
+
   const [userInput, setUserInput] = useState("");
   const [inputDisabled, setInputDisabled] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(-1);
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   
   console.log("CONVERSATION PAIRS ARE: ", conversationPairs)
+  
   const { handleWheel, responseRef, direction } = useSlideshowNavigation(
     currentIndex,
     setCurrentIndex,
@@ -53,7 +56,7 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
 
   // Custom hook to get stream event handlers
   const { onTextCreated, onTextDelta, onToolCallCreated, onToolCallDelta, onRequiresAction } =
-    useStreamHandlers({ updateLastPair, appendAssistantText, setConversationPairs });
+    useStreamHandlers();
 
   const attachHandlers = (stream: AssistantStream) => {
     attachStreamHandlers(stream, {
@@ -93,7 +96,7 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
   };
 
   const onManualFunctionCall = async (functionName: string, args: any) => {
-    await handleManualFunctionCall(functionName, args, setConversationPairs, setCurrentIndex, functionCallHandler);
+    await handleManualFunctionCall(functionName, args, functionCallHandler);
   };
 
   return (

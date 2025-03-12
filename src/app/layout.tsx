@@ -33,3 +33,4 @@ function RootLayout({ children }: RootLayoutProps) {
 }
 
 export default RootLayout;
+

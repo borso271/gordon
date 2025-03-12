@@ -1,8 +1,8 @@
 // Import necessary functions
 import fetchIntradayData from "./fetch_intraday_data";
 import fetchAllHistoricalData from "./fetch_historical_data";
-import formatIntradayData from "../../../dump/SymbolChartNew/utils/format_intraday_data";
-import formatHistoricalData from "../../../dump/SymbolChartNew/utils/format_historical_data";
+import formatIntradayData from "../utils/format_intraday_data";
+import formatHistoricalData from "../utils/format_historical_data";
 
 //     getChartData(symbol, symbol_id, exchange_mic, asset_type,lastUpdateTimeRef, setSeriesesData);
 // getChartData(symbol, symbol_id, exchange_mic, asset_type, isMarketOpen, lastUpdateTimeRef, setSeriesesData);

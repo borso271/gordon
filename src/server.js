@@ -37,7 +37,6 @@ app.prepare().then(() => {
 
     // ✅ Cache to store last updates
     const stockCache = {};
-    const lastUpdateTimes = {}; // Track last update time per ticker
 
     ws.on("open", () => {
         console.log("✅ Connected to EOD Historical Data WebSocket");

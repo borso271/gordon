@@ -1,12 +1,3 @@
-
-// <AnalysisPart 
-//       title="Summary" 
-//       type="text"
-//       content={summary}
-//       icon={false}
-//       tagColor="#2E0403"  // Red background for the tag
-//     />
-
 import React, { useState } from "react";
 import styles from "./AnalysisPart.module.css";
 import Icon from "../Icons/Icon";

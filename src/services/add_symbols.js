@@ -10,11 +10,6 @@ const EXCHANGE_MIC_MAP = {
   NASDAQ: "XNAS",
 };
 
-
-
-
-
-
 // 🔹 Function to check existing tickers in Supabase
 async function getExistingTickers() {
     const { data, error } = await supabase_client

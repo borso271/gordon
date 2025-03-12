@@ -34,7 +34,6 @@ export function useSlideshowNavigation(
     }
   };
   
-
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     // If we're locked (already switching screens), ignore further wheel events
     if (isScrolling.current) return;
@@ -100,9 +99,6 @@ console.log(scrollAccumulator.current)
         goPrevPair();
       }
 
-
-
-  console.log("🔄 Updated index:", currentIndex);
       // Reset accumulator
       scrollAccumulator.current = 0;
 

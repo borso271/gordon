@@ -15,8 +15,6 @@ async function fetch_symbol_info(ticker_symbol) {
         throw error;
       }
   
-      // data will be an object like:
-      // { id: ..., exchange_mic: ..., asset_type: ..., currency: ... }
       return data ?? null;
     } catch (error) {
       console.error("Error fetching symbol info:", error.message);

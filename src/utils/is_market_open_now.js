@@ -7,12 +7,10 @@ function isMarketOpenNow(asset_type, exchange_mic=null) {
     }
     else if (exchange_mic == "XNAS" || exchange_mic=="XNYS"){
     const now = new Date();
-    const year = now.getFullYear();
     const month = now.getMonth() + 1; // JavaScript months are 0-based
     const day = now.getDate();
     const dayOfWeek = now.getDay(); // 0 = Sunday, 6 = Saturday
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
+ 
 
     // Convert current time to Eastern Time (ET)
     const estNow = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));

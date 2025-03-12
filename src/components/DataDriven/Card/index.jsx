@@ -79,15 +79,3 @@ const SymbolSnapshot = ({ symbol, icon = false }) => {
 };
 
 export default SymbolSnapshot;
-
-
-
-// fix snapshot and chart, with no loading, 2 hours.
-
-// probably add last price to the snapshot, so no need to wait
-
-// for the chart, need to select the table from which to select from, whether week or not
-
-// have a 100% safe way to know if the market is open for a given security
-
-// go back to assistant and organize 100% safe and clear 2 hours.

@@ -1,6 +1,3 @@
-
-
-
 const TimeLegend = ({ width, timeRanges, marketOpen, period,intradayPercentage }) => {
   if (!timeRanges || timeRanges.length === 0) return null;
   
@@ -50,8 +47,3 @@ const TimeLegend = ({ width, timeRanges, marketOpen, period,intradayPercentage }
 
 export default TimeLegend;
 
-
-// get fresh historical data before retesting the chart.
-
-// Actually, the nice thing would be for there always being labels at the same positions...
-// but you might check with the canvas assignment of coordinates how it works.

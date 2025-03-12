@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './InactiveButton.module.css';
 import Icon from '../../Icons/Icon';
+
 const InactiveButton = ({ text, icon }) => {
   return (
     <div className={styles.inactiveButton}>

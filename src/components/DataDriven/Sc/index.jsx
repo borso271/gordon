@@ -2,32 +2,17 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { useSelector } from "react-redux";
 import styles from "./SymbolChart.module.css";
 import PeriodSelector from "./components/PeriodSelector/index.jsx";
-import RightLegend from "./components/RightLegend/index.jsx";
-import BottomLegend from "./components/BottomLegend/index.jsx";
 import ChartCanvas from "./components/ChartCanvas";
 import getChartData from "../../../services/get_components_data/fetch_chart_data.js";
 import mergeIntradayData from "./utils/merge_intraday_data.jsx";
-
 import ChartSnapshot from "./components/ChartSnapShot/index.jsx";
 import getSymbolSnapshot from "../../../services/get_components_data/get_symbol_snapshot.js";
 import fetch_symbol_info from "../../../utils/fetch_symbol_info.js";
 import formatTimestamp from "./utils/format_timestsamp.jsx";
 import isMarketOpenNow from "../../../utils/is_market_open_now.js";
-
-import returnDateLegendSegments from "./components/utils/compute_date_legend/index.js";
 import returnPriceLegendSegments from "./components/utils/compute_price_legend/return_price_legend_metadata.js";
-
 import PriceLegend from "./components/PriceLegend/index.jsx";
-import TimeLegend from "./components/DateLegend/index.jsx";
-
-
-import compute_start_end_ms from "./components/utils/compute_start_end_ms.js";
-import { assign_list_XYCoordinateTimestamp } from "./components/utils/compute_x_y/compute_xy_timestamp.js";
-
-import { assignSlotsToPoints } from "./components/utils/compute_x_y/compute_xy_index.js";
-import { assign_list_XYCoordinatesIndex } from "./components/utils/compute_x_y/compute_xy_index.js";
 import { assign_list_XYCoordinatesIndexSimple } from "./components/utils/compute_x_y/compute_xy_index.js";
-import return_intraday_times from "./return_intraday_times.js";
 
 import PriceChangeOverview from "./components/PriceChangeOverview/index.jsx";
 import computeLastPrices from "./compute_last_prices.js";
@@ -39,8 +24,6 @@ const Sc = ({ symbol}) => {
 
   const chartRef = useRef(null);
   const [chartDimensions, setChartDimensions] = useState({ width: 748, height: 220 });
-
-
 
   // Function to update chart dimensions
   const updateChartSize = () => {
@@ -61,9 +44,6 @@ const Sc = ({ symbol}) => {
   }, []);
 
   
-
-
- // console.log("symbol is: ", symbol)
   const [isMarketOpen, setMarketOpen] = useState(false);
   const [symbolInfo, setSymbolInfo] = useState(null);
   // now that you have is market open
@@ -109,18 +89,10 @@ const Sc = ({ symbol}) => {
 
   const liveData = useSelector((state) => state.stocks[symbol] || []);
 
-
-  /**
-   * Fetch *initial* intraday + historical data on mount (or when symbol changes).
-   */
-
-  // Function to fetch market status. . .
-
   const checkMarketStatus = async () => {
     try {
       const marketOpen = await isMarketOpenNow(asset_type, exchange_mic);
 
-      //setMarketOpen(marketOpen); // This triggers a re-render if the value changes
       setMarketOpen(true); // This triggers a re-render if the value changes
       
     } catch (error) {
@@ -157,9 +129,6 @@ const Sc = ({ symbol}) => {
     return () => clearInterval(interval); // Cleanup on unmount
   }, [asset_type, exchange_mic]); // ✅ Re-run if asset_type or exchange_mic changes
 
-
- 
- // console.log("variables are:", symbol_id, exchange_mic, asset_type);
    
   useEffect(() => {
    // console.log("Effect triggered. Values:", { symbol_id, exchange_mic, asset_type });
@@ -265,22 +234,6 @@ const lastTimeStamp = useMemo(() => {
 }, [seriesesData]); // ✅ Updates only when `seriesesData` changes
 
 
-const start_end = useMemo(() => {
-  //console.log("🔍 Compute start end ms checking dependencies:", { selectedPeriod, asset_type, exchange_mic, lastTimeStamp });
-
-  if (selectedPeriod && asset_type && exchange_mic && lastTimeStamp) {
-    return compute_start_end_ms(selectedPeriod, asset_type, exchange_mic, lastTimeStamp);
-  }
-
-  return { start_ms: null, end_ms: null }; // ✅ Prevents calling function with undefined params
-}, [selectedPeriod, asset_type, exchange_mic, lastTimeStamp]); 
-
-const { start_ms, end_ms } = start_end;
-
-
-
-
-
 const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedPeriod)
 
 
@@ -292,11 +245,7 @@ const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedP
   const offsetX = selectedPeriod=="1D"? 0 : firstpartwidth;
 
   const intradaywidth = chartDimensions.width-offsetX;
-  
-  //console.log("chart dimensions are: ", chartDimensions)
 
-  // const { intraday_start, intraday_end } = return_intraday_times(intradayData, exchange_mic, asset_type); // dataPoints, exchange_mic, asset_type
- 
   const periodData_with_coos = assign_list_XYCoordinatesIndexSimple(
     periodData,
     firstpartwidth,  // 🔥 Use dynamic width
@@ -307,7 +256,6 @@ const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedP
     yoffset,
   );
   
-
   const intradayData_With_Coos = assign_list_XYCoordinatesIndexSimple(intradayData, intradaywidth, adjustedLow, adjustedHigh, chartDimensions.height, offsetX, yoffset)
 
   const finalPeriodData = periodData_with_coos.concat(intradayData_With_Coos)
@@ -323,10 +271,6 @@ const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedP
   }, [periodData,selectedPeriod]); // Runs whenever periodData changes
   
   const isPositiveChange = currentPrice > relevant_close
-
-
-  {/* Determine color based on isPositiveChange */}
-
 
   return (
     <div className={styles.chartContainer}>
@@ -391,17 +335,3 @@ const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedP
 export default Sc;
 
 
-
-/*
-The idea is:
-
-
-take historical data.
-take intraday data (only from intraday table).
-merge intraday with live
-
-Have a custom function to determine how much space is taken by intraday data.
-Have a custom function to determine how much of the historical data is jettisoned depending on how long is intraday+live data.
-
-
-*/

@@ -1,7 +1,7 @@
 /*
 given a ticker symbol returns the security id for that symbol
-
 */
+
 import supabase_client from "../lib/supabaseClient";
 async function fetch_symbol_info(ticker_symbol) {
     try {

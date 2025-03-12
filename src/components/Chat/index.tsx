@@ -10,7 +10,7 @@ import ConversationPairView from "./components/ConversationPairView";
 import { useSlideshowNavigation } from "../../app/hooks/useSlideShowNavigation";
 import { handleManualFunctionCall } from "./utils/handleManualFunctionCall";
 import { useThread } from "./hooks/useThread";
-import { useConversation } from "./hooks/useConversation";
+import { useConversation } from "../../app/context/conversationContext";
 import { useStreamHandlers } from "./hooks/useStreamHandlers";
 
 interface ChatProps {
@@ -20,14 +20,26 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
   // Custom hook for thread management
   const { threadId, initThread } = useThread();
 
-  // Custom hook for conversation state management
-  const { conversationPairs, addUserMessage, appendAssistantText, updateLastPair, setConversationPairs } = useConversation();
+  // // Custom hook for conversation state management
+  // const { conversationPairs, addUserMessage, appendAssistantText, updateLastPair, setConversationPairs } = useConversation();
+
+  const {
+    conversationPairs,
+    activeConversationPair,
+    setConversationPairs,
+    setActiveConversationPair,
+    addUserMessage,
+    appendAssistantText,
+    updateLastPair,
+  } = useConversation();
+
 
   const [userInput, setUserInput] = useState("");
   const [inputDisabled, setInputDisabled] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const containerRef = useRef<HTMLDivElement | null>(null);
-
+  
+  console.log("CONVERSATION PAIRS ARE: ", conversationPairs)
   const { handleWheel, responseRef, direction } = useSlideshowNavigation(
     currentIndex,
     setCurrentIndex,

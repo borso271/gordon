@@ -219,13 +219,30 @@ send: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http:/
 // export default Icon;
 
 
-const Icon = ({
+
+interface IconProps {
+  name: string;
+  size?: number;
+  variant?: "primary" | "secondary" | "tertiary";
+  strokeColor?: string;
+  className?: string;
+}
+
+const Icon: React.FC<IconProps> = ({
   name,
-  size, // Manual override
-  variant = "primary", // Choose between different responsive sizes
+  size,
+  variant = "primary",
   strokeColor = "none",
   className
 }) => {
+
+// const Icon = ({
+//   name,
+//   size, // Manual override
+//   variant = "primary", // Choose between different responsive sizes
+//   strokeColor = "none",
+//   className
+// }) => {
   // Define breakpoints (matching CSS)
   const isSmall = useMediaQuery({ maxWidth: 480 });
   const isMedium = useMediaQuery({ maxWidth: 768 });

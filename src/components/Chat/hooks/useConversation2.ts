@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { ConversationPair } from "../../../app/interfaces";
+
 export function useConversation(initialPairs: ConversationPair[] = []) {
   const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>(initialPairs);
 

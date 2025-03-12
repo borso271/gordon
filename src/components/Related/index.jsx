@@ -7,7 +7,7 @@ import React from "react";
 
 import { useState, useEffect } from "react";
 import styles from "./RelatedSymbols.module.css";
-import SymbolSnapshot from "../data_driven/Snapshot";
+import SymbolSnapshot from "../DataDriven/Snapshot";
 import SecondaryH2 from "../Headings/SecondaryH2"
 
 import supabase_client from "../../lib/supabaseClient";

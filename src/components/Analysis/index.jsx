@@ -13,7 +13,7 @@ import Providers from '../Providers';
 // import SymbolChart from '../Data_driven/SymbolChartNew';
 import copyToClipboard from '../Chat/utils/copyToClipboard';
 import shareContent from '../Chat/utils/shareContent';
-import Sc from '../Data_driven/Sc';
+import Sc from '../DataDriven/Sc';
 
 import fetch_symbol_info from '../../utils/fetch_symbol_info';
 import supabase_client from '../../lib/supabaseClient';

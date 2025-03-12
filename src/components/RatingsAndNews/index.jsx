@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./RatingsAndNews.module.css";
-import AnalystRatings from "../data_driven/Ratings";
-import TickerNews from "../Data_driven/News";
+import AnalystRatings from "../DataDriven/Ratings";
+import TickerNews from "../DataDriven/News";
 
 const RatingsAndNews = ({symbol }) => {
   return (

@@ -4,10 +4,9 @@ import React from 'react';
 import styles from './page.module.css'
 import { useTranslation } from 'react-i18next';
 import { PrimaryHeading } from '../../../components/Headings/PrimaryHeading/index.jsx';
-import PrimarySubheading from '../../../components/Headings/PrimarySubHeading/index.jsx';
 import PrimaryButton from '../../../components/Buttons/PrimaryButton/index.jsx';
 import InactiveButton from '../../../components/Buttons/InactiveButton/index.jsx';
-
+import {Subheading} from '../../../components/Headings/Subheading'
 import Link from "next/link";
 
 
@@ -29,10 +28,10 @@ const MarketingPage = () => {
         {t("homepage_heading")}
          
         </PrimaryHeading> */}
-        <PrimarySubheading>
+        <Subheading>
         {t("homepage_subheading")}
          
-        </PrimarySubheading>
+        </Subheading>
         
         {/* Get Started Button (Calls handleGetStarted on Click) */}
       

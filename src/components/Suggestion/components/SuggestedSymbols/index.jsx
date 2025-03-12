@@ -5,7 +5,7 @@ Then do the response parts */
 
 import React from "react";
 import styles from "./SuggestedSymbols.module.css";
-import SymbolSnapshot from "../../../data_driven/Snapshot";
+import SymbolSnapshot from "../../../DataDriven/Snapshot";
 
 const SuggestedSymbols = ({handleManualFunctionCall}) => {
   return (

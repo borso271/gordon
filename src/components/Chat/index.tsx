@@ -9,15 +9,13 @@ import { createThread, sendMessage, submitActionResult } from "./utils/apiAction
 import ConversationPairView from "./components/ConversationPairView";
 import { useSlideshowNavigation } from "../../app/hooks/useSlideShowNavigation";
 import { handleManualFunctionCall } from "./utils/handleManualFunctionCall";
-
 import { useThread } from "./hooks/useThread";
 import { useConversation } from "./hooks/useConversation";
 import { useStreamHandlers } from "./hooks/useStreamHandlers";
-import { ConversationPair } from "../../app/interfaces";
+
 interface ChatProps {
   functionCallHandler?: (toolCall: any) => Promise<string>;
 }
-
 export default function BotChat({ functionCallHandler = () => Promise.resolve("") }: ChatProps) {
   // Custom hook for thread management
   const { threadId, initThread } = useThread();

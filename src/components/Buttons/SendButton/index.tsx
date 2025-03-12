@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./SendButton.module.css"; // Optional CSS module
-import Icon from "../../Icons/Icon/index.tsx";
+import Icon from "../../Icons/Icon";
 
 type SendButtonProps = {
   onClick: () => void;

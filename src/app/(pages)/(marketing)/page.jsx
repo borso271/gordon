@@ -9,7 +9,6 @@ import InactiveButton from '../../../components/Buttons/InactiveButton/index.jsx
 import {Subheading} from '../../../components/Headings/Subheading'
 import Link from "next/link";
 
-
 const MarketingPage = () => {
   const { t } = useTranslation();
   //const router = useRouter(); // Initialize useRouter
@@ -23,17 +22,11 @@ const MarketingPage = () => {
         <PrimaryHeading>
           {headingText}
         </PrimaryHeading>
-        {/* <Typical steps={[t("homepage_heading"), 1000]} wrapper="span" /> */}
-        {/* <PrimaryHeading>
-        {t("homepage_heading")}
-         
-        </PrimaryHeading> */}
         <Subheading>
         {t("homepage_subheading")}
          
         </Subheading>
         
-        {/* Get Started Button (Calls handleGetStarted on Click) */}
       
       <div className={styles.button}>
 <Link href="/chat">

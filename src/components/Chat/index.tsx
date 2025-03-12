@@ -26,7 +26,6 @@ export default function BotChat({
   functionCallHandler = () => Promise.resolve(""),
 }: ChatProps) {
   
-  
   const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>([]);
   const isFirstPrompt = conversationPairs.length === 0; 
   const [userInput, setUserInput] = useState("");

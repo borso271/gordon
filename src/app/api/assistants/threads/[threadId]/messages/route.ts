@@ -1,24 +1,31 @@
+import { NextRequest, NextResponse } from "next/server";
 import { assistantId } from "../../../../../../lib/assistantConfig";
 import { openai } from "../../../../../../lib/openaiClient";
 
-export const runtime = "nodejs";
+export async function POST(req: NextRequest, context: any) {
+  // ✅ Cast context to extract threadId
+  const { params } = context as { params: { threadId: string } };
 
-// Send a new message to a thread
-export async function POST(request, context) {
+  try {
+    const { content } = await req.json();
+    if (!content) {
+      return NextResponse.json({ error: "Missing content" }, { status: 400 });
+    }
 
-  const params = await context.params; // ✅ Await context.params
-  const threadId = params.threadId; // ✅ Extract threadId after awaiting
+    await openai.beta.threads.messages.create(params.threadId, {
+      role: "user",
+      content: content,
+    });
 
-  const { content } = await request.json();
+    const stream = openai.beta.threads.runs.stream(params.threadId, {
+      assistant_id: assistantId,
+    });
 
-  await openai.beta.threads.messages.create(threadId, {
-    role: "user",
-    content: content,
-  });
-
-  const stream = openai.beta.threads.runs.stream(threadId, {
-    assistant_id: assistantId,
-  });
-
-  return new Response(stream.toReadableStream());
+    return new Response(stream.toReadableStream(), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.error("Error processing POST request:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }

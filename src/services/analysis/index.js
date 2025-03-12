@@ -1,6 +1,6 @@
 import supabase_client from "../../lib/supabaseClient.js";
 import fetchFormatData from "./fetch_and_format_data/fetch_and_format_data.js";
-import fetch_openai_response_structured from "./api_calls/openai_structured/route.js";
+import fetch_openai_response_structured from "./api_calls/openai_structured/index.js";
 import insertStockAnalysis from "./insert_data/insert_analysis_response.js";
 
 /**

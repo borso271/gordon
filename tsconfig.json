@@ -14,7 +14,6 @@
     "jsx": "preserve",
     "incremental": true,
     "noImplicitAny": false,  // ✅ Prevents TypeScript from treating missing types as errors
-    "suppressImplicitAnyIndexErrors": true,  // ✅ Suppresses implicit any type warnings for index signatures
 
     "plugins": [
       {

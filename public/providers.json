@@ -1,0 +1,39 @@
+[
+    {
+      "name": "Revolut",
+      "score": 9.2,
+      "score_label": "Excellent",
+      "features": [
+        "Commission-free trade",
+        "Instant deposits",
+        "User-friendly app"
+      ],
+      "url": "https://www.revolut.com",
+      "icon_url": "/providers_icons/revolut_abv_icon.png"
+    },
+    {
+      "name": "eToro",
+      "score": 8.8,
+      "score_label": "Great",
+      "features": [
+        "Social trading",
+        "Copy trading feature",
+        "Wide range of assets"
+      ],
+      "url": "https://www.etoro.com",
+      "icon_url": "/providers_icons/etoro_abv_icon.png"
+    },
+    {
+      "name": "Barclays",
+      "score": 9.5,
+      "score_label": "Outstanding",
+      "features": [
+        "Low-cost trading",
+        "Advanced tools",
+        "Access to global markets"
+      ],
+      "url": "https://www.barclays.com",
+      "icon_url": "/providers_icons/barclays_abv_icon.png"
+    }
+  ]
+  

@@ -1,0 +1,30 @@
+.inactiveButton {
+    display: inline-flex;
+    padding: 8px 28px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    gap:10px;
+border: 1px solid var(--black-700, #232323);
+backdrop-filter: blur(2px);
+    background: transparent;
+    cursor: default; /* Prevents interaction */
+   
+  }
+  
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  .text {
+    color: var(--black-100, #D7D7D7);
+
+/* Text S/Medium */
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 19.6px */
+  }
+  

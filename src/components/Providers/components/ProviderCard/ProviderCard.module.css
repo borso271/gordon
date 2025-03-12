@@ -1,0 +1,172 @@
+.card {
+  
+
+    display: flex;
+padding: 24px 20px;
+flex-direction: column;
+align-items: center;
+gap: 16px;
+flex: 1 0 0;
+border-radius: 12px;
+border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+  }
+  
+  .top {
+
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+    justify-content: center;
+   
+    width: 100%;
+ 
+  }
+
+
+  .topWrapper {
+
+    display: flex;
+   
+    flex-direction:row;
+
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+ 
+ 
+  }
+  
+  
+
+
+
+  .iconWrapper {
+    width: 48px; /* 32px radius → 64px diameter */
+    height: 48px;
+    background-color: white; /* White background */
+    border-radius: 8px; /* Makes it a circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevents the image from overflowing */
+  }
+  
+  .icon {
+    width: 32px; /* Adjust based on your image size */
+    height: 32px;
+    object-fit: contain; /* Ensures it fits inside */
+  }
+  
+
+
+
+.topRight {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+  
+  .rating {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 14px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4px;
+   
+        
+  }
+
+
+  .providerName {
+    color: #E1E1E1;
+
+/* Text S/Medium */
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 19.6px */
+  }
+  
+  .score {
+    padding: 0px 4px;
+    /* Text XS/Medium */
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 16.8px */
+    border-radius: 4px;
+    background: var(--Spring-Green-900, #0D5A37);
+        color: var(--Black-50, #F8F8F8);
+        text-align: center;
+  }
+  
+
+  .scoreLabel {
+    color: var(--Black-300, #929292);
+text-align: center;
+
+/* Text XS/Regular */
+font-family: Inter;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 16.8px */
+  }
+  
+  .middle {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+  }
+  
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .featureItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .featureIcon {
+    width: 16px;
+    height: auto; /* ✅ Ensures it doesn't distort */
+  }
+  
+  .featureText {
+    color: var(--black-100, #D7D7D7);
+    text-align: center;
+    
+    /* Text XS/Regular */
+    font-family: var(--font-family-inter);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 16.8px */
+  }
+  
+  .link {
+    text-decoration: none;
+ 
+  }
+
+  .bottom {
+    width:100%;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  
+  .a {width:100%}

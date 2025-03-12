@@ -1,0 +1,106 @@
+/* .newsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: auto;
+    flex-grow: 1;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-width: 0;
+    padding: 24px;
+    width: 100%;
+  }
+  
+  .newsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+   */
+
+   .newsWrapper {
+    align-self: stretch;
+    min-height: 296px;
+   
+
+    border-radius: 16px;
+border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+
+    min-width: 0;
+    padding: 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between; /* Push first and last elements apart */
+    
+    padding: 20px; /* Optional: adjust based on design */
+  }
+  
+  .newsContainer {
+    flex-grow: 1; /* Pushes itself to the bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Ensures content stays at the bottom */
+  }
+  
+  .newsContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Ensures spacing between news items */
+  }
+  
+  .newsCard {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .newsText {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-grow: 1;
+    min-width: 0;
+    padding-right:30px;
+  }
+  
+  .newsDate {
+    color: #717171;
+    font-family: var(--font-family-inter);
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 140%;
+  }
+  
+  .newsTitle {
+    color: #F8F8F8;
+    font-family: var(--font-family-inter);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
+  
+  .newsTitle:hover {
+    text-decoration: underline;
+  }
+  
+  /* Ensures the divider does NOT add extra spacing */
+  .dividerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .newsImage {
+    min-width:48px;
+  }
+  

@@ -1,0 +1,56 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+
+justify-content: space-between;
+align-items: center;
+
+  }
+  
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between dropdown buttons */
+  }
+  
+  .right {
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+    gap: 12px;
+  }
+
+
+
+  .dropdownContainer {
+    position: relative; /* Ensures the dropdown is positioned relative to this container */
+  }
+  
+  .dropdownContainer > div {
+    position: absolute;
+    top: 120%; /* Positions the dropdown directly below the button */
+    right: 0;
+    z-index: 100; /* Ensures dropdown is above other content */
+    width: max-content;
+  }
+
+
+
+/* Responsive adjustments for small screens */
+@media (max-width: 480px) {
+  .dropdownContainer > div {
+    max-width: 90vw; /* Uses viewport width on small screens */
+   
+  }
+}
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+   
+  
+    .left {
+      gap: 8px;
+    }
+  }
+  

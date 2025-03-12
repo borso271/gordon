@@ -1,0 +1,31 @@
+.logoGroup {
+    display: flex;
+    align-items: center;
+    gap: 2px; /* Space between icon and text */
+    color: var(--black-50);
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+        cursor: pointer; /* Makes it clickable */
+        user-select: none; /* Prevents text selection */
+        text-decoration: none; /* Ensures it doesn't get an underline if inside <a> */
+      }
+      
+      
+    .text {
+        color: #FFF;
+text-align: center;
+font-family: var(--font-family-dm-sans);
+font-size: var(--font-size-s);
+font-style: normal;
+font-weight: var(--font-weight-600);
+line-height: var(--line-height-140); /* 25.2px */
+letter-spacing: var(--letter-spacing-logo);
+    }
+  
+
+  .icon {
+    margin-left:-4px;
+    margin-bottom:-2px;
+  } 
+  

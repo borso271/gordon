@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px; /* Minimal spacing */
+    width: 100%;
+  }
+  
+  .container > * {
+    flex: 1 1 100%; /* Default: full width for mobile */
+  }
+  
+  @media (min-width: 500px) {
+    .container {
+      flex-direction: row;
+      gap: 16px; /* Adjust gap for desktop */
+    }
+  
+    .container > * {
+      flex: 1 1 calc(50% - 16px); /* Each takes ~50% with gap adjustment */
+    }
+  }
+  

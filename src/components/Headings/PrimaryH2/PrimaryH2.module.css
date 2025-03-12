@@ -1,0 +1,11 @@
+.primaryH2 {
+    color: var(--Black-50);
+    font-family: Inter, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 125%;
+    letter-spacing: -0.6px;
+    margin: 0; /* Ensures no unwanted margins */
+  }
+  

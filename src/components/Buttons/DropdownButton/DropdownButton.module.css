@@ -1,0 +1,44 @@
+.dropdownButton {
+    
+    display: inline-flex;
+gap:4px;
+height: 40px;
+padding: 11px 12px;
+justify-content: center;
+align-items: center;
+border-radius: 100px;
+border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+background:transparent;
+  }
+  
+  .text {
+    color: var(--black-50, #F8F8F8);
+    text-align: center;
+    
+    /* Text S/Regular */
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xxs);
+    font-style: normal;
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-140); /* 19.6px */
+  }
+
+
+
+  .dropdownButton:hover {
+    font-style: normal;
+  }
+  
+  
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; /* Ensures consistent size */
+    height: 20px;
+  }
+  
+  .hidden {
+    display: none; /* Hides missing icons */
+  }
+  

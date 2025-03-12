@@ -1,0 +1,105 @@
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    margin: 0 auto;
+    border-radius: 16px;
+    gap: 24px;
+    border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+    min-height: 296px;
+  }
+  
+  /* Header Section */
+  
+  .header {
+    display: flex;
+        flex-direction: column;
+        gap: 6px;
+  }
+  
+
+  .grid {
+    display: grid;
+    gap: 18px;
+
+  }
+
+  .ratingsWrapper {
+    align-self: stretch;
+  
+   
+    min-width: 0;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between; /* Push first and last elements apart */
+    
+  }
+  
+  .GridContainer {
+    flex-grow: 1; /* Pushes itself to the bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Ensures content stays at the bottom */
+  }
+
+
+  
+  .subheading {
+    color: var(--Black-400, #757575);
+
+    /* Text XS/Regular */
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 16.8px */
+  }
+  
+  
+  /* Ensures all columns start at the same position */
+  /* .row {
+    display: grid;
+    height:20px;
+    grid-template-columns: 90px 1fr 40px; 
+    align-items: center;
+    gap: auto;
+  } */
+
+
+  .row {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: baseline;
+    height: 20px; /* Use a percentage-based height instead of 20px */
+    gap: auto; /* Optional: Set a percentage-based gap */
+  }
+  
+  
+  /* Ensures label column is fixed width */
+  .label {
+color: var(--Black-50, #F8F8F8);
+/* Text S/Medium */
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 19.6px */
+min-width: 75px;
+  }
+  
+  /* Ensures percentage value column is fixed width */
+  .percentage {
+    color: var(--Black-50, #F8F8F8);
+    text-align: right;
+    
+    /* Text S/Medium */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 19.6px */
+  }
+  

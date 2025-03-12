@@ -1,0 +1,8 @@
+.suggestionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px; /* Adjust spacing between components */
+    width: 100%;
+  }
+  

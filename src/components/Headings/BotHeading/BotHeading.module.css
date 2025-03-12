@@ -1,0 +1,42 @@
+.botHeading {
+    color: var(--black-50, #F8F8F8);
+
+    /* H2/Medium */
+    font-family: var(--font-family-inter);
+    font-size: var(--font-size-xl);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--line-height-125); /* 37.5px */
+    letter-spacing: -0.6px;
+  }
+  
+  /* Medium (Tablets) */
+  @media (max-width: 768px) {
+    .botHeading {
+
+
+        /* H3/Medium */
+         font-size: 26px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 125%; /* 32.5px */
+        letter-spacing: -0.52px;
+
+
+    }
+  }
+  
+  @media (max-width: 480px) {
+  
+    .botHeading {
+     
+
+/* Text L/Medium */
+
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 130%; /* 23.4px */
+    }
+  }
+  

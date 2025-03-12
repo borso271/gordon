@@ -1,0 +1,20 @@
+.sendButton {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: var(--black-50);
+    border-radius: 90.91px;
+    border: 0.91px solid;
+    border-color: var(--additional-white-3);
+}
+
+
+/* 🔴 Disabled state */
+.sendButton:disabled {
+   
+    cursor: not-allowed; /* Prevent clicks */
+    opacity: 0.5; /* Make it look inactive */
+}

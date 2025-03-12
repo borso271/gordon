@@ -1,0 +1,29 @@
+.primaryHeading {
+  color: var(--black-50, rgba(248, 248, 248, 1));
+  text-align: center;
+  font-family: var(--font-family-dm-sans);
+  font-size: var(--font-size-4xl); /* Large */
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--line-height-105); /* 65.1px */
+  letter-spacing: var(--letter-spacing-4xl);
+}
+
+/* Medium (Tablets) */
+@media (max-width: 768px) {
+  .primaryHeading {
+    font-size: var(--font-size-3xl);
+    letter-spacing: var(--letter-spacing-xxl);
+  }
+}
+
+/* Small (Mobile) */
+@media (max-width: 480px) {
+
+  .primaryHeading {
+    font-family: "Inter";
+    font-size: var(--font-size-xxl);
+    line-height: var(--line-height-115); /* 36.8px */
+    letter-spacing: var(--letter-spacing-xxl);
+  }
+}

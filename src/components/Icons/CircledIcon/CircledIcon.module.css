@@ -1,0 +1,9 @@
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Makes it a circle */
+    overflow: hidden; /* Ensures only the circular part is visible */
+    clip-path: circle(50%); /* Ensures the content inside is also circular */
+  }
+  

@@ -1,0 +1,46 @@
+.container {
+display:flex;
+flex-direction:column;
+gap: 2px;
+}
+
+.item {
+  display:flex;
+  flex-direction:row;
+  gap: 4px;
+  align-items:center;
+}
+
+.period {
+
+    color: var(--black-300, #929292);
+
+    /* Text XS/Medium */
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 16.8px */
+}
+
+.change {
+    text-align: right;
+
+    /* Text S/Medium */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 19.6px */
+    }
+
+
+
+.positive {
+
+    color: var(--spring-Green-500, #1AED87);
+}
+
+.negative {
+    color: var(--pomegranate-500, #ED441A);
+}

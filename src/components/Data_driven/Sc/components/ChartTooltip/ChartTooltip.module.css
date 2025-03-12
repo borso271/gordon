@@ -1,0 +1,91 @@
+
+/* ChartTooltip.module.css */
+.tooltip {
+    font-family: var(--font-family-inter);
+    position: absolute;
+    pointer-events: none;
+    display: inline-flex;
+padding: 8px 16px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 4px;
+border-radius: 8px;
+border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+background: var(--black-900, #0F0F0F);
+  }
+
+
+  .price {
+
+    color: var(--black-50, #F8F8F8);
+
+/* Text L/Medium */
+
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 130%; /* 23.4px */
+
+  }
+
+  .date {
+    color: var(--black-400, #757575);
+
+/* Text XS/Regular */
+
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 16.8px */
+
+  }
+
+
+
+
+
+
+
+/* Medium (Tablets) */
+@media (max-width: 768px) {
+
+
+/* ChartTooltip.module.css */
+.tooltip {
+
+    padding: 8px 12px;
+    
+  }
+
+
+  .price {
+
+   
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%; /* 22.4px */
+
+  }
+
+  .date {
+  
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 14px */
+  
+  }
+
+
+  
+}
+
+/* Small (Mobile) */
+@media (max-width: 480px) {
+
+  
+}
+
+

@@ -1,0 +1,34 @@
+.actionButton {
+    display: inline-flex;
+    padding: 8px 18px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+   background: var(--black-900);
+   border-radius: 100px;
+border: 1px solid var(--additional-white-8)
+  }
+  
+  .actionButton:hover {
+    border-radius: 100px;
+border: 1px solid var(--additional-white-3, rgba(255, 255, 255, 0.03));
+background: var(--black-800, #1A1A1A);
+  }
+  
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .text {
+    color: var(--Black-200, #B4B4B4);
+text-align: center;
+/* Text S/Regular */
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+  }
+  

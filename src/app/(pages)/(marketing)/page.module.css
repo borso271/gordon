@@ -1,0 +1,22 @@
+
+.main {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 100%; /* Full viewport height */
+  width: 100%; /* Ensures full width */
+  
+}
+
+.container {
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  align-items: center;
+
+
+}
+
+.button {
+  margin-top:8px;
+}

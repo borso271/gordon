@@ -2,10 +2,9 @@
 import React, { useState, useEffect, useRef ,FormEvent} from "react";
 import styles from "./chat.module.css";
 import { AssistantStream } from "openai/lib/AssistantStream";
-// @ts-expect-error - no types for this yet
 import ChatInput from './components/ChatInput';
 import { attachStreamHandlers } from "./utils/streamHandlers";
-import { createThread, sendMessage, submitActionResult } from "./utils/apiActions";
+import { sendMessage } from "./utils/apiActions";
 import ConversationPairView from "./components/ConversationPairView";
 import { useSlideshowNavigation } from "../../app/hooks/useSlideShowNavigation";
 import { useManualFunctionCall } from "./hooks/useHandleManualFunctionCall";

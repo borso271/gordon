@@ -1,6 +1,7 @@
 // streamHandlers.ts
-import { AssistantStream, AssistantStreamEvent } from "./AssistantStream";
-
+// import { AssistantStream, AssistantStreamEvent } from "./AssistantStream";
+import { AssistantStream } from "openai/lib/AssistantStream";
+import { AssistantStreamEvent } from "openai/resources/beta/assistants";
 type HandlersOptions = {
   onTextCreated: () => void;
   onTextDelta: (delta: any) => void;

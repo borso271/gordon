@@ -1,10 +1,9 @@
-
 import { NextRequest, NextResponse } from "next/server";
 import { openai } from "../../../../../../lib/openaiClient";
 
 export async function POST(req: NextRequest, context: any) {
-  // Cast context to a known shape
-  const { params } = context as { params: { threadId: string } };
+  // Await context.params to get the dynamic parameter properly.
+  const params: { threadId: string } = await context.params;
 
   try {
     const { toolCallOutputs, runId } = await req.json();
@@ -26,7 +25,6 @@ export async function POST(req: NextRequest, context: any) {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
-
 
 
 // import { NextRequest, NextResponse } from "next/server";

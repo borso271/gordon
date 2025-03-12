@@ -41,6 +41,7 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
   const containerRef = useRef<HTMLDivElement | null>(null);
   
   console.log("CONVERSATION PAIRS ARE: ", conversationPairs)
+  console.log("current index is: ", currentIndex)
   
   const { handleWheel, responseRef, direction } = useSlideshowNavigation(
     currentIndex,
@@ -75,7 +76,7 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
     e.preventDefault();
     if (!userInput.trim()) return;
     addUserMessage(userInput);
-    setCurrentIndex((prev) => prev + 1);
+    //setCurrentIndex((prev) => prev + 1);
     setUserInput("");
     setInputDisabled(true);
     const response = await sendMessage(threadId, userInput);
@@ -86,7 +87,7 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
   const newSearch = async (prompt: string) => {
     if (!prompt.trim()) return;
     addUserMessage(prompt);
-    setCurrentIndex((prev) => prev + 1);
+    //setCurrentIndex((prev) => prev + 1);
     setUserInput("");
     setInputDisabled(true);
     const response = await sendMessage(threadId, prompt);

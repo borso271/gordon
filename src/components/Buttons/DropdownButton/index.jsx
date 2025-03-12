@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./DropdownButton.module.css";
-import Icon from "../../Icons/Icon";
+import Icon from "../../Icons/Icon/index.tsx";
 import CircledIcon from "../../Icons/CircledIcon";
 
 const DropdownButton = ({ text, leftIcon, rightIcon, onClick }) => {

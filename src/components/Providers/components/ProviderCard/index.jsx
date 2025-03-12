@@ -3,7 +3,7 @@ import styles from "./ProviderCard.module.css";
 import SecondaryButton from "../../../Buttons/SecondaryButton";
 import Link from "next/link";
 
-import Icon from "../../../Icons/Icon";
+import Icon from "../../../Icons/Icon/index.tsx";
 
 import PrimaryDivider from "../../../Layout/PrimaryDivider";
 const ProviderCard = ({ provider }) => {

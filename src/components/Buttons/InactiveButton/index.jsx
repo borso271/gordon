@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './InactiveButton.module.css';
-import Icon from '../../Icons/Icon';
+import Icon from '../../Icons/Icon/index.tsx';
 
 const InactiveButton = ({ text, icon }) => {
   return (

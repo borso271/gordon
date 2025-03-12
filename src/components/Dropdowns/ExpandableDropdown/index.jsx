@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./ExpandableDropdown.module.css";
-import Icon from "../../Icons/Icon";
+import Icon from "../../Icons/Icon/index.tsx";
 import Markdown from "react-markdown";
 const ExpandableDropdown = ({ items }) => {
   const [expandedIndexes, setExpandedIndexes] = useState([]); // Track multiple expanded items

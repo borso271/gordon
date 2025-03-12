@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./GoDeeper.module.css";
-import Icon from "../Icons/Icon";
+import Icon from "../Icons/Icon/index.tsx";
 import SecondaryH2 from "../Headings/SecondaryH2";
 import PrimaryDivider from "../Layout/PrimaryDivider";
 

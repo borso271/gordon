@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styles from "./ActionButton.module.css";
-import Icon from "../../Icons/Icon";
+import Icon from "../../Icons/Icon/index.tsx";
 
 const ActionButton = ({ iconName, successIcon = "check", text, onClick, disabled }) => {
   const [currentIcon, setCurrentIcon] = useState(iconName); // Track icon state

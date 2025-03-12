@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./AnalysisPart.module.css";
-import Icon from "../Icons/Icon";
+import Icon from "../Icons/Icon/index.tsx";
 import SecondaryH2 from "../Headings/SecondaryH2"
 
 

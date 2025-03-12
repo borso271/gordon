@@ -162,6 +162,63 @@ send: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http:/
 };
 
 
+
+
+// // TypeScript types for icon names and props
+// type IconName = keyof typeof icons; // ✅ Ensures `name` matches available icons
+
+// interface IconProps {
+//   name: IconName;
+//   size?: number;
+//   variant?: "primary" | "secondary" | "tertiary";
+//   strokeColor?: string;
+//   className?: string;
+// }
+
+// const Icon: React.FC<IconProps> = ({
+//   name,
+//   size,
+//   variant = "primary",
+//   strokeColor = "none",
+//   className
+// }) => {
+//   const isSmall = useMediaQuery({ maxWidth: 480 });
+//   const isMedium = useMediaQuery({ maxWidth: 768 });
+
+//   // Define responsive size sets for different icon variants
+//   const sizeVariants = {
+//     secondary: { lg: 18, md: 18, sm: 18 },
+//     primary: { lg: 20, md: 18, sm: 16 },
+//     tertiary: { lg: 16, md: 14, sm: 12 },
+//   };
+
+//   const selectedSizes = sizeVariants[variant] || sizeVariants.primary;
+
+//   // Apply media query sizes
+//   let responsiveSize = selectedSizes.lg;
+//   if (isSmall) responsiveSize = selectedSizes.sm;
+//   else if (isMedium) responsiveSize = selectedSizes.md;
+
+//   // Final size (manual override takes priority)
+//   const finalSize = size ?? responsiveSize;
+
+//   return (
+//     <div
+//       className={className}
+//       style={{ width: finalSize, height: finalSize, display: "inline-flex", alignItems: "center" }}
+//     >
+//       {icons[name] ? (
+//         React.cloneElement(icons[name] as React.ReactElement, { width: finalSize, height: finalSize, stroke: strokeColor })
+//       ) : (
+//         <span style={{ fontSize: finalSize }}>⚠️</span> // Default fallback icon
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Icon;
+
+
 const Icon = ({
   name,
   size, // Manual override

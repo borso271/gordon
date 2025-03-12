@@ -132,20 +132,6 @@ export default function ChatInput({
         <div className={styles.form}>
           {/* 3️⃣ Attach the ref to the <form> */}
           <form ref={formRef} onSubmit={handleSubmit} className={styles.inputForm}>
-
-            {/* <input
-              type="text"
-              className={styles.input}
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              disabled={inputDisabled}
-              ref={inputRef}
-            />
-
- */}
-
-
-
 <input
   type="text"
   className={styles.input}

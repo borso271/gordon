@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./LogoGroup.module.css";
-import Icon from "../Icons/Icon";
+import Icon from "../Icons/Icon/index.tsx";
 
 const LogoGroup = ({ text = "Gordon", icon = "logo" }) => {
     

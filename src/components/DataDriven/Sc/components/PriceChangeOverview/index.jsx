@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./PriceChangeOverview.module.css";
-import Icon from "../../../../Icons/Icon";
+import Icon from "../../../../Icons/Icon/index.tsx";
 const PriceChangeOverview = ({ current_price, changes }) => {
     // Filter changes to only include 1W, 1M, 1Y periods
     const filteredChanges = changes.filter(({ period }) =>

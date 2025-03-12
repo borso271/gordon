@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Icon from "../../../../Icons/Icon";
+import Icon from "../../../../Icons/Icon/index.tsx";
 import styles from "./ChartSnapshot.module.css"; // Assuming styles are here
 import SymbolIcon from "../../../../Icons/SymbolIcon";
 

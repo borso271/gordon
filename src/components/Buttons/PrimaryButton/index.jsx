@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './PrimaryButton.module.css';
-import Icon from '../../Icons/Icon';
+import Icon from '../../Icons/Icon/index.tsx';
 
 const PrimaryButton = ({ text, icon }) => {
   return (

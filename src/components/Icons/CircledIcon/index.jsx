@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CircledIcon.module.css";
-import Icon from "../Icon";
+import Icon from "../Icon/index.tsx";
 
 const CircledIcon = ({ name, size = 40, bgColor = "#fff", iconColor = "black", border = false }) => {
   return (

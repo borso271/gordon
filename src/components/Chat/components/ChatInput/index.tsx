@@ -1,14 +1,12 @@
 "use client";
 
 import React, { useRef, useState, useEffect, FormEvent } from "react";
-
 import styles from "./ChatInput.module.css";
 import SecondaryButton from "../../../Buttons/SecondaryButton";
 import BotHeading from '../../../Headings/BotHeading'
 import { useScreenSize } from "../../../../app/context/screenSizeContext";
 import { useTranslation } from 'react-i18next';
 import SendButton from "../../../Buttons/SendButton";
-
 
 const TypingHeading = ({ text, speed = 40, initialDelay=0, onTypingComplete = () => {} }) => {
   const [typedText, setTypedText] = useState("");
@@ -56,8 +54,6 @@ const TypingHeading = ({ text, speed = 40, initialDelay=0, onTypingComplete = ()
   );
 };
 
-
-
 type ChatInputProps = {
   isFirstPrompt?: boolean;
   userInput: string;
@@ -83,7 +79,7 @@ export default function ChatInput({
   //const router = useRouter(); // Initialize useRouter
   const headingText = t("bot_first_message");
   const basePlaceholder = "";
-  const [placeholder, setPlaceholder] = useState(basePlaceholder);
+  
   const [showCaret, setShowCaret] = useState(true);
 
   const inputRef = useRef(null);
@@ -159,8 +155,6 @@ export default function ChatInput({
   ref={inputRef}
   onBlur={() => inputRef.current && inputRef.current.focus()}
 />
-
-
 
             {/* Hidden submit button ensures requestSubmit() works in all browsers */}
             <button type="submit" style={{ display: "none" }} />

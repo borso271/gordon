@@ -36,7 +36,6 @@ const AnalysisPart = ({ title, name, type, content, icon, tagColor }) => {
           <div  className={`${styles.analysisSummaryContainer}`}>
   {/* Static Introductory Sentence */}
   
- 
 
   {/* Render Summary Items */}
   <div className={styles.summaryList}>
@@ -96,56 +95,3 @@ const AnalysisPart = ({ title, name, type, content, icon, tagColor }) => {
 };
 
 export default AnalysisPart;
-
-// const AnalysisPart = ({ title, type, content, icon, tagColor }) => {
-//   const [expanded, setExpanded] = useState(false);
-//   const toggleExpanded = () => setExpanded(!expanded);
-
-//   return (
-//     <div className={styles.responsePart}>
-//       <div className={styles.container}>
-//         {/* Header Section */}
-//         <header className={styles.header}>
-//           {icon && (
-//             <div className={styles.tag} style={{ backgroundColor: tagColor }}>
-//               <Icon name={icon}/>
-//             </div>
-//           )}
-
-// <SecondaryH2>{title}</SecondaryH2>
-          
-//         </header>
-
-//         {/* Content Section - Different behavior based on `type` */}
-//         {type === "list" ? (
-//           <div  className={`${styles.analysisList} ${styles.analysisPartContainer}`}>
-//             {Array.isArray(content) &&
-//               (expanded ? content : content.slice(0, 3)).map((item, index) => (
-//                 <p key={index} className={`${styles.analysisListItem} ${styles.text}`}
-// >{item}</p>
-//               ))}
-//             {Array.isArray(content) && content.length > 3 && (
-//               <button className={styles.readMore} onClick={toggleExpanded}>
-//                 {expanded ? "Read less" : "Read more"}
-//               </button>
-//             )}
-//           </div>
-//         ) 
-
-// : (
-//           <div className={`${styles.analysisPartContainer}`}>
-//             <p className={`${styles.analysisSummary}  ${styles.text} ${expanded ? styles.expanded : ""}`}>
-//               {expanded ? content : content.split(" ").slice(0, 30).join(" ") + "..."}
-//             </p>
-//             <button className={styles.readMore} onClick={toggleExpanded}>
-//               {expanded ? "Read less" : "Read more"}
-//             </button>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AnalysisPart;
-

@@ -6,7 +6,6 @@ type SendButtonProps = {
   onClick: () => void;
   disabled?: boolean;
 };
-
 const SendButton: React.FC<SendButtonProps> = ({ onClick, disabled = false }) => {
   return (
     <button className={styles.sendButton} onClick={onClick} disabled={disabled}>

@@ -10,7 +10,6 @@ export async function createThread(): Promise<{ threadId: string }> {
       body: JSON.stringify({ content: text }),
     });
   }
-  
   export async function submitActionResult(
     threadId: string,
     runId: string,

@@ -6,7 +6,6 @@ export async function handleManualFunctionCall(
     functionCallHandler: (toolCall: any) => Promise<string>
   ) {
   
-  
     // 2️⃣ Simulate user input (so it appears in conversation history)
    
     const userQuery =

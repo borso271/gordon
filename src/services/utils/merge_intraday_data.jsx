@@ -13,8 +13,6 @@ function mergeIntradayData(prevMap, newPoints, lastUpdateTimeRef) {
 
     // 2) Extract the relevant new points:
     const lastTwoPoints = newPoints.slice(-2);  // Last 2 for "1D"
-    const lastOnePoint = newPoints.slice(-1);   // Last 1 for other periods
-
     // 3) Merge with existing data:
     const merged1D = [...old1D, ...lastTwoPoints];  // Keep only last 2 new points
     

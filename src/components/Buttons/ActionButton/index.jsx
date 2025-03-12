@@ -1,19 +1,4 @@
-// import React from "react";
-// import styles from "./ActionButton.module.css";
-// import Icon from "../../Icons/Icon";
 
-// const ActionButton = ({ iconName, text, onClick, disabled }) => {
-//     console.log("ONCLICK IS: ", onClick)
-//   return (
-//     <button onClick={!disabled ? onClick : undefined}
-//     className={styles.actionButton}>
-//       <Icon name={iconName} className={styles.icon} />
-//       <span className={styles.text}>{text}</span>
-//     </button>
-//   );
-// };
-
-// export default ActionButton;
 
 import React, { useState } from "react";
 import styles from "./ActionButton.module.css";

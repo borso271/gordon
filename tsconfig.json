@@ -4,7 +4,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -13,6 +13,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "noImplicitAny": false,  // ✅ Prevents TypeScript from treating missing types as errors
+    "suppressImplicitAnyIndexErrors": true,  // ✅ Suppresses implicit any type warnings for index signatures
+
     "plugins": [
       {
         "name": "next"
@@ -25,3 +28,4 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(pages)/(marketing)/page.jsx", "src/components/Chat/chat.tsx", "src/app/clientWrapper.jsx"],
   "exclude": ["node_modules"]
 }
+

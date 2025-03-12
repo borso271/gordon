@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 export function useSlideshowNavigation(
   currentIndex: number,
-  setCurrentIndex: (index: number) => void,
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>,
   conversationPairsLength: number
 ) {
   const [direction, setDirection] = useState<"up" | "down">("up");

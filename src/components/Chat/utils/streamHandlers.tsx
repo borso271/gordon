@@ -4,7 +4,6 @@ import { AssistantStream, AssistantStreamEvent } from "./AssistantStream";
 type HandlersOptions = {
   onTextCreated: () => void;
   onTextDelta: (delta: any) => void;
-  onImageFileDone: (image: any) => void;
   onToolCallCreated: (toolCall: any) => void;
   onToolCallDelta: (delta: any, snapshot: any) => void;
   onRequiresAction: (event: AssistantStreamEvent.ThreadRunRequiresAction) => void;
@@ -16,7 +15,7 @@ export function attachStreamHandlers(
   {
     onTextCreated,
     onTextDelta,
-    onImageFileDone,
+  
     onToolCallCreated,
     onToolCallDelta,
     onRequiresAction,
@@ -27,8 +26,6 @@ export function attachStreamHandlers(
   stream.on("textCreated", onTextCreated);
   stream.on("textDelta", onTextDelta);
 
-  // images
-  stream.on("imageFileDone", onImageFileDone);
 
   // tool calls
   stream.on("toolCallCreated", onToolCallCreated);

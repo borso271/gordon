@@ -112,13 +112,6 @@ const onManualFunctionCall = async (functionName: string, args: any) => {
     }
   };
 
-  const onImageFileDone = (image: any) => {
-    setConversationPairs((prev) => {
-      const last = { ...prev[prev.length - 1] };
-      last.assistant += `\n![${image.file_id}](/api/assistants/files/${image.file_id})\n`;
-      return [...prev.slice(0, -1), last];
-    });
-  };
 
   const onToolCallCreated = (toolCall: any) => {
     if (toolCall.type === "code_interpreter") {
@@ -187,7 +180,6 @@ const onRequiresAction = async (event: any) => {
     attachStreamHandlers(stream, {
       onTextCreated,
       onTextDelta,
-      onImageFileDone,
       onToolCallCreated,
       onToolCallDelta,
       onRequiresAction,

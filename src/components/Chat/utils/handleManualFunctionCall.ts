@@ -20,7 +20,6 @@ export async function handleManualFunctionCall(
   
     setCurrentIndex((prev) => prev + 1); // Move to the new conversation pair
   
-    
     // 3️⃣ Call the function handler manually
     const toolCall = {
       function: { name: functionName, arguments: JSON.stringify(args) }

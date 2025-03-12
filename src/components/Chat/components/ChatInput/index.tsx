@@ -10,45 +10,6 @@ import { useTranslation } from 'react-i18next';
 import SendButton from "../../../Buttons/SendButton";
 
 
-
-// const TypingHeading = ({ text, speed = 20, onTypingComplete = () => {} }) => {
-//   const [typedText, setTypedText] = useState("");
-
-//   useEffect(() => {
-//     if (!text) return;
-
-//     let currentText = "";
-//     let charIndex = 0;
-//     setTypedText(""); // Reset the text correctly
-   
-//     // Optional delay before typing starts
-//     const delay = 0;
-
-//     // Start the typing effect after the delay
-//     const typingTimeout = setTimeout(() => {
-//       const typingInterval = setInterval(() => {
-//         if (charIndex < text.length) {
-//           currentText = text.slice(0, charIndex + 1);
-//           setTypedText(currentText);
-//           charIndex++;
-//         } else {
-//           clearInterval(typingInterval);
-//           onTypingComplete(true);
-//         }
-//       }, speed);
-//     }, delay);
-
-//     return () => {
-   
-//       clearTimeout(typingTimeout);
-//     };
-//   }, [text]);
-
-//   return <span>{typedText}</span>;
-// };
-
-
-
 const TypingHeading = ({ text, speed = 40, initialDelay=0, onTypingComplete = () => {} }) => {
   const [typedText, setTypedText] = useState("");
   const [showCaret, setShowCaret] = useState(true); // Blinking caret state

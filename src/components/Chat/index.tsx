@@ -9,7 +9,6 @@ import { createThread, sendMessage, submitActionResult } from "./utils/apiAction
 import ConversationPairView from "./components/ConversationPairView";
 import { useSlideshowNavigation } from "../../app/hooks/useSlideShowNavigation";
 import { handleManualFunctionCall } from "./utils/handleManualFunctionCall";
-import Loading from '../Loading'
 
 export interface ConversationPair {
   user: string;
@@ -143,44 +142,6 @@ const onManualFunctionCall = async (functionName: string, args: any) => {
   };
 
 
-
-
-
-// const onRequiresAction = async (event: any) => {
-//   const runId = event.data.id;
-//   const toolCalls = event.data.required_action.submit_tool_outputs.tool_calls;
-//   const toolCallOutputs = await Promise.all(
-//     toolCalls.map(async (toolCall: any) => {
-//       const result = await functionCallHandler(toolCall);
-//       const parsedResult = JSON.parse(result);
-
-//       setConversationPairs((prev) => {
-//         const last = { ...prev[prev.length - 1] };
-
-//         // Check function type and store results correctly
-//         if (toolCall.function?.name === "analyze_security") {
-//           last.analysisData = parsedResult;
-//         } else if (toolCall.function?.name === "suggest_securities") {
-//           last.suggestionData = parsedResult;
-//         }
-
-//         return [...prev.slice(0, -1), last];
-//       });
-
-//       return { output: result, tool_call_id: toolCall.id };
-//     })
-//   );
-
-//   setInputDisabled(true);
-  
-//   const response = await submitActionResult(threadId, runId, toolCallOutputs);
- 
-//   const stream = AssistantStream.fromReadableStream(response.body);
- 
-//   attachHandlers(stream);
-// };
-
-
 const onRequiresAction = async (event: any) => {
   const toolCalls = event.data.required_action.submit_tool_outputs.tool_calls;
   
@@ -214,10 +175,6 @@ const onRequiresAction = async (event: any) => {
 
   setInputDisabled(false); // ✅ Allow user input again
 };
-
-
-
-
 
 
 

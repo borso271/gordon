@@ -14,8 +14,10 @@ const eslintConfig = [
   {
     rules: {
       "@typescript-eslint/no-unused-expressions": "warn", // ✅ Converts error to warning
-      "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }], // ✅ Ignores unused vars that start with _
+      "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }], // ✅ Ignores `_` prefixed variables
       "@typescript-eslint/no-explicit-any": "off", // ✅ Disables restriction on `any`
+      "prefer-const": "warn", // ✅ Suggests using `const` instead of `let` if variable is never reassigned
+      "@typescript-eslint/no-this-alias": "off", // ✅ Disables warning for aliasing `this`
     },
   },
 ];

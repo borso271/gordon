@@ -115,7 +115,7 @@ letter-spacing: var(--letter-spacing-xl);
 /* Medium (Tablets) */
 @media (max-width: 768px) {
     .fixed {
-    padding: 20px 20;
+    padding: 20px;
     }
 
     .buttonGroup {

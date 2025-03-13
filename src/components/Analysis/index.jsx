@@ -78,8 +78,8 @@ const handleIconClick = (item) => {
     />
 
 
-          <RatingsAndNews symbol={symbol}/>
-
+          
+{asset_type != "crypto" && <RatingsAndNews symbol={symbol}/>}
 <AnalysisPart 
       title="Summary" 
       name={symbolName}
@@ -91,7 +91,7 @@ const handleIconClick = (item) => {
 
   <GoDeeper items={prompts} onIconClick={handleIconClick} newSearch={newSearch} />
 
-         <Providers/>
+         <Providers symbol={symbol}/>
 
          <RelatedSymbols symbol_id={symbol_id} handleManualFunctionCall={handleManualFunctionCall}/>
          <ActionsGroup

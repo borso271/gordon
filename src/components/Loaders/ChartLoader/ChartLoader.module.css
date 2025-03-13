@@ -1,0 +1,488 @@
+.chartGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem; /* ~20px if 1rem=16px */
+    padding: 1.5rem; /* 24px → 1.5rem */
+    position: relative;
+    background-color: var(--card-background);
+    border-radius: 1rem; /* 16px → 1rem */
+    border: 1px solid var(--card-border);
+    width: 100%;
+    max-width: 100%; /* Ensures it doesn’t exceed container */
+    box-sizing: border-box; /* Safer box model */
+  }
+  
+  /* Stock Info */
+  .chartGroup .stockInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* 12px → 0.75rem */
+    width: 100%;
+    position: relative;
+    /* We remove fixed height/width */
+  }
+  
+  /* Logo Placeholder */
+  .chartGroup .group {
+    width: clamp(2.5rem, 8vw, 3.75rem); /* ~40px-60px range */
+    aspect-ratio: 1 / 1; /* Keeps it square */
+    background-color: var(--black-800);
+    border-radius: 50%;
+  }
+  
+  /* Stock Data at Right */
+  .chartGroup .stockData {
+    flex: 1; /* Let this grow/shrink in flex container */
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+    min-height: 3rem; /* ~48px, or remove if not needed */
+    height:100%;
+ 
+  }
+  
+  /* Stock Details */
+  .chartGroup .stockDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: clamp(8rem, 30vw, 12rem); /* 155px → flexible range */
+    position: relative;
+    height:100%;
+    gap: 12px;
+  }
+  
+  /* Frames for placeholders */
+  .chartGroup .frame,
+  .chartGroup .div {
+    width: 100%;
+    height: 1rem; /* ~16px → 1rem */
+    background-color: var(--black-800);
+    border-radius: 100px;
+  
+  }
+  
+  .chartGroup .div {
+    height: 1.5rem; /* 28px → 1.75rem */
+  }
+  
+  /* Additional details on the right */
+  .chartGroup .frame2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.5rem;
+    height:100%;
+  }
+  
+  /* Stock Name Text */
+  .chartGroup .stockNameText {
+    height: 1rem; /* ~16px → 1rem */
+    width: clamp(6rem, 40%, 10rem); /* 159px → flexible range */
+    background-color: var(--black-800);
+    border-radius: 100px;
+  }
+  
+  /* Time Range Options */
+  .chartGroup .timeRangeOptions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* let them wrap on smaller screens */
+  }
+  
+  .chartGroup .frame3 {
+    width: 90px;
+    height: 1.5rem; /* 24px → 1.5rem */
+    background-color: var(--black-800);
+    border-radius: 100px;
+  }
+  
+  /* Divider line */
+  .chartGroup .line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--black-800);
+
+  }
+  
+  /* Chart Container */
+  .chartGroup .chartContainer {
+    position: relative;
+    width: 100%;
+    /* Remove fixed height, let content define it or set min-height: */
+    min-height: 12rem; /* ~192px */
+  }
+  
+  /* Overlap Group (If needed) */
+  .chartGroup .overlapGroup {
+    position: relative;
+    width: 100%; /* 748px → 100% so it’s flexible */
+    min-height: 12rem; /* or auto if you prefer */
+  }
+  
+  /* Chart Data (avoid absolute if possible) */
+  .chartGroup .chartData {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* ~32px → 2rem */
+    width: 100%;
+    /* Remove absolute positioning => let flex flow handle it */
+  }
+  
+  /* Chart Header */
+  .chartGroup .chartHeader {
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+  }
+  
+  .chartGroup .chartTitle {
+    height: 1.5rem; /* 24px → 1.5rem */
+    width: clamp(5rem, 30%, 10rem); 
+    background-color: var(--black-800);
+    border-radius: 100px;
+  }
+  
+  .chartGroup .chartInfo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+  }
+  
+  .chartGroup .chartStats {
+    flex: 0 0 auto;
+    height: 1rem; /* 16px */
+    width: clamp(4rem, 20%, 7rem); /* 111px flexible */
+    border-radius: 100px;
+    background-color: var(--black-800);
+  }
+  
+  .chartGroup .frame4 {
+    width: clamp(10rem, 50%, 20rem); /* 312px → flexible */
+    height: 1.5rem;
+    border-radius: 100px;
+    background-color: var(--black-800);
+  }
+  
+  /* Chart Section */
+  .chartGroup .chart {
+    width: 100%;
+    /* Remove fixed height => let content define it or set min-height */
+    min-height: 10rem; /* ~160px */
+    position: relative;
+  }
+  
+  /* Amount on left */
+  .chartGroup .amount {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: absolute; /* If needed for overlay, else remove absolute */
+    top: 0;
+    left: 0;
+    height: 100%; /* match parent if you need full overlay */
+  }
+  
+  .chartGroup .frame5 {
+    width: 2.5rem; /* 40px → 2.5rem */
+    height: 1rem; /* 17px → 1rem */
+    border-radius: 100px;
+    background-color: var(--black-800);
+  }
+  
+  /* Graph Placeholder */
+  .chartGroup .graphs {
+    position: absolute;
+    top: 0;
+    left: 10%; /* 57px → 20% or remove absolute and let flex layout handle it */
+    width: 90%;
+    height: 100%;
+    background-color: var(--black-800);
+    border-radius: 0.75rem; /* 12px → 0.75rem */
+  }
+  
+  .chartGroup .rightGroup {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+    }
+    
+    /* Small (Mobile) */
+    @media (max-width: 768px) {
+
+
+
+  /* Stock Details */
+  .chartGroup .stockDetails {
+   
+    width: clamp(8rem, 50vw, 12rem); /* 155px → flexible range */
+   
+  }
+
+        .chartGroup {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 1.5rem; /* 24px → 1.5rem */
+            position: relative;
+            background-color: var(--card-background);
+            border-radius: 1rem; /* 16px → 1rem */
+            border: 1px solid var(--card-border);
+            width: 100%;
+            max-width: 100%; /* Ensures it doesn’t exceed container */
+            box-sizing: border-box; /* Safer box model */
+          }
+          
+          /* Stock Info */
+          .chartGroup .stockInfo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem; /* 12px → 0.75rem */
+            width: 100%;
+            position: relative;
+            /* We remove fixed height/width */
+          }
+          
+          /* Logo Placeholder */
+          .chartGroup .group {
+            width: clamp(2.5rem, 16vw, 3.75rem); /* ~40px-60px range */
+            aspect-ratio: 1 / 1; /* Keeps it square */
+            background-color: var(--black-800);
+            border-radius: 50%;
+          }
+          
+          /* Stock Data at Right */
+          .chartGroup .stockData {
+            flex: 1; /* Let this grow/shrink in flex container */
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            position: relative;
+            min-height: 3rem; /* ~48px, or remove if not needed */
+            height:100%;
+            flex-direction:column;
+            gap:12px;
+          }
+          
+       
+          
+          /* Frames for placeholders */
+          .chartGroup .frame,
+          .chartGroup .div {
+            width: 100%;
+            height: 0.8rem; /* ~16px → 1rem */
+            background-color: var(--black-800);
+            border-radius: 100px;
+          
+          }
+          
+          .chartGroup .div {
+            height: 1.4rem; /* 28px → 1.75rem */
+          }
+          
+          /* Additional details on the right */
+          .chartGroup .frame2 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.5rem;
+            height:100%;
+          }
+          
+          /* Stock Name Text */
+          .chartGroup .stockNameText {
+            height: 1rem; /* ~16px → 1rem */
+            width: clamp(6rem, 50%, 10rem); /* 159px → flexible range */
+            background-color: var(--black-800);
+            border-radius: 100px;
+          }
+          
+          /* Time Range Options */
+          .chartGroup .timeRangeOptions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap; /* let them wrap on smaller screens */
+          }
+          
+          .chartGroup .frame3 {
+            width: 90px;
+            height: 1.5rem; /* 24px → 1.5rem */
+            background-color: var(--black-800);
+            border-radius: 100px;
+          }
+          
+          /* Divider line */
+          .chartGroup .line {
+            width: 100%;
+            height: 1px;
+            background-color: var(--black-800);
+            margin: 0.5rem 0;
+          }
+          
+          /* Chart Container */
+          .chartGroup .chartContainer {
+            position: relative;
+            width: 100%;
+            /* Remove fixed height, let content define it or set min-height: */
+            min-height: 12rem; /* ~192px */
+          }
+          
+          /* Overlap Group (If needed) */
+          .chartGroup .overlapGroup {
+            position: relative;
+            width: 100%; /* 748px → 100% so it’s flexible */
+            min-height: 12rem; /* or auto if you prefer */
+          }
+          
+          /* Chart Data (avoid absolute if possible) */
+          .chartGroup .chartData {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem; /* ~32px → 2rem */
+            width: 100%;
+            /* Remove absolute positioning => let flex flow handle it */
+          }
+          
+          /* Chart Header */
+          .chartGroup .chartHeader {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem; /* 48px → splitted into smaller gap */
+            width: 100%;
+          }
+          
+          .chartGroup .chartTitle {
+            height: 1.5rem; /* 24px → 1.5rem */
+            width: clamp(5rem, 30%, 10rem); 
+            background-color: var(--black-800);
+            border-radius: 100px;
+          }
+          
+          .chartGroup .chartInfo {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            width: 100%;
+            gap: 1rem;
+          }
+          
+          .chartGroup .chartStats {
+            flex: 0 0 auto;
+            height: 1rem; /* 16px */
+            width: clamp(4rem, 20%, 7rem); /* 111px flexible */
+            border-radius: 100px;
+            background-color: var(--black-800);
+            display:none;
+          }
+          
+          .chartGroup .frame4 {
+            width: clamp(10rem, 50%, 20rem); /* 312px → flexible */
+            height: 1.5rem;
+            border-radius: 100px;
+            background-color: var(--black-800);
+          }
+          
+          /* Chart Section */
+          .chartGroup .chart {
+            width: 100%;
+            /* Remove fixed height => let content define it or set min-height */
+            min-height: 10rem; /* ~160px */
+            position: relative;
+          }
+          
+          /* Amount on left */
+          .chartGroup .amount {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: absolute; /* If needed for overlay, else remove absolute */
+            top: 0;
+            left: 0;
+            height: 100%; /* match parent if you need full overlay */
+          }
+          
+          .chartGroup .frame5 {
+            width: 2.5rem; /* 40px → 2.5rem */
+            height: 1rem; /* 17px → 1rem */
+            border-radius: 100px;
+            background-color: var(--black-800);
+          }
+          
+          /* Graph Placeholder */
+          .chartGroup .graphs {
+            position: absolute;
+            top: 0;
+            left: 10%; /* 57px → 20% or remove absolute and let flex layout handle it */
+            width: 90%;
+            height: 100%;
+            background-color: var(--black-800);
+            border-radius: 0.75rem; /* 12px → 0.75rem */
+            width: 85%;
+            left: 15%;
+          }
+          
+        
+    
+      
+    }
+    
+
+
+
+
+
+
+/* ✅ Keyframe animation for the shimmer effect */
+@keyframes shimmer {
+    0% { background-position: -100px 0; }
+    100% { background-position: 100px 0; }
+  }
+  
+  /* ✅ Apply shimmer effect to the placeholder elements */
+
+
+  .chartGroup .group,
+  .chartGroup .div,
+  .chartGroup .frame3,
+  .chartGroup .frame4,
+  .chartGroup .graphs,
+  .chartGroup .frame5,
+  .chartGroup .chartTitle,
+
+ 
+
+  .chartGroup .frame {
+    background: linear-gradient(90deg, var(--black-800) 25%, var(--card-shimmer) 50%, var(--black-800) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  

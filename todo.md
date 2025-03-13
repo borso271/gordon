@@ -1,5 +1,39 @@
+
+
+
+1. Fix Button Navigation not working correctly
+
+
+
+
+3. Make Loader works, and have also a subloader for the actual chart? (or no just show actual chart when all data is available)
+4. Make Sidebar Navigation work
+5. Make Sidebar Navigation style
+
+Add Actual Multilanguage Functionality
+--------------------------------------------
+
+6. Separate logic in hooks and clean.
+
+--------------------------------------------
+
+Maybe?
 1. Make route to name conversations as you have in gordon.
-2. Make the sidebar only if there are more than 1 pair, and allow user to scroll it and click, at which point you 
+
+
+
+
+----------
+
+----------
+
+----------
+
+----------
+FIX THE SOLANA PROBLEM BY HAVING UNIQUE NAMES ...
+
+
+
 
 
 

@@ -7,21 +7,16 @@ but for now always returning the same symbols, apple 6 times over.
 
 import React from "react";
 import styles from "./Suggestion.module.css";
-import SecondaryH2 from "../Headings/SecondaryH2";
 import SuggestedSymbols from "./components/SuggestedSymbols";
-import ActionsGroup from "../ActionsGroup";
 import BotHeading from "../Headings/BotHeading";
 const Suggestion = ({data, handleManualFunctionCall}) => {
-    const symbol = data.symbol;
-  const actions=[
-    { iconName: "copy", text: "Copy" },
-  ]
 
+    const symbol = data.symbol;
   return (
     <div className={styles.suggestionContainer}>
       <BotHeading>Here's some ideas:</BotHeading>
-      <SuggestedSymbols handleManualFunctionCall={handleManualFunctionCall} />
-      {/* <ActionsGroup actions={actions} /> */}
+      <SuggestedSymbols data={data} handleManualFunctionCall={handleManualFunctionCall} />
+    
     </div>
   );
 };

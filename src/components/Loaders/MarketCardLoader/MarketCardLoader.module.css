@@ -1,0 +1,131 @@
+.marketCard {
+    display: flex;
+    flex-direction: column;
+    height: 253px;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 20px;
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid;
+    border-color: var(--card-border);
+    width: 100%;
+}
+
+.marketCard .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.marketCard .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0px 0px 2px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    background-color: transparent;
+}
+
+.marketCard .logo {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    background-color: var(--black-800);
+    border-radius: 8.35px;
+}
+
+.marketCard .bankInfo {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    align-self: stretch;
+    flex: 0 0 auto;
+}
+
+.marketCard .frame {
+    width: 88px;
+    height: 16px;
+    position: relative;
+    background-color: var(--black-800);
+    border-radius: 100px;
+}
+
+.marketCard .div {
+    width: 88px;
+    height: 12px;
+    position: relative;
+    background-color: var(--black-800);
+    border-radius: 100px;
+}
+
+.marketCard .line {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    height: 1px;
+    object-fit: cover;
+}
+
+.marketCard .features {
+    display: flex;
+    flex-direction: column;
+    height: 64px;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+}
+
+.marketCard .frame2 {
+    align-self: stretch;
+    width: 100%;
+    height: 12px;
+    position: relative;
+    background-color: var(--black-800);
+    border-radius: 100px;
+}
+
+.marketCard .frame3 {
+    align-self: stretch;
+    width: 100%;
+    height: 48px;
+    margin-bottom: -1.00px;
+    position: relative;
+    background-color: var(--black-800);
+    border-radius: 100px;
+}
+
+
+
+
+/* ✅ Keyframe animation for the shimmer effect */
+@keyframes shimmer {
+    0% { background-position: -100px 0; }
+    100% { background-position: 100px 0; }
+  }
+  
+  /* ✅ Apply shimmer effect to the placeholder elements */
+  .marketCard .logo,
+  .marketCard .frame,
+  .marketCard .div,
+  .marketCard .frame2,
+  .marketCard .frame3 {
+    background: linear-gradient(90deg, var(--black-800) 25%, var(--card-shimmer) 50%, var(--black-800) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  

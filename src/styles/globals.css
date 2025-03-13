@@ -61,6 +61,7 @@
   --background: var(--black-900);
 
 --card-border: rgba(255, 255, 255, 0.08);
+--card-shimmer: rgba(30, 30, 30);
   --card-background: rgba(255, 255, 255, 0.02);
 
     /* --breakpoint-xs: 320px;    */

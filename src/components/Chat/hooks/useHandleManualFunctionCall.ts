@@ -7,6 +7,7 @@ export function useManualFunctionCall() {
 
   // ✅ Define the function inside the hook
   const handleManualFunctionCall = useCallback(
+    
     async (functionName: string, args: any, functionCallHandler: (toolCall: any) => Promise<string>) => {
       // 1️⃣ Simulate user input (so it appears in conversation history)
       const userQuery =

@@ -1,0 +1,22 @@
+.container {
+    display: grid;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Default: One column (for small screens) */
+.container {
+    grid-template-columns: 1fr;
+}
+
+/* Large screens (≥ 1024px): Two columns */
+@media (min-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
+    }
+}
+
+/* Sections (full width on small screens, 50% width on large screens) */
+.leftSection, .rightSection {
+    width: 100%;
+}

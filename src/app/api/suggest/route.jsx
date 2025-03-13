@@ -23,7 +23,7 @@ export async function POST(request) {
       suggestions = [
         { symbol: "BTC", asset_type: "crypto", exchange_mic: "BINANCE" },
         { symbol: "ETH", asset_type: "crypto", exchange_mic: "BINANCE" },
-        { symbol: "USDT", asset_type: "crypto", exchange_mic: "BINANCE" },
+        { symbol: "ADA", asset_type: "crypto", exchange_mic: "BINANCE" },
         { symbol: "BNB", asset_type: "crypto", exchange_mic: "BINANCE" },
         { symbol: "XRP", asset_type: "crypto", exchange_mic: "BINANCE" },
         { symbol: "SOL", asset_type: "crypto", exchange_mic: "BINANCE" },

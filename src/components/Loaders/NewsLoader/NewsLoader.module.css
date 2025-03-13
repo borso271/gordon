@@ -1,0 +1,196 @@
+.latestNews {
+    align-items: flex-start;
+    gap: 8px;
+    padding: 24px;
+    background-color: var(--card-background);
+    border-radius: 16px;
+    border: 1px solid;
+    border-color: var(--card-border);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.latestNews .container {
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 12px;
+}
+
+.latestNews .headerContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.latestNews .frame {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background-color: var(--black-800);
+    border-radius: 100px;
+}
+
+.latestNews .div {
+    position: relative;
+    width: 115px;
+    height: 26px;
+    background-color: var(--black-800);
+    border-radius: 100px;
+}
+
+.latestNews .newsItemsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.latestNews .newsRow {
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    display: flex;
+    position: relative;
+}
+
+.latestNews .frame2 {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    background-color: var(--black-800);
+    border-radius: 8px;
+}
+
+.latestNews .newsTitle {
+    flex-direction: column;
+    height: 54px;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex: 1;
+    flex-grow: 1;
+    display: flex;
+    position: relative;
+}
+
+.latestNews .frame3 {
+    position: relative;
+    width: 116px;
+    height: 10px;
+    background-color: var(--black-800);
+    border-radius: 100px;
+}
+
+.latestNews .frame4 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.latestNews .frame5 {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    height: 12px;
+    background-color: var(--black-800);
+    border-radius: 100px;
+}
+
+.latestNews .line {
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    height: 1px;
+    object-fit: cover;
+    background-color: var(--black-800)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+}
+
+/* Small (Mobile) */
+@media (max-width: 768px) {
+
+
+
+    
+
+  
+}
+
+
+
+
+
+
+/* ✅ Keyframe animation for the shimmer effect */
+@keyframes shimmer {
+    0% { background-position: -100px 0; }
+    100% { background-position: 100px 0; }
+  }
+  
+  /* ✅ Apply shimmer effect to the placeholder elements */
+
+
+  .latestNews .div,
+  .latestNews .frame,
+  .latestNews .frame2,
+  .latestNews .frame3,
+  .latestNews .frame4 {
+    background: linear-gradient(90deg, var(--black-800) 25%, var(--card-shimmer) 50%, var(--black-800) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  

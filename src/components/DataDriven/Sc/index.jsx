@@ -13,7 +13,6 @@ import isMarketOpenNow from "../../../utils/is_market_open_now.js";
 import returnPriceLegendSegments from "./components/utils/compute_price_legend/return_price_legend_metadata.js";
 import PriceLegend from "./components/PriceLegend/index.jsx";
 import { assign_list_XYCoordinatesIndexSimple } from "./components/utils/compute_x_y/compute_xy_index.js";
-
 import PriceChangeOverview from "./components/PriceChangeOverview/index.jsx";
 import computeLastPrices from "./compute_last_prices.js";
 import PriceMiniOverview from "./components/PriceMiniOverview/index.jsx";
@@ -105,7 +104,7 @@ const Sc = ({ symbol}) => {
   
     async function fetchSnapshot() {
       try {
-        const data = await getSymbolSnapshot(symbol, symbol_id);
+        const data = await getSymbolSnapshot(symbol, asset_type,symbol_id);
        // console.log("Fetched snapshot data:", data);
         setSnapshot(data || { last_close: 0, currency: "-" });
       } catch (error) {
@@ -277,7 +276,7 @@ const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedP
       <div className={styles.container}>
 
         <div className={styles.chartTop}>
-        <ChartSnapshot symbol={symbol} name={symbol_name} latestPrice={currentPrice} lastClose={snapShot.last_close} currency={snapShot.currency} lastUpdated={lastUpdated} />
+        <ChartSnapshot symbol={symbol} asset_type={asset_type} name={symbol_name} latestPrice={currentPrice} lastClose={snapShot.last_close} currency={snapShot.currency} lastUpdated={lastUpdated} />
         
 
 <div className={styles.topRight}>

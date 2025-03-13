@@ -5,7 +5,6 @@ import fetch_symbol_info from "../../../utils/fetch_symbol_info.js";
 import styles from "./Snapshot.module.css";
 import SymbolIcon from "../../Icons/SymbolIcon/index.jsx";
 import fetchLatestPrice from "../../../services/get_components_data/fetch_latest_price.js";
-
 function getTextBeforeHyphen(input) {
   return typeof input === "string" && input.includes("-") 
     ? input.split("-")[0].trim() 
@@ -52,7 +51,7 @@ const tt = "Alphabet Inc - Class C";
   
     async function fetchSnapshot() {
       try {
-        const data = await getSymbolSnapshot(symbol,asset_type,symbol_id);
+        const data = await getSymbolSnapshot(symbol, asset_type, symbol_id);
         setSnapshot(data || { last_close: 0, currency: "-" });
 
   setLastLivePrice(data.last_close)
@@ -66,6 +65,9 @@ const tt = "Alphabet Inc - Class C";
   
 
   // Get last live price from Redux every 5 seconds (and immediately on mount)
+
+
+
 
 useEffect(() => {
   let isMounted = true; // ✅ Prevent state updates after unmount

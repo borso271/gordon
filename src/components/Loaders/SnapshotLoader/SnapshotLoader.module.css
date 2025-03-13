@@ -1,0 +1,125 @@
+.stockCryptoCard {
+    display: flex;
+    min-width: 220px;
+    height: 81px;
+    align-items: center;
+    gap: 60px;
+    padding: 20px 16px;
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid;
+    border: 1px solid var(--card-border);
+    
+}
+
+.stockCryptoCard .container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+}
+
+.stockCryptoCard .containerWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    gap: 8px;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+}
+
+.stockCryptoCard .div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+}
+
+.stockCryptoCard .ellipse {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    background-color: var(--black-800);
+    border-radius: 19px;
+}
+
+.stockCryptoCard .stockInfo {
+    display: flex;
+    flex-direction: column;
+    height: 39px;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+}
+
+.stockCryptoCard .frame {
+    width: 62px;
+    height: 16px;
+    position: relative;
+    background-color: var(--black-800);
+    border-radius: 12px;
+}
+
+.stockCryptoCard .frame2 {
+    align-self: stretch;
+    width: 100%;
+    height: 10px;
+    position: relative;
+    background-color: var(--black-800);
+    border-radius: 12px;
+}
+
+.stockCryptoCard .container2 {
+
+    display: flex;
+    flex-direction: column;
+    height: 39px;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+}
+
+.stockCryptoCard .frame3 {
+    width: 89px;
+    height: 16px;
+    position: relative;
+    background-color: var(--black-800);
+    border-radius: 12px;
+}
+
+.stockCryptoCard .percentage {
+    position: relative;
+    height: 10px;
+    background-color: var(--black-800);
+    border-radius: 12px;
+width: 49px;
+height: 10px;
+
+}
+
+/* ✅ Keyframe animation for the shimmer effect */
+@keyframes shimmer {
+    0% { background-position: -100px 0; }
+    100% { background-position: 100px 0; }
+  }
+  
+  /* ✅ Apply shimmer effect to the placeholder elements */
+  .stockCryptoCard .frame,
+  .stockCryptoCard .frame2,
+  .stockCryptoCard .frame3,
+  .stockCryptoCard .percentage,
+  .stockCryptoCard .ellipse {
+    background: linear-gradient(90deg, var(--black-800) 25%, var(--card-shimmer) 50%, var(--black-800) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+  

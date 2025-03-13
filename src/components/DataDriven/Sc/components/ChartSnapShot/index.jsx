@@ -3,7 +3,7 @@ import Icon from "../../../../Icons/Icon/index.tsx";
 import styles from "./ChartSnapshot.module.css"; // Assuming styles are here
 import SymbolIcon from "../../../../Icons/SymbolIcon";
 
-const ChartSnapshot = ({ symbol,name, latestPrice, lastClose, currency, lastUpdated, icon = false }) => {
+const ChartSnapshot = ({ symbol,name, latestPrice, lastClose, currency, asset_type, icon = false }) => {
   // 4 elements
 
   const [percentageChange, setPercentageChange] = useState(null);
@@ -39,7 +39,7 @@ const ChartSnapshot = ({ symbol,name, latestPrice, lastClose, currency, lastUpda
       {/* Show logo if enabled */}
       
       <div className={styles.iconWrapper}>
-<SymbolIcon ticker_symbol={symbol} size={iconSize}  />
+<SymbolIcon asset_type={asset_type} ticker_symbol={symbol} size={iconSize}  />
     </div>
 
 <div className={styles.metadata}>

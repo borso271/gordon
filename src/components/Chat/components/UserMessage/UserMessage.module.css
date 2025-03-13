@@ -1,8 +1,8 @@
 .userMessage {
 
-    color: var(--black-500, #535353);
+    color: var(--Black-400, #757575);
     max-width: 80%; /* ✅ Ensures it doesn’t exceed 80% of the container */
-    
+    padding: 8px 20px;
     /* H2/Medium */
     font-family: var(--font-family-inter);
     font-size: var(--font-size-xl);
@@ -10,7 +10,8 @@
     font-weight: 500;
     line-height: 125%; /* 37.5px */
     letter-spacing: -0.6px;
-    background:transparent;
+    border-radius: 24px;
+    background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
     max-width:80%;
 }
 
@@ -49,7 +50,9 @@ letter-spacing: -0.52px;
 @media (max-width: 480px) {
 
     .userMessage {
-        
+        padding: 6px 12px;
+        border-radius: 16px;
+
 font-size: 18px;
 font-style: normal;
 font-weight: 500;

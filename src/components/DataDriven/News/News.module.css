@@ -4,7 +4,6 @@
    
 
     border-radius: 16px;
-border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
 
     min-width: 0;
     padding: 24px;
@@ -14,6 +13,8 @@ border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
     justify-content: space-between; /* Push first and last elements apart */
     
     padding: 20px; /* Optional: adjust based on design */
+    background-color: var(--card-background);
+border: 1px solid var(--card-border);
   }
   
   .newsContainer {

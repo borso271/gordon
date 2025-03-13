@@ -6,8 +6,10 @@
     margin: 0 auto;
     border-radius: 16px;
     gap: 24px;
-    border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+   
     min-height: 296px;
+    background-color: var(--card-background);
+border: 1px solid var(--card-border);
   }
   
   /* Header Section */

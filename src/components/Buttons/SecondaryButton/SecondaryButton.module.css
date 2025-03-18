@@ -95,3 +95,31 @@ line-height: 140%; /* 16.8px */
 }
 
 
+
+
+
+
+/* Small (Mobile) */
+@media (max-width: 400px) {
+  .secondaryButton {
+ 
+height: 38px;
+padding: 8px 15px;
+padding-left:13px;
+justify-content: center;
+align-items: center;
+gap: 3px;
+flex-shrink: 0;
+
+text-align: center;
+
+font-size: 11px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 16.8px */
+  }
+
+
+}
+
+

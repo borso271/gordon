@@ -24,3 +24,16 @@
     height: 46px;
 
 }
+
+
+
+/* Small (Mobile) */
+@media (max-width: 400px) {
+    .sendButton {
+        width: 38px;
+  height: 38px;
+  
+    }
+  
+  }
+  

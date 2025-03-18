@@ -15,9 +15,10 @@
     transform: translateX(-50%);
     max-width: 796px; /* Limit width so it doesn't stretch entire screen */
     margin: 0 auto;
-    padding: 24px 0;
+    padding: 24px 0px;
     /* height: auto; */
      height: 151px;
+
     
   
   }
@@ -140,9 +141,10 @@ letter-spacing: var(--letter-spacing-xl);
 
 
 /* Medium (Tablets) */
-@media (max-width: 768px) {
+@media (max-width: 838px) {
     .fixed {
     padding: 20px;
+    
     }
 
     .buttonGroup {

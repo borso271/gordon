@@ -1,0 +1,14 @@
+
+.tag {
+    width: 36px;  /* 2 × 23px */
+    height: 36px;
+    padding:10px;
+    border-radius: 20px; /* Makes it a circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures nothing overflows outside the circle */
+    background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
+  }
+  
+  

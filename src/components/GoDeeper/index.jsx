@@ -1,13 +1,19 @@
 import React from "react";
 import styles from "./GoDeeper.module.css";
 import Icon from "../Icons/Icon/index.tsx";
-import SecondaryH2 from "../Headings/SecondaryH2";
 import PrimaryDivider from "../Layout/PrimaryDivider";
-
+import SectionHeader from "../Headings/SectionHeader";
+import GoDeeperLoader from "../Loaders/GoDeeperLoader";
 const GoDeeper = ({ items, onIconClick, newSearch}) => {
+
+  if (!items || items.length == 0){
+    return (<GoDeeperLoader/>)
+  }
     return (
       <div className={styles.container}>
-        <SecondaryH2>Go Deeper</SecondaryH2>
+        
+        <SectionHeader icon={"go_deeper_icon"} title={"Go Deeper"} size={16}/>
+ 
   
         <div className={styles.itemsContainer}>
           {items.map((item, index) => (

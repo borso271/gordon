@@ -8,10 +8,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styles from "./RelatedSymbols.module.css";
 import SymbolSnapshot from "../DataDriven/Snapshot";
-import SecondaryH2 from "../Headings/SecondaryH2"
 
 import supabase_client from "../../lib/supabaseClient";
 
+import SectionHeader from "../Headings/SectionHeader";
 
 
 /**
@@ -99,7 +99,7 @@ export default function RelatedSymbols({ symbol_id, handleManualFunctionCall }) 
 
   return (
     <div className={styles.container}>
-      <SecondaryH2>Related Symbols</SecondaryH2>
+      <SectionHeader title={"Related Symbols"} icon={"related_icon"} size={16}/>
       <div className={styles.cardsContainer}>
         {displayTickers.map((ticker, idx) => (
           <SymbolSnapshot

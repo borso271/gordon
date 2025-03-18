@@ -15,10 +15,9 @@
   }
 
   /* Example Chart.module.css */
-
   
 .pulsatingCircle {
-    fill: var(--Spring-Green-500, #1AED87);
+    /* fill: var(--Spring-Green-500, #1AED87); */
     opacity: 0.4;
     animation: pulse 1.5s infinite ease-in-out;
   }

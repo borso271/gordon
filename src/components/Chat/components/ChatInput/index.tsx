@@ -20,9 +20,10 @@ const TypingHeading = ({ text, speed = 40, initialDelay=0, onTypingComplete = ()
     setTypedText(""); // Reset text before typing
 
     // Blinking caret effect
-    const caretInterval = setInterval(() => {
-      setShowCaret((prev) => !prev);
-    }, initialDelay); // Caret blinks every 500ms
+
+    // const caretInterval = setInterval(() => {
+    //   setShowCaret((prev) => !prev);
+    // }, initialDelay); // Caret blinks every 500ms
 
     // Typing effect
     const typingTimeout = setTimeout(() => {
@@ -33,7 +34,7 @@ const TypingHeading = ({ text, speed = 40, initialDelay=0, onTypingComplete = ()
           charIndex++;
         } else {
           clearInterval(typingInterval);
-          clearInterval(caretInterval); // Stop blinking when typing is done
+          //clearInterval(caretInterval); // Stop blinking when typing is done
           setShowCaret(false); // Remove caret when complete
           onTypingComplete();
         }
@@ -42,7 +43,7 @@ const TypingHeading = ({ text, speed = 40, initialDelay=0, onTypingComplete = ()
 
     return () => {
       clearTimeout(typingTimeout);
-      clearInterval(caretInterval);
+     // clearInterval(caretInterval);
     };
   }, [text, speed]);
 
@@ -91,14 +92,14 @@ export default function ChatInput({
   }, [inputDisabled]); // Re-run effect when inputDisabled changes
 
 
-  useEffect(() => {
-    // Blinking caret effect
-    const caretInterval = setInterval(() => {
-      setShowCaret((prev) => !prev);
-    }, 500); // Blink every 500ms
+  // useEffect(() => {
+  //   // Blinking caret effect
+  //   const caretInterval = setInterval(() => {
+  //     setShowCaret((prev) => !prev);
+  //   }, 500); // Blink every 500ms
 
-    return () => clearInterval(caretInterval);
-  }, []);
+  //   return () => clearInterval(caretInterval);
+  // }, []);
 
   // 1️⃣ Create the ref to the <form>
   const { isMobile } = useScreenSize(); // ✅ Get isMobile globally
@@ -120,6 +121,7 @@ export default function ChatInput({
         isFirstPrompt ? styles.centered : styles.fixed
       }`}
     >
+       
       <div className={styles.innerContainer}>
         {isFirstPrompt && (
           <BotHeading className={styles.botHeading}>
@@ -136,9 +138,10 @@ export default function ChatInput({
   type="text"
   className={styles.input}
   value={userInput}
+  placeholder={"Ask Me Something"}
   onChange={(e) => setUserInput(e.target.value)}
   disabled={inputDisabled}
-  ref={inputRef}
+  // ref={inputRef}
   onBlur={() => inputRef.current && inputRef.current.focus()}
 />
 
@@ -154,6 +157,7 @@ export default function ChatInput({
               handleManualFunctionCall("suggest_securities", { asset_type: "stock" })
             }
             disabled={inputDisabled}
+            icon={"dollar_icon"}
           />
           <SecondaryButton
               text={t("suggest_cryptos")}
@@ -161,9 +165,11 @@ export default function ChatInput({
               handleManualFunctionCall("suggest_securities", { asset_type: "crypto" })
             }
             disabled={inputDisabled}
+            icon={"crypto_icon"}
           />
           {isMobile && (
-            <SendButton onClick={handleSendClick} disabled={isSendDisabled} />
+            <SendButton onClick={handleSendClick} disabled={isSendDisabled}
+            />
           )}
         </div>
       </div>

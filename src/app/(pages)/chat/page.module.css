@@ -1,27 +1,34 @@
-.container {
+  
+  .container {
     display: flex;
-    justify-content: center; /* ✅ Ensures proper centering */
     align-items: center;
-
-    max-width: 1396px; /* Full width */
-  }
-  
-  /* ✅ Sidebar and mock div (both disappear when screen < 1396px) */
-  .sidebarWrapper, .mockDiv {
-    width: 300px; /* Same width as sidebar */
-    height: auto;
-  }
-  
-  /* ✅ Chatbot wrapper (always centered) */
-  .chatWrapper {
-    width: 796px;
-    display: flex;
     justify-content: center;
-    align-items: center;
+
+    position: relative;
   }
+  
+  .sidebarWrapper {
+    position: absolute;
+    left: 0;
+    width: 270px;
+    height:100%;
+    display: flex;
+    align-items: center;      /* vertically centers the child */
+    justify-content: flex-start;  /* aligns child to the left horizontally */
+  }
+  
+  .chatWrapper {
+    max-width: 796px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } 
+
   
   /* ✅ Hide Sidebar and Mock Div when screen width < 1396px */
-  @media (max-width: 1396px) {
+  @media (max-width: 1336) {
     .sidebarWrapper, .mockDiv {
       display: none;
     }

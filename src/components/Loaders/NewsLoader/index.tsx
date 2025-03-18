@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./NewsLoader.module.css";
 
-const LatestNewsLoader: React.FC = () => {
+const NewsLoader: React.FC = () => {
   return (
     <div className={styles.latestNews}>
       <div className={styles.container}>
@@ -56,4 +56,4 @@ const LatestNewsLoader: React.FC = () => {
   );
 };
 
-export default LatestNewsLoader;
+export default NewsLoader;

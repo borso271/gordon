@@ -16,6 +16,7 @@ border: 1px solid var(--card-border);
   gap: 16px;
 
 }
+
 /* Header */
 .header {
   display: flex;
@@ -93,8 +94,11 @@ font-size: 14px;
 font-style: normal;
 font-weight: 500;
 line-height: 140%; /* 19.6px */
+cursor: pointer;
 
 }
+
+
 
 .tag {
   width: 46px;  /* 2 × 23px */

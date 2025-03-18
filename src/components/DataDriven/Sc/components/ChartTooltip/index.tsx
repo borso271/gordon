@@ -14,7 +14,7 @@ const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProp
   if (!hoveredPoint || !containerRef.current) return null; // ✅ Safe to have early return now
 
   const tooltipSize = {
-    width: isMobile ? 120 : 145,
+    width: isMobile ? 125 : 150,
     height: isMobile ? 56 : 60,
   };
 

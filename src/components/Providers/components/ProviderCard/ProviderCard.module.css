@@ -1,5 +1,4 @@
 .card {
-  
 
     display: flex;
 padding: 24px 20px;
@@ -8,10 +7,20 @@ align-items: center;
 gap: 16px;
 flex: 1 0 0;
 border-radius: 12px;
-background-color: var(--card-background);
+
 border: 1px solid var(--card-border);
   }
   
+.card:hover {
+  border-radius: 12px;
+  border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+  background: var(--black-800, #1A1A1A);
+
+}
+
+
+
+
   .top {
 
     display: flex;

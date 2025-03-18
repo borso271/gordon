@@ -10,10 +10,9 @@ const LogoGroup = ({ text = "Gordon", icon = "logo" }) => {
     <div className={styles.logoGroup}>
       {/* Left: Icon */}
     
-      {/* Right: Text */}
-      <span className={styles.text}>{text}</span>
-      <Icon name={"temp_logo"} size={12} color="currentColor" className={styles.icon} />
       
+      <Icon name={"gordon_logo"} size={16} color="currentColor" className={styles.icon} />
+      <span className={styles.text}>{text}</span>
     </div>
   );
 };

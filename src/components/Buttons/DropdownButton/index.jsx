@@ -3,9 +3,14 @@ import styles from "./DropdownButton.module.css";
 import Icon from "../../Icons/Icon/index.tsx";
 import CircledIcon from "../../Icons/CircledIcon";
 
-const DropdownButton = ({ text, leftIcon, rightIcon, onClick }) => {
+
+const DropdownButton = ({ text, leftIcon, rightIcon, rightIconSize, onClick, className }) => {
   return (
-    <button className={styles.dropdownButton} onClick={onClick}>
+    <button
+    className={`${styles.dropdownButton} ${className ? styles[className] : ""}`.trim()}
+
+      onClick={onClick}
+    >
       {/* Left Icon (Optional) */}
       {leftIcon && (
         <span className={styles.icon}>
@@ -19,7 +24,7 @@ const DropdownButton = ({ text, leftIcon, rightIcon, onClick }) => {
       {/* Right Icon (Optional) */}
       {rightIcon && (
         <span className={styles.icon}>
-          <Icon name={rightIcon} size={20} color="white" />
+          <Icon name={rightIcon} size={rightIconSize || 20} color="white" />
         </span>
       )}
     </button>

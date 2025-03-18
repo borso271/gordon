@@ -1,9 +1,8 @@
 .userMessage {
 
-    color: var(--Black-400, #757575);
+    color: var(--black-400, #757575);
     max-width: 80%; /* ✅ Ensures it doesn’t exceed 80% of the container */
     padding: 8px 20px;
-    /* H2/Medium */
     font-family: var(--font-family-inter);
     font-size: var(--font-size-xl);
     font-style: normal;
@@ -35,9 +34,6 @@
 @media (max-width: 768px) {
 
     .userMessage {
-   
-/* H3/Medium */
-
 font-size: 26px;
 font-style: normal;
 font-weight: 500;
@@ -52,14 +48,10 @@ letter-spacing: -0.52px;
     .userMessage {
         padding: 6px 12px;
         border-radius: 16px;
-
 font-size: 18px;
 font-style: normal;
 font-weight: 500;
 line-height: 130%; /* 23.4px */
     }
-
-
-  
 }
 

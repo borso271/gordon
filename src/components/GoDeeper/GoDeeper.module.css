@@ -27,6 +27,11 @@
    
   }
   
+
+
+
+ 
+
   .text {
     max-width:90%;
     color: var(--black-50, #F8F8F8);
@@ -37,7 +42,16 @@
     font-style: normal;
     font-weight: 400;
     line-height: 140%; /* 19.6px */
+    cursor: pointer;
   }
+
+
+  .goItem:hover .text {
+    color: var(--lime-400, #B1F625);
+    
+   }
+
+   
   
   .icon {
     cursor: pointer;
@@ -91,7 +105,49 @@ line-height: 140%; /* 19.6px */
         gap: 12px; /* Ensures consistent spacing between items */
         
       }
+
+
+
+
+.tag {
+  width: 36px;  /* 2 × 23px */
+  height: 36px;
+  border-radius: 50%; /* Makes it a circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensures nothing overflows outside the circle */
+}
       
   
 }
 
+
+
+
+
+
+
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f8f8f8;
+}
+
+.tag {
+  width: 46px;  /* 2 × 23px */
+  height: 46px;
+  border-radius: 50%; /* Makes it a circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensures nothing overflows outside the circle */
+}
+
+
+.analysisPartContainer{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}

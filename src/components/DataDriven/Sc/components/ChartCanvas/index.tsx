@@ -41,7 +41,6 @@ const ChartCanvasSVG = ({
   curvy = false,
 }) => {
 
-  console.log("IS POSITIVE CHANGE IS: ", isPositiveChange)
   const svgRef = useRef(null);
   // 🔹 NEW: containerRef to clamp tooltip inside
   const containerRef = useRef(null);
@@ -232,11 +231,11 @@ const circleStrokeWidth = isMobile ? 1.5 : 2; // Thinner stroke for mobile
 
           {/* Pulsing circle at last data point if marketOpen */}
           {marketOpen && (
-            <circle cx={lastX} cy={lastY} r={8} className={styles.pulsatingCircle} />
+            <circle cx={lastX} cy={lastY} r={8} className={styles.pulsatingCircle}  fill={lineColor} />
           )}
 
           {/* Static circle at last data point */}
-          <circle cx={lastX} cy={lastY} r={3} fill="#007bff" />
+          <circle cx={lastX} cy={lastY} r={3} fill={lineColor} />
 
           {/* Hover crosshair & circle */}
           {hoveredPoint && (

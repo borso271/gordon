@@ -7,7 +7,7 @@ export function useManualFunctionCall() {
 
   // ✅ Define the function inside the hook
   const handleManualFunctionCall = useCallback(
-    
+
     async (functionName: string, args: any, functionCallHandler: (toolCall: any) => Promise<string>) => {
       // 1️⃣ Simulate user input (so it appears in conversation history)
       const userQuery =
@@ -16,18 +16,20 @@ export function useManualFunctionCall() {
           : `Give me your analysis of ${args.symbol}`;
 
       const newPairId = uuidv4(); // ✅ Generate unique ID for this pair
-
-      setConversationPairs((prev) => [
-        ...prev,
-        {
-          id: newPairId, // ✅ Assign a unique id
-          user: userQuery,
-          assistant: "",
-        },
-      ]);
-
-      setCurrentIndex((prev) => prev + 1); // ✅ Move to new conversation pair
-
+      setConversationPairs((prev) => {
+        const updatedPairs = [
+          ...prev,
+          {
+            id: newPairId, // ✅ Assign a unique id
+            user: userQuery,
+            assistant: "",
+          },
+        ];
+        
+        setCurrentIndex(updatedPairs.length - 1); // ✅ Set index to the latest message
+        return updatedPairs;
+      });
+      
       // 2️⃣ Call the function handler manually
       const toolCall = {
         function: { name: functionName, arguments: JSON.stringify(args) },

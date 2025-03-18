@@ -5,15 +5,16 @@ import fetch_symbol_info from "../../../utils/fetch_symbol_info.js";
 import styles from "./Snapshot.module.css";
 import SymbolIcon from "../../Icons/SymbolIcon/index.jsx";
 import fetchLatestPrice from "../../../services/get_components_data/fetch_latest_price.js";
-
+import SnapshotLoader from "../../Loaders/SnapshotLoader";
 function getTextBeforeHyphen(input) {
   return typeof input === "string" && input.includes("-") 
     ? input.split("-")[0].trim() 
     : input;
 }
+
+
 const SymbolSnapshot = ({ symbol, onClick,icon = true }) => {
   //// console.log("ONCLICK FUNCTION IS: ", onClick)
-
 
 const tt = "Alphabet Inc - Class C";
 
@@ -36,7 +37,6 @@ const tt = "Alphabet Inc - Class C";
   const symbol_id = symbolInfo?.id || null;
   const exchange_mic = symbolInfo?.exchange_mic || null;
   const asset_type = symbolInfo?.asset_type || null;
-
   const [snapshot, setSnapshot] = useState(null);
   const [lastLivePrice, setLastLivePrice] = useState(null); // Last price from Redux
   const [percentageChange, setPercentageChange] = useState(null);
@@ -106,11 +106,13 @@ useEffect(() => {
   };
 }, [liveData, snapshot, symbol_id]); // Depend on liveData, snapshot, and symbol_id
 
-
-
-
-  // Determine text color based on price change
   const changeClass = percentageChange >= 0 ? styles.positive : styles.negative;
+
+
+  if (!snapshot) {
+    return <SnapshotLoader />;
+  }
+
 
   return (
     <div className={styles.snapshot} onClick={onClick}>
@@ -120,16 +122,13 @@ useEffect(() => {
 <SymbolIcon asset_type={asset_type} ticker_symbol={symbol} size={50} />
     </div>
 
-    {/* Column 2: Symbol & Name */}
     <div className={styles.symbolContainer}>
       <div className={styles.symbol}>{symbol.toUpperCase()}</div>
       <div className={styles.symbolName}>{symbol_name}</div>
     </div>
-
-    {/* Column 3: Price & Percentage Change */}
     <div className={styles.priceContainer}>
       <div className={styles.price}>
-        {lastLivePrice !== null ? `$${lastLivePrice.toFixed(2)}` : "Loading..."}
+        {lastLivePrice !== null ? `$${lastLivePrice.toFixed(2)}` : "-"}
       </div>
       <div className={`${styles.change} ${changeClass}`}>
         {percentageChange !== null ? `${percentageChange >= 0 ? "+" : ""}${percentageChange.toFixed(2)}%` : "—"}

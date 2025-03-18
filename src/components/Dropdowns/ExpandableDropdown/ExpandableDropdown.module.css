@@ -80,6 +80,10 @@ background: var(--black-800, #1A1A1A);
   .expanded {
     max-height: 600px; /* Adjust for content */
     opacity: 1;
+    display: flex
+;
+    flex-direction: column;
+    gap: 12px;
     
   }
   

@@ -5,7 +5,6 @@
 //   const [currentIndex, setCurrentIndex] = useState(-1);
 // and the idea is that the item in conversationPairs with currentIndex has an active class.
 // Also, clicking on another item in the navigation, set currentIndex
-
 import React, { useMemo } from "react";
 import styles from "./NavigationSidebar.module.css";
 import NavigationItem from "./components/NavigationItem";
@@ -14,7 +13,7 @@ import { useConversation } from "../../app/context/conversationContext"; // ✅ 
 const VISIBLE_ITEMS = 8; // ✅ Always show 8 items
 
 const NavigationSidebar: React.FC = () => {
-  const { conversationPairs, currentIndex, setCurrentIndex } = useConversation();
+  const { conversationPairs, currentIndex, setCurrentIndex, setAreNavigationItemsVisible } = useConversation();
 
   // ✅ Only show the last 8 items
   const visibleItems = useMemo(() => {
@@ -22,10 +21,14 @@ const NavigationSidebar: React.FC = () => {
   }, [conversationPairs]);
 
   return (
-    <div className={styles.sidebar}>
+    <div
+      className={styles.sidebar}
+    //   onMouseEnter={() => setAreNavigationItemsVisible(true)} // ✅ Set true on hover
+    //   onMouseLeave={() => setAreNavigationItemsVisible(false)} // ✅ Set false when leaving
+    >
       {visibleItems.map((item, index) => {
-        // ✅ Get correct index from `conversationPairs`
         const realIndex = conversationPairs.length - visibleItems.length + index;
+        
 
         return (
           <NavigationItem
@@ -33,7 +36,9 @@ const NavigationSidebar: React.FC = () => {
             label={item.user}
             index={item.id}
             isSelected={currentIndex === realIndex} // ✅ Highlight active item
+            isEdgeItem={visibleItems.length > 8 && (index === 0 || index === visibleItems.length - 1)} // ✅ First & last items are edge items
             onSelect={() => setCurrentIndex(realIndex)} // ✅ Click updates currentIndex
+            useVisibilityControl={true}
           />
         );
       })}
@@ -42,4 +47,3 @@ const NavigationSidebar: React.FC = () => {
 };
 
 export default NavigationSidebar;
-

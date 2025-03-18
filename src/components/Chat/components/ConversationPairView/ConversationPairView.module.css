@@ -1,20 +1,37 @@
 .pairWrapper {
     width: 100%;
-    height: calc(100vh - 171px);
+    height: calc(100vh - 151px);
     display: flex;
     flex-direction: column;
     justify-content: flex-start; /* User message stays on top */
     overflow: hidden; /* Prevents accidental scrolling switching messages */
-    padding: 1rem 0;
+    padding: 0;
     box-sizing: border-box;
     gap:24px;
     padding-bottom:60px;
   }
   
+
+  .pair {
+    display:flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto; /* Enables scrolling inside the response */
+    scrollbar-width: none;     /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  }
+
+
+
+  .pair::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Opera */
+}
+
+
   /* Inner scrolling container for assistant response */
   .assistantResponse {
     flex-grow: 1; /* Takes available space */
-    overflow-y: auto; /* Enables scrolling inside the response */
+    
     /* max-height: calc(84vh - 80px); */
    
   }
@@ -37,14 +54,12 @@
         
         gap:20px;
       }
-      
-      
 }
 
-/* Small (Mobile) */
+
+
 @media (max-width: 480px) {
     .pairWrapper {
-    height: calc(100vh - 141px);
+    height: calc(100vh - 121px);
     }
 }
-

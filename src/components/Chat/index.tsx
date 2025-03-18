@@ -76,7 +76,7 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
     e.preventDefault();
     if (!userInput.trim()) return;
     addUserMessage(userInput);
-    //setCurrentIndex((prev) => prev + 1);
+  
     setUserInput("");
     setInputDisabled(true);
     const response = await sendMessage(threadId, userInput);
@@ -87,7 +87,6 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
   const newSearch = async (prompt: string) => {
     if (!prompt.trim()) return;
     addUserMessage(prompt);
-    //setCurrentIndex((prev) => prev + 1);
     setUserInput("");
     setInputDisabled(true);
     const response = await sendMessage(threadId, prompt);

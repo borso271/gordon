@@ -3,7 +3,7 @@
     display: inline-flex;
 gap:4px;
 height: 40px;
-padding: 11px 12px;
+padding: 10px;
 justify-content: center;
 align-items: center;
 border-radius: 100px;
@@ -42,3 +42,7 @@ background:transparent;
     display: none; /* Hides missing icons */
   }
   
+
+  .activeButton {
+    background: var(--additional-white-8) !important;
+  }

@@ -4,7 +4,8 @@ import SecondaryH2 from "../../Headings/SecondaryH2"
 import PercentageBar from "../../PercentageBar";
 import fetch_symbol_info from "../../../utils/fetch_symbol_info";
 import supabase_client from "../../../lib/supabaseClient";
-
+import SectionHeader from "../../Headings/SectionHeader";
+import AnalystRatingLoader from "../../Loaders/RatingsLoader";
 const AnalystRatings = ({ ticker_symbol }) => {
   const [ratings, setRatings] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -49,12 +50,17 @@ const AnalystRatings = ({ ticker_symbol }) => {
   // Convert counts into percentages
   const getPercentage = (count) => (totalRatings ? ((count / totalRatings) * 100).toFixed(1) : "0");
 
+
+  if (!ratings){
+    return (
+   < AnalystRatingLoader/>)
+  }
   return (
     <div className={styles.container}>
        {/* <div className={styles.ratingsWrapper}> */}
       {/* Header Section */}
       <div className={styles.header}>
-        <SecondaryH2>Analyst Ratings</SecondaryH2>
+     <SectionHeader title={"Ratings"} icon={"ratings_icon"}/>
        
       <p className={styles.subheading}>
           Based on {totalRatings} analyst ratings

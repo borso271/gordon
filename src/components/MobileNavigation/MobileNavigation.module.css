@@ -1,0 +1,62 @@
+.navigationContainer {
+ position: fixed;
+ top: 68px;
+    height: auto;
+    width: calc(100%-40px);
+    border-radius: 12px;
+border: 1px solid var(--black-700, #232323);
+background: #1A1A1A;
+right: 20px;
+left: 20px;
+z-index: 1001; /* Ensure it stays above other elements */
+  overflow-y: auto; /* Allows scrolling if needed */
+
+}
+
+.itemList {
+    padding: 16px 20px;
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+
+}
+
+.header {
+    margin: 10px 20px;
+    color: var(--black-50, #F8F8F8);
+/* Text S/Regular */
+font-family: var(--font-family-inter);
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+width: calc(100% - 40px);
+border-bottom: 1px solid var(--card-border);
+padding-bottom: 10px;
+margin-bottom: 0px;
+
+}
+
+/* 
+@media (min-width: 1396px) {
+  
+    .navigationContainer {
+        display:none
+    }
+
+  }
+   */
+
+
+  @media (min-width: 480) {  /* Adjust breakpoint as needed */
+    .navigationContainer {
+      position: absolute;
+      top: 120%; /* Positions it directly below the parent */
+      right: 0;
+      left: auto;
+      width: auto; /* Adjust width as needed */
+      min-width: 200px; /* Ensure it's wide enough */
+      
+    }
+  }
+  

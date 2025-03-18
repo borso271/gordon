@@ -64,6 +64,8 @@
 --card-shimmer: rgba(30, 30, 30);
   --card-background: rgba(255, 255, 255, 0.02);
 
+
+  --default-icon-background: rgba(255, 255, 255, 0.05);
     /* --breakpoint-xs: 320px;    */
     --breakpoint-sm: 480px;   /* Small Phones */
     --breakpoint-md: 768px;   /* Tablets */
@@ -271,8 +273,6 @@ ul {
 }
 
 }
-
-
 
 
 ol {

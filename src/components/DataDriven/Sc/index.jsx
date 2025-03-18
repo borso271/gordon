@@ -18,7 +18,7 @@ import computeLastPrices from "./compute_last_prices.js";
 import PriceMiniOverview from "./components/PriceMiniOverview/index.jsx";
 import computeHistoricalPercentage from "./compute_historical_percentage.js";
 import PrimaryDivider from "../../Layout/PrimaryDivider";
-
+import ChartLoader from "../../Loaders/ChartLoader";
 const Sc = ({ symbol}) => {
 
   const chartRef = useRef(null);
@@ -236,7 +236,7 @@ const lastTimeStamp = useMemo(() => {
 const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedPeriod)
 
 
-  const firstpartwidth = chartDimensions.width*timeLegendPercentage/100;
+  const firstpartwidth = (chartDimensions.width*timeLegendPercentage/100)-20;
   // ✅ Compute period data using dynamic width & height
   
   const lastPrices = computeLastPrices(seriesesData)
@@ -270,16 +270,17 @@ const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedP
   }, [periodData,selectedPeriod]); // Runs whenever periodData changes
   
   const isPositiveChange = currentPrice > relevant_close
-
+  if (!currentPrice || !periodData) {
+    return <ChartLoader/>
+  }
   return (
     <div className={styles.chartContainer}>
       <div className={styles.container}>
 
         <div className={styles.chartTop}>
         <ChartSnapshot symbol={symbol} asset_type={asset_type} name={symbol_name} latestPrice={currentPrice} lastClose={snapShot.last_close} currency={snapShot.currency} lastUpdated={lastUpdated} />
-        
 
-<div className={styles.topRight}>
+      <div className={styles.topRight}>
       <h4 className={styles.lastUpdated}>As of {lastUpdated}</h4>
        
       <PriceChangeOverview current_price={currentPrice} changes={lastPrices} />
@@ -292,8 +293,6 @@ const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedP
         <div className={styles.chartOverview}>
          
         <PriceMiniOverview current_price={currentPrice} changes={lastPrices} period={selectedPeriod}/>
-
-
         <PeriodSelector selectedPeriod={selectedPeriod} setSelectedPeriod={setSelectedPeriod} />
 
         </div>
@@ -328,7 +327,6 @@ const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedP
       </div>
     </div>
   );
-
 };
 
 export default Sc;

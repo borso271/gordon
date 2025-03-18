@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import styles from "./AnalysisPart.module.css";
 import Icon from "../Icons/Icon/index.tsx";
 import SecondaryH2 from "../Headings/SecondaryH2"
-
-
-const AnalysisPart = ({ title, name, type, content, icon, tagColor }) => {
+import SectionHeader from "../Headings/SectionHeader";
+const AnalysisPart = ({ title, name, type, content, icon, tagColor, tagSize }) => {
   const [expanded, setExpanded] = useState(false);
   const toggleExpanded = () => setExpanded(!expanded);
   // console.log("TYPE IS: ", type, " AND CONTENT IS: ", content)
@@ -12,14 +11,8 @@ const AnalysisPart = ({ title, name, type, content, icon, tagColor }) => {
     <div className={styles.responsePart}>
       <div className={styles.container}>
         {/* Header Section */}
-        <header className={styles.header}>
-          {icon && (
-            <div className={styles.tag} style={{ backgroundColor: tagColor }}>
-              <Icon name={icon} />
-            </div>
-          )}
-          <SecondaryH2>{title}</SecondaryH2>
-        </header>
+
+      <SectionHeader icon={icon} title={title} tagColor={tagColor} size={tagSize}/>
 
         {/* Summary Section */}
         {type === "text" ? (
@@ -27,7 +20,6 @@ const AnalysisPart = ({ title, name, type, content, icon, tagColor }) => {
           <div  className={`${styles.analysisSummaryContainer}`}>
   {/* Static Introductory Sentence */}
   
-
   {/* Render Summary Items */}
   <div className={styles.summaryList}>
   <p className={styles.introText}>

@@ -12,7 +12,7 @@ import ActionsGroup from '../ActionsGroup';
 import copyToClipboard from '../Chat/utils/copyToClipboard';
 import shareContent from '../Chat/utils/shareContent';
 import Sc from '../DataDriven/Sc';
-
+import AnalysisPartLoader from '../Loaders/AnalysisPartLoader';
 const Analysis = ({data,handleManualFunctionCall, newSearch}) => {
 
  console.log("DATA PASSED TO ANALYSIS IS: ", data)
@@ -60,39 +60,96 @@ const handleIconClick = (item) => {
 
 <Sc symbol={symbol} symbol_id={symbol_id}/>
 
- 
+{/* Good Things Section */}
+{positives ? (
+  <AnalysisPart 
+    title="Good Things" 
+    type="list"
+    content={positives}
+    icon="positives"
+    tagColor="#001A0E"
+    tagSize={20}
+  />
+) : (
+  <AnalysisPartLoader />
+)}
+
+{/* Bad Things Section */}
+{negatives ? (
+  <AnalysisPart 
+    title="Bad Things"
+    type="list"
+    content={negatives}
+    icon="negatives"
+    tagColor="#2E0403"
+    tagSize={20}
+  />
+) : (
+  <AnalysisPartLoader />
+)}
+
+{/* Ratings & News (Only if Asset is NOT Crypto) */}
+{asset_type !== "crypto" && <RatingsAndNews symbol={symbol} />}
+
+{/* Summary Section */}
+{summary ? (
+  <AnalysisPart 
+    title="Summary" 
+    name={symbolName}
+    type="text"
+    content={summary}
+    icon="conclusions_icon"
+    tagColor="var(--default-icon-background)"
+    tagSize={16}    
+  />
+) : (
+  <AnalysisPartLoader />
+)}
+
+{/* Go Deeper Section */}
+{prompts ? (
+  <GoDeeper items={prompts} onIconClick={handleIconClick} newSearch={newSearch} />
+) : (
+  <GoDeeperLoader />
+)}
+
+{/*  
 <AnalysisPart 
       title="Good Things" 
       type="list"
       content={positives}
       icon="positives"
       tagColor="#001A0E"  // Red background for the tag
+      tagSize={20}
+      
     />
      <AnalysisPart 
       title="Bad Things"
       type="list"
       content={negatives}
-      
       icon="negatives"
       tagColor="#2E0403"  // Red background for the tag
+      tagSize={20}
     />
 
-
-          
 {asset_type != "crypto" && <RatingsAndNews symbol={symbol}/>}
-<AnalysisPart 
-      title="Summary" 
-      name={symbolName}
-      type="text"
-      content={summary}
-      icon={false}
-      tagColor="#2E0403"  // Red background for the tag
-    />
+       <AnalysisPart 
+        title="Summary" 
+        name={symbolName}
+        type="text"
+        content={summary}
+        icon="conclusions_icon"
+        tagColor="var(--default-icon-background)"  // Red background for the tag
+        tagSize={16}    />
 
-  <GoDeeper items={prompts} onIconClick={handleIconClick} newSearch={newSearch} />
+         <GoDeeper items={prompts} onIconClick={handleIconClick} newSearch={newSearch} />
+ */}
+
+
+
+
 
          <Providers symbol={symbol}/>
-
          <RelatedSymbols symbol_id={symbol_id} handleManualFunctionCall={handleManualFunctionCall}/>
          <ActionsGroup
 

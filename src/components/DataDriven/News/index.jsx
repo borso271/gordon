@@ -5,7 +5,8 @@ import supabase_client from "../../../lib/supabaseClient";
 import styles from './News.module.css';
 import SmallImage from "../../SmallImage";
 import PrimaryDivider from "../../Layout/PrimaryDivider";
-import SecondaryH2 from "../../Headings/SecondaryH2"
+import SectionHeader from "../../Headings/SectionHeader";
+import NewsLoader from "../../Loaders/NewsLoader";
 const TickerNews = ({ ticker_symbol }) => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -76,11 +77,17 @@ const TickerNews = ({ ticker_symbol }) => {
     fetchNews();
   }, [ticker_symbol]);
 
+   if (news.length == 0){
+    return (<NewsLoader/>)
+   }
   return (
    
       <div className={styles.newsWrapper}>
         {/* First Row: Section Title */}
-        <SecondaryH2>Latest News</SecondaryH2>
+      
+
+        <SectionHeader title={"Latest News"} icon={"news_icon"}/>
+       
   
         {/* Second Row: News Container */}
         <div className={styles.newsContainer}>

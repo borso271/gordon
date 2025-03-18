@@ -10,7 +10,21 @@ border-radius: 12px;
 background-color: var(--card-background);
 border: 1px solid var(--card-border);
 width: auto;
+cursor: pointer;
 }
+
+
+
+
+.snapshot:hover {
+  border-radius: 12px;
+border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+background: var(--black-800, #1A1A1A);
+
+}
+
+
+
 
 .iconWrapper {
   /* flex: 0 0 40px;  */

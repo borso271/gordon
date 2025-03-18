@@ -6,32 +6,39 @@ import Link from "next/link";
 import Icon from "../../../Icons/Icon/index.tsx";
 
 import PrimaryDivider from "../../../Layout/PrimaryDivider";
+
+import { useState } from "react";
+
 const ProviderCard = ({ provider }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* Top Section: Logo + Rating */}
       <div className={styles.top}>
         <div className={styles.topWrapper}>
-      <div className={styles.iconWrapper}>
-    <img
-      src={provider.icon_url}
-      alt={provider.name}
-      className={styles.icon}
-    />
-  </div>
-  <div className={styles.topRight}>
-    <div className={styles.providerName}>
-        {provider.name}
-    </div>
-        <div className={styles.rating}>
-          <span className={styles.score}>{provider.score}</span>
-          <span className={styles.scoreLabel}>{provider.score_label}</span>
+          <div className={styles.iconWrapper}>
+            <img
+              src={provider.icon_url}
+              alt={provider.name}
+              className={styles.icon}
+            />
           </div>
-        </div>
+          <div className={styles.topRight}>
+            <div className={styles.providerName}>{provider.name}</div>
+            <div className={styles.rating}>
+              <span className={styles.score}>{provider.score}</span>
+              <span className={styles.scoreLabel}>{provider.score_label}</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <PrimaryDivider/>
+      <PrimaryDivider />
 
       {/* Middle Section: Features with Icons */}
       <div className={styles.middle}>
@@ -43,21 +50,86 @@ const ProviderCard = ({ provider }) => {
             </div>
           ))}
         </div>
-
-       
       </div>
 
       {/* Bottom Section: CTA Button */}
       <div className={styles.bottom}>
-      <Link href={provider.url} passHref legacyBehavior>
+        <Link href={provider.url} passHref legacyBehavior>
           <a target="_blank" rel="noopener noreferrer" className={styles.a}>
-            <SecondaryButton text={"Visit Site"} className={"button100"} />
+            <SecondaryButton
+              text={"Visit Site"}
+              className={`button100 ${isHovered ? "hoverBackground" : ""}`}
+            />
           </a>
         </Link>
       </div>
-
     </div>
   );
 };
 
 export default ProviderCard;
+
+
+// const ProviderCard = ({ provider }) => {
+//   return (
+//     <div className={styles.card}>
+//       {/* Top Section: Logo + Rating */}
+//       <div className={styles.top}>
+//         <div className={styles.topWrapper}>
+//       <div className={styles.iconWrapper}>
+//     <img
+//       src={provider.icon_url}
+//       alt={provider.name}
+//       className={styles.icon}
+//     />
+//   </div>
+//   <div className={styles.topRight}>
+//     <div className={styles.providerName}>
+//         {provider.name}
+//     </div>
+//         <div className={styles.rating}>
+//           <span className={styles.score}>{provider.score}</span>
+//           <span className={styles.scoreLabel}>{provider.score_label}</span>
+//           </div>
+//         </div>
+//         </div>
+//       </div>
+
+//       <PrimaryDivider/>
+
+//       {/* Middle Section: Features with Icons */}
+//       <div className={styles.middle}>
+//         <div className={styles.features}>
+//           {provider.features.map((feature, index) => (
+//             <div key={index} className={styles.featureItem}>
+//               <Icon name={"circle_check"} className={styles.featureIcon} />
+//               <span className={styles.featureText}>{feature}</span>
+//             </div>
+//           ))}
+//         </div>
+
+       
+//       </div>
+
+//       {/* Bottom Section: CTA Button */}
+//       <div className={styles.bottom}>
+//       <Link href={provider.url} passHref legacyBehavior>
+//           <a target="_blank" rel="noopener noreferrer" className={styles.a}>
+//             <SecondaryButton text={"Visit Site"} className={"button100"} />
+//           </a>
+//         </Link>
+//       </div>
+
+//     </div>
+//   );
+// };
+
+// export default ProviderCard;
+
+
+
+/*
+
+border-radius: 100px;
+border: 1px solid var(--additional-white-3, rgba(255, 255, 255, 0.03));
+background: var(--Black-700, #232323); */

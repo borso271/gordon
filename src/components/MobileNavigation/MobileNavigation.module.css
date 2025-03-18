@@ -5,7 +5,7 @@
     width: calc(100%-40px);
     border-radius: 12px;
 border: 1px solid var(--black-700, #232323);
-background: #1A1A1A;
+background: var(--card-background);
 right: 20px;
 left: 20px;
 z-index: 1001; /* Ensure it stays above other elements */
@@ -22,7 +22,7 @@ z-index: 1001; /* Ensure it stays above other elements */
 }
 
 .header {
-    margin: 10px 20px;
+
     color: var(--black-50, #F8F8F8);
 /* Text S/Regular */
 font-family: var(--font-family-inter);
@@ -30,10 +30,10 @@ font-size: 14px;
 font-style: normal;
 font-weight: 400;
 line-height: 140%; /* 19.6px */
-width: calc(100% - 40px);
+width: 100%;
 border-bottom: 1px solid var(--card-border);
-padding-bottom: 10px;
-margin-bottom: 0px;
+padding: 16px 20px;
+
 
 }
 

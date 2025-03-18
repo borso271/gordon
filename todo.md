@@ -1,4 +1,13 @@
 
+scroll on very small screens
+borders and background all over the place
+probably loader is showing but not visible...
+
+
+
+
+
+
 Understand how to:
 
 fixed market open calcs

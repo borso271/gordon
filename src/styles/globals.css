@@ -58,9 +58,9 @@
   --additional-white-3: rgba(255, 255, 255, 0.03);
   --additional-white-1: rgba(255, 255, 255, 0.01);
   --background: var(--black-900);
---card-border: #3a3a3a;
+--card-border: #282828;
 --card-shimmer: rgb(30, 30, 30);
-  --card-background: #212121;
+  --card-background: #181818;
 
   --default-icon-background: rgba(255, 255, 255, 0.05);
     /* --breakpoint-xs: 320px;    */

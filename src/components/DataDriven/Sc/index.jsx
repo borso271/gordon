@@ -19,23 +19,28 @@ import PriceMiniOverview from "./components/PriceMiniOverview/index.jsx";
 import computeHistoricalPercentage from "./compute_historical_percentage.js";
 import PrimaryDivider from "../../Layout/PrimaryDivider";
 import ChartLoader from "../../Loaders/ChartLoader";
+
+
 const Sc = ({ symbol}) => {
 
   const chartRef = useRef(null);
+
   const [chartDimensions, setChartDimensions] = useState({ width: 696, height: 220 });
 
-  // Function to update chart dimensions
   const updateChartSize = () => {
+    
     if (chartRef.current) {
-      setChartDimensions({
-        width: chartRef.current.clientWidth,
-        height: chartRef.current.clientHeight,
-      });
+      setChartDimensions(prev => ({
+        width: chartRef.current.clientWidth || prev.width,
+        height: chartRef.current.clientHeight || prev.height,
+      }));
     }
   };
 
+
   // Effect to track changes in chart size
   useEffect(() => {
+    setTimeout(updateChartSize, 500); // Small delay to ensure layout has settled
     updateChartSize(); // Initial size
     window.addEventListener("resize", updateChartSize); // Listen to window resize
 
@@ -235,7 +240,12 @@ const lastTimeStamp = useMemo(() => {
 
 const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedPeriod)
 
-  const firstpartwidth = (chartDimensions.width*timeLegendPercentage/100)-10;
+  const firstpartwidth = useMemo(() => {
+    return (chartDimensions.width * timeLegendPercentage / 100) - 10;
+  }, [chartDimensions.width, timeLegendPercentage]);
+  
+
+  console.log("chart dimensiona are: ", chartDimensions)
   // ✅ Compute period data using dynamic width & height
   
   const lastPrices = computeLastPrices(seriesesData)

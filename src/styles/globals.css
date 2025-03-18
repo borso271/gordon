@@ -23,8 +23,6 @@
   --black-500: rgba(83, 83, 83, 1);
   --black-600: rgba(50, 50, 50, 1);
   --black-700: rgba(35, 35, 35, 1);
-  /* --black-800: rgba(26, 26, 26, 1); */
-
     --black-800: #1A1A1A;
   --black-900: rgba(15, 15, 15, 1);
 
@@ -60,10 +58,10 @@
   --background: var(--black-900);
 --card-border: #282828;
 --card-shimmer: rgb(30, 30, 30);
-  --card-background: #181818;
+
+  --card-background: rgba(255, 255, 255, 0.02); 
 
   --default-icon-background: rgba(255, 255, 255, 0.05);
-    /* --breakpoint-xs: 320px;    */
     --breakpoint-sm: 480px;   /* Small Phones */
     --breakpoint-md: 768px;   /* Tablets */
     --breakpoint-lg: 1024px;  /* Small Laptops */
@@ -302,8 +300,6 @@ li::before {
   
   transform: none; /* Remove vertical centering */
 }
-
-
 
 
 strong {

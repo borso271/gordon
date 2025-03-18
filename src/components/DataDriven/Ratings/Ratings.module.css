@@ -77,7 +77,7 @@ border: 1px solid var(--card-border);
     justify-content: space-between;
     align-items: baseline;
     height: 20px; /* Use a percentage-based height instead of 20px */
-    gap: auto; /* Optional: Set a percentage-based gap */
+    
   }
   
   
@@ -104,5 +104,10 @@ min-width: 75px;
     font-style: normal;
     font-weight: 500;
     line-height: 140%; /* 19.6px */
+    width:43.5px;
   }
   
+
+  .percentageBarContainer {
+    padding: 0 4px;
+  }

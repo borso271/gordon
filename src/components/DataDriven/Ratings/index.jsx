@@ -83,8 +83,8 @@ const AnalystRatings = ({ ticker_symbol }) => {
           ].map(({ label, count }) => (
             <div key={label} className={styles.row}>
               <div className={styles.label}>{label}</div>
-              
-              <PercentageBar percentage={getPercentage(count)} />
+              <div className={styles.percentageBarContainer}>
+              <PercentageBar percentage={getPercentage(count)} /></div>
               <div className={styles.percentage}>{getPercentage(count)}%</div>
             </div>
           ))}

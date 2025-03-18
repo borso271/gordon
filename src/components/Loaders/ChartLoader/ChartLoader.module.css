@@ -6,6 +6,7 @@
     padding: 1.5rem; /* 24px → 1.5rem */
     position: relative;
     background-color: var(--card-background);
+    background: var(--card-background);
     border-radius: 1rem; /* 16px → 1rem */
     border: 1px solid var(--card-border);
     width: 100%;
@@ -253,6 +254,7 @@
             padding: 1.5rem; /* 24px → 1.5rem */
             position: relative;
             background-color: var(--card-background);
+            background: var(--card-background);
             border-radius: 1rem; /* 16px → 1rem */
             border: 1px solid var(--card-border);
             width: 100%;

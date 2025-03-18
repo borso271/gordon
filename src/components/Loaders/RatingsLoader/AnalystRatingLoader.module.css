@@ -7,6 +7,7 @@
     padding: 24px;
     position: relative;
     background-color: var(--card-background);
+    background: var(--card-background);
     border-radius: 16px;
     border: 1px solid;
     border-color: var(--card-border);

@@ -14,6 +14,7 @@
     
     padding: 20px; /* Optional: adjust based on design */
     background-color: var(--card-background);
+    background: var(--card-background);
 border: 1px solid var(--card-border);
   }
   

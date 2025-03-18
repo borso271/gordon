@@ -9,6 +9,7 @@
    
     min-height: 296px;
     background-color: var(--card-background);
+    background: var(--card-background);
 border: 1px solid var(--card-border);
   }
   

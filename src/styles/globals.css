@@ -60,7 +60,7 @@
   --background: var(--black-900);
 --card-border: #ccc;
 --card-shimmer: rgba(30, 30, 30);
-  --card-background: rgba(255, 255, 255, 0.02);
+  --card-background:  #2f2f2f;
 
 
   --default-icon-background: rgba(255, 255, 255, 0.05);

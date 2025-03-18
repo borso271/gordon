@@ -12,7 +12,7 @@ export function useManualFunctionCall() {
       // 1️⃣ Simulate user input (so it appears in conversation history)
       const userQuery =
         functionName === "suggest_securities"
-          ? "Suggest some stocks or cryptos"
+          ? "Suggest stocks or cryptos"
           : `Give me your analysis of ${args.symbol}`;
 
       const newPairId = uuidv4(); // ✅ Generate unique ID for this pair

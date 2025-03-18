@@ -21,6 +21,7 @@ const TestChatPage = () => {
        >
         <NavigationSidebar />
       </div>
+      
       <div className={styles.chatWrapper}>
         <BotChat functionCallHandler={functionCallHandler} />
       </div>

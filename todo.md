@@ -15,11 +15,37 @@ D.
 4. Fix hovers and active states.
 
 
-make transitions...
 
 
-more things:
-OSCILLATING CIRCLE BEFORE EVERYTHING ELSE
+---
+LIST OF THINGS WITH SASHA:
+
+
+
+---
+TRANSITIONS
+
+
+
+---
+LANGUAGE
+
+
+
+
+---
+AWS
+
+
+
+
+
+---
+CLEANING (DAY BY DAY)
+
+
+
+
 
 -----
 

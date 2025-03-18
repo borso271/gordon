@@ -15,6 +15,7 @@ const TestChatPage = () => {
     <div className={styles.container}>
       {/* <MobileNavigation/> */}
       <div className={styles.sidebarWrapper}
+      id="sidebarWrapper"
        onMouseEnter={() => setAreNavigationItemsVisible(true)} 
        onMouseLeave={() => setAreNavigationItemsVisible(false)}
        >

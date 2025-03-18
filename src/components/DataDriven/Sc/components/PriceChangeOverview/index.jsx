@@ -18,10 +18,12 @@ const PriceChangeOverview = ({ current_price, changes }) => {
             <div key={index} className={styles.item}>
               <div className={styles.period}>{period}</div>
             
+              <div className={styles.changeGroup}>
               <Icon name={trendIcon} size={8.5} />
               <div className={`${styles.change} ${changeColor}`}>
                 {percentageChange.toFixed(2)}%
               </div>
+              </div>  
             </div>  
            
           );

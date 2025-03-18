@@ -225,24 +225,17 @@ html[dir="rtl"] body {
   font-family: "Tajawal", sans-serif; /* Arabic-friendly font */
 }
 
-/* Ensure only text elements change alignment */
-/* 
-html[dir="rtl"] h1, 
-html[dir="rtl"] h2, 
-html[dir="rtl"] h3, 
-html[dir="rtl"] p, 
-html[dir="rtl"] input, 
-html[dir="rtl"] textarea, 
-html[dir="rtl"] label {
-  text-align: right;
-  direction: rtl;
-} */
-
 /* Buttons, images, containers stay LTR */
 button, img, nav {
   direction: ltr !important; 
   text-align: left !important;
 }
+
+#sidebarWrapper{
+  direction: ltr !important; 
+  text-align: left !important;
+}
+
 
 html[dir="rtl"] .toBeSwitched {
   direction: rtl;

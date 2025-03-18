@@ -1,14 +1,24 @@
 import React from "react";
-import styles from "./SendButton.module.css"; // Optional CSS module
+import styles from "./SendButton.module.css"; // Import CSS module
 import Icon from "../../Icons/Icon";
 
 type SendButtonProps = {
   onClick: () => void;
   disabled?: boolean;
+  className?: "isMobile" | "isDesktop"; // Ensuring it matches module class keys
 };
-const SendButton: React.FC<SendButtonProps> = ({ onClick, disabled = false }) => {
+
+const SendButton: React.FC<SendButtonProps> = ({ onClick, disabled = false, className }) => {
+  // Compute the correct class name from styles
+  const computedClassName = className ? styles[className] : "";
+
   return (
-    <button className={styles.sendButton} onClick={onClick} disabled={disabled}>
+    <button 
+    className={`${styles.sendButton} ${className ? styles[className] : ""}`} 
+
+      onClick={onClick} 
+      disabled={disabled}
+    >
       <Icon name="send" size={22} />
     </button>
   );

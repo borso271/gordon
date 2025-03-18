@@ -78,7 +78,7 @@ padding-bottom: 20px;
 
 
 /* Medium (Tablets) */
-@media (min-width: 1396px) {
+@media (min-width: 1336px) {
   
   .historyButton {
       display:none

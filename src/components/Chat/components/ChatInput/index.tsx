@@ -114,6 +114,7 @@ export default function ChatInput({
   };
 
   const isSendDisabled = inputDisabled || userInput.trim() === "";
+  
 
   return (
     <div
@@ -167,10 +168,11 @@ export default function ChatInput({
             disabled={inputDisabled}
             icon={"crypto_icon"}
           />
-          {isMobile && (
+         
             <SendButton onClick={handleSendClick} disabled={isSendDisabled}
+            className={isMobile ? "isMobile" : "isDesktop"} 
             />
-          )}
+          
         </div>
       </div>
     </div>

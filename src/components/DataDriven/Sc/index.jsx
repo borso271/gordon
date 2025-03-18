@@ -22,7 +22,7 @@ import ChartLoader from "../../Loaders/ChartLoader";
 const Sc = ({ symbol}) => {
 
   const chartRef = useRef(null);
-  const [chartDimensions, setChartDimensions] = useState({ width: 748, height: 220 });
+  const [chartDimensions, setChartDimensions] = useState({ width: 696, height: 220 });
 
   // Function to update chart dimensions
   const updateChartSize = () => {
@@ -235,8 +235,7 @@ const lastTimeStamp = useMemo(() => {
 
 const timeLegendPercentage = computeHistoricalPercentage(intradayData, selectedPeriod)
 
-
-  const firstpartwidth = (chartDimensions.width*timeLegendPercentage/100)-20;
+  const firstpartwidth = (chartDimensions.width*timeLegendPercentage/100)-10;
   // ✅ Compute period data using dynamic width & height
   
   const lastPrices = computeLastPrices(seriesesData)

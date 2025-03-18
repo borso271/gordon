@@ -38,7 +38,7 @@ const ChartCanvasSVG = ({
   height = 300,
   area = true,
   marketOpen = true,
-  curvy = false,
+  curvy = true,
 }) => {
 
   const svgRef = useRef(null);
@@ -231,8 +231,9 @@ const circleStrokeWidth = isMobile ? 1.5 : 2; // Thinner stroke for mobile
 
           {/* Pulsing circle at last data point if marketOpen */}
           {marketOpen && (
-            <circle cx={lastX} cy={lastY} r={8} className={styles.pulsatingCircle}  fill={lineColor} />
+            <circle cx={lastX} cy={lastY} r={8} className={styles.pulsatingCircle}  fill={lineColor}  />
           )}
+          
 
           {/* Static circle at last data point */}
           <circle cx={lastX} cy={lastY} r={3} fill={lineColor} />

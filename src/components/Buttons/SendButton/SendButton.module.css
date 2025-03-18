@@ -18,3 +18,9 @@
     cursor: not-allowed; /* Prevent clicks */
     opacity: 0.5; /* Make it look inactive */
 }
+
+.isDesktop {
+    width: 46px;
+    height: 46px;
+
+}

@@ -8,7 +8,7 @@ const CircledIcon = ({ name, size = 40, bgColor = "#fff", iconColor = "black", b
       className={`${styles.circle} ${border ? styles.border : ""}`}
       style={{ width: size, height: size, backgroundColor: bgColor }}
     >
-      <Icon name={name} size={size*1.5} color={iconColor} />
+      <Icon name={name} size={size*1.1} color={iconColor} />
     </div>
   );
 };

@@ -75,7 +75,7 @@ const Navbar = () => {
         <div className={styles.dropdownContainer}>
           <DropdownButton
             text={currentLang.toUpperCase()}
-            leftIcon={currentLang === "ar" ? "arabic" : "english"}
+            leftIcon={currentLang === "ar" ? "arabic" : "usa"}
             rightIcon={openDropdown === "language" ? "chevron_up" : "chevron_down"}
             className={openDropdown === "language" ? "activeButton" : undefined} 
 
@@ -84,7 +84,7 @@ const Navbar = () => {
           {openDropdown === "language" && (
             <DropdownMenu
               items={[
-                { icon: "english", label: "English", onClick: () => changeLanguage("en") },
+                { icon: "usa", label: "English", onClick: () => changeLanguage("en") },
                 { icon: "arabic", label: "Arabic", onClick: () => changeLanguage("ar") },
               ]}
               selectedIndex={selectedIndex}

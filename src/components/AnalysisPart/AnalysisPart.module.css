@@ -99,8 +99,6 @@ cursor: pointer;
 
 }
 
-
-
 .tag {
   width: 46px;  /* 2 × 23px */
   height: 46px;
@@ -140,13 +138,11 @@ cursor: pointer;
   
 }
 
-
-
 .summaryLabel {
   color: var(--black-50, #F8F8F8);
 
 /* Text S/Regular */
-font-family: Inter;
+
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

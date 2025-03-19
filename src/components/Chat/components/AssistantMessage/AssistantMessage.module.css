@@ -2,17 +2,17 @@
 
 .assistantMessage {
     display: flex;
-padding: 24px;
+
 flex-direction: column;
 align-items: flex-start;
 gap: 24px;
 align-self: stretch;
 border-radius: 16px;
-border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+
 color: var(--black-300, #929292);
 
 /* Text S/Regular */
-font-family: Inter;
+font-family: var(--font-faimily-inter);
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -26,9 +26,6 @@ line-height: 140%;
     padding-bottom: 40px;
 }
 
-
-  
-  
 
 
 /* Medium (Tablets) */
@@ -47,10 +44,9 @@ align-items: flex-start;
 gap: 16px;
 align-self: stretch;
 
-    color: var(--Black-300, #929292);
+    color: var(--black-300, #929292);
 
-    /* Text S/Regular */
-    font-family: Inter;
+   
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

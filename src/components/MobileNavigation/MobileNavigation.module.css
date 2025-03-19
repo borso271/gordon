@@ -5,7 +5,9 @@
     width: calc(100%-40px);
     border-radius: 12px;
 border: 1px solid var(--black-700, #232323);
+
 background: var(--card-background);
+background-color: var(--card-background);
 right: 20px;
 left: 20px;
 z-index: 1001; /* Ensure it stays above other elements */
@@ -14,12 +16,33 @@ z-index: 1001; /* Ensure it stays above other elements */
 }
 
 .itemList {
-    padding: 16px 20px;
+    /* padding: 16px 20px;
     display:flex;
     flex-direction:column;
     gap: 12px;
 
+ */
+
+    padding: 16px 20px;
+    display: block;
+    overflow: scroll;
+    max-height: 272px;
+    flex-direction: column;
+
+
+
 }
+
+
+/* If you want to hide the scroll bar completely */
+.itemList::-webkit-scrollbar {
+  display: none;
+}
+.itemList {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 
 .header {
 
@@ -60,3 +83,13 @@ padding: 16px 20px;
     }
   }
   
+
+
+
+
+
+
+
+
+
+

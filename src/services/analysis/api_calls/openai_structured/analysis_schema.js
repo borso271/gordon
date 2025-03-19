@@ -24,7 +24,7 @@ const AnalysisSchema = z.object({
   suggested_prompts: z
     .array(z.string())
     .describe(
-      "Three suggested GPT-friendly prompts relative to the company/symbol analyzed or to pertinent financial questions more generally."
+      "Five suggested GPT-friendly prompts relative to the company/symbol analyzed or to pertinent financial questions more generally."
     ),
 });
 

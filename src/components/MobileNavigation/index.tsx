@@ -8,8 +8,9 @@ const VISIBLE_ITEMS = 8; // ✅ Always show 8 items
 const MobileNavigation: React.FC = () => {
   const { conversationPairs, currentIndex, setCurrentIndex } = useConversation();
   // ✅ Only show the last 8 items
+
   const visibleItems = useMemo(() => {
-    return conversationPairs.slice(-VISIBLE_ITEMS);
+    return conversationPairs; // Show all items
   }, [conversationPairs]);
 
   return (
@@ -33,7 +34,7 @@ const MobileNavigation: React.FC = () => {
             label={item.user}
             index={item.id}
             isSelected={currentIndex === realIndex} // ✅ Highlight active item
-            isEdgeItem={visibleItems.length > 8 && (index === 0 || index === visibleItems.length - 1)} // ✅ First & last items are edge items
+            
             onSelect={() => setCurrentIndex(realIndex)} // ✅ Click updates currentIndex
           />
         );

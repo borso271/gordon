@@ -70,8 +70,14 @@ border: 1px solid var(--card-border);
     word-break: break-word;
   }
   
+
   .newsTitle:hover {
-    text-decoration: underline;
+    text-decoration: none;
+
+    color: var(--lime-400, #B1F625);
+    
+
+
   }
   
   /* Ensures the divider does NOT add extra spacing */

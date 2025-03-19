@@ -56,7 +56,6 @@ function ConversationPairView({ pair, direction, responseRef, handleManualFuncti
     >
       {/* User message */}
  
-
       {/* Assistant's response (text, code, analysis, suggestions) */}
       <div ref={responseRef}  className={styles.pair}>
       <UserMessage text={pair.user} />

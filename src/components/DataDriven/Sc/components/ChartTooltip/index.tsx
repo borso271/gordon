@@ -50,8 +50,8 @@ const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProp
       className={styles.tooltip}
       style={{
         position: "absolute",
-        width: tooltipSize.width,
-        height: tooltipSize.height,
+        // width: tooltipSize.width,
+        // height: tooltipSize.height,
         left,
         top,
       }}

@@ -28,10 +28,19 @@ background: var(--Black-50, #F8F8F8);
 
 
   .primaryButton:hover {
-    background-color: #e0e0e0;
-    transform: scale(1.05);
+    
+  
+background: var(--lime-300, #C5FF4A);
+  }
+
+
+  .primaryButton:active {
+    
+    background: var(--lime-500, #91DD05);
   }
   
+
+
   .icon {
     display: flex;
     align-items: center;

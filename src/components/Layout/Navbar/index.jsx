@@ -6,6 +6,7 @@ import DropdownButton from "../../Buttons/DropdownButton";
 import DropdownMenu from "../../Dropdowns/DropdownMenu"; // Import the dropdown menu component
 import ExpandableDropdown from "../../Dropdowns/ExpandableDropdown"; // Import the dropdown menu component
 import { useConversation } from "../../../app/context/conversationContext";
+
 import Link from "next/link";
 import i18n from "../../../i18n";
 import MobileNavigation from "../../MobileNavigation";
@@ -56,7 +57,7 @@ const Navbar = () => {
       )}
 
       <div className={styles.right}>
-        {conversationPairs.length > 0 && (
+        {conversationPairs.length > 1 && (
           <div className={styles.historyButton}>
             <DropdownButton
               text=""
@@ -101,6 +102,7 @@ const Navbar = () => {
             rightIconSize={openDropdown === "options" ? "14" : "20"}
             onClick={() => handleToggleDropdown("options")}
             className={openDropdown === "options" ? "activeButton" : undefined} 
+            width={40}
 
           />
           {openDropdown === "options" && (

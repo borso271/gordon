@@ -6,33 +6,35 @@ interface NavigationItemProps {
   label: string;
   index: string;
   isSelected: boolean;
-  isEdgeItem: boolean;
+  // isEdgeItem: boolean;
   onSelect: () => void;
-  useVisibilityControl?: boolean; // Optional: Controls whether visibility is dynamic
+  // useVisibilityControl?: boolean; 
 }
 
-const NavigationItem: React.FC<NavigationItemProps> = ({ 
+const NavigationItem: React.FC<NavigationItemProps> = ({
   label, 
   index,
   isSelected, 
-  isEdgeItem, 
+  // isEdgeItem, 
   onSelect, 
-  useVisibilityControl = false // Default to false (always visible unless controlled)
+  // useVisibilityControl = false 
 }) => {
+
+ 
   const { areNavigationItemsVisible } = useConversation();
-  const shouldShowLabel = useVisibilityControl ? areNavigationItemsVisible : true;
+  // const shouldShowLabel = useVisibilityControl ? areNavigationItemsVisible : true;
 
   return (
     <div
-      className={`${styles.item} ${isSelected ? styles.active : ""}`}
+      className={`${styles.item} ${isSelected ? styles.active : ""} `}
       onClick={onSelect}
     >
-      <div className={`${styles.circle} ${isSelected ? styles.activeCircle : isEdgeItem ? styles.edgeCircle : ""}`}></div>
-      {shouldShowLabel && (
-        <span className={`${styles.label} ${isSelected ? styles.activeLabel : isEdgeItem ? styles.edgeLabel : ""}`}>
+      <div className={`${styles.circle} ${isSelected ? styles.activeCircle :  ""}`}></div>
+     
+        <span className={`${styles.label} ${isSelected ? styles.activeLabel :  ""}`}>
           {label}
         </span>
-      )}
+      
     </div>
   );
 };

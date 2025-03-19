@@ -14,14 +14,14 @@ const SendButton: React.FC<SendButtonProps> = ({ onClick, disabled = false, clas
 
   return (
     <button 
-    className={`${styles.sendButton} ${className ? styles[className] : ""}`} 
-
+      className={`${styles.sendButton} ${computedClassName}`} 
       onClick={onClick} 
       disabled={disabled}
     >
-      <Icon name="send" size={22} />
+      <Icon name={disabled ? "disabled_arrow" : "send"} size={22} />
     </button>
   );
 };
+
 
 export default SendButton;

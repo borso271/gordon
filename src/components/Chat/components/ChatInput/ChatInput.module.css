@@ -9,18 +9,16 @@
   
   /* Fixed at the bottom (classic chat scenario) */
   .fixed {
-    position: fixed;
+    height:100%;
+    /* position: fixed;
     bottom: 0;
-    left: 50%; /* Center horizontally */
+    left: 50%; 
     transform: translateX(-50%);
-    max-width: 796px; /* Limit width so it doesn't stretch entire screen */
+    max-width: 796px; 
     margin: 0 auto;
     padding: 24px 0px;
-    /* height: auto; */
-     height: 151px;
-
     
-  
+     height: 151px; */
   }
   
   /* Centered (first prompt scenario) */
@@ -30,7 +28,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        padding: 24px 16px;
+        padding: 24px 20px;
       }
       
   
@@ -43,6 +41,7 @@
     display:flex;
     flex-direction:column;
     gap: 16px;
+    padding-top:5px;
   }
   
   .form {
@@ -56,7 +55,9 @@
   
   .input {
     flex: 1;
-    color: var(--Black-500, #555);
+    
+    color: var(--black-50, #F8F8F8);
+
     font-family: Inter, sans-serif;
     font-size: 30px;
     font-weight: 500;
@@ -104,16 +105,13 @@ letter-spacing: var(--letter-spacing-xl);
     display: flex;
     flex-direction: row;
     gap: 16px;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
   
 
 
-.botHeading {
-    margin-bottom:8px;
-}
 
-
+/* 
 .container:before {
 
 
@@ -124,28 +122,29 @@ letter-spacing: var(--letter-spacing-xl);
   height: 30px;
   top: -30px;
   
-  pointer-events: none; /* Ensures it doesn't interfere with scrolling */
-
-
+  pointer-events: none; 
 
   background: linear-gradient(
       to bottom, 
-      rgba(15, 15, 15, 0) 0%,     /* Fully transparent at the top */
-      rgba(15, 15, 15, 0.7) 50%,  /* Intermediate step at 50% opacity */
-      var(--background) 100%   /* Fully opaque at the bottom */
+      rgba(15, 15, 15, 0) 0%,     
+      rgba(15, 15, 15, 0.7) 50%,
+      var(--background) 100%  
   );
 
+} */
+
+
+
+
+.promptButtons {
+  display:flex;
+  flex-direction: row;
+  gap: 12px;
 }
-
-
-
 
 /* Medium (Tablets) */
 @media (max-width: 838px) {
-    .fixed {
-    padding: 20px;
     
-    }
 
     .buttonGroup {
         gap: 14px;
@@ -158,10 +157,7 @@ letter-spacing: var(--letter-spacing-xl);
 }
 
   .input, .input::placeholder {
-    color: var(--Black-500, #535353);
 
-    /* H3/Medium */
-    font-family: Inter;
     font-size: 26px;
     font-style: normal;
     font-weight: 500;
@@ -174,9 +170,7 @@ letter-spacing: var(--letter-spacing-xl);
 
 /* Small (Mobile) */
 @media (max-width: 480px) {
-  .buttonGroup {
-    gap: 12px;
-    }
+
 
 
 
@@ -184,10 +178,7 @@ letter-spacing: var(--letter-spacing-xl);
     margin-bottom:0px;
 }
     .input, .input::placeholder {
-    color: var(--Black-500, #535353);
-
-    /* Text L/Medium */
-    font-family: Inter;
+   
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -196,33 +187,13 @@ letter-spacing: var(--letter-spacing-xl);
 
 
       .fixed {
-       
         /* height: auto; */
          height: 121px;
-        
-      
       }
-  
 }
 
 .fixedButton {
-  
         position: fixed; /* ✅ Fixes button in place */
         right: 20px; /* ✅ 20px from the right */
         bottom: 20px; /* ✅ 20px from the bottom */
 }
-
-/* 
-.customCaret {
-  position: absolute;
-  right: 12px;
-  font-size: 16px;
-  color: white;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}  */

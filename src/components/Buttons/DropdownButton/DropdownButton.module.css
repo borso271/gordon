@@ -46,3 +46,8 @@ background:transparent;
   .activeButton {
     background: var(--additional-white-8) !important;
   }
+
+
+  .scrollDownButton {
+    background: var(--black-900, #0F0F0F);
+  }

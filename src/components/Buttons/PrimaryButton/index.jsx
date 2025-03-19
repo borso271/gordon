@@ -4,7 +4,6 @@ import Icon from '../../Icons/Icon/index.tsx';
 
 const PrimaryButton = ({ text, icon }) => {
 
-  console.log("ICON IS: ", icon)
   return (
     <button className={styles.primaryButton}>
       <span className={styles.text}>{text}</span>

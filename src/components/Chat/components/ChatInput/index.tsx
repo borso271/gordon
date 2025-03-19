@@ -72,18 +72,13 @@ export default function ChatInput({
   handleSubmit,
   inputDisabled,
   handleManualFunctionCall,
- 
 }: ChatInputProps) {
-
   const { t } = useTranslation();
+  const [isFocused, setIsFocused] = useState(false); // Track input focus
 
-  //const router = useRouter(); // Initialize useRouter
-  const headingText = t("bot_first_message");
-  const basePlaceholder = "";
-  
-  const [showCaret, setShowCaret] = useState(true);
-
-  const inputRef = useRef(null);
+  const { isMobile } = useScreenSize(); // ✅ Get isMobile globally
+  const formRef = useRef<HTMLFormElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!inputDisabled && inputRef.current) {
@@ -91,90 +86,184 @@ export default function ChatInput({
     }
   }, [inputDisabled]); // Re-run effect when inputDisabled changes
 
-
-  // useEffect(() => {
-  //   // Blinking caret effect
-  //   const caretInterval = setInterval(() => {
-  //     setShowCaret((prev) => !prev);
-  //   }, 500); // Blink every 500ms
-
-  //   return () => clearInterval(caretInterval);
-  // }, []);
-
-  // 1️⃣ Create the ref to the <form>
-  const { isMobile } = useScreenSize(); // ✅ Get isMobile globally
-
-  const formRef = useRef<HTMLFormElement>(null);
-
-  // 2️⃣ Request form submission on button click
   const handleSendClick = () => {
     if (formRef.current) {
-      formRef.current.requestSubmit(); 
+      formRef.current.requestSubmit();
     }
   };
 
-  const isSendDisabled = inputDisabled || userInput.trim() === "";
-  
+  const isSendDisabled = inputDisabled || userInput.trim().length < 2;
 
   return (
-    <div
-      className={`${styles.container} ${
-        isFirstPrompt ? styles.centered : styles.fixed
-      }`}
-    >
-       
+    <div className={`${styles.container} ${isFirstPrompt ? styles.centered : styles.fixed}`}>
       <div className={styles.innerContainer}>
         {isFirstPrompt && (
           <BotHeading className={styles.botHeading}>
-             <TypingHeading text={headingText} speed={20} />
-          {/* {t("bot_first_message")}  */}
-
+            <TypingHeading text={t("bot_first_message")} speed={20} />
           </BotHeading>
         )}
 
         <div className={styles.form}>
-          {/* 3️⃣ Attach the ref to the <form> */}
           <form ref={formRef} onSubmit={handleSubmit} className={styles.inputForm}>
-<input
-  type="text"
-  className={styles.input}
-  value={userInput}
-  placeholder={"Ask Me Something"}
-  onChange={(e) => setUserInput(e.target.value)}
-  disabled={inputDisabled}
-  // ref={inputRef}
-  onBlur={() => inputRef.current && inputRef.current.focus()}
-/>
-
-            {/* Hidden submit button ensures requestSubmit() works in all browsers */}
+            <input
+              type="text"
+              className={styles.input}
+              value={userInput}
+              placeholder={"Talk money to me. What’s on your mind?"}
+              onChange={(e) => setUserInput(e.target.value)}
+              disabled={inputDisabled}
+              ref={inputRef}
+              onFocus={() => setIsFocused(true)}
+              onBlur={(e) => {
+                if (!e.relatedTarget || !e.relatedTarget.classList.contains("sendButton")) {
+                  setIsFocused(false);
+                }
+              }}
+            />
             <button type="submit" style={{ display: "none" }} />
           </form>
         </div>
 
         <div className={styles.buttonGroup}>
-          <SecondaryButton
-            text={t("suggest_stocks")}
-            onClick={() =>
-              handleManualFunctionCall("suggest_securities", { asset_type: "stock" })
-            }
-            disabled={inputDisabled}
-            icon={"dollar_icon"}
-          />
-          <SecondaryButton
-              text={t("suggest_cryptos")}
-            onClick={() =>
-              handleManualFunctionCall("suggest_securities", { asset_type: "crypto" })
-            }
-            disabled={inputDisabled}
-            icon={"crypto_icon"}
-          />
-         
-            <SendButton onClick={handleSendClick} disabled={isSendDisabled}
-            className={isMobile ? "isMobile" : "isDesktop"} 
+          <div className={styles.promptButtons}>
+            <SecondaryButton
+              text={t("suggest_stocks")}
+              onClick={() => handleManualFunctionCall("suggest_securities", { asset_type: "stock" })}
+              disabled={inputDisabled}
+              icon={"dollar_icon"}
             />
-          
+            <SecondaryButton
+              text={t("suggest_cryptos")}
+              onClick={() => handleManualFunctionCall("suggest_securities", { asset_type: "crypto" })}
+              disabled={inputDisabled}
+              icon={"crypto_icon"}
+            />
+          </div>
+
+          {/* Send Button - Hidden until input is focused */}
+          <div
+            style={{
+              opacity: isFocused ? 1 : 0,
+              visibility: isFocused ? "visible" : "hidden",
+              transition: "opacity 0.3s ease",
+            }}
+          >
+            <SendButton
+              onClick={handleSendClick}
+              disabled={isSendDisabled}
+
+//             <SendButton onClick={handleSendClick} disabled={isSendDisabled}
+className={isMobile ? "isMobile" : "isDesktop"} 
+           
+            />
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+
+// export default function ChatInput({
+//   isFirstPrompt = false,
+//   userInput,
+//   setUserInput,
+//   handleSubmit,
+//   inputDisabled,
+//   handleManualFunctionCall,
+ 
+// }: ChatInputProps) {
+
+//   const { t } = useTranslation();
+
+//   //const router = useRouter(); // Initialize useRouter
+//   const headingText = t("bot_first_message");
+//   const basePlaceholder = "";
+  
+//   const [showCaret, setShowCaret] = useState(true);
+
+//   const inputRef = useRef(null);
+
+//   useEffect(() => {
+//     if (!inputDisabled && inputRef.current) {
+//       inputRef.current.focus();
+//     }
+//   }, [inputDisabled]); // Re-run effect when inputDisabled changes
+
+//   // 1️⃣ Create the ref to the <form>
+//   const { isMobile } = useScreenSize(); // ✅ Get isMobile globally
+
+//   const formRef = useRef<HTMLFormElement>(null);
+
+//   // 2️⃣ Request form submission on button click
+//   const handleSendClick = () => {
+//     if (formRef.current) {
+//       formRef.current.requestSubmit(); 
+//     }
+//   };
+
+//   const isSendDisabled = inputDisabled || userInput.trim() === "";
+
+//   return (
+//     <div
+//       className={`${styles.container} ${
+//         isFirstPrompt ? styles.centered : styles.fixed
+//       }`}
+//     >
+       
+//       <div className={styles.innerContainer}>
+//         {isFirstPrompt && (
+//           <BotHeading className={styles.botHeading}>
+//              <TypingHeading text={headingText} speed={20} />
+//           {/* {t("bot_first_message")}  */}
+
+//           </BotHeading>
+//         )}
+
+//         <div className={styles.form}>
+//           {/* 3️⃣ Attach the ref to the <form> */}
+//           <form ref={formRef} onSubmit={handleSubmit} className={styles.inputForm}>
+// <input
+//   type="text"
+//   className={styles.input}
+//   value={userInput}
+//   placeholder={"Ask Me Something"}
+//   onChange={(e) => setUserInput(e.target.value)}
+//   disabled={inputDisabled}
+//   // ref={inputRef}
+//   onBlur={() => inputRef.current && inputRef.current.focus()}
+// />
+
+//             {/* Hidden submit button ensures requestSubmit() works in all browsers */}
+//             <button type="submit" style={{ display: "none" }} />
+//           </form>
+//         </div>
+
+//         <div className={styles.buttonGroup}>
+//           <div className={styles.promptButtons}>
+//           <SecondaryButton
+//             text={t("suggest_stocks")}
+//             onClick={() =>
+//               handleManualFunctionCall("suggest_securities", { asset_type: "stock" })
+//             }
+//             disabled={inputDisabled}
+//             icon={"dollar_icon"}
+//           />
+//           <SecondaryButton
+//               text={t("suggest_cryptos")}
+//             onClick={() =>
+//               handleManualFunctionCall("suggest_securities", { asset_type: "crypto" })
+//             }
+//             disabled={inputDisabled}
+//             icon={"crypto_icon"}
+//           /></div>
+         
+//             <SendButton onClick={handleSendClick} disabled={isSendDisabled}
+//             className={isMobile ? "isMobile" : "isDesktop"} 
+//             />
+          
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

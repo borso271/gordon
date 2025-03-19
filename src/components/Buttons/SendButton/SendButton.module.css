@@ -14,9 +14,9 @@
 
 /* 🔴 Disabled state */
 .sendButton:disabled {
-   
+    background: var(--black-800, #1A1A1A);
     cursor: not-allowed; /* Prevent clicks */
-    opacity: 0.5; /* Make it look inactive */
+   
 }
 
 .isDesktop {

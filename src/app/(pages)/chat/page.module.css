@@ -27,8 +27,8 @@
   } 
 
   
-  /* ✅ Hide Sidebar and Mock Div when screen width < 1396px */
-  @media (max-width: 1336px) {
+  /* ✅ Hide Sidebar and Mock Div when screen width <  1336 */
+  @media (max-width:  1336px) {
     .sidebarWrapper {
       display: none;
     }

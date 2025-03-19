@@ -1,49 +1,102 @@
-// Let's improve this component: 
-// you have always only 8 items visible, if there are more than 8, the older ones are rendered but not visible if not on scroll.
-// Since the sidebar is scrollable.
-// we import from conversationContext these two:   const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>([]);
-//   const [currentIndex, setCurrentIndex] = useState(-1);
-// and the idea is that the item in conversationPairs with currentIndex has an active class.
-// Also, clicking on another item in the navigation, set currentIndex
-import React, { useMemo } from "react";
+
+// import React, { useMemo } from "react";
+
+// import styles from "./NavigationSidebar.module.css";
+// import NavigationItem from "./components/NavigationItem";
+// import { useConversation } from "../../app/context/conversationContext"; // ✅ Import context
+
+// const VISIBLE_ITEMS = 8;
+
+// const NavigationSidebar: React.FC = () => {
+//   const { conversationPairs, currentIndex, setCurrentIndex, setAreNavigationItemsVisible } = useConversation();
+
+//   const visibleItems = useMemo(() => {
+//     return conversationPairs; // show all items
+//   }, [conversationPairs]);
+
+  
+//   if (conversationPairs.length < 2){
+//     return <></>
+//   }
+//   return (
+
+//     <div className={styles.sidebar}>
+//       {visibleItems.map((item, index) => {
+//         const realIndex = conversationPairs.length - visibleItems.length + index;
+      
+//         return (
+//           <NavigationItem
+//             key={item.id}
+//             label={item.user}
+//             index={item.id}
+//             isSelected={currentIndex === realIndex} // ✅ Highlight active item
+//             isEdgeItem={conversationPairs.length > 8 && (index === 0 || index === visibleItems.length - 1)} // ✅ First & last items are edge items
+//             onSelect={() => setCurrentIndex(realIndex)} // ✅ Click updates currentIndex
+//             useVisibilityControl={true}
+//           />
+//         );
+//       })}
+        
+//     </div>
+//   );
+// };
+
+// export default NavigationSidebar;
+
+
+
+import React, { useMemo, useEffect, useRef } from "react";
 import styles from "./NavigationSidebar.module.css";
 import NavigationItem from "./components/NavigationItem";
 import { useConversation } from "../../app/context/conversationContext"; // ✅ Import context
 
-const VISIBLE_ITEMS = 8; // ✅ Always show 8 items
 
 const NavigationSidebar: React.FC = () => {
-  const { conversationPairs, currentIndex, setCurrentIndex, setAreNavigationItemsVisible } = useConversation();
+  const { conversationPairs, currentIndex, setCurrentIndex } = useConversation();
 
-  // ✅ Only show the last 8 items
+  // Reference for sidebar container
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
+
+  // Detect new messages and scroll to bottom
+  useEffect(() => {
+    if (sidebarRef.current) {
+      sidebarRef.current.scrollTop = sidebarRef.current.scrollHeight;
+    }
+  }, [conversationPairs.length]); // Runs when conversationPairs length changes
+
   const visibleItems = useMemo(() => {
-    return conversationPairs.slice(-VISIBLE_ITEMS);
+    return conversationPairs; // Show all items
   }, [conversationPairs]);
 
-  return (
-    <div
-      className={styles.sidebar}
-    //   onMouseEnter={() => setAreNavigationItemsVisible(true)} // ✅ Set true on hover
-    //   onMouseLeave={() => setAreNavigationItemsVisible(false)} // ✅ Set false when leaving
-    >
-      {visibleItems.map((item, index) => {
-        const realIndex = conversationPairs.length - visibleItems.length + index;
-        
+  if (conversationPairs.length < 2) {
+    return null;
+  }
 
-        return (
-          <NavigationItem
-            key={item.id}
-            label={item.user}
-            index={item.id}
-            isSelected={currentIndex === realIndex} // ✅ Highlight active item
-            isEdgeItem={visibleItems.length > 8 && (index === 0 || index === visibleItems.length - 1)} // ✅ First & last items are edge items
-            onSelect={() => setCurrentIndex(realIndex)} // ✅ Click updates currentIndex
-            useVisibilityControl={true}
-          />
-        );
-      })}
+  return (
+    <div className={styles.sidebarContainer}>
+      {/* Fixed fade effect at the top */}
+      <div className={styles.fadeTop}></div>
+  
+      {/* Scrollable content */}
+      <div ref={sidebarRef} className={styles.sidebar}>
+        {visibleItems.map((item, index) => {
+          return (
+            <NavigationItem
+              key={item.id}
+              label={item.user}
+              index={item.id}
+              isSelected={currentIndex === index}
+              onSelect={() => setCurrentIndex(index)}
+             
+            />
+          );
+        })}
+      </div>
+
+      {/* Fixed fade effect at the bottom */}
+      <div className={styles.fadeBottom}></div>
     </div>
   );
-};
+}  
 
 export default NavigationSidebar;

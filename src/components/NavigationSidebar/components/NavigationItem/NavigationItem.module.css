@@ -5,7 +5,7 @@
     transition: background-color 0.2s ease-in-out;
 
     overflow: hidden;
-color: var(--Black-500, #535353);
+color: var(--black-500, #535353);
 text-overflow: ellipsis;
 /* Text S/Medium */
 font-family: var(--font-family-inter);
@@ -18,19 +18,33 @@ flex-direction:row;
 align-items:center;
 gap:8px;
 
+margin-bottom:12px;
+
   }
 
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+
+.item:hover {
+    color: var(--black-200, #B4B4B4);
+}
 
   .circle {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: gray; /* Default color */
     margin:4.5px 0px;
-  
-    
+    background-color: var(--black-500, #535353);
   }
   
+
+/* ✅ When `.item` is hovered, change `.circle` background color */
+.item:hover .circle {
+    background-color: var(--black-200, #B4B4B4);
+}
 
   .label {
     white-space: nowrap;   /* Prevent text from wrapping */
@@ -40,9 +54,12 @@ gap:8px;
     display: inline-block; /* Ensure it behaves correctly */
   }
 
-  
-  
+
   .activeCircle {
+    background-color: #F8F8F8; /* Active item color */
+  }
+
+  .activeCircle:hover {
     background-color: #F8F8F8; /* Active item color */
   }
   
@@ -50,10 +67,27 @@ gap:8px;
     background-color: #1A1A1A; /* Edge item color */
   }
 
-   
+
+
+
+/* ✅ When `.item` is hovered, change `.circle` background color */
+.item.active .label {
+    color: #F8F8F8; /* Active item color */
+}
+
+
+
+/* ✅ When `.item` is hovered, change `.circle` background color */
+.item.active:hover .circle {
+    background-color: #F8F8F8;
+}
+
+
+
+/*    
   .activeLabel {
-color: #F8F8F8; /* Active item color */
-  }
+color: #F8F8F8; 
+  } */
   
   .edgeLabel {
   color: #1A1A1A; /* Edge item color */
@@ -63,3 +97,23 @@ color: #F8F8F8; /* Active item color */
     background-color: #3a3a3a;
   }
   
+
+
+
+/* ✅ When `.item` is hovered, change `.circle` background color */
+.item.edgeItem {
+  color: var(--black-700, #232323);
+}
+
+.item.edgeItem .circle {
+  background-color: var(--black-700, #232323);
+}
+
+
+.item.edgeItem.active .circle  {
+
+  background-color: #F8F8F8;
+}
+
+
+

@@ -12,12 +12,12 @@ const ActionButton = ({ iconName, successIcon = "check", text, onClick, disabled
 
     try {
       await onClick(); // Wait for the function to complete
+      if (text == "Copy"){
       setCurrentIcon(successIcon); // Change to success icon
-
       // Optionally reset back to original after 1.5s
       setTimeout(() => {
         setCurrentIcon(iconName);
-      }, 1500);
+      }, 1500); }
     } catch (error) {
       console.error("Error in ActionButton:", error);
     }

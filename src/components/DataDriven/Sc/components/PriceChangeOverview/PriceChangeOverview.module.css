@@ -67,8 +67,8 @@ line-height: 140%; /* 16.8px */
   
 
 .changeGroup {
-  display: flex
-;
+  display: flex;
+  gap:2px;
     flex-direction: row;
     align-items: center;
 }

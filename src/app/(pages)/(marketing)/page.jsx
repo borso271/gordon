@@ -18,16 +18,14 @@ const MarketingPage = () => {
     <div className={styles.main}>
       <div className={styles.container}>
         
-        <InactiveButton text={t("powered_by_ai")} icon={"powered"} />
+        <InactiveButton text={t("powered_by_ai")} icon={"gordon_logo"} />
         <PrimaryHeading>
           {headingText}
         </PrimaryHeading>
         <Subheading>
         {t("homepage_subheading")}
-         
         </Subheading>
         
-      
       <div className={styles.button}>
 <Link href="/chat">
   <PrimaryButton text={t("get_started")} icon={"right_arrow"} />

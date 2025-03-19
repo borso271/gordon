@@ -20,3 +20,8 @@
 .button {
   margin-top:8px;
 }
+
+
+.main > * {
+  transform: translateY(-50px); /* Moves content up by 50px */
+}

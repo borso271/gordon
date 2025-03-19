@@ -3,13 +3,12 @@ import styles from "./DropdownButton.module.css";
 import Icon from "../../Icons/Icon/index.tsx";
 import CircledIcon from "../../Icons/CircledIcon";
 
-
-const DropdownButton = ({ text, leftIcon, rightIcon, rightIconSize, onClick, className }) => {
+const DropdownButton = ({ text, leftIcon, rightIcon, rightIconSize, onClick, className, width }) => {
   return (
     <button
-    className={`${styles.dropdownButton} ${className ? styles[className] : ""}`.trim()}
-
+      className={`${styles.dropdownButton} ${className ? styles[className] : ""}`.trim()}
       onClick={onClick}
+      style={width ? { width: `${width}px` } : {}}
     >
       {/* Left Icon (Optional) */}
       {leftIcon && (
@@ -30,5 +29,6 @@ const DropdownButton = ({ text, leftIcon, rightIcon, rightIconSize, onClick, cla
     </button>
   );
 };
+
 
 export default DropdownButton;

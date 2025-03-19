@@ -38,10 +38,7 @@ function LanguageSwitch({ items }) {
         logo_path={currentItem.logo_path}
         onClick={toggleItem}
         iconLeft={iconLeft}
-        backgroundColor="white"
-        textColor="var(--dark)"
-        paddingX="12px"
-        paddingY="24px"
+        
       />
     </div>
   );

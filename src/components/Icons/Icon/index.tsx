@@ -142,21 +142,56 @@ send: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http:/
   </svg>
   ),
 
+  disabled_arrow: (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="Icons">
+  <path id="Vector 9" d="M6 10L12 4M12 4L18 10M12 4L12 19" stroke="#323232" strokeWidth="2" strokeLinecap="round"/>
+  </g>
+  </svg>
+  ),
+
   logo: (
     <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
       <circle cx="30" cy="30" r="30" fill="#005cc5" />
     </svg>),
 
   english: (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="1000" height="600" transform="scale(1.2)">
-
-	<path d="M0,0v30h50v-30z" fill="#012169"/>
-	<path d="M0,0 50,30M50,0 0,30" stroke="#fff" strokeWidth="6"/>
-	<path d="M0,0 50,30M50,0 0,30" clipPath="url(#t)" stroke="#C8102E" strokeWidth="4"/>
-	<path d="M-1 11h22v-12h8v12h22v8h-22v12h-8v-12h-22z" fill="#C8102E" stroke="#FFF" strokeWidth="2"/>
+    
+<svg
+   viewBox="0 0 27 27"
+   width="27"
+   height="27"
+   >
+  <path
+     d="M 2.0847417,2.1572788 V 32.618199 H 33.605528 V 2.1572788 Z"
+     fill="#012169"
+    />
+  <path
+     d="M 2.0847417,2.1572788 33.605528,32.618199 m 0,-30.4609202 L 2.0847417,32.618199"
+     stroke="#ffffff"
+     strokeWidth="6"
+     id="path2" />
+  <path
+     d="M 2.0847417,2.1572788 33.605528,32.618199 m 0,-30.4609202 L 2.0847417,32.618199"
+     clipPath="url(#t)"
+     stroke="#c8102e"
+     strokeWidth="4"
+     id="path3" />
+  <path
+     d="M 1.454326,13.326283 H 15.323472 V 1.1419147 h 5.043326 V 13.326283 h 13.869146 v 8.122912 H 20.366798 V 33.633563 H 15.323472 V 21.449195 H 1.454326 Z"
+     fill="#c8102e"
+     stroke="#ffffff"
+     strokeWidth="2"
+     id="path4" />
 </svg>
+
   ),
 
+  arrow_down: (<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="Icons">
+    <path id="Vector 9" d="M5 11.6666L10 16.6666M10 16.6666L15 11.6666M10 16.6666L10 4.16663" stroke="#D7D7D7" strokeWidth="2" strokeLinecap="round"/>
+    </g>
+    </svg>
+    ),
   arabic: (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600">
     <rect width="900" height="600" fill="#007a3d"/>

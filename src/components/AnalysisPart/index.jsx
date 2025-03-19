@@ -22,6 +22,7 @@ const AnalysisPart = ({ title, name, type, content, icon, tagColor, tagSize }) =
   
   {/* Render Summary Items */}
   <div className={styles.summaryList}>
+    
   <p className={styles.introText}>
     Here are the main takeaways about <strong>{name}</strong> to keep in mind:
   </p>

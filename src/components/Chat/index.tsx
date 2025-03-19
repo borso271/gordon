@@ -161,14 +161,17 @@ export default function BotChat({ functionCallHandler = () => Promise.resolve(""
       {(currentIndex < conversationPairs.length - 1 ||
         (currentIndex === conversationPairs.length - 1 && !isAtBottom)) && (
         <div className={styles.scrollDownButton}>
-          <DropdownButton
-            text=""
-            rightIcon="arrow_down"
-            className="scrollDownButton"
-            width={40}
-            onClick={() => scrollDownManually()}
-          
-          />
+
+<DropdownButton
+  text=""
+  rightIcon="arrow_down"
+  rightIconSize={20} // Provide a default size for the right icon
+  leftIcon={null} // If you don't need a left icon, set it to null
+  className="scrollDownButton"
+  width={40}
+  onClick={() => scrollDownManually()}
+/>
+
         </div>
       )}
 

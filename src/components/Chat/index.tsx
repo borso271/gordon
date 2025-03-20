@@ -47,7 +47,6 @@ export default function BotChat() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const {
     handleWheel,
-   
     responseRef,
     direction,
     isAtBottom,
@@ -60,17 +59,17 @@ export default function BotChat() {
   );
 
 
-  const {
-   handleTouchStart,
-   handleTouchEnd,
-   handleTouchMove
-  }
- = useMobileSlideshowNavigation(
-  currentIndex,
-  setCurrentIndex,
-  conversationPairs.length
+//   const {
+//    handleTouchStart,
+//    handleTouchEnd,
+//    handleTouchMove
+//   }
+//  = useMobileSlideshowNavigation(
+//   currentIndex,
+//   setCurrentIndex,
+//   conversationPairs.length
+//  )
 
- )
   console.log("IS AT BOTTOM IS: ", isAtBottom)
 
    const {handleSubmit, attachHandlers} = useHandleSubmit();
@@ -129,10 +128,10 @@ export default function BotChat() {
   return (
     <div
       className={styles.slideContainer}
-     // onWheel={handleWheel}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      onWheel={handleWheel}
+      // onTouchStart={handleTouchStart}
+      // onTouchMove={handleTouchMove}
+      // onTouchEnd={handleTouchEnd}
       ref={containerRef}
     >
       {/* Show scrollDown button conditionally */}

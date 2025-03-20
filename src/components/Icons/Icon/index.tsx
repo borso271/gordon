@@ -419,7 +419,7 @@ const Icon: React.FC<IconProps> = ({
         ...style, // ✅ Merge custom styles
       }}
     >
-      {React.cloneElement(icons[name], {
+      {React.cloneElement(icons["temp_logo"], {
         width: finalSize,
         height: finalSize,
         stroke: strokeColor,

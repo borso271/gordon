@@ -1,3 +1,4 @@
+"use client"
 import React, {useState, useEffect} from "react";
 import styles from "./ChartTooltip.module.css";
 import { useScreenSize } from "../../../../../app/context/screenSizeContext";

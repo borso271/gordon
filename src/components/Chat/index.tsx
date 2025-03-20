@@ -129,7 +129,7 @@ export default function BotChat() {
   return (
     <div
       className={styles.slideContainer}
-      onWheel={handleWheel}
+     // onWheel={handleWheel}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}

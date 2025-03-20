@@ -1,7 +1,7 @@
 .primaryInput {
     width: 100%;
-    color: var(--Black-500);
-    font-family: Inter, sans-serif;
+    color: var(--black-500);
+ 
     font-size: 30px;
     font-weight: 500;
     line-height: 125%;
@@ -10,12 +10,12 @@
     border: none;
     outline: none;
     padding: 0;
-    caret-color: var(--Black-500); /* Ensures the caret is visible */
+    caret-color: var(--black-500); /* Ensures the caret is visible */
   }
   
   /* Placeholder Styling */
   .primaryInput::placeholder {
-    color: var(--Black-500);
+    color: var(--black-500);
     opacity: 1; /* Ensures placeholder is visible */
   }
   

@@ -47,10 +47,10 @@ background: var(--black-800, #1A1A1A);
 }
 
 .symbol {
-  color: var(--Black-50, #F8F8F8);
+  color: var(--black-50, #F8F8F8);
 
   /* Text M/Medium */
-  font-family: Inter;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -59,11 +59,11 @@ background: var(--black-800, #1A1A1A);
 
 .symbolName {
   overflow: hidden;
-color: var(--Black-400, #757575);
+color: var(--black-400, #757575);
 text-overflow: ellipsis;
 
 /* Text XS/Medium */
-font-family: Inter;
+
 font-size: 12px;
 font-style: normal;
 font-weight: 500;
@@ -90,10 +90,10 @@ display: -webkit-box;
 }
 
 .price {
-  color: var(--Black-50, #F8F8F8);
+  color: var(--black-50, #F8F8F8);
 
   /* Text M/Medium */
-  font-family: Inter;
+  
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -104,7 +104,7 @@ display: -webkit-box;
   
 
 /* Text XS/Medium */
-font-family: Inter;
+
 font-size: 12px;
 font-style: normal;
 font-weight: 500;

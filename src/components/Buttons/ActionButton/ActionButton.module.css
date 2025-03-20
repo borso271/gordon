@@ -23,10 +23,10 @@ background: var(--black-800, #1A1A1A);
   }
   
   .text {
-    color: var(--Black-200, #B4B4B4);
+    color: var(--black-200, #B4B4B4);
 text-align: center;
 /* Text S/Regular */
-font-family: Inter;
+
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

@@ -40,8 +40,6 @@ border: 1px solid var(--card-border);
 
   color: var(--black-300, #929292);
 
-/* Text S/Regular */
-font-family: Inter;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

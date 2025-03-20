@@ -16,7 +16,7 @@ gap: 2px;
     color: var(--black-300, #929292);
 
     /* Text XS/Medium */
-    font-family: Inter;
+  
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -27,7 +27,7 @@ gap: 2px;
     text-align: right;
 
     /* Text S/Medium */
-    font-family: Inter;
+  
     font-size: 14px;
     font-style: normal;
     font-weight: 500;

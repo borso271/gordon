@@ -11,7 +11,7 @@
   }
   
   .symbol {
-    color: var(--Black-400, #757575);
+    color: var(--black-400, #757575);
 
 /* Text M/Medium */
 font-family: var(--font-family-inter);
@@ -30,8 +30,8 @@ line-height: 140%; /* 22.4px */
   }
   
   .price {
-    color: var(--Black-50, #F8F8F8);
-    font-family: Inter;
+    color: var(--black-50, #F8F8F8);
+  
     font-size: var(--font-size-l);
     font-style: normal;
     font-weight: 500;
@@ -41,7 +41,7 @@ line-height: 140%; /* 22.4px */
   
   .change {
     /* Text M/Medium */
-    font-family: Inter;
+
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

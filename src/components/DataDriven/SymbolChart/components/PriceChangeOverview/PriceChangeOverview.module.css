@@ -36,10 +36,10 @@ background: var(--additional-white-3, rgba(255, 255, 255, 0.03));
   
   .period {
   
-    color: var(--Black-300, #929292);
+    color: var(--black-300, #929292);
 
 /* Text XS/Medium */
-font-family: Inter;
+
 font-size: 12px;
 font-style: normal;
 font-weight: 500;
@@ -50,7 +50,7 @@ line-height: 140%; /* 16.8px */
   
 
     /* Text XS/Medium */
-    font-family: Inter;
+  
     font-size: 12px;
     font-style: normal;
     font-weight: 500;

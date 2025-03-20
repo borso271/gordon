@@ -10,14 +10,14 @@ flex-shrink: 0;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     border-radius: 100px;
-background: var(--Black-50, #F8F8F8);
+background: var(--black-50, #F8F8F8);
   }
   
   .text {
-    color: var(--Black-950, #020202);
+    color: var(--black-950, #020202);
     text-align: center;
     /* Text M/Medium */
-    font-family: Inter;
+   
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -61,11 +61,11 @@ flex-shrink: 0;
     }
 
     .text {
-        color: var(--Black-950, #020202);
+        color: var(--black-950, #020202);
 text-align: center;
 
 /* Text S/Medium */
-font-family: Inter;
+
 font-size: 14px;
 font-style: normal;
 font-weight: 500;
@@ -91,7 +91,7 @@ flex-shrink: 0;
 text-align: center;
 
 /* Text XS/Medium */
-font-family: Inter;
+
 font-size: 12px;
 font-style: normal;
 font-weight: 500;

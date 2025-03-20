@@ -179,25 +179,21 @@ export function useChartCanvas({
   };
 
 
-
   const handlePointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
 
     console.log("handle pointer move detected")
     if (!svgRef.current || !containerRef.current) return;
   
-    console.log("this logs too")
     // 1) pointer position relative to container
     const containerRect = containerRef.current.getBoundingClientRect();
     const offsetX = e.clientX - containerRect.left;
     const offsetY = e.clientY - containerRect.top;
     setHoverPos({ x: offsetX, y: offsetY });
-  
     // 2) Convert to SVG coordinate system
     const pt = svgRef.current.createSVGPoint();
     pt.x = e.clientX;
     pt.y = e.clientY;
     const svgCoords = pt.matrixTransform(svgRef.current.getScreenCTM()!.inverse());
-  
     // 3) Find nearest data point
     const mouseX = svgCoords.x;
     let nearest = data[0];
@@ -209,7 +205,6 @@ export function useChartCanvas({
         minDist = dist;
       }
     }
-  
     // 4) Update hovered point
     setHoveredPoint({
       ...nearest,

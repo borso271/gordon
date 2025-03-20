@@ -51,10 +51,10 @@ border: 1px solid var(--card-border);
 
   
   .subheading {
-    color: var(--Black-400, #757575);
+    color: var(--black-400, #757575);
 
     /* Text XS/Regular */
-    font-family: Inter;
+
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -83,9 +83,9 @@ border: 1px solid var(--card-border);
   
   /* Ensures label column is fixed width */
   .label {
-color: var(--Black-50, #F8F8F8);
+color: var(--black-50, #F8F8F8);
 /* Text S/Medium */
-font-family: Inter;
+
 font-size: 14px;
 font-style: normal;
 font-weight: 500;
@@ -95,11 +95,11 @@ min-width: 75px;
   
   /* Ensures percentage value column is fixed width */
   .percentage {
-    color: var(--Black-50, #F8F8F8);
+    color: var(--black-50, #F8F8F8);
     text-align: right;
     
     /* Text S/Medium */
-    font-family: Inter;
+ 
     font-size: 14px;
     font-style: normal;
     font-weight: 500;

@@ -38,7 +38,7 @@
     color: var(--black-50, #F8F8F8);
 
     /* Text S/Regular */
-    font-family: Inter;
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -74,8 +74,6 @@
 
     color: var(--black-50, #F8F8F8);
 
-/* Text S/Regular */
-font-family: Inter;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
@@ -93,8 +91,6 @@ line-height: 140%; /* 19.6px */
 
     color: var(--black-50, #F8F8F8);
 
-/* Text S/Regular */
-font-family: Inter;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

@@ -94,7 +94,7 @@ border: 1px solid var(--card-border);
     color: #E1E1E1;
 
 /* Text S/Medium */
-font-family: Inter;
+
 font-size: 14px;
 font-style: normal;
 font-weight: 500;
@@ -104,7 +104,7 @@ line-height: 140%; /* 19.6px */
   .score {
     padding: 0px 4px;
     /* Text XS/Medium */
-    font-family: Inter;
+
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -121,7 +121,7 @@ line-height: 140%; /* 19.6px */
 text-align: center;
 
 /* Text XS/Regular */
-font-family: Inter;
+
 font-size: 12px;
 font-style: normal;
 font-weight: 400;

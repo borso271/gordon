@@ -8,10 +8,10 @@
 
 .button {
 border:none;
- color: var(--Black-50, #F8F8F8);
+ color: var(--black-50, #F8F8F8);
 text-align: center;
 /* Text XS/Medium */
-font-family: Inter;
+
 font-size: 12px;
 font-style: normal;
 font-weight: 500;

@@ -85,9 +85,8 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
         // This ensures the browser doesn't treat drags as scroll/zoom
         // (especially for mobile). You may want to fine-tune or remove
         // if you still want to allow e.g. page scrolling with a drag.
-       // style={{ touchAction: "none" }}
+       style={{ touchAction: "none" }}
        
-
       >
         <g>
           <defs>

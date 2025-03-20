@@ -16,7 +16,7 @@ import { useStreamHandlers } from "../../app/hooks/useStreamHandlers";
 import DropdownButton from "../Buttons/DropdownButton";
 import useSmoothScrollToBottom from "../../app/hooks/useSmoothScrollToBottom";
 import { useHandleSubmit } from "../../app/hooks/useHandleSubmit";
-
+import { useMobileSlideshowNavigation } from "../../app/hooks/useMobileSlideShowNavigation";
 
 import { functionCallHandler } from "../../app/utils/functionCallHandler";
 
@@ -47,9 +47,7 @@ export default function BotChat() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const {
     handleWheel,
-    handleTouchStart,
-    handleTouchMove,
-    handleTouchEnd,
+   
     responseRef,
     direction,
     isAtBottom,
@@ -61,6 +59,18 @@ export default function BotChat() {
     conversationPairs.length
   );
 
+
+  const {
+   handleTouchStart,
+   handleTouchEnd,
+   handleTouchMove
+  }
+ = useMobileSlideshowNavigation(
+  currentIndex,
+  setCurrentIndex,
+  conversationPairs.length
+
+ )
   console.log("IS AT BOTTOM IS: ", isAtBottom)
 
    const {handleSubmit, attachHandlers} = useHandleSubmit();

@@ -7,7 +7,7 @@ import getSymbolSnapshot from "../../services/get_components_data/get_symbol_sna
 import fetch_symbol_info from "../../utils/fetch_symbol_info.js";
 import formatTimestamp from "../../components/DataDriven/SymbolChart/utils/format_timestsamp.jsx";
 import isMarketOpenNow from "../../utils/is_market_open_now.js";
-import returnPriceLegendSegments from "../../components/DataDriven/SymbolChart/components/utils/compute_price_legend/return_price_legend_metadata.ts";
+import returnPriceLegendSegments from "../../components/DataDriven/SymbolChart/components/utils/compute_price_legend/return_price_legend_metadata";
 import { assign_list_XYCoordinatesIndexSimple } from "../../components/DataDriven/SymbolChart/components/utils/compute_x_y/compute_xy_index.js";
 import computeLastPrices from "../../components/DataDriven/SymbolChart/compute_last_prices.js";
 import computeHistoricalPercentage from "../../components/DataDriven/SymbolChart/compute_historical_percentage.js";

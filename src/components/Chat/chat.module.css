@@ -150,12 +150,16 @@
   height: 131px;
 }
 
+.chatSpacer {
+
+  height:131px;
+}
 
 
 /* 🔥 Gradient Overlay for Fading Effect */
 .conversationPair::after {
   content: "";
-  position: absolute;
+  position: fixed;
   bottom: 130px;
   left: 0;
   width: 100%;
@@ -175,7 +179,7 @@ background: linear-gradient(
 @media (max-width: 480px) {
 
 
-.chatInput {
+.chatInput, .chatSpacer {
  
   height: 101px;
 }

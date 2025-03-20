@@ -120,8 +120,8 @@ export default function BotChat() {
       ref={containerRef}
     >
       {/* Show scrollDown button conditionally */}
-      {(currentIndex < conversationPairs.length - 1 ||
-        (currentIndex === conversationPairs.length - 1 && isAwayFromBottom)) && (
+      { (currentIndex < conversationPairs.length - 1 ||
+        (isAwayFromBottom)) && (
         <div className={styles.scrollDownButton}>
 
 <DropdownButton
@@ -149,6 +149,7 @@ export default function BotChat() {
         )}
       </div>
 
+<div className={styles.chatSpacer}></div>
       <div className={styles.chatInput}>
       <ChatInput
        isFirstPrompt={false}
@@ -156,8 +157,6 @@ export default function BotChat() {
         setUserInput={setUserInput}
         inputDisabled={inputDisabled}
         handleSubmit={handleSubmit}
-       
-
       />
       </div>
     </div>

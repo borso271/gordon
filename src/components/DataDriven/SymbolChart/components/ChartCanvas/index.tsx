@@ -3,9 +3,8 @@
 
 // import React from "react";
 // import styles from "./ChartCanvas.module.css";
-
 import React from "react";
-import styles from "./ChartCanvas.module.css"; // Adjust path
+import styles from "./ChartCanvas.module.css";
 import { useChartCanvas } from "../../../../../app/hooks/useChartCanvas";
 import ChartTooltip from "../ChartTooltip";
 
@@ -30,7 +29,6 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
   marketOpen = true,
   curvy = true,
 }) => {
-  // ✅ Call the custom hook
   const {
     svgRef,
     containerRef,
@@ -40,8 +38,8 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
     areaPath,
     lastX,
     lastY,
-    handleMouseMove,
-    handleMouseLeave,
+    handlePointerMove,  // renamed from handleMouseMove
+    handlePointerLeave, // renamed from handleMouseLeave
     lineColor,
     stopColor1,
     stopColor2,
@@ -60,7 +58,7 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
     curvy,
   });
 
-  // Original fallback if < 2 points
+  // If the data has fewer than 2 points, just return the empty chart.
   if (data.length < 2) {
     return (
       <div className={styles.chartWrapper} ref={containerRef}>
@@ -81,8 +79,13 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
         className={styles.canvas}
         width="100%"
         height="100%"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+        // Important: unify mouse and touch using pointer events
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        // This ensures the browser doesn't treat drags as scroll/zoom
+        // (especially for mobile). You may want to fine-tune or remove
+        // if you still want to allow e.g. page scrolling with a drag.
+        style={{ touchAction: "none" }}
       >
         <g>
           <defs>
@@ -129,8 +132,9 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
                 stroke={lineColor}
                 strokeWidth={strokeWidth}
                 strokeDasharray={dashArray}
+                // Keep pointerEvents off so the line itself doesn't block pointer
+                pointerEvents="none"
               />
-
               <circle
                 cx={hoveredPoint.x}
                 cy={hoveredPoint.y}
@@ -138,6 +142,7 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
                 fill="#0F0F0F"
                 stroke={lineColor}
                 strokeWidth={circleStrokeWidth}
+                pointerEvents="none"
               />
             </>
           )}
@@ -157,6 +162,161 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
 };
 
 export default ChartCanvas;
+
+
+// import React from "react";
+// import styles from "./ChartCanvas.module.css"; // Adjust path
+// import { useChartCanvas } from "../../../../../app/hooks/useChartCanvas";
+// import ChartTooltip from "../ChartTooltip";
+
+// interface ChartCanvasProps {
+//   data?: any[];
+//   minPrice: number;
+//   isPositiveChange: boolean;
+//   width?: number;
+//   height?: number;
+//   area?: boolean;
+//   marketOpen?: boolean;
+//   curvy?: boolean;
+// }
+
+// const ChartCanvas: React.FC<ChartCanvasProps> = ({
+//   data = [],
+//   minPrice,
+//   isPositiveChange,
+//   width = 500,
+//   height = 300,
+//   area = true,
+//   marketOpen = true,
+//   curvy = true,
+// }) => {
+//   // ✅ Call the custom hook
+//   const {
+//     svgRef,
+//     containerRef,
+//     hoveredPoint,
+//     hoverPos,
+//     linePath,
+//     areaPath,
+//     lastX,
+//     lastY,
+//     handleMouseMove,
+//     handleMouseLeave,
+//     lineColor,
+//     stopColor1,
+//     stopColor2,
+//     strokeWidth,
+//     dashArray,
+//     circleRadius,
+//     circleStrokeWidth,
+//   } = useChartCanvas({
+//     data,
+//     minPrice,
+//     isPositiveChange,
+//     width,
+//     height,
+//     area,
+//     marketOpen,
+//     curvy,
+//   });
+
+//   // Original fallback if < 2 points
+//   if (data.length < 2) {
+//     return (
+//       <div className={styles.chartWrapper} ref={containerRef}>
+//         <svg
+//           ref={svgRef}
+//           className={styles.canvas}
+//           width={width}
+//           height={height}
+//         />
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className={styles.chartWrapper} ref={containerRef}>
+//       <svg
+//         ref={svgRef}
+//         className={styles.canvas}
+//         width="100%"
+//         height="100%"
+//         onMouseMove={handleMouseMove}
+//         onMouseLeave={handleMouseLeave}
+//       >
+//         <g>
+//           <defs>
+//             <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
+//               <stop offset="0%" stopColor={stopColor1} stopOpacity="0.4" />
+//               <stop offset="100%" stopColor={stopColor2} stopOpacity="0" />
+//             </linearGradient>
+//           </defs>
+
+//           {/* Line path */}
+//           <path
+//             d={linePath}
+//             fill="none"
+//             stroke={lineColor}
+//             strokeWidth={2}
+//             vectorEffect="non-scaling-stroke"
+//           />
+
+//           {/* Area fill */}
+//           {area && <path d={areaPath} fill="url(#lineGradient)" stroke="none" />}
+
+//           {/* Pulsing circle if marketOpen */}
+//           {marketOpen && (
+//             <circle
+//               cx={lastX}
+//               cy={lastY}
+//               r={8}
+//               className={styles.pulsatingCircle}
+//               fill={lineColor}
+//             />
+//           )}
+
+//           {/* Static circle at last data point */}
+//           <circle cx={lastX} cy={lastY} r={3} fill={lineColor} />
+
+//           {/* Hover crosshair & circle */}
+//           {hoveredPoint && (
+//             <>
+//               <line
+//                 x1={hoveredPoint.x}
+//                 x2={hoveredPoint.x}
+//                 y1={hoveredPoint.y}
+//                 y2={2000}
+//                 stroke={lineColor}
+//                 strokeWidth={strokeWidth}
+//                 strokeDasharray={dashArray}
+//               />
+
+//               <circle
+//                 cx={hoveredPoint.x}
+//                 cy={hoveredPoint.y}
+//                 r={circleRadius}
+//                 fill="#0F0F0F"
+//                 stroke={lineColor}
+//                 strokeWidth={circleStrokeWidth}
+//               />
+//             </>
+//           )}
+//         </g>
+//       </svg>
+
+//       {/* Tooltip */}
+//       {hoveredPoint && (
+//         <ChartTooltip
+//           hoveredPoint={hoveredPoint}
+//           mousePos={hoverPos}
+//           containerRef={containerRef}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ChartCanvas;
 
 
 

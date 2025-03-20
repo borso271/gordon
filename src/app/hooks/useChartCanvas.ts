@@ -47,27 +47,23 @@ export function useChartCanvas({
   const sortedData = data;
 
 
-  const findNearestPoint = (x: number, y: number) => {
-    if (!data.length) return null;
-  
-    let nearestPoint = null;
-    let minDistance = Infinity;
-  
-    data.forEach((point) => {
-      const distance = Math.abs(point.x - x); // Find nearest X coordinate
-  
-      if (distance < minDistance) {
-        minDistance = distance;
-        nearestPoint = {
-          ...point,
-          x: point.x,
-          y: point.y, // Keep Y from dataset (or interpolate if needed)
-        };
-      }
-    });
-  
-    return nearestPoint;
-  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
   // 2) Generate line path
@@ -182,6 +178,56 @@ export function useChartCanvas({
     setHoveredPoint(null);
   };
 
+
+
+
+
+
+
+  const handlePointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
+
+    console.log("handle pointer move detected")
+    if (!svgRef.current || !containerRef.current) return;
+  
+    console.log("this logs too")
+    // 1) pointer position relative to container
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const offsetX = e.clientX - containerRect.left;
+    const offsetY = e.clientY - containerRect.top;
+    setHoverPos({ x: offsetX, y: offsetY });
+  
+    // 2) Convert to SVG coordinate system
+    const pt = svgRef.current.createSVGPoint();
+    pt.x = e.clientX;
+    pt.y = e.clientY;
+    const svgCoords = pt.matrixTransform(svgRef.current.getScreenCTM()!.inverse());
+  
+    // 3) Find nearest data point
+    const mouseX = svgCoords.x;
+    let nearest = data[0];
+    let minDist = Math.abs(nearest.x - mouseX);
+    for (let i = 1; i < data.length; i++) {
+      const dist = Math.abs(data[i].x - mouseX);
+      if (dist < minDist) {
+        nearest = data[i];
+        minDist = dist;
+      }
+    }
+  
+    // 4) Update hovered point
+    setHoveredPoint({
+      ...nearest,
+      x: nearest.x,
+      y: nearest.y,
+    });
+  };
+  
+  const handlePointerLeave = () => {
+    setHoveredPoint(null);
+  };
+
+  
+
   // 7) Colors & styles
   const lineColor = isPositiveChange ? "#1AED87" : "#ED441A";
   const stopColor1 = isPositiveChange
@@ -206,9 +252,10 @@ export function useChartCanvas({
     areaPath,
     lastX,
     lastY,
-    findNearestPoint,
     handleMouseMove,
     handleMouseLeave,
+    handlePointerMove,
+    handlePointerLeave,
     lineColor,
     stopColor1,
     stopColor2,

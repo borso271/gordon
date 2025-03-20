@@ -46,6 +46,30 @@ export function useChartCanvas({
   // (Original code: "const sortedData = data;")
   const sortedData = data;
 
+
+  const findNearestPoint = (x: number, y: number) => {
+    if (!data.length) return null;
+  
+    let nearestPoint = null;
+    let minDistance = Infinity;
+  
+    data.forEach((point) => {
+      const distance = Math.abs(point.x - x); // Find nearest X coordinate
+  
+      if (distance < minDistance) {
+        minDistance = distance;
+        nearestPoint = {
+          ...point,
+          x: point.x,
+          y: point.y, // Keep Y from dataset (or interpolate if needed)
+        };
+      }
+    });
+  
+    return nearestPoint;
+  };
+
+  
   // 2) Generate line path
   const generateLinePath = (sortedData: any[], curvy: boolean) => {
     if (!sortedData.length) return "";
@@ -182,6 +206,7 @@ export function useChartCanvas({
     areaPath,
     lastX,
     lastY,
+    findNearestPoint,
     handleMouseMove,
     handleMouseLeave,
     lineColor,

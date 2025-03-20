@@ -148,6 +148,7 @@
   max-width:796px;
   z-index: 10;
   height: 131px;
+  overscroll-behavior: auto;
 }
 
 .chatSpacer {

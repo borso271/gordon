@@ -111,13 +111,13 @@ line-height: 140%; /* 19.6px */
     line-height: 140%; /* 16.8px */
     border-radius: 4px;
     background: var(--Spring-Green-900, #0D5A37);
-        color: var(--Black-50, #F8F8F8);
+        color: var(--black-50, #F8F8F8);
         text-align: center;
   }
   
 
   .scoreLabel {
-    color: var(--Black-300, #929292);
+    color: var(--black-300, #929292);
 text-align: center;
 
 /* Text XS/Regular */

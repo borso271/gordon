@@ -10,6 +10,7 @@ import Link from "next/link";
 import i18n from "../../../i18n";
 import MobileNavigation from "../../MobileNavigation";
 
+
 const Navbar = () => {
   const router = useRouter();
   const isHome = router.pathname === "/";
@@ -20,7 +21,13 @@ const Navbar = () => {
   const defaultIndex = currentLang === "ar" ? 1 : 0;
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex); // Stores selected item
   
-  const { conversationPairs} = useConversation();
+  const { conversationPairs, currentIndex} = useConversation();
+
+
+  // Reset `openDropdown` when the route changes
+  useEffect(() => {
+    setOpenDropdown(null);
+  }, [currentIndex]); // Runs every time the URL changes
 
 
   // Toggle dropdowns, ensuring only one is open at a time

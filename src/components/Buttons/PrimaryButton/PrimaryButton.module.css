@@ -87,7 +87,7 @@ flex-shrink: 0;
     }
 
     .text {
-        color: var(--Black-950, #020202);
+        color: var(--black-950, #020202);
 text-align: center;
 
 /* Text XS/Medium */

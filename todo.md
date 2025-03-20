@@ -29,6 +29,14 @@
 
 
 
+try removing:  -webkit-line-clamp
+
+
+
+// scroll down not working...
+// close navigation menu when go to new page...
+// reput icons and try fixing more css for problems...
+
 
 MOBILE:
 input should always be visible,

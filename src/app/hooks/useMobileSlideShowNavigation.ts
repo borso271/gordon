@@ -40,30 +40,68 @@ export function useMobileSlideshowNavigation(
     touchMoveY.current = e.touches[0].clientY;
   };
 
+
+
+
   const handleTouchEnd = () => {
     if (!touchStartY.current || !touchMoveY.current) return;
-
+  
     const deltaY = touchMoveY.current - touchStartY.current;
     const isSwipingUp = deltaY < -SWIPE_THRESHOLD;
     const isSwipingDown = deltaY > SWIPE_THRESHOLD;
-
+  
     if (isSwiping.current) return;
-
-    if (isSwipingUp && isAtBottom) {
+  
+    const el = responseRef.current;
+    if (!el) return;
+  
+    const isAtTop = el.scrollTop <= 1;
+    const isFullyScrolledDown = el.scrollHeight - el.scrollTop <= el.clientHeight + 1;
+  
+    if (isSwipingUp && isFullyScrolledDown) {
       isSwiping.current = true;
       goNextPair();
-    } else if (isSwipingDown) {
+    } else if (isSwipingDown && isAtTop) {
       isSwiping.current = true;
       goPrevPair();
     }
-
+  
     setTimeout(() => {
       isSwiping.current = false;
     }, 500);
-
+  
     touchStartY.current = null;
     touchMoveY.current = null;
   };
+  
+//   const handleTouchEnd = () => {
+//     if (!touchStartY.current || !touchMoveY.current) return;
+
+//     const deltaY = touchMoveY.current - touchStartY.current;
+//     const isSwipingUp = deltaY < -SWIPE_THRESHOLD;
+//     const isSwipingDown = deltaY > SWIPE_THRESHOLD;
+
+//     if (isSwiping.current) return;
+
+//     if (isSwipingUp && isAtBottom) {
+//       isSwiping.current = true;
+//       goNextPair();
+//     } else if (isSwipingDown) {
+//       isSwiping.current = true;
+//       goPrevPair();
+//     }
+
+//     setTimeout(() => {
+//       isSwiping.current = false;
+//     }, 500);
+
+//     touchStartY.current = null;
+//     touchMoveY.current = null;
+//   };
+
+
+
+
 
   useEffect(() => {
     const el = responseRef.current;

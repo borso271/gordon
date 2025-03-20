@@ -52,13 +52,18 @@ line-height: 140%; /* 19.6px */
   line-height: 1.4;
   color: #d1d1d1;
   overflow: hidden;
+
+  text-overflow: ellipsis;
+
+/* 
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Limit to 3 lines */
-  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;  */
+   -webkit-box-orient: vertical;
 }
 
 .analysisSummary.expanded {
-  -webkit-line-clamp: unset;
+  font-size: 14px;
+  /* -webkit-line-clamp: unset; */
 }
 
 /* List Styling - First 3 paragraphs visible by default */
@@ -87,7 +92,7 @@ line-height: 140%; /* 19.6px */
 
 /* Read More / Read Less Button */
 .readMore {
-  color: var(--Lime-400, #B1F625);
+  color: var(--lime-400, #B1F625);
 font-family: var(--font-family-inter);
 font-size: 14px;
 font-style: normal;

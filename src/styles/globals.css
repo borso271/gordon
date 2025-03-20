@@ -135,9 +135,10 @@ html, body {
   padding: 0;
   display: flex;
   flex-direction: column;
- /* overscroll-behavior: contain;  */
- overflow: auto;
- -webkit-overflow-scrolling: touch; /* Ensures smooth scrolling on mobile */
+  overscroll-behavior: contain;  
+ /* overflow: auto;
+ -webkit-overflow-scrolling: touch; */
+
 }
 
 /* Make body a flex container */

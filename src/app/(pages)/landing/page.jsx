@@ -8,15 +8,16 @@ import { useHandleSubmit } from '../../hooks/useHandleSubmit';
 import {useThread} from '../../hooks/useThread';
 const TestChatPage = () => {
 
-   const {setAreNavigationItemsVisible, inputDisabled, userInput, setUserInput, setThreadId, resetConversationState} = useConversation();
+   const {setAreNavigationItemsVisible, inputDisabled, setInputDisabled,userInput, setUserInput, setThreadId, resetConversationState} = useConversation();
    
-
+   
    const {handleSubmit} = useHandleSubmit();
 
   // ✅ Reset threadId only on mount
   useEffect(() => {
 
    resetConversationState();
+   setInputDisabled(false);
     setThreadId(""); // ✅ Runs only once on mount
   }, []);
    const { threadId } = useThread();

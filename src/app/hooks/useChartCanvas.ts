@@ -180,10 +180,6 @@ export function useChartCanvas({
 
 
 
-
-
-
-
   const handlePointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
 
     console.log("handle pointer move detected")

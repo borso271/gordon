@@ -3,7 +3,7 @@
 .tooltip {
     font-family: var(--font-family-inter);
     position: absolute;
-    pointer-events: none;
+    /* pointer-events: none; */
     display: inline-flex;
 padding: 8px 16px;
 flex-direction: column;

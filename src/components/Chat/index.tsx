@@ -47,6 +47,9 @@ export default function BotChat() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const {
     handleWheel,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
     responseRef,
     direction,
     isAtBottom,
@@ -117,6 +120,9 @@ export default function BotChat() {
     <div
       className={styles.slideContainer}
       onWheel={handleWheel}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       ref={containerRef}
     >
       {/* Show scrollDown button conditionally */}

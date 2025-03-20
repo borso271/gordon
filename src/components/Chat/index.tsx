@@ -59,16 +59,16 @@ export default function BotChat() {
   );
 
 
-//   const {
-//    handleTouchStart,
-//    handleTouchEnd,
-//    handleTouchMove
-//   }
-//  = useMobileSlideshowNavigation(
-//   currentIndex,
-//   setCurrentIndex,
-//   conversationPairs.length
-//  )
+  const {
+   handleTouchStart,
+   handleTouchEnd,
+   handleTouchMove
+  }
+ = useMobileSlideshowNavigation(
+  currentIndex,
+  setCurrentIndex,
+  conversationPairs.length
+ )
 
   console.log("IS AT BOTTOM IS: ", isAtBottom)
 
@@ -129,9 +129,9 @@ export default function BotChat() {
     <div
       className={styles.slideContainer}
       onWheel={handleWheel}
-      // onTouchStart={handleTouchStart}
-      // onTouchMove={handleTouchMove}
-      // onTouchEnd={handleTouchEnd}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       ref={containerRef}
     >
       {/* Show scrollDown button conditionally */}

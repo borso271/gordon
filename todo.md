@@ -30,6 +30,11 @@
 
 
 
+MOBILE:
+input should always be visible,
+scroll again not working.
+
+
 
 Today:
 

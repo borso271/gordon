@@ -135,9 +135,9 @@ html, body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  /* overscroll-behavior: contain;   */
-  overflow: auto;
- -webkit-overflow-scrolling: touch;
+   overscroll-behavior: contain;   
+  /* overflow: auto;
+ -webkit-overflow-scrolling: touch; */
 
 }
 

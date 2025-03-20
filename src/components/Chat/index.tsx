@@ -67,10 +67,9 @@ export default function BotChat() {
  = useMobileSlideshowNavigation(
   currentIndex,
   setCurrentIndex,
-  conversationPairs.length
+  conversationPairs.length,
+  responseRef
  )
-
-  console.log("IS AT BOTTOM IS: ", isAtBottom)
 
    const {handleSubmit, attachHandlers} = useHandleSubmit();
 

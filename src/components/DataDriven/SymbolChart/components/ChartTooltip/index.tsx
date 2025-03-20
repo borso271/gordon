@@ -1,8 +1,7 @@
-"use client"
-import React, {useState, useEffect} from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import styles from "./ChartTooltip.module.css";
 import { useScreenSize } from "../../../../../app/context/screenSizeContext";
-
 
 type ChartTooltipProps = {
   hoveredPoint: { price: number; time: number; x: number; y: number } | null;
@@ -12,38 +11,38 @@ type ChartTooltipProps = {
 
 const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProps) => {
   const { isMobile } = useScreenSize();
-  if (!hoveredPoint || !containerRef.current) return null;
 
-  // 1) Track whether user is dragging
+  // ✅ Move early return below hooks to avoid conditional hook calls
   const [isDragging, setIsDragging] = useState(false);
-  // 2) Store the drag offsets to correctly position the tooltip under the mouse
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  // 3) Store the final position of the tooltip when dragging
   const [dragPosition, setDragPosition] = useState<{ left: number; top: number } | null>(null);
 
-  // Determine the "auto" (non-dragged) position as before
+  // ✅ Ensure containerRef.current is checked properly
+  const getContainerBounds = () => {
+    return containerRef.current?.getBoundingClientRect() || { width: 0, height: 0 };
+  };
+
   const tooltipSize = {
     width: isMobile ? 125 : 150,
     height: isMobile ? 56 : 60,
   };
 
-  const rect = containerRef.current.getBoundingClientRect();
-  let autoLeft = mousePos.x + 10;
-  let autoTop = mousePos.y + 10;
+  // Compute auto-position inside a function
+  const computeAutoPosition = () => {
+    const rect = getContainerBounds();
+    let autoLeft = mousePos.x + 10;
+    let autoTop = mousePos.y + 10;
 
-  // Clamp to container
-  if (autoLeft + tooltipSize.width > rect.width) {
-    autoLeft = rect.width - tooltipSize.width;
-  }
-  if (autoTop + tooltipSize.height > rect.height) {
-    autoTop = rect.height - tooltipSize.height;
-  }
-  autoLeft = Math.max(0, autoLeft);
-  autoTop = Math.max(0, autoTop);
+    // ✅ Clamp inside container
+    autoLeft = Math.min(rect.width - tooltipSize.width, Math.max(0, autoLeft));
+    autoTop = Math.min(rect.height - tooltipSize.height, Math.max(0, autoTop));
 
-  // Decide which position to use:
-  // If dragging, use the dragPosition
-  // Otherwise, use the auto-position
+    return { left: autoLeft, top: autoTop };
+  };
+
+  const { left: autoLeft, top: autoTop } = computeAutoPosition();
+
+  // ✅ Use either dragged position or auto position
   const finalLeft = dragPosition ? dragPosition.left : autoLeft;
   const finalTop = dragPosition ? dragPosition.top : autoTop;
 
@@ -54,35 +53,23 @@ const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProp
     e.stopPropagation();
     e.preventDefault();
     setIsDragging(true);
-    // Calculate the offset between the mouse and the tooltip’s top-left
-    const offsetX = e.clientX - finalLeft;
-    const offsetY = e.clientY - finalTop;
-    setDragOffset({ x: offsetX, y: offsetY });
-  };
-
-  const handleMouseUp = (e: MouseEvent) => {
-    e.stopPropagation();
-    setIsDragging(false);
+    setDragOffset({ x: e.clientX - finalLeft, y: e.clientY - finalTop });
   };
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging) return;
     e.stopPropagation();
 
-    // The new position is the mouse position minus the original offset
-    const newLeft = e.clientX - dragOffset.x;
-    const newTop = e.clientY - dragOffset.y;
+    const rect = getContainerBounds();
+    const newLeft = Math.max(0, Math.min(e.clientX - dragOffset.x, rect.width - tooltipSize.width));
+    const newTop = Math.max(0, Math.min(e.clientY - dragOffset.y, rect.height - tooltipSize.height));
 
-    // Clamp inside container
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (rect) {
-      const clampedLeft = Math.max(0, Math.min(newLeft, rect.width - tooltipSize.width));
-      const clampedTop = Math.max(0, Math.min(newTop, rect.height - tooltipSize.height));
-      setDragPosition({ left: clampedLeft, top: clampedTop });
-    }
+    setDragPosition({ left: newLeft, top: newTop });
   };
 
-  // Add global mouse listeners so user can drag beyond tooltip boundaries
+  const handleMouseUp = () => setIsDragging(false);
+
+  // ✅ UseEffect runs only when isDragging changes
   useEffect(() => {
     if (isDragging) {
       window.addEventListener("mousemove", handleMouseMove);
@@ -97,9 +84,9 @@ const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProp
     };
   }, [isDragging, dragOffset]);
 
-  // --------------------------
-  //   Render the Tooltip
-  // --------------------------
+  // ✅ Move early return after all hooks to avoid conditional hook calls
+  if (!hoveredPoint) return null;
+
   const formattedTime = new Date(hoveredPoint.time).toLocaleString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
@@ -116,9 +103,9 @@ const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProp
         position: "absolute",
         left: finalLeft,
         top: finalTop,
-        cursor: isDragging ? "grabbing" : "grab", // Visual feedback
+        cursor: isDragging ? "grabbing" : "grab",
       }}
-      onMouseDown={handleMouseDown} // Start drag
+      onMouseDown={handleMouseDown}
     >
       <div className={styles.price}>${hoveredPoint.price.toFixed(2)}</div>
       <div className={styles.date}>{formattedTime}</div>

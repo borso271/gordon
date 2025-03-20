@@ -55,15 +55,14 @@ line-height: 140%; /* 19.6px */
 
   text-overflow: ellipsis;
 
-/* 
   display: -webkit-box;
-  -webkit-line-clamp: 3;  */
+  -webkit-line-clamp: 3; 
    -webkit-box-orient: vertical;
 }
 
 .analysisSummary.expanded {
   font-size: 14px;
-  /* -webkit-line-clamp: unset; */
+  -webkit-line-clamp: unset;
 }
 
 /* List Styling - First 3 paragraphs visible by default */

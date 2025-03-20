@@ -48,8 +48,6 @@
   --spring-green-800: rgba(14, 109, 64, 1);
   --spring-green-900: rgba(13, 90, 55, 1);
   --spring-green-950: rgba(0, 26, 14, 1);
-
-
   
   --additional-white-8: rgba(255, 255, 255, 0.08); 
   --additional-white-3: rgba(255, 255, 255, 0.03);
@@ -136,9 +134,7 @@ html, body {
   display: flex;
   flex-direction: column;
    overscroll-behavior: contain;   
-  /* overflow: auto;
- -webkit-overflow-scrolling: touch; */
-
+   font-weight: normal;
 }
 
 /* Make body a flex container */
@@ -192,9 +188,7 @@ body {
 
 ul {
   display: inline-block; /* Avoids extra space */
-
 }
-
 
 a {
   color: inherit;
@@ -243,14 +237,11 @@ html[dir="rtl"] .toBeSwitched {
 
 
 ol {
-  
     gap: 16px;
 }
 
 ul {
-
       gap: 16px;
-
 }
 
 }
@@ -277,13 +268,11 @@ ul {
 li {
   display:block;
   position: relative;
-
   padding-left:20px;
 } 
 
 
 li::before {
-
   content: "•";
     left: 0;
     font-size: 1.2em;

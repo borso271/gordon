@@ -6,7 +6,7 @@ import mergeIntradayData from "../../components/DataDriven/SymbolChart/utils/mer
 import getSymbolSnapshot from "../../services/get_components_data/get_symbol_snapshot.js";
 import fetch_symbol_info from "../../utils/fetch_symbol_info.js";
 import formatTimestamp from "../../components/DataDriven/SymbolChart/utils/format_timestsamp.jsx";
-import isMarketOpenNow from "../../utils/is_market_open_now.js";
+import isMarketOpenNow from "../../utils/is_market_open_now";
 import returnPriceLegendSegments from "../../components/DataDriven/SymbolChart/components/utils/compute_price_legend/return_price_legend_metadata";
 import { assign_list_XYCoordinatesIndexSimple } from "../../components/DataDriven/SymbolChart/components/utils/compute_x_y/compute_xy_index.js";
 import computeLastPrices from "../../components/DataDriven/SymbolChart/compute_last_prices.js";
@@ -73,14 +73,17 @@ export function useSymbolChart(symbol: string) {
 
   // 3) Market open logic
   const [isMarketOpen, setMarketOpen] = useState(false);
+  
   const checkMarketStatus = async () => {
     try {
-      const marketOpen = await isMarketOpenNow(asset_type, exchange_mic);
-      setMarketOpen(marketOpen);
+      const marketOpen: boolean = await isMarketOpenNow(asset_type, exchange_mic); // ✅ Ensure it's a boolean
+      setMarketOpen(marketOpen); 
     } catch (error) {
       console.error("Error checking market status:", error);
     }
   };
+
+  
   useEffect(() => {
     if (!asset_type || !exchange_mic) return;
     // Check once
@@ -146,7 +149,7 @@ export function useSymbolChart(symbol: string) {
     : snapShot.last_close || 0;
   const lastUpdatedTimestamp = mostRecentPeriodData?.length
     ? mostRecentPeriodData[mostRecentPeriodData.length - 1].time
-    : snapShot.last_close_unix || 0;
+    : snapShot.last_close || 0;
 
   const lastUpdated = formatTimestamp(lastUpdatedTimestamp);
 

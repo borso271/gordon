@@ -1,5 +1,5 @@
 import supabase_client from "../../lib/supabaseClient.js";
-import isMarketOpenNow from "../../utils/is_market_open_now.js";
+
 
 async function fetchIntradayData(symbol, symbol_id, isMarketOpen) {
   try {

@@ -51,7 +51,7 @@ const SymbolChart = ({ symbol }: { symbol: string }) => {
             latestPrice={currentPrice}
             lastClose={snapShot.last_close}
             currency={snapShot.currency}
-            lastUpdated={lastUpdated}
+          
           />
           <div className={styles.topRight}>
             <h4 className={styles.lastUpdated}>As of {lastUpdated}</h4>
@@ -59,7 +59,7 @@ const SymbolChart = ({ symbol }: { symbol: string }) => {
           </div>
         </div>
 
-        <PrimaryDivider className={styles.divider} />
+        <PrimaryDivider />
 
         <div className={styles.chartMain}>
           <div className={styles.chartOverview}>
@@ -79,15 +79,18 @@ const SymbolChart = ({ symbol }: { symbol: string }) => {
               yoffset={0}
             />
 
+
+  
             <div ref={chartRef} className={styles.chartWrapper}>
               <ChartCanvas
                 data={finalPeriodData}
-                selectedPeriod={selectedPeriod}
-                minTime={periodData.length ? periodData[0].time : 0}
-                maxTime={periodData.length ? periodData[periodData.length - 1].time : 10}
+
                 minPrice={adjustedLow}
-                maxPrice={adjustedHigh}
+
                 isPositiveChange={isPositiveChange}
+               
+               
+               
               />
             </div>
           </div>

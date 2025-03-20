@@ -278,20 +278,20 @@ ul {
 
 
 li {
-  display:flex;
+  display:block;
   position: relative;
-  list-style-type: disc; 
 
-  /* padding-left: 28px;  */
+  padding-left:20px;
 } 
 
 
-/* Faked bullet as a pseudo-element */
 li::before {
-  content: "•"; /* or "◦", "▪", "➔", etc. */
-  margin-right: 8px; /* space between bullet and text */
-  font-size: 1.2em;  /* bullet size */
-  line-height: 1;
+
+  content: "•";
+    left: 0;
+    font-size: 1.2em;
+    line-height: 1;
+    position: absolute;
 }
 /* 
 li::before {

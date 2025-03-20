@@ -3,6 +3,7 @@ import styles from "./SymbolIcon.module.css";
 
 const SymbolIcon = ({ asset_type, ticker_symbol, size = 40 }) => {
   // Add "_c_" prefix for crypto assets
+
   const formattedSymbol = asset_type === "crypto" ? `_c_${ticker_symbol.toUpperCase()}` : ticker_symbol.toUpperCase();
   
   return (

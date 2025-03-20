@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Icon from "../../../../Icons/Icon/index.tsx";
 import styles from "./ChartSnapshot.module.css"; // Assuming styles are here
-import SymbolIcon from "../../../../Icons/SymbolIcon";
-
+import SymbolIcon from "../../../../Icons/SymbolIcon/index.jsx";
+import { formatNumberWithCommas } from "../../../../../app/utils/formatNumbersWithCommas.ts";
 const ChartSnapshot = ({ symbol,name, latestPrice, lastClose, currency, asset_type, icon = false }) => {
   // 4 elements
 
@@ -32,6 +32,11 @@ const ChartSnapshot = ({ symbol,name, latestPrice, lastClose, currency, asset_ty
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+ 
+  const snapshotPrice = latestPrice !== null 
+  ? `${currency} ${formatNumberWithCommas(latestPrice)}`
+  : "";
+
 
 
   return (
@@ -39,6 +44,8 @@ const ChartSnapshot = ({ symbol,name, latestPrice, lastClose, currency, asset_ty
       {/* Show logo if enabled */}
       
       <div className={styles.iconWrapper}>
+      {/* const formattedSymbol = asset_type === "crypto" ? `_c_${ticker_symbol.toUpperCase()}` : ticker_symbol.toUpperCase(); */}
+
 <SymbolIcon asset_type={asset_type} ticker_symbol={symbol} size={iconSize}  />
     </div>
 
@@ -53,7 +60,7 @@ const ChartSnapshot = ({ symbol,name, latestPrice, lastClose, currency, asset_ty
       {/* Display Last Live Price or Placeholder */}
       <div className={styles.priceData}>
       <div className={styles.price}>
-        {latestPrice !== null ? `${currency} ${latestPrice.toFixed(2)}` : "Loading..."}
+      {snapshotPrice}
       </div>
 
       {/* Display Percentage Change */}

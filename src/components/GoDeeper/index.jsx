@@ -12,7 +12,7 @@ const GoDeeper = ({ items, onIconClick, newSearch}) => {
     return (
       <div className={styles.container}>
         
-        <SectionHeader icon={"go_deeper_icon"} title={"Go Deeper"} size={16}/>
+        <SectionHeader icon={"go_deeper_icon"} title={"Go Deeper"} size={18}/>
  
   
         <div className={styles.itemsContainer}>

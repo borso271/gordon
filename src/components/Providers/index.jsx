@@ -20,7 +20,7 @@ const Providers = ({ symbol }) => {
   return (
     <div className={styles.container}>
     
-      <SectionHeader icon={"providers_icon"} title={`Where to buy ${symbol} stock`}/>
+      <SectionHeader icon={"providers_icon"} title={`Where to buy ${symbol} stock`} size={24}/>
 
       <div className={styles.cardsContainer}>
         {providers.map((provider) => (

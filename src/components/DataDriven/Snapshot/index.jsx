@@ -6,6 +6,8 @@ import styles from "./Snapshot.module.css";
 import SymbolIcon from "../../Icons/SymbolIcon/index.jsx";
 import fetchLatestPrice from "../../../services/get_components_data/fetch_latest_price.js";
 import SnapshotLoader from "../../Loaders/SnapshotLoader";
+import { formatNumberWithCommas} from "../../../app/utils/formatNumbersWithCommas.ts"
+
 function getTextBeforeHyphen(input) {
   return typeof input === "string" && input.includes("-") 
     ? input.split("-")[0].trim() 
@@ -128,7 +130,7 @@ useEffect(() => {
     </div>
     <div className={styles.priceContainer}>
       <div className={styles.price}>
-        {lastLivePrice !== null ? `$${lastLivePrice.toFixed(2)}` : "-"}
+        {lastLivePrice !== null ? `$${formatNumberWithCommas(lastLivePrice)}` : "-"}
       </div>
       <div className={`${styles.change} ${changeClass}`}>
         {percentageChange !== null ? `${percentageChange >= 0 ? "+" : ""}${percentageChange.toFixed(2)}%` : "—"}

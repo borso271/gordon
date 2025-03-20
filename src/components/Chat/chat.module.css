@@ -63,11 +63,6 @@
   border-radius: 8px;
 }
 
-.userMessage {
-  align-self: flex-end;
-  color: #fff;
-  background-color: #000;
-}
 
 .assistantMessage {
   background-color: #000;
@@ -132,20 +127,18 @@
 }
 
 
-
-
-
-
 .slideContainer {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 80px);
   overflow: hidden;
+  width:100%;
 }
 
 .conversationPair {
   flex: 1; /* Takes up all available space */
   overflow-y: auto; /* Enables scrolling for chat messages */
+  width:100%;
 }
 
 .chatInput {

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useConversation } from "../../../app/context/conversationContext";
+import { useConversation } from "../context/conversationContext";
 
 export function useStreamHandlers() {
   const { updateLastPair, appendAssistantText, setConversationPairs } = useConversation(); // ✅ Use context

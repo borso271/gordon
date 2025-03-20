@@ -6,7 +6,6 @@ import DropdownButton from "../../Buttons/DropdownButton";
 import DropdownMenu from "../../Dropdowns/DropdownMenu"; // Import the dropdown menu component
 import ExpandableDropdown from "../../Dropdowns/ExpandableDropdown"; // Import the dropdown menu component
 import { useConversation } from "../../../app/context/conversationContext";
-
 import Link from "next/link";
 import i18n from "../../../i18n";
 import MobileNavigation from "../../MobileNavigation";

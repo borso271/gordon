@@ -12,6 +12,7 @@
     border-radius: 24px;
     background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
     max-width:80%;
+    margin-top:20px;
 }
 
 .userMessageOuter{
@@ -19,8 +20,6 @@
     justify-content: flex-end; /* ✅ Moves the query box to the right */
     width: 100%; /* ✅ Ensures it takes full container width */
 }
-
-
 
 
 
@@ -52,6 +51,7 @@ font-size: 18px;
 font-style: normal;
 font-weight: 500;
 line-height: 130%; /* 23.4px */
+margin-top:10px;
     }
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 const PercentageBar = ({ percentage }) => {
-  const totalDots = 27;
+  const totalDots = 25;
   const filledDots = Math.round((percentage / 100) * totalDots); // Calculate how many dots should be filled
 
   return (

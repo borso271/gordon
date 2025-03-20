@@ -99,7 +99,7 @@ export default function RelatedSymbols({ symbol_id, handleManualFunctionCall }) 
 
   return (
     <div className={styles.container}>
-      <SectionHeader title={"Related Symbols"} icon={"related_icon"} size={16}/>
+      <SectionHeader title={"Related Symbols"} icon={"related_icon"} size={18}/>
       <div className={styles.cardsContainer}>
         {displayTickers.map((ticker, idx) => (
           <SymbolSnapshot

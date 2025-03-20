@@ -16,11 +16,6 @@
   border-radius: 8px;
 }
 
-.userMessage {
-  align-self: flex-end;
-  color: #fff;
-  background-color: #000;
-}
 
 .assistantMessage {
   background-color: #000;

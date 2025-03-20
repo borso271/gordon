@@ -368,63 +368,7 @@ related_icon: (<svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns
 };
 
 
-
-
-// // TypeScript types for icon names and props
-// type IconName = keyof typeof icons; // ✅ Ensures `name` matches available icons
-
-// interface IconProps {
-//   name: IconName;
-//   size?: number;
-//   variant?: "primary" | "secondary" | "tertiary";
-//   strokeColor?: string;
-//   className?: string;
-// }
-
-// const Icon: React.FC<IconProps> = ({
-//   name,
-//   size,
-//   variant = "primary",
-//   strokeColor = "none",
-//   className
-// }) => {
-//   const isSmall = useMediaQuery({ maxWidth: 480 });
-//   const isMedium = useMediaQuery({ maxWidth: 768 });
-
-//   // Define responsive size sets for different icon variants
-//   const sizeVariants = {
-//     secondary: { lg: 18, md: 18, sm: 18 },
-//     primary: { lg: 20, md: 18, sm: 16 },
-//     tertiary: { lg: 16, md: 14, sm: 12 },
-//   };
-
-//   const selectedSizes = sizeVariants[variant] || sizeVariants.primary;
-
-//   // Apply media query sizes
-//   let responsiveSize = selectedSizes.lg;
-//   if (isSmall) responsiveSize = selectedSizes.sm;
-//   else if (isMedium) responsiveSize = selectedSizes.md;
-
-//   // Final size (manual override takes priority)
-//   const finalSize = size ?? responsiveSize;
-
-//   return (
-//     <div
-//       className={className}
-//       style={{ width: finalSize, height: finalSize, display: "inline-flex", alignItems: "center" }}
-//     >
-//       {icons[name] ? (
-//         React.cloneElement(icons[name] as React.ReactElement, { width: finalSize, height: finalSize, stroke: strokeColor })
-//       ) : (
-//         <span style={{ fontSize: finalSize }}>⚠️</span> // Default fallback icon
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Icon;
-
-
+// import your icons map here, e.g., import icons from './iconsMap';
 
 interface IconProps {
   name: string;
@@ -432,6 +376,7 @@ interface IconProps {
   variant?: "primary" | "secondary" | "tertiary";
   strokeColor?: string;
   className?: string;
+  style?: React.CSSProperties; // ✅ Optional style prop
 }
 
 const Icon: React.FC<IconProps> = ({
@@ -439,25 +384,24 @@ const Icon: React.FC<IconProps> = ({
   size,
   variant = "primary",
   strokeColor = "none",
-  className
+  className,
+  style, // ✅ Receive style prop
 }) => {
-
-
   const isSmall = useMediaQuery({ maxWidth: 480 });
   const isMedium = useMediaQuery({ maxWidth: 768 });
 
   // Define responsive size sets for different icon variants
   const sizeVariants = {
-    secondary: { lg: 18, md: 18, sm: 18 }, // Large icons
-    primary: { lg: 20, md: 18, sm: 16 }, // Medium icons
-    tertiary: { lg: 16, md: 14, sm: 12 }, // Small icons
+    secondary: { lg: 18, md: 18, sm: 18 },
+    primary: { lg: 20, md: 18, sm: 16 },
+    tertiary: { lg: 16, md: 14, sm: 12 },
   };
 
   // Get the appropriate size set based on variant
   const selectedSizes = sizeVariants[variant] || sizeVariants.primary;
 
-  // Apply media query sizes
-  let responsiveSize = selectedSizes.lg; // Default (Large)
+  // Determine the responsive size based on media queries
+  let responsiveSize = selectedSizes.lg; // Large by default
   if (isSmall) responsiveSize = selectedSizes.sm;
   else if (isMedium) responsiveSize = selectedSizes.md;
 
@@ -467,9 +411,19 @@ const Icon: React.FC<IconProps> = ({
   return (
     <div
       className={className}
-      style={{ width: finalSize, height: finalSize, display: "inline-flex", alignItems: "center" }}
+      style={{
+        width: finalSize,
+        height: finalSize,
+        display: "inline-flex",
+        alignItems: "center",
+        ...style, // ✅ Merge custom styles
+      }}
     >
-      {React.cloneElement(icons[name], { width: finalSize, height: finalSize, stroke: strokeColor })}
+      {React.cloneElement(icons[name], {
+        width: finalSize,
+        height: finalSize,
+        stroke: strokeColor,
+      })}
     </div>
   );
 };

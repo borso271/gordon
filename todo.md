@@ -24,49 +24,56 @@
 
 ----
 
-Next:
 
-22. Scroll back to bottom button (different position mobile and desktop) 
+/* should be fairly easy */
 
-why error fetching historical week?
+
+
+
+
+Today:
+
+
+FINISH THESE THINGS:
+
+Today plan to begin with:
+
+3. Draggable tooltip on mobile. First you have to clean the component.
+
+4. fix icons size.
+
+---
+
+5. Numbers can get to big on price chart (example bitcoin).
+
+6. Big numbers with commas.
 
 ---
 
-These three things today:
-
-Next again:
+4. Transitions all the way around.
 
 ---
 
-Then Again:
-10. Transitions on read more... SUMMARY ALL SCREWED UP BY THE WAY...
+Then start cleaning.
 
-
----
-
-Clean this component to clearly add the dragging functionality:
-30. Draggable tooltip on mobile. First you have to clean the component.
-
-
-
----------------
-
-Tomorrow:
-
-transitions on dropdown buttons
-
-19. Numbers can get to big on price chart
-
-29. Big numbers with commas
-
-fix language icons, ask sasha to export...
-
-
----
-later:
+BIG PROBLEMS:
 1. Mobile font looks too thin, not regular
-
-
 31. CLIENT SIDE EXCEPTION? Why?
+
+
+
+
+
+
+
+
+
+
+
 32. The user can ask only for chart.
 33. Add multilanguage all the way around.
+
+
+
+---
+cleanup

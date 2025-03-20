@@ -1,14 +1,5 @@
-/*
 
-The price legend
 
-takes:
-DATA FOR THE PRICE LEGEND (TO CONSTRUCT)
-
-Height,
-
-and return the svg as it should be.
-*/
 import styles from './PriceLegend.module.css'
 const PriceLegend = ({ height, metadata, yoffset }) => {
     if (!metadata || metadata.length === 0) return null;
@@ -28,7 +19,6 @@ const PriceLegend = ({ height, metadata, yoffset }) => {
   
           return (
             <g key={item.index} transform={`translate(0, ${yPosition+yoffset})`}>
-
               <text x="0" y="0" fontSize="12" textAnchor="start" dominantBaseline="middle"
               fill="#757575" /* ✅ Corrected: Use fill instead of color */
               fontFamily="Inter" /* ✅ Corrected: Use = instead of : */>

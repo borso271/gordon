@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { v4 as uuidv4 } from "uuid"; // ✅ Import UUID generator
-import { useConversation } from "../../../app/context/conversationContext"; // ✅ Import context
+import { useConversation } from "../context/conversationContext"; // ✅ Import context
 
 export function useManualFunctionCall() {
   const { setConversationPairs, setCurrentIndex } = useConversation(); // ✅ Get state from context

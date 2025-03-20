@@ -101,7 +101,7 @@ const AnalystRatings = ({ ticker_symbol }) => {
     <div className={styles.container}>
       {/* Header Section */}
       <div className={styles.header}>
-        <SectionHeader title={dynamicTitle} icon={"ratings_icon"} />
+        <SectionHeader title={dynamicTitle} icon={"ratings_icon"} size={24} />
         <p className={styles.subheading}>Based on {totalRatings} analyst ratings</p>
       </div>
 

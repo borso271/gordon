@@ -27,7 +27,7 @@ const MarketingPage = () => {
         </Subheading>
         
       <div className={styles.button}>
-<Link href="/chat">
+<Link href="/landing">
   <PrimaryButton text={t("get_started")} icon={"right_arrow"} />
 </Link>
 </div>

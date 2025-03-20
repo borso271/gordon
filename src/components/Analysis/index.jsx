@@ -11,21 +11,20 @@ import AnalysisPart from '../AnalysisPart';
 import ActionsGroup from '../ActionsGroup';
 import copyToClipboard from '../Chat/utils/copyToClipboard';
 import shareContent from '../Chat/utils/shareContent';
-import Sc from '../DataDriven/Sc';
+import Sc from '../DataDriven/SymbolChart';
 import AnalysisPartLoader from '../Loaders/AnalysisPartLoader';
 const Analysis = ({data,handleManualFunctionCall, newSearch}) => {
 
- console.log("DATA PASSED TO ANALYSIS IS: ", data)
  const dataForAnalysis = (data.data.response);
 
  const created_at = dataForAnalysis.created_at;
- console.log("created at is: ", created_at)
+
 
  const symbol = dataForAnalysis.symbol;
- console.log("symbol is: ", symbol);
+
 
  const asset_type = dataForAnalysis.asset_type;
- console.log("asset type is: ", asset_type);
+ 
 
  let ai_response = dataForAnalysis.analysis;
 
@@ -100,7 +99,7 @@ const handleIconClick = (item) => {
     content={summary}
     icon="conclusions_icon"
     tagColor="var(--default-icon-background)"
-    tagSize={16}    
+    tagSize={18}    
   />
 ) : (
   <AnalysisPartLoader />

@@ -1,7 +1,6 @@
 import supabase_client from "../../lib/supabaseClient.js";
 async function getSymbolSnapshot(symbol, asset_type, symbol_id) {
-  console.log("SYMBOL IS: ", symbol)
-  console.log("ASSET_TYPE IS: ", asset_type)
+
     try {
   
       // 2. Fetch symbol snapshot using symbol_id

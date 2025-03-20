@@ -86,7 +86,7 @@ const TickerNews = ({ ticker_symbol }) => {
         {/* First Row: Section Title */}
       
 
-        <SectionHeader title={"Latest News"} icon={"news_icon"}/>
+        <SectionHeader title={"Latest News"} icon={"news_icon"} size={24}/>
        
   
         {/* Second Row: News Container */}

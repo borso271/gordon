@@ -6,7 +6,13 @@ import SnapshotLoader from "../../Loaders/SnapshotLoader";
 import { formatNumberWithCommas} from "../../../app/utils/formatNumbersWithCommas"
 import { useSymbolSnapshot } from "../../../app/hooks/useSymbolSnapshot";
 
-const SymbolSnapshot = ({ symbol, onClick }) => {
+interface SymbolSnapshotProps {
+  symbol: string;
+  onClick: () => void;
+  icon: boolean;
+}
+
+const SymbolSnapshot: React.FC<SymbolSnapshotProps> = ({ symbol, onClick, icon }) => {
   const {
     snapshot,
     asset_type,

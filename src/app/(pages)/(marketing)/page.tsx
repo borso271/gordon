@@ -3,7 +3,7 @@
 import React from 'react';
 import styles from './page.module.css'
 import { useTranslation } from 'react-i18next';
-import { PrimaryHeading } from '../../../components/Headings/PrimaryHeading/index.jsx';
+import { PrimaryHeading } from '../../../components/Headings/PrimaryHeading';
 import PrimaryButton from '../../../components/Buttons/PrimaryButton/index.jsx';
 import InactiveButton from '../../../components/Buttons/InactiveButton/index.jsx';
 import {Subheading} from '../../../components/Headings/Subheading'

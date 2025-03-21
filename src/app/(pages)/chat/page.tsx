@@ -3,7 +3,6 @@
 import React from 'react';
 import styles from './page.module.css'
 import BotChat from "../../../components/Chat";
-
 import NavigationSidebar from '../../../components/NavigationSidebar';
 import { useConversation } from '../../context/conversationContext';
 

@@ -39,23 +39,19 @@ export function useHandleSubmit() {
       e?: FormEvent | MouseEvent | null, // ✅ Accepts both form and button events
       isLandingPage: boolean = false
     ) => {
-      console.log("HANDLE SUBMIT CALLED");
+     
   
       // ✅ Only call preventDefault if e exists and it's a FormEvent
       if (e && "preventDefault" in e) {
-        console.log("PREVENTING DEFAULT");
         e.preventDefault();
       }
   
       if (!userInput.trim()) {
-        console.log("EMPTY INPUT, RETURNING");
         return;
       }
   
       if (isLandingPage) {
-        console.log("REDIRECTING TO /CHAT");
         router.push("/chat");
-     
       }
   
       addUserMessage(userInput);

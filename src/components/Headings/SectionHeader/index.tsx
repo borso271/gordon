@@ -1,14 +1,17 @@
-import React from "react";
+
+import React, { ReactNode } from "react";
 import styles from "./SectionHeader.module.css"; // Adjust the path as needed
 import SectionIcon from "../../Icons/SectionIcon";
 import SecondaryH2 from "../SecondaryH2";
 
+
 interface SectionHeaderProps {
-  icon: string;
-  title: string;
-  tagColor?: string;
+  title: ReactNode; // was string
+  icon?: string;
   size?: number;
+  tagColor?: string;
 }
+
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({ icon, title, tagColor=null, size=null }) => {
   return (

@@ -1,10 +1,10 @@
 import React from "react";
-import { useConversation } from "../../../../app/context/conversationContext";
+// import { useConversation } from "../../../../app/context/conversationContext";
 import styles from "./NavigationItem.module.css";
 
 interface NavigationItemProps {
   label: string;
-  index: string;
+  // index: string;
   isSelected: boolean;
   // isEdgeItem: boolean;
   onSelect: () => void;
@@ -13,15 +13,14 @@ interface NavigationItemProps {
 
 const NavigationItem: React.FC<NavigationItemProps> = ({
   label, 
-  index,
   isSelected, 
   // isEdgeItem, 
   onSelect, 
   // useVisibilityControl = false 
 }) => {
 
- 
-  const { areNavigationItemsVisible } = useConversation();
+
+  // const { areNavigationItemsVisible } = useConversation();
   // const shouldShowLabel = useVisibilityControl ? areNavigationItemsVisible : true;
 
   return (

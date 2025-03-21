@@ -4,8 +4,6 @@ function mergeAllTimePeriods(prevMap, newPoints, lastUpdateTimeRef) {
     // Make a copy of the old Map
     const updatedMap = new Map(prevMap);
 
-    //// console.log("newpoints are: ", newPoints);
-
     if (newPoints.length === 0) return updatedMap; // No new data, return unchanged map
 
     // 1) Get the existing data arrays (or empty arrays if none)

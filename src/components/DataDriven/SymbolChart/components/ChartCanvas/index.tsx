@@ -1,8 +1,4 @@
-// import { useEffect, useRef } from "react";
-// import styles from "./ChartCanvas.module.css";
 
-// import React from "react";
-// import styles from "./ChartCanvas.module.css";
 import React from "react";
 import styles from "./ChartCanvas.module.css";
 import { useChartCanvas } from "../../../../../app/hooks/useChartCanvas";
@@ -82,10 +78,6 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
         // Important: unify mouse and touch using pointer events
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
-        // This ensures the browser doesn't treat drags as scroll/zoom
-        // (especially for mobile). You may want to fine-tune or remove
-        // if you still want to allow e.g. page scrolling with a drag.
-      //  style={{ touchAction: "none" }}
        style={{ overflowY: "auto", touchAction: "none" }}
        
       >

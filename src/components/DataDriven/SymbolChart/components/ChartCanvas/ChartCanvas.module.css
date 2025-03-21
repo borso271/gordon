@@ -1,5 +1,4 @@
 .canvas {
-   
     /* border: 1px solid #ccc; */
     display: block;
     width: 100%;
@@ -7,7 +6,7 @@
    
 }
 
-  
+
   /* ChartCanvas.module.css */
 .chartWrapper {
     position: relative; /* so that absolutely-positioned tooltip can align properly */

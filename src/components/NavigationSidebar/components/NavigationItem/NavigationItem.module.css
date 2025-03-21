@@ -1,9 +1,6 @@
 .item {
-
     cursor: pointer;
-    
     transition: background-color 0.2s ease-in-out;
-
     overflow: hidden;
 color: var(--black-500, #535353);
 text-overflow: ellipsis;
@@ -12,7 +9,7 @@ font-family: var(--font-family-inter);
 font-size: 14px;
 font-style: normal;
 font-weight: 500;
-line-height: 140%; /* 19.6px */
+line-height: 140%;
 display:flex;
 flex-direction:row;
 align-items:center;
@@ -56,48 +53,25 @@ margin-bottom:12px;
 
 
   .activeCircle {
-    background-color: #F8F8F8; /* Active item color */
+    background-color: var(--black-50, #F8F8F8);
   }
 
   .activeCircle:hover {
-    background-color: #F8F8F8; /* Active item color */
+    background-color: var(--black-50, #F8F8F8); /* Active item color */
   }
   
-  .edgeCircle {
-    background-color: #1A1A1A; /* Edge item color */
-  }
-
-
-
+ 
 
 /* ✅ When `.item` is hovered, change `.circle` background color */
 .item.active .label {
-    color: #F8F8F8; /* Active item color */
+    color:  var(--black-50, #F8F8F8); /* Active item color */
 }
-
 
 
 /* ✅ When `.item` is hovered, change `.circle` background color */
 .item.active:hover .circle {
-    background-color: #F8F8F8;
+    background-color:  var(--black-50, #F8F8F8);
 }
-
-
-
-/*    
-  .activeLabel {
-color: #F8F8F8; 
-  } */
-  
-  .edgeLabel {
-  color: #1A1A1A; /* Edge item color */
-  }
-
-  .selected {
-    background-color: #3a3a3a;
-  }
-  
-
 
 
 /* ✅ When `.item` is hovered, change `.circle` background color */
@@ -112,7 +86,7 @@ color: #F8F8F8;
 
 .item.edgeItem.active .circle  {
 
-  background-color: #F8F8F8;
+  background-color:  var(--black-50, #F8F8F8);
 }
 
 

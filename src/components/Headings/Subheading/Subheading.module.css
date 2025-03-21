@@ -1,22 +1,17 @@
   .subheading {
-    color: var(--black-400, rgba(117, 117, 117, 1));
+color: var(--black-400, rgba(117, 117, 117, 1));
 text-align: center;
-
-/* Text L/Regular */
 font-family: var(--font-family-inter);
 font-size: var(--font-size-s);
 font-style: normal;
 font-weight: var(--font-weight-regular);
-line-height: var(--line-height-130); /* 23.4px */
+line-height: var(--line-height-130);
   }
   
   /* Medium (Tablets) */
   @media (max-width: 768px) {
     .subheading {
-        
-        font-size: var(--font-size-xs);
-       
-       
+        font-size: var(--font-size-xs);   
         line-height: var(--line-height-140); /* 22.4px */
     }
   }
@@ -25,10 +20,7 @@ line-height: var(--line-height-130); /* 23.4px */
   @media (max-width: 480px) {
   
     .subheading {
-       
-       
         font-size: var(--font-size-xxs);
-       
         line-height: var(--line-height-140); /* 22.4px */
     }
   }

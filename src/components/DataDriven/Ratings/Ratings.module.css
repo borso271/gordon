@@ -6,72 +6,40 @@
     margin: 0 auto;
     border-radius: 16px;
     gap: 24px;
-   
     min-height: 296px;
     background-color: var(--card-background);
     background: var(--card-background);
-border: 1px solid var(--card-border);
+    border: 1px solid var(--card-border);
   }
-  
-  /* Header Section */
   
   .header {
-    display: flex;
-        flex-direction: column;
-        gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   }
   
-
   .grid {
     display: grid;
     gap: 18px;
-
   }
 
-  .ratingsWrapper {
-    align-self: stretch;
-  
-   
-    min-width: 0;
-
-    width: 100%;
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: space-between; /* Push first and last elements apart */
-    
-  }
-  
   .GridContainer {
-    flex-grow: 1; /* Pushes itself to the bottom */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Ensures content stays at the bottom */
+    justify-content: flex-end;
   }
 
 
   
   .subheading {
     color: var(--black-400, #757575);
-
-    /* Text XS/Regular */
-
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 140%; /* 16.8px */
+    line-height: 140%;
   }
   
-  
-  /* Ensures all columns start at the same position */
-  /* .row {
-    display: grid;
-    height:20px;
-    grid-template-columns: 90px 1fr 40px; 
-    align-items: center;
-    gap: auto;
-  } */
-
-
   .row {
     display: inline-flex;
     justify-content: space-between;
@@ -80,38 +48,30 @@ border: 1px solid var(--card-border);
     
   }
   
-  
-  /* Ensures label column is fixed width */
-  .label {
-color: var(--black-50, #F8F8F8);
-/* Text S/Medium */
 
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 140%; /* 19.6px */
-min-width: 75px;
+  .label {
+  color: var(--black-50, #F8F8F8);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  min-width: 75px;
   }
   
   /* Ensures percentage value column is fixed width */
   .percentage {
     color: var(--black-50, #F8F8F8);
     text-align: right;
-    
-    /* Text S/Medium */
- 
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    line-height: 140%; /* 19.6px */
+    line-height: 140%; 
     width:43.5px;
   }
   
-
   .percentageBarContainer {
     padding: 0 4px;
   }
-
 
   .says {
   color: var(--black-300, #929292);

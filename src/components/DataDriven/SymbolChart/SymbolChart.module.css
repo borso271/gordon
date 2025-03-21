@@ -1,18 +1,17 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: var(--card-background);
-    background: var(--card-background);
-    border: 1px solid var(--card-border);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 100%;
+background-color: var(--card-background);
+background: var(--card-background);
+border: 1px solid var(--card-border);
 padding: 24px;
 gap: 20px;
 align-self: stretch;
-    border-radius: 16px;
-   
+border-radius: 16px;
 }
 
 .chartContainer {
@@ -25,15 +24,12 @@ align-self: stretch;
   
 }
 
-
-
 .chartGrid {
     display: grid;
     grid-template-columns: 50px auto; /* Chart takes remaining space, RightLegend takes fixed width */
     grid-template-rows: auto; /* Chart takes remaining space, BottomLegend takes fixed height */
     height: 100%; /* Ensures full height */
     width: 100%; /* Ensures full width */
-    /* column-gap: 18px; */
 }
 
 .chartGrid > :nth-child(1) { grid-column: 1; grid-row: 1;height: 100%; overflow: visible } /* ChartCanvas */
@@ -42,11 +38,9 @@ align-self: stretch;
 .chartGrid > :nth-child(3) { /* TimeLegend */
     grid-column: 1;
     grid-row: 2;
-    width: var(--time-legend-width, 100%); /* Default is 100%, can be overridden */
+    width: 100%; /* Default is 100%, can be overridden */
     overflow: visible;
 }
-
-
 
 .chartWrapper {
     height: 100%;
@@ -55,14 +49,12 @@ align-self: stretch;
   
 }
 
-
 .chartTop {
     display: flex;
     flex-direction: row;
     justify-content: space-between; /* ✅ Pushes first item left, second item right */
     align-items: stretch; /* Optional: Aligns items vertically */
     width: 100%; /* Ensures full width for proper spacing */
-
 }
 
 
@@ -79,16 +71,11 @@ width:100%;
     justify-content: space-between; /* ✅ Pushes first item left, second item right */
     align-items: flex-end; /* Optional: Aligns items vertically */
     width: 100%; /* Ensures full width for proper spacing */
-
 }
-
 
 .lastUpdated {
     color: var(--black-400, #757575);
 text-align: right;
-
-/* Text XS/Regular */
-
 font-size: 12px;
 font-style: normal;
 font-weight: 400;
@@ -100,32 +87,14 @@ line-height: 140%; /* 16.8px */
     flex-direction: column;
     justify-content:space-between;
     align-items:end;
-   
-    
 }
-
-.divider {
-    margin: 4px 0;
-}
-
-
-
-
-
-
-
-
-
 
 /* Medium (Tablets) */
+
 @media (max-width: 768px) {
 
 .chartTop {
-
-    flex-direction: column;
-    justify-content: space-between; /* ✅ Pushes first item left, second item right */
-    align-items: stretch; /* Optional: Aligns items vertically */
-    width: 100%; /* Ensures full width for proper spacing */
+  flex-direction: column;
   gap: 12px;
 }
 
@@ -135,19 +104,14 @@ line-height: 140%; /* 16.8px */
 }
 
 .chartOverview {
-
     flex-direction: column;
     align-items:flex-start;
     gap:12px;
 }
-
-
-  
 }
 
 /* Small (Mobile) */
 @media (max-width: 480px) {
-
 
     .chartWrapper {
         height: 100%;

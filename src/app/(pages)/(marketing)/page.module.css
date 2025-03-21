@@ -1,11 +1,10 @@
 
 .main {
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center; /* Centers vertically */
-  height: 100%; /* Full viewport height */
-  width: 100%; /* Ensures full width */
-  
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
@@ -13,14 +12,11 @@
   flex-direction:column;
   gap:16px;
   align-items: center;
-
-
 }
 
 .button {
   margin-top:8px;
 }
-
 
 .main > * {
   transform: translateY(-50px); /* Moves content up by 50px */

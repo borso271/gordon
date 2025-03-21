@@ -1,94 +1,23 @@
-import { useEffect, useState } from "react";
+
 import React from "react";
-import fetch_symbol_info from "../../../utils/fetch_symbol_info";
-import supabase_client from "../../../lib/supabaseClient";
 import styles from './News.module.css';
 import SmallImage from "../../SmallImage";
 import PrimaryDivider from "../../Layout/PrimaryDivider";
 import SectionHeader from "../../Headings/SectionHeader";
 import NewsLoader from "../../Loaders/NewsLoader";
+import { useTickerNews } from "../../../app/hooks/useTickerNews";
+
 const TickerNews = ({ ticker_symbol }) => {
-  const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { news, loading, error } = useTickerNews(ticker_symbol);
 
-  useEffect(() => {
-    if (!ticker_symbol) return;
+  if (loading) return <NewsLoader />;
+  if (error) return <p>❌ {error}</p>;
+  if (news.length === 0) return <p>No news found.</p>;
 
-    const fetchNews = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        // 1️⃣ Fetch the symbol_id for the given ticker_symbol
-        const { id: symbol_id } = await fetch_symbol_info(ticker_symbol) || {};
-
-        if (!symbol_id) throw new Error(`Symbol ID not found for ${ticker_symbol}`);
-
-        // 2️⃣ Fetch the latest news articles for the given symbol_id
-        const { data, error } = await supabase_client
-          .from("news_ticker")
-          .select(
-            `
-            news_id, sentiment, sentiment_reasoning,
-            news_articles (
-              id, article_id, publisher_name, title, author, published_utc, 
-              article_url, image_url, description
-            )
-          `
-          )
-          .eq("symbol_id", symbol_id); // ✅ No `.order()` here
-
-        if (error) throw new Error(`Error fetching news: ${error.message}`);
-
-        if (!data || data.length === 0) {
-          setNews([]);
-          return;
-        }
-
-        // ✅ Sort manually in JavaScript by `published_utc`
-        const sortedNews = data
-          .filter(item => item.news_articles) // Remove entries without news_articles
-          .sort((a, b) => new Date(b.news_articles.published_utc) - new Date(a.news_articles.published_utc)) // Newest first
-          .slice(0, 5); // ✅ Limit to 5
-
-        // ✅ Format news articles
-        const formattedNews = sortedNews.map((item) => ({
-          id: item.news_articles.id,
-          publisher: item.news_articles.publisher_name,
-          title: item.news_articles.title,
-          author: item.news_articles.author,
-          published_at: new Date(item.news_articles.published_utc).toLocaleString(),
-          url: item.news_articles.article_url,
-          image: item.news_articles.image_url,
-          description: item.news_articles.description,
-          sentiment: item.sentiment,
-          sentiment_reasoning: item.sentiment_reasoning,
-        }));
-
-        setNews(formattedNews);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchNews();
-  }, [ticker_symbol]);
-
-   if (news.length == 0){
-    return (<NewsLoader/>)
-   }
   return (
-   
       <div className={styles.newsWrapper}>
         {/* First Row: Section Title */}
-      
-
         <SectionHeader title={"Latest News"} icon={"news_icon"} size={24}/>
-       
-  
         {/* Second Row: News Container */}
         <div className={styles.newsContainer}>
           {loading && <p className={styles.loading}>Loading...</p>}

@@ -32,9 +32,8 @@ const MobileNavigation: React.FC = () => {
           <NavigationItem
             key={item.id}
             label={item.user}
-            index={item.id}
+            // index={item.id}
             isSelected={currentIndex === realIndex} // ✅ Highlight active item
-            
             onSelect={() => setCurrentIndex(realIndex)} // ✅ Click updates currentIndex
           />
         );

@@ -1,21 +1,17 @@
    .newsWrapper {
     align-self: stretch;
     min-height: 296px;
-   
-
     border-radius: 16px;
-
     min-width: 0;
     padding: 24px;
     width: 100%;
     display: flex;
     flex-direction: column; /* Stack items vertically */
     justify-content: space-between; /* Push first and last elements apart */
-    
     padding: 20px; /* Optional: adjust based on design */
     background-color: var(--card-background);
     background: var(--card-background);
-border: 1px solid var(--card-border);
+    border: 1px solid var(--card-border);
   }
   
   .newsContainer {
@@ -63,10 +59,8 @@ border: 1px solid var(--card-border);
     line-height: 140%;
     text-decoration: none;
     display: -webkit-box;
-
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-word;
@@ -75,11 +69,7 @@ border: 1px solid var(--card-border);
 
   .newsTitle:hover {
     text-decoration: none;
-
     color: var(--lime-400, #B1F625);
-    
-
-
   }
   
   /* Ensures the divider does NOT add extra spacing */

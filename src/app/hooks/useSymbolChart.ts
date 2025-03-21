@@ -1,19 +1,20 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useSelector } from "react-redux";
-
 import getChartData from "../../services/get_components_data/fetch_chart_data.js";
-import mergeIntradayData from "../../components/DataDriven/SymbolChart/utils/merge_intraday_data.jsx";
+import mergeIntradayData from "../../components/DataDriven/SymbolChart/utils/merge_intraday_data";
 import getSymbolSnapshot from "../../services/get_components_data/get_symbol_snapshot.js";
 import fetch_symbol_info from "../../utils/fetch_symbol_info.js";
-import formatTimestamp from "../../components/DataDriven/SymbolChart/utils/format_timestsamp.jsx";
+import formatTimestamp from "../../components/DataDriven/SymbolChart/utils/format_timestsamp";
 import isMarketOpenNow from "../../utils/is_market_open_now";
-import returnPriceLegendSegments from "../../components/DataDriven/SymbolChart/components/utils/compute_price_legend/return_price_legend_metadata";
-import { assign_list_XYCoordinatesIndexSimple } from "../../components/DataDriven/SymbolChart/components/utils/compute_x_y/compute_xy_index.js";
-import computeLastPrices from "../../components/DataDriven/SymbolChart/compute_last_prices.js";
-import computeHistoricalPercentage from "../../components/DataDriven/SymbolChart/compute_historical_percentage.js";
-
+import returnPriceLegendSegments from "../../components/DataDriven/SymbolChart/utils/compute_price_legend/return_price_legend_metadata";
+import { assign_list_XYCoordinatesIndexSimple } from "../../components/DataDriven/SymbolChart/utils/compute_point_coordinates/compute_xy_index";
+import computeLastPrices from "../../components/DataDriven/SymbolChart/utils/compute_last_prices";
+import { computeHistoricalPercentage} from "../../components/DataDriven/SymbolChart/utils/compute_historical_percentage";
 
 // Same logic, just moved into a hook:
+
+import { PricePoint, IntradayMap, LastPriceResult, PriceDataMap, Period} from "../../app/interfaces";
+
 export function useSymbolChart(symbol: string) {
   // 1) Sizing logic
   const chartRef = useRef<HTMLDivElement | null>(null);
@@ -96,7 +97,9 @@ export function useSymbolChart(symbol: string) {
   }, [asset_type, exchange_mic]);
 
   // 4) Chart data logic
-  const [seriesesData, setSeriesesData] = useState<Map<string, any>>(new Map());
+
+  const [seriesesData, setSeriesesData] = useState<PriceDataMap>(new Map());
+
   const lastUpdateTimeRef = useRef<number>(0);
 
   useEffect(() => {
@@ -114,33 +117,42 @@ export function useSymbolChart(symbol: string) {
   }, [seriesesData]);
 
   const liveData = useSelector((state: any) => state.stocks[symbol] || []);
-  useEffect(() => {
+  
+
+useEffect(() => {
     if (!liveData.length) return;
-    const newPoints = liveData
-      .map((entry: any) => ({
+  
+    const newPoints: PricePoint[] = liveData
+      .map((entry) => ({
         time: entry.timestamp,
         price: entry.price,
       }))
-      .filter((point: any) => point.time > lastUpdateTimeRef.current)
-      .sort((a: any, b: any) => a.time - b.time);
-
+      .filter((point) => point.time > lastUpdateTimeRef.current)
+      .sort((a, b) => a.time - b.time);
+  
     if (newPoints.length === 0) return;
-    setSeriesesData((prevMap) => {
+  
+    setSeriesesData((prevMap: IntradayMap) => {
       const updatedMap = mergeIntradayData(prevMap, newPoints, lastUpdateTimeRef);
-      setIntradayData(updatedMap.get("ID") || []);
+      setIntradayData(updatedMap.get("1D") || []);
       return updatedMap;
     });
   }, [liveData, seriesesData]);
 
   // 6) Period + computed values
-  const [selectedPeriod, setSelectedPeriod] = useState("1D");
-  const periodData = seriesesData.get(selectedPeriod) || [];
+  const [selectedPeriod, setSelectedPeriod] = useState<Period>("1D");
+
+
+
+  const periodData: PricePoint[] = seriesesData.get(selectedPeriod) || [];
   const prices = periodData.map((d: any) => d.price);
   const dayMin = prices.length > 0 ? Math.min(...prices) : 0;
   const dayMax = prices.length > 0 ? Math.max(...prices) : 0;
 
-  const preferredPeriod = "ID";
-  const fallbackPeriod = "1D";
+  const preferredPeriod: Period = "1D"; // ✅ not "ID"
+  
+  const fallbackPeriod: Period = "1D"; // ✅ not "ID"
+
   const mostRecentPeriodData = seriesesData.get(preferredPeriod)?.length
     ? seriesesData.get(preferredPeriod)
     : seriesesData.get(fallbackPeriod);
@@ -164,7 +176,11 @@ export function useSymbolChart(symbol: string) {
       : [];
   }, [dayMin, dayMax]);
 
-  const timeLegendPercentage = computeHistoricalPercentage(seriesesData.get("ID") || [], selectedPeriod);
+
+const dataPoints: PricePoint[] = seriesesData.get("ID") || [];
+const timeLegendPercentage = computeHistoricalPercentage(dataPoints, selectedPeriod);
+
+//   const timeLegendPercentage = computeHistoricalPercentage(seriesesData.get("ID") || [], selectedPeriod);
 
   const [relevant_close, setRelevantClose] = useState(0);
   useEffect(() => {
@@ -180,7 +196,9 @@ export function useSymbolChart(symbol: string) {
     return (chartDimensions.width * timeLegendPercentage) / 100 - 10;
   }, [chartDimensions.width, timeLegendPercentage]);
 
-  const lastPrices = computeLastPrices(seriesesData);
+  
+  const lastPrices: LastPriceResult[] = computeLastPrices(seriesesData);
+
   const offsetX = selectedPeriod === "1D" ? 0 : firstpartwidth;
   const intradaywidth = chartDimensions.width - offsetX;
 

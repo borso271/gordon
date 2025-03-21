@@ -4,7 +4,6 @@ export async function POST(request) {
     
   try {
     const body = await request.json(); // ✅ Read asset_type from the request body
-    // console.log("body is: ", body)
     const assetType = body.asset_type; // ✅ Extract asset_type
 
     let suggestions = [];

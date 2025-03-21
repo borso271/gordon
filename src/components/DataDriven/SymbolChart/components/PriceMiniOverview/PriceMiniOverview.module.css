@@ -14,9 +14,6 @@ gap: 2px;
 .period {
 
     color: var(--black-300, #929292);
-
-    /* Text XS/Medium */
-  
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
@@ -25,16 +22,11 @@ gap: 2px;
 
 .change {
     text-align: right;
-
-    /* Text S/Medium */
-  
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 140%; /* 19.6px */
     }
-
-
 
 .positive {
 

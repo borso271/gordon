@@ -1,4 +1,4 @@
-.primaryH2 {
+.secondaryH2 {
     color: var(--black-50, #F8F8F8);
 
 /* H4/Medium */
@@ -9,25 +9,12 @@ font-weight: 500;
 line-height: 130%; /* 26px */
 letter-spacing: -0.4px;
   }
-  
-
-
-/* Medium (Tablets) */
-@media (max-width: 768px) {
-  
-}
 
 /* Small (Mobile) */
 @media (max-width: 480px) {
-    .primaryH2 {
-    color: var(--black-50, #F8F8F8);
-
-    /* Text L/Medium */
-  
+    .secondaryH2 {  
     font-size: 18px;
   
-    font-weight: 500;
-    line-height: 130%; /* 23.4px */
     }
 }
 

@@ -9,7 +9,7 @@ import PriceMiniOverview from "./components/PriceMiniOverview";
 import PrimaryDivider from "../../Layout/PrimaryDivider";
 import ChartLoader from "../../Loaders/ChartLoader";
 import { useSymbolChart } from "../../../app/hooks/useSymbolChart";
-
+import { arabicMonthMap } from "../../../interfaces";
 const SymbolChart = ({ symbol,language }: { symbol: string, language: string}) => {
   // ✅ Destructure all values from the hook
   const {
@@ -35,6 +35,14 @@ const SymbolChart = ({ symbol,language }: { symbol: string, language: string}) =
 
 
   const asOf = language == "en" ? "As of " : "اعتبارًا من ";
+  const localLastUpdated =
+  language === "ar"
+    ? (() => {
+        const [engMonth, day] = lastUpdated.split(" ");
+        const arabicMonth = arabicMonthMap[engMonth] || engMonth;
+        return `${arabicMonth} ${day}`;
+      })()
+    : lastUpdated;
 
   // Same fallback logic to show loader
   if (!currentPrice || !periodData) {
@@ -59,7 +67,7 @@ const SymbolChart = ({ symbol,language }: { symbol: string, language: string}) =
           />
 
           <div className={styles.topRight}>
-            <h4 className={styles.lastUpdated}>{asOf}{lastUpdated}</h4>
+            <h4 className={styles.lastUpdated}>{asOf}{localLastUpdated}</h4>
             <PriceChangeOverview
             current_price={currentPrice}
             changes={lastPrices}
@@ -101,6 +109,7 @@ const SymbolChart = ({ symbol,language }: { symbol: string, language: string}) =
                 minPrice={adjustedLow}
                 isPositiveChange={isPositiveChange}
                 marketOpen={isMarketOpen}
+                language={language}
                
               />
             </div>

@@ -8,6 +8,7 @@ interface ChartCanvasProps {
   data?: any[];
   minPrice: number;
   isPositiveChange: boolean;
+  language: string;
   width?: number;
   height?: number;
   area?: boolean;
@@ -19,6 +20,7 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
   data = [],
   minPrice,
   isPositiveChange,
+  language,
   width = 500,
   height = 300,
   area = true,
@@ -149,6 +151,7 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
           hoveredPoint={hoveredPoint}
           mousePos={hoverPos}
           containerRef={containerRef}
+          language={language}
         />
       )}
     </div>

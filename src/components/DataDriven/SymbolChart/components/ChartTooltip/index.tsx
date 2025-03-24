@@ -6,11 +6,12 @@ import { useScreenSize } from "../../../../../app/context/screenSizeContext";
 type ChartTooltipProps = {
   hoveredPoint: { price: number; time: number; x: number; y: number } | null;
   mousePos: { x: number; y: number };
+  language: string;
   containerRef: React.RefObject<HTMLDivElement>;
 };
 
-const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProps) => {
-  
+const ChartTooltip = ({ hoveredPoint, mousePos,language, containerRef }: ChartTooltipProps) => {
+
   const { isMobile } = useScreenSize(); // ✅ Hook moved to the top
   if (!hoveredPoint || !containerRef.current) return null; // ✅ Safe to have early return now
 
@@ -20,7 +21,17 @@ const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProp
   };
 
   // 📌 Format time in 24-hour format (HH:mm)
-  const formattedTime = new Date(hoveredPoint.time).toLocaleString("en-US", {
+  // const formattedTime = new Date(hoveredPoint.time).toLocaleString("en-US", {
+  //   hour: "2-digit",
+  //   minute: "2-digit",
+  //   hour12: false,
+  //   year: "numeric",
+  //   month: "short",
+  //   day: "numeric",
+  // });
+
+
+  const formattedTime = new Date(hoveredPoint.time).toLocaleString(["ar", "en-US"], {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
@@ -29,6 +40,7 @@ const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProp
     day: "numeric",
   });
 
+  
   // 📌 Get container bounds
   const rect = containerRef.current.getBoundingClientRect();
 

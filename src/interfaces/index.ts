@@ -71,3 +71,19 @@ export interface Provider {
   url: string;
   [key: string]: any; // in case other fields exist
 }
+
+
+export const arabicMonthMap: Record<string, string> = {
+  Jan: "ينا",
+  Feb: "فبر",
+  Mar: "مار",
+  Apr: "أبر",
+  May: "ماي",
+  Jun: "يون",
+  Jul: "يول",
+  Aug: "أغس",
+  Sep: "سبت",
+  Oct: "أكت",
+  Nov: "نوف",
+  Dec: "ديس",
+};

@@ -11,6 +11,13 @@ export default function I18nProvider({ children }: I18nProviderProps) {
   const [ready, setReady] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log("🔍 i18n language:", i18n.language);
+    console.log("🌍 Loaded namespaces:", i18n.options.ns);
+    console.log("📂 i18n resource store:", i18n.store.data);
+  }, []);
+
+  
+  useEffect(() => {
     setReady(true); // Hydrate on the client
   }, []);
 

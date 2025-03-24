@@ -10,7 +10,7 @@ import PrimaryDivider from "../../Layout/PrimaryDivider";
 import ChartLoader from "../../Loaders/ChartLoader";
 import { useSymbolChart } from "../../../app/hooks/useSymbolChart";
 
-const SymbolChart = ({ symbol }: { symbol: string }) => {
+const SymbolChart = ({ symbol,language }: { symbol: string, language: string}) => {
   // ✅ Destructure all values from the hook
   const {
     chartRef,
@@ -31,6 +31,10 @@ const SymbolChart = ({ symbol }: { symbol: string }) => {
     lastPrices,
     adjustedLow,
   } = useSymbolChart(symbol);
+   
+
+
+  const asOf = language == "en" ? "As of " : "اعتبارًا من ";
 
   // Same fallback logic to show loader
   if (!currentPrice || !periodData) {
@@ -51,11 +55,16 @@ const SymbolChart = ({ symbol }: { symbol: string }) => {
             latestPrice={currentPrice}
             lastClose={snapShot.last_close}
             currency={snapShot.currency}
+            language={language}
           />
 
           <div className={styles.topRight}>
-            <h4 className={styles.lastUpdated}>As of {lastUpdated}</h4>
-            <PriceChangeOverview current_price={currentPrice} changes={lastPrices} />
+            <h4 className={styles.lastUpdated}>{asOf}{lastUpdated}</h4>
+            <PriceChangeOverview
+            current_price={currentPrice}
+            changes={lastPrices}
+            language={language}
+            />
           </div>
         </div>
 
@@ -63,8 +72,16 @@ const SymbolChart = ({ symbol }: { symbol: string }) => {
 
         <div className={styles.chartMain}>
           <div className={styles.chartOverview}>
-            <PriceMiniOverview current_price={currentPrice} changes={lastPrices} period={selectedPeriod} />
-            <PeriodSelector selectedPeriod={selectedPeriod} setSelectedPeriod={setSelectedPeriod} />
+            <PriceMiniOverview
+            current_price={currentPrice}
+            changes={lastPrices}
+            period={selectedPeriod}
+            language={language}
+            />
+            <PeriodSelector
+            selectedPeriod={selectedPeriod}
+            setSelectedPeriod={setSelectedPeriod}
+            language={language} />
           </div>
 
           <div
@@ -83,6 +100,8 @@ const SymbolChart = ({ symbol }: { symbol: string }) => {
                 data={finalPeriodData}
                 minPrice={adjustedLow}
                 isPositiveChange={isPositiveChange}
+                marketOpen={isMarketOpen}
+               
               />
             </div>
           </div>

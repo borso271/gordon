@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useSelector } from "react-redux";
-import getChartData from "../../services/get_components_data/fetch_chart_data.js";
+import getChartData from "../../services/database/fetch_chart_data.js";
 import mergeIntradayData from "../../components/DataDriven/SymbolChart/utils/merge_intraday_data";
-import getSymbolSnapshot from "../../services/get_components_data/get_symbol_snapshot.js";
-import fetch_symbol_info from "../../utils/fetch_symbol_info.js";
+import getSymbolSnapshot from "../../services/database/get_symbol_snapshot.js";
+import fetch_symbol_info from "../../services/database/fetch_symbol_info";
 import formatTimestamp from "../../components/DataDriven/SymbolChart/utils/format_timestsamp";
 import isMarketOpenNow from "../../utils/is_market_open_now";
 import returnPriceLegendSegments from "../../components/DataDriven/SymbolChart/utils/compute_price_legend/return_price_legend_metadata";
@@ -84,7 +84,6 @@ export function useSymbolChart(symbol: string) {
     }
   };
 
-  
   useEffect(() => {
     if (!asset_type || !exchange_mic) return;
     // Check once

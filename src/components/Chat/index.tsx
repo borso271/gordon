@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef} from "react";
+import React, { useRef, useEffect} from "react";
 import styles from "./chat.module.css";
 import { AssistantStream } from "openai/lib/AssistantStream";
 import ChatInput from './components/ChatInput';
@@ -14,7 +14,7 @@ import { useFunctionExecution } from "../../app/context/functionExecutionContext
 import { scrollDownManually } from "./utils/scrollDownManually";
 
 export default function BotChat() {
-
+  
   const { onManualFunctionCall } = useFunctionExecution();
   const {
     conversationPairs,
@@ -39,6 +39,8 @@ export default function BotChat() {
     setCurrentIndex,
     conversationPairs.length
   );
+
+  // console.log("conversation paris are: ", conversationPairs)
 
   const {
    handleTouchStart,
@@ -69,6 +71,27 @@ export default function BotChat() {
     attachHandlers(stream);
   };
 
+const chatInputRef = useRef<HTMLDivElement>(null);
+const spacerRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+  const updateSpacerHeight = () => {
+    if (chatInputRef.current && spacerRef.current) {
+      const height = chatInputRef.current.offsetHeight;
+      spacerRef.current.style.height = `${height}px`;
+    }
+  };
+
+  updateSpacerHeight();
+
+  const resizeObserver = new ResizeObserver(updateSpacerHeight);
+  if (chatInputRef.current) resizeObserver.observe(chatInputRef.current);
+
+  return () => resizeObserver.disconnect();
+}, []);
+
+
+
   return (
     <div
       className={styles.slideContainer}
@@ -83,15 +106,15 @@ export default function BotChat() {
         (isAwayFromBottom)) && (
         <div className={styles.scrollDownButton}>
 
-<DropdownButton
-  text=""
-  rightIcon="arrow_down"
-  rightIconSize={20} // Provide a default size for the right icon
-  leftIcon={null} // If you don't need a left icon, set it to null
-  className="scrollDownButton"
-  width={40}
-  onClick={() => handleManualScrollDown()}
-/>
+      <DropdownButton
+        text=""
+        rightIcon="arrow_down"
+        rightIconSize={20} // Provide a default size for the right icon
+        leftIcon={null} // If you don't need a left icon, set it to null
+        className="scrollDownButton"
+        width={40}
+        onClick={() => handleManualScrollDown()}
+      />
         </div>
       )}
 
@@ -108,8 +131,8 @@ export default function BotChat() {
         )}
       </div>
 
-<div className={styles.chatSpacer}></div>
-      <div className={styles.chatInput}>
+<div ref={spacerRef} className={styles.chatSpacer} ></div>
+      <div className={styles.chatInput} ref={chatInputRef}>
       <ChatInput
        isFirstPrompt={false}
         userInput={userInput}

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const AnalysisSchema = z.object({
+const AnalysisSchemaEn = z.object({
   positives: z
     .array(z.string())
     .describe(
@@ -28,4 +28,4 @@ const AnalysisSchema = z.object({
     ),
 });
 
-export default AnalysisSchema;
+export default AnalysisSchemaEn;

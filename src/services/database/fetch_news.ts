@@ -1,5 +1,5 @@
 import supabase_client from "../../lib/supabaseClient";
-import fetch_symbol_info from "../../utils/fetch_symbol_info";
+import fetch_symbol_info from "./fetch_symbol_info";
 
 interface NewsArticle {
     id: number;
@@ -19,7 +19,6 @@ interface NewsArticle {
     news_articles: NewsArticle;
   }
 
-  
 export async function getNewsForSymbol(ticker_symbol: string) {
   const { id: symbol_id } = await fetch_symbol_info(ticker_symbol) || {};
 

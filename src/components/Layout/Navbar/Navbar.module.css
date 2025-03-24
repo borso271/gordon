@@ -62,7 +62,7 @@ background: linear-gradient(to bottom, var(--background) 0%, rgba(15, 15, 15, 0.
 /* Responsive adjustments for small screens */
 @media (max-width: 480px) {
   .dropdownContainer > div {
-    max-width: 90vw; /* Uses viewport width on small screens */
+    max-width: calc(100vw - 40px); /* Uses viewport width on small screens */
   }
 }
   /* Responsive Adjustments */

@@ -3,7 +3,8 @@ import supabase_client from '../../../../lib/supabaseClient.js';
 
 import OpenAI from "openai";
 import { zodResponseFormat } from "openai/helpers/zod";
-import AnalysisSchema from "./analysis_schema.js";
+import AnalysisSchemaEn from "./analysis_schema_en.js";
+import AnalysisSchemaAr from './analysis_schema_ar.js';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({
@@ -24,7 +25,10 @@ const openai = new OpenAI({
 
 
 async function fetch_openai_response_structured(ticker_symbol, asset_type, symbol_id, language, company_data) {
+
+  
   try {
+   
     // Extract the company name from the nested data object
     const company_name = company_data["Company Profile"]?.["Name"] || ticker_symbol;
 
@@ -34,6 +38,7 @@ async function fetch_openai_response_structured(ticker_symbol, asset_type, symbo
       .select("created_at, analysis") // ✅ Select only required fields
       .eq("symbol_id", symbol_id)
       .eq("agent_name", "gpt4o_structured")
+      .eq("language", language)
       .order("created_at", { ascending: false })
       .limit(1);
 
@@ -73,7 +78,27 @@ async function fetch_openai_response_structured(ticker_symbol, asset_type, symbo
       userPrompt += `\nPlease provide the analysis in ${language}.`;
     }
 
-    const completion = await openai.beta.chat.completions.parse({
+    let completion;
+    if (language == "ar") {
+
+     completion = await openai.beta.chat.completions.parse({
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "system",
+          content: "أنت محلل مالي تقدم تحليلات ورؤى عن الشركات بناءً على البيانات المالية.",
+        },
+        {
+          role: "user",
+          content: userPrompt,
+        },
+      ],
+      response_format: zodResponseFormat(AnalysisSchemaAr, "financial_analysis"),
+    }); }
+
+    else {
+
+     completion = await openai.beta.chat.completions.parse({
       model: "gpt-4o",
       messages: [
         {
@@ -85,8 +110,11 @@ async function fetch_openai_response_structured(ticker_symbol, asset_type, symbo
           content: userPrompt,
         },
       ],
-      response_format: zodResponseFormat(AnalysisSchema, "financial_analysis"),
+      response_format: zodResponseFormat(AnalysisSchemaEn, "financial_analysis"),
     });
+
+    }
+
 
     // 3️⃣ PARSE THE STRUCTURED RESPONSE
     const financial_analysis = completion.choices[0].message.parsed;

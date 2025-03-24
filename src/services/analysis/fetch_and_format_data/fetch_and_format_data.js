@@ -4,7 +4,7 @@ import fetchCompanyProfile from "./fetch/fetch_profile.js";
 import fetchFinancials from "./fetch/fetch_financials.js";
 import fetchTechnicalIndicators from "./fetch/fetch_technical_indicators.js";
 import formatFinancialData from "./format/format_financials.js";
-import fetch_symbol_info from "../../../utils/fetch_symbol_info.js";
+import fetch_symbol_info from "../../database/fetch_symbol_info.js";
 
 /**
  * Fetches and formats financial data for a given ticker symbol.

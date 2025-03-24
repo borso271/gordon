@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getTextBeforeHyphen } from "../utils/getTextBeforeHyphen";
 
-import getSymbolSnapshot from "../../services/get_components_data/get_symbol_snapshot";
-import fetch_symbol_info from "../../utils/fetch_symbol_info";
-import fetchLatestPrice from "../../services/get_components_data/fetch_latest_price";
+import getSymbolSnapshot from "../../services/database/get_symbol_snapshot";
+import fetch_symbol_info from "../../services/database/fetch_symbol_info";
+import fetchLatestPrice from "../../services/database/fetch_latest_price";
 
 
 interface SymbolSnapshotData {

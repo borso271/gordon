@@ -10,6 +10,7 @@ interface ChartSnapshotProps {
   name: string;
   latestPrice: number | null;
   lastClose: number | null;
+  language: string;
   currency: string;
   asset_type: string;
   icon?: boolean;
@@ -20,6 +21,7 @@ const ChartSnapshot: React.FC<ChartSnapshotProps> = ({
   name,
   latestPrice,
   lastClose,
+  language,
   currency,
   asset_type,
   icon = true,

@@ -52,14 +52,29 @@
   color: var(--black-50, #f8f8f8);
   font-size: 30px;
   font-weight: 500;
-  line-height: 125%;
+  line-height: 1.25; /* was 125% */
   letter-spacing: -0.6px;
   background: transparent;
   border: none;
   outline: none;
-  padding: 0;
   caret-color: white;
+  font-family: var(--font-family-inter);
+  /* New additions for multiline support */
+  overflow-y: auto;
+  max-height: calc(1.25em * 3); /* 3 lines max */
+  min-height: 1.25em; /* 1 line min */
+  height: auto;
+  padding: 0;
+  box-sizing: border-box;
+  resize: none;         /* 🔥 Removes the resize corner */
+  overflow: hidden;
 }
+
+
+
+
+
+
 
 .input:placeholder-shown {
   caret-color: white;
@@ -109,10 +124,6 @@
     line-height: 130%; /* 23.4px */
   }
 
-  .fixed {
-    /* height: auto; */
-    height: 121px;
-  }
 }
 
 .fixedButton {

@@ -9,9 +9,12 @@ import { Provider } from "../../../../interfaces";
 
 interface ProviderCardProps {
   provider: Provider;
+  language: string;
 }
-const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
+const ProviderCard: React.FC<ProviderCardProps> = ({ provider, language }) => {
   const [isHovered, setIsHovered] = useState(false);
+ 
+  const visitSiteText = language === "en" ? "Visit Site" : "زيارة الموقع";
 
   return (
     <div
@@ -57,10 +60,12 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
       <div className={styles.bottom}>
         <Link href={provider.url} passHref legacyBehavior>
           <a target="_blank" rel="noopener noreferrer" className={styles.a}>
+
             <SecondaryButton
-              text={"Visit Site"}
+              text={visitSiteText}
               className={`button100 ${isHovered ? "hoverBackground" : ""}`}
               onClick={() => window.open(provider.url, "_blank", "noopener,noreferrer")}
+
 
             />
           </a>

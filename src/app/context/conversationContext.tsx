@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { ConversationPair } from "../../interfaces";
-
+import { useLanguage } from "../hooks/useLanguage";
 // Define the shape of our context
 interface ConversationContextType {
   conversationPairs: ConversationPair[];
@@ -40,9 +40,9 @@ export const ConversationProvider: React.FC<{ children: ReactNode }> = ({ childr
   const [threadId, setThreadId] = useState<string>("");
   const [userInput, setUserInput] = useState("");
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
-
-
-const LOCAL_STORAGE_KEY = "conversationPairs";
+  const {currentLang} = useLanguage();
+  console.log("currentLang in conversation provider is: ", currentLang)
+  const LOCAL_STORAGE_KEY = "conversationPairs";
   const LOCAL_STORAGE_INDEX_KEY = "currentIndex";
 
 // ✅ Load initial value from localStorage
@@ -58,11 +58,8 @@ useEffect(() => {
   localStorage.setItem(LOCAL_STORAGE_INDEX_KEY, JSON.stringify(currentIndex));
 }, [currentIndex]);
 
-
-
 const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>(() => {
   const storedPairs = localStorage.getItem(LOCAL_STORAGE_KEY);
-  console.log("Loading stored conversationPairs:", storedPairs);
   return storedPairs ? JSON.parse(storedPairs) : [];
 });
 
@@ -87,6 +84,7 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
       id: uuidv4(),
       user: message,
       assistant: "",
+      language: currentLang
     };
 
     setConversationPairs((prev) => {

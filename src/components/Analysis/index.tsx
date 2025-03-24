@@ -1,5 +1,5 @@
 "use client"
-import React, {useMemo} from 'react';
+import React, {useMemo, useEffect} from 'react';
 import styles from './Analysis.module.css'
 import RatingsAndNews from '../RatingsAndNews';
 import GoDeeper from '../GoDeeper';
@@ -12,23 +12,62 @@ import shareContent from '../Chat/utils/shareContent';
 import SymbolChart from '../DataDriven/SymbolChart';
 import AnalysisPartLoader from '../Loaders/AnalysisPartLoader';
 import GoDeeperLoader from '../Loaders/GoDeeperLoader';
+import { useTranslation } from 'react-i18next';
+import { useGetAnalysisData } from '../../app/hooks/useGetAnalysisData';
+
+/*
+fetch all data at top component, including
+names, and other stuff that you need to use
+save all in the pair, so that is can also be copied,
+etc.
+TOMORROW: ADD SEARCH USING BING API? Search content, and return it,
+search website, 
+
+*/
 
 interface AnalysisProps {
   data: any; // You should type this more specifically if possible
+  language: string;
   handleManualFunctionCall: (...args: any[]) => void;
   newSearch: (prompt: string) => Promise<void>
-
 }
 
-const Analysis: React.FC<AnalysisProps> = ({ data, handleManualFunctionCall, newSearch }) => {
+const Analysis: React.FC<AnalysisProps> = ({ data, language, handleManualFunctionCall, newSearch }) => {
   const dataForAnalysis = data.data.response;
-
+ 
+const { t } = useTranslation();
   const {
     symbol,
     asset_type,
     analysis: rawAnalysis,
     symbol_id,
   } = dataForAnalysis;
+
+  const analysisData = useGetAnalysisData(rawAnalysis, symbol, symbol_id);
+
+// Log only serializable properties (omit functions)
+useEffect(() => {
+  const { positives, negatives, summary, prompts, news, related_symbols, providers, ratings, loading, error } = analysisData;
+
+  console.log("🧪 getAnalysisData:", JSON.stringify({
+    positives,
+    negatives,
+    summary,
+    prompts,
+    news,
+    related_symbols,
+    providers,
+    ratings: {
+      totalRatings: ratings?.totalRatings,
+      mostVotedRating: ratings?.mostVotedRating,
+      ratings: ratings?.ratings,
+      loading: ratings?.loading,
+      error: ratings?.error
+    },
+    loading,
+    error
+  }, null, 2));
+}, [analysisData]);
 
   const ai_response = useMemo(() => {
     if (typeof rawAnalysis === "string") {
@@ -48,20 +87,26 @@ const Analysis: React.FC<AnalysisProps> = ({ data, handleManualFunctionCall, new
   const prompts = ai_response.suggested_prompts;
   const symbolName = symbol;
 
+
+const positivesHeading = language == "en" ? "Good Things" : "أشياء إيجابية";
+const negativesHeading = language == "en" ? "Bad Things" : "أشياء سلبية";
+const summaryHeading   = language == "en" ? "Key Takeaways" : "الخلاصات الرئيسية";
+
   return (
     <div className={styles.container}>
-<SymbolChart symbol={symbol}/>
+<SymbolChart symbol={symbol} language={language}/>
 
 {/* Good Things Section */}
 {positives ? (
   <AnalysisPart 
-    title="Good Things" 
+    title={positivesHeading} 
     name={symbolName}
     type="list"
     content={positives}
     icon="positives"
     tagColor="#001A0E"
     tagSize={20}
+    language={language}
   />
 ) : (
   <AnalysisPartLoader />
@@ -70,31 +115,33 @@ const Analysis: React.FC<AnalysisProps> = ({ data, handleManualFunctionCall, new
 {/* Bad Things Section */}
 {negatives ? (
   <AnalysisPart 
-    title="Bad Things"
+    title={negativesHeading}
     name={symbolName}
     type="list"
     content={negatives}
     icon="negatives"
     tagColor="#2E0403"
     tagSize={20}
+    language={language}
   />
 ) : (
   <AnalysisPartLoader />
 )}
 
 {/* Ratings & News (Only if Asset is NOT Crypto) */}
-{asset_type !== "crypto" && <RatingsAndNews symbol={symbol} />}
+{asset_type !== "crypto" && <RatingsAndNews symbol={symbol} language={language} />}
 
 {/* Summary Section */}
 {summary ? (
   <AnalysisPart 
-    title="Summary" 
+    title={summaryHeading} 
     name={symbolName}
     type="text"
     content={summary}
     icon="conclusions_icon"
     tagColor="var(--default-icon-background)"
     tagSize={18}    
+    language={language}
   />
 ) : (
   <AnalysisPartLoader />
@@ -102,16 +149,16 @@ const Analysis: React.FC<AnalysisProps> = ({ data, handleManualFunctionCall, new
 
 {/* Go Deeper Section */}
 {prompts ? (
-  <GoDeeper items={prompts} newSearch={newSearch} />
+  <GoDeeper items={prompts} newSearch={newSearch} language={language} />
 ) : (
   <GoDeeperLoader/>
 )}
-         <Providers symbol={symbol}/>
-         <RelatedSymbols symbol_id={symbol_id} handleManualFunctionCall={handleManualFunctionCall}/>
+         <Providers symbol={symbol} language={language}/>
+         <RelatedSymbols symbol_id={symbol_id} language={language} handleManualFunctionCall={handleManualFunctionCall}/>
          <ActionsGroup
         actions={[
-          { iconName: "share", text: "Share", onClick: () => shareContent("hello") },
-          { iconName: "copy", text: "Copy", onClick: () => copyToClipboard("hello") }, // ✅ Pass function properly
+          { iconName: "share", text: t("share"), onClick: () => shareContent("hello") },
+          { iconName: "copy", text: t("copy"), onClick: () => copyToClipboard("hello") }, // ✅ Pass function properly
         ]}
         disabled={false}
       /> 

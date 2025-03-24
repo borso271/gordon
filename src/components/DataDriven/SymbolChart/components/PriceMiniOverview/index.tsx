@@ -12,25 +12,47 @@ interface PriceMiniOverviewProps {
   current_price: number;
   changes: ChangeEntry[];
   period: Period;
+  language: string
 }
 
-const PriceMiniOverview: React.FC<PriceMiniOverviewProps> = ({ current_price, changes, period }) => {
-  const getLongPeriodLabel = (period: Period): string => {
+const getLongPeriodLabel = (period: Period, language: string): string => {
+  if (language === "ar") {
     switch (period) {
       case "1W":
-        return "Last Week";
+        return "الأسبوع الماضي";
       case "1M":
-        return "Last Month";
+        return "الشهر الماضي";
       case "1Y":
-        return "Last Year";
+        return "العام الماضي";
       case "5Y":
-        return "Last Five Years";
+        return "الخمسة أعوام الماضية";
       default:
-        return "Last Day";
+        return "اليوم الماضي";
     }
-  };
+  }
 
-  const longPeriod = getLongPeriodLabel(period);
+  // Default: English
+  switch (period) {
+    case "1W":
+      return "Last Week";
+    case "1M":
+      return "Last Month";
+    case "1Y":
+      return "Last Year";
+    case "5Y":
+      return "Last Five Years";
+    default:
+      return "Last Day";
+  }
+};
+
+const PriceMiniOverview: React.FC<PriceMiniOverviewProps> = ({ current_price, changes, period, language }) => {
+ 
+  
+  const priceChartHeading = language == "en" ? "Price Chart" : "مخطط السعر";
+  const noDataAvailableText = language == "en" ? "No data available for this period." : "لا توجد بيانات لهذه الفترة.";
+  
+  const longPeriod = getLongPeriodLabel(period, language);
   const selectedChange = changes.find((change) => change.period === period);
 
   const percentageChange = selectedChange
@@ -43,7 +65,7 @@ const PriceMiniOverview: React.FC<PriceMiniOverviewProps> = ({ current_price, ch
 
   return (
     <div className={styles.container}>
-      <SecondaryH2>Price Chart</SecondaryH2>
+      <SecondaryH2>{priceChartHeading}</SecondaryH2>
 
       <div className={styles.container}>
         {percentageChange !== null ? (
@@ -55,7 +77,7 @@ const PriceMiniOverview: React.FC<PriceMiniOverviewProps> = ({ current_price, ch
             <span className={styles.period}>{longPeriod}</span>
           </div>
         ) : (
-          <p className={styles.noData}>No data available for this period</p>
+          <p className={styles.noData}>{noDataAvailableText}</p>
         )}
       </div>
     </div>

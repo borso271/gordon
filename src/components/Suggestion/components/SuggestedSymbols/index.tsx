@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./SuggestedSymbols.module.css";
 import SymbolSnapshot from "../../../DataDriven/Snapshot";
-
+import { useLanguage } from "../../../../app/hooks/useLanguage";
 interface SuggestedSymbolItem {
   symbol: string;
   asset_type: string;
@@ -16,6 +16,9 @@ interface SuggestedSymbolsProps {
 }
 
 const SuggestedSymbols: React.FC<SuggestedSymbolsProps> = ({ data, handleManualFunctionCall }) => {
+  const {currentLang} = useLanguage()
+
+  console.log("CURRENT LANGUE IS: ", currentLang)
   return (
     <div className={styles.cardsContainer}>
       {data.suggestions.map((item, index) => (
@@ -23,7 +26,7 @@ const SuggestedSymbols: React.FC<SuggestedSymbolsProps> = ({ data, handleManualF
           key={index}
           onClick={() =>
             handleManualFunctionCall("analyze_security", {
-              language: "en",
+              language: currentLang,
               symbol: item.symbol,
               asset_type: item.asset_type,
             })

@@ -207,6 +207,7 @@ html[dir="rtl"] body {
   font-family: "Tajawal", sans-serif; /* Arabic-friendly font */
 }
 
+
 /* Buttons, images, containers stay LTR */
 button, img {
   direction: ltr !important; 
@@ -224,6 +225,22 @@ html[dir="rtl"] .toBeSwitched {
   text-align: right;
   font-family: "Tajawal", sans-serif; /* Arabic-friendly font */
 }
+
+
+
+/* Buttons, images, containers stay LTR */
+.leftToRight {
+  direction: ltr !important; 
+  text-align: left !important;
+}
+
+.rightToLeft {
+  direction: rtl !important; 
+  text-align: right !important;
+}
+
+
+
 
 
 /* Medium (Tablets) */
@@ -261,27 +278,77 @@ ul {
   display: flex;
       flex-direction: column;
       gap: 24px;
-
 }
 
 
 li {
-  display:flex;
+  display:block;
   position: relative;
   padding-left:20px;
+  margin-top:-20px;
 } 
-
-
-li::before {
-  content: "•";
-    left: 0;
-    font-size: 1.2em;
-    line-height: 1;
-    position: absolute;
-}
 
 
 strong {
   color: var(--black-50, #f8f8f8);
   
+}
+
+li::before {
+  content: "•";
+    left: 0;
+    top:20px;
+    font-size: 1.2em;
+    line-height: 1;
+    position: absolute;
+} 
+
+
+/* Ignore nested lists */
+li ul,
+li ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+
+}
+
+
+/* Optional: reset styles on nested li if needed */
+li ul li,
+li ol li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display:block;
+}
+
+
+
+/* General bullet style for top-level list items */
+ul > li::before,
+ol > li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+/* Suppress bullets on nested li elements */
+li ul li::before,
+li ol li::before {
+  content: none;
+}
+
+
+li * {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  column-count: initial !important;
+  column-width: initial !important;
+  column-gap: initial !important;
+  white-space: normal;
 }

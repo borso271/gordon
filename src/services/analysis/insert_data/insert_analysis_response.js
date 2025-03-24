@@ -2,7 +2,7 @@
 insert openai response to the database.
 */
 
-async function insertStockAnalysis(id, ticker, analysis, agent_name, supabase_client) {
+async function insertStockAnalysis(id, ticker, analysis, agent_name, language,supabase_client) {
 
     try {
         // Ensure analysis is stored as JSONB (stringify if necessary)
@@ -16,7 +16,8 @@ async function insertStockAnalysis(id, ticker, analysis, agent_name, supabase_cl
                     symbol_id: id,
                     symbol: ticker,
                     analysis: analysisJson,
-                    agent_name: agent_name
+                    agent_name: agent_name,
+                    language: language,
                 }
             ]);
 

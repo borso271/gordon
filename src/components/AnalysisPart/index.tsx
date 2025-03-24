@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./AnalysisPart.module.css";
 import SectionHeader from "../Headings/SectionHeader";
+import { useTranslation } from 'react-i18next';
+
 
 interface SummaryItem {
   label: string;
@@ -15,6 +17,7 @@ interface AnalysisPartProps {
   icon: string | null;
   tagColor?: string;
   tagSize?: number;
+  language: string;
 }
 
 const AnalysisPart: React.FC<AnalysisPartProps> = ({
@@ -25,10 +28,13 @@ const AnalysisPart: React.FC<AnalysisPartProps> = ({
   icon,
   tagColor,
   tagSize,
+  language
 }) => {
   const [expanded, setExpanded] = useState(false);
   const toggleExpanded = () => setExpanded(!expanded);
-
+  const { t } = useTranslation();
+  const readMore =t("read_more")
+  const readLess =t("read_less")
   return (
     <div className={styles.responsePart}>
       <div className={styles.container}>
@@ -37,9 +43,18 @@ const AnalysisPart: React.FC<AnalysisPartProps> = ({
         {type === "text" ? (
           <div className={styles.analysisSummaryContainer}>
             <div className={styles.summaryList}>
-              <p className={styles.introText}>
+            <p className={styles.introText}>
+            {language === "en" ? (
+              <>
                 Here are the main takeaways about <strong>{name}</strong> to keep in mind:
-              </p>
+              </>
+            ) : (
+              <>
+                إليك أهم النقاط حول <strong>{name}</strong> التي يجب وضعها في الاعتبار:
+              </>
+            )}
+          </p>
+
 
               {Array.isArray(content) && content.length > 0 ? (
                 (expanded ? content : content.slice(0, 3)).map((item, index) => (
@@ -53,12 +68,17 @@ const AnalysisPart: React.FC<AnalysisPartProps> = ({
                   </div>
                 ))
               ) : (
-                <p>No analysis data available.</p>
+                <p>
+                {language === "en"
+                  ? "Oops, something went wrong."
+                  : "عذرًا، حدث خطأ ما."}
+              </p>
+              
               )}
 
               {Array.isArray(content) && content.length > 3 && (
                 <button className={styles.readMore} onClick={toggleExpanded}>
-                  {expanded ? "Read less" : "Read more"}
+                  {expanded ? readLess : readMore}
                 </button>
               )}
             </div>
@@ -77,12 +97,18 @@ const AnalysisPart: React.FC<AnalysisPartProps> = ({
                 </p>
               ))
             ) : (
-              <p>No content available.</p>
+              <p>
+              {language === "en"
+                ? "Oops, something went wrong."
+                : "عذرًا، حدث خطأ ما."}
+            </p>
+            
             )}
 
             {Array.isArray(content) && content.length > 3 && (
               <button className={styles.readMore} onClick={toggleExpanded}>
-                {expanded ? "Read less" : "Read more"}
+                     {expanded ? readLess : readMore}
+
               </button>
             )}
           </div>

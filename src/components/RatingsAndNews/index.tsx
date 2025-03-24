@@ -5,13 +5,14 @@ import TickerNews from "../DataDriven/News";
 
 interface RatingsAndNewsProps {
   symbol: string;
+  language: string;
 }
 
-const RatingsAndNews: React.FC<RatingsAndNewsProps> = ({ symbol }) => {
+const RatingsAndNews: React.FC<RatingsAndNewsProps> = ({ symbol, language }) => {
   return (
     <div className={styles.container}>
-      <AnalystRatings ticker_symbol={symbol} />
-      <TickerNews ticker_symbol={symbol} />
+      <AnalystRatings ticker_symbol={symbol} language={language} />
+      <TickerNews ticker_symbol={symbol} language={language} />
     </div>
   );
 };

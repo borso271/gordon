@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import fetch_symbol_info from "../../utils/fetch_symbol_info";
+import fetch_symbol_info from "../../services/database/fetch_symbol_info";
 import supabase_client from "../../lib/supabaseClient";
 
 interface AnalystRating {
@@ -17,24 +17,26 @@ export function useAnalystRatings(ticker_symbol: string) {
 
   useEffect(() => {
     if (!ticker_symbol) return;
-
+  
     const fetchRatings = async () => {
       try {
         setLoading(true);
         setError(null);
-
-        const { id: symbol_id } = await fetch_symbol_info(ticker_symbol) || {};
-
-        if (!symbol_id) throw new Error(`Symbol ID not found for ${ticker_symbol}`);
-
-        const { data, error } = await supabase_client
-          .from("analyst_ratings")
-          .select("*")
-          .eq("symbol_id", symbol_id)
-          .single();
-
-        if (error) throw new Error(`Error fetching ratings: ${error.message}`);
-
+  
+        const res = await fetch("/api/database/analyst_ratings", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ symbol: ticker_symbol }),
+        });
+  
+        if (!res.ok) {
+          const { error } = await res.json();
+          throw new Error(error || "Failed to fetch");
+        }
+  
+        const data = await res.json();
         setRatings(data);
       } catch (err: any) {
         setError(err.message);
@@ -42,9 +44,40 @@ export function useAnalystRatings(ticker_symbol: string) {
         setLoading(false);
       }
     };
-
+  
     fetchRatings();
   }, [ticker_symbol]);
+  
+//   useEffect(() => {
+//     if (!ticker_symbol) return;
+
+//     const fetchRatings = async () => {
+//       try {
+//         setLoading(true);
+//         setError(null);
+
+//         const { id: symbol_id } = await fetch_symbol_info(ticker_symbol) || {};
+
+//         if (!symbol_id) throw new Error(`Symbol ID not found for ${ticker_symbol}`);
+
+//         const { data, error } = await supabase_client
+//           .from("analyst_ratings")
+//           .select("*")
+//           .eq("symbol_id", symbol_id)
+//           .single();
+
+//         if (error) throw new Error(`Error fetching ratings: ${error.message}`);
+
+//         setRatings(data);
+//       } catch (err: any) {
+//         setError(err.message);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchRatings();
+//   }, [ticker_symbol]);
 
   const totalRatings = useMemo(() => {
     if (!ratings) return 0;

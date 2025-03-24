@@ -16,6 +16,7 @@ interface ConversationPair {
   code?: string | null;
   analysisData?:any;
   suggestionData?: any;
+  language: string;
 }
 
 interface ConversationPairViewProps {
@@ -34,10 +35,17 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
   handleManualFunctionCall,
   newSearch,
 }) => {
+
+
   const nothingYet =
     !pair.assistant && !pair.code && !pair.analysisData && !pair.suggestionData;
 
   const [responseHeading, responseContent] = extractTwoValues(pair.assistant || "");
+  
+  const languageClass =
+  pair.language === "ar"
+    ? "rightToLeft"
+    : "leftToRight";
 
   return (
     <motion.div
@@ -48,7 +56,7 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
       transition={{ duration: 1, ease: "easeInOut" }}
       className={styles.pairWrapper}
     >
-      <div ref={responseRef} className={styles.pair}>
+      <div ref={responseRef} className={`${styles.pair} ${languageClass}`}>
         <UserMessage text={pair.user} />
 
         <div className={styles.assistantResponse}>
@@ -65,6 +73,7 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
               {pair.analysisData && (
                 <Analysis
                   data={pair.analysisData}
+                  language={pair.language}
                   handleManualFunctionCall={handleManualFunctionCall}
                   newSearch={newSearch}
                 />
@@ -73,6 +82,7 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
               {pair.suggestionData && (
                 <Suggestion
                   data={pair.suggestionData}
+                  language={pair.language}
                   handleManualFunctionCall={handleManualFunctionCall}
                 />
               )}

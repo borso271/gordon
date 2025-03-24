@@ -5,6 +5,8 @@ import ActionsGroup from "../../../ActionsGroup";
 import copyToClipboard from "../../utils/copyToClipboard";
 import shareContent from "../../utils/shareContent";
 import BotHeading from "../../../Headings/BotHeading";
+import { useTranslation } from 'react-i18next';
+
 
 interface AssistantMessageProps {
   heading: string;
@@ -13,6 +15,7 @@ interface AssistantMessageProps {
 
 const AssistantMessage: React.FC<AssistantMessageProps> = ({ heading, text }) => {
   const formattedText = text.replace(/\\n/g, "\n");
+  const { t } = useTranslation();
 
   return (
     <div className={styles.fullResponse}>
@@ -26,8 +29,8 @@ const AssistantMessage: React.FC<AssistantMessageProps> = ({ heading, text }) =>
 
       <ActionsGroup
         actions={[
-          { iconName: "share", text: "Share", onClick: () => shareContent(text) },
-          { iconName: "copy", text: "Copy", onClick: () => copyToClipboard(text) },
+          { iconName: "share", text: t("share"), onClick: () => shareContent(text) },
+          { iconName: "copy", text: t("copy"), onClick: () => copyToClipboard(text) },
         ]}
       />
     </div>

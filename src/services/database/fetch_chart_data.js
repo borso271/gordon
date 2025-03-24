@@ -4,11 +4,7 @@ import fetchAllHistoricalData from "./fetch_historical_data";
 import formatIntradayData from "../utils/format_intraday_data";
 import formatHistoricalData from "../utils/format_historical_data";
 
-//     getChartData(symbol, symbol_id, exchange_mic, asset_type,lastUpdateTimeRef, setSeriesesData);
-// getChartData(symbol, symbol_id, exchange_mic, asset_type, isMarketOpen, lastUpdateTimeRef, setSeriesesData);
-
-
-export async function getChartData(symbol, symbol_id, exchange_mic, asset_type,isMarketOpen, lastUpdateTimeRef, setSeriesesData) {
+export async function getChartData(symbol, symbol_id, exchange_mic, asset_type, isMarketOpen, lastUpdateTimeRef, setSeriesesData) {
   try {
   
     const [intradayResponse, historicalResponse] = await Promise.all([

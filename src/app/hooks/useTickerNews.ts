@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getNewsForSymbol } from "../../services/get_components_data/fetch_news";
+import { getNewsForSymbol } from "../../services/database/fetch_news";
 
 export function useTickerNews(ticker_symbol: string) {
   const [news, setNews] = useState([]);

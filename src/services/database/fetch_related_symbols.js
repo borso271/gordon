@@ -1,4 +1,4 @@
-
+import supabase_client from "../../lib/supabaseClient";
 export async function fetchRelatedSymbols(symbolId) {
     if (!symbolId) {
       return [];

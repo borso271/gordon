@@ -7,10 +7,15 @@ import ExpandableDropdown from "../../Dropdowns/ExpandableDropdown"; // Import t
 import Link from "next/link";
 import MobileNavigation from "../../MobileNavigation";
 import { useNavbarLogic } from "../../../app/hooks/useNavbarLogic";
+import { useTranslation } from 'react-i18next';
 
 const Navbar: React.FC = () => {
+  const { t } = useTranslation();
+  const english_label_text = t("english")
+  const arabic_label_text = t("arabic")
+
+  
   const {
- 
     openDropdown,
     currentLang,
     selectedIndex,
@@ -23,7 +28,10 @@ const Navbar: React.FC = () => {
   } = useNavbarLogic();
 
 
-
+  const handleLanguageChange = (lang: string) => {
+    changeLanguage(lang);
+    handleToggleDropdown(null);
+  };
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (!(event.target as HTMLElement).closest(`.${styles.navbar}`)) {
@@ -43,7 +51,6 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
       
-
       <div className={styles.right}>
         {conversationPairs.length > 1 && (
           <div className={styles.historyButton}>
@@ -65,15 +72,28 @@ const Navbar: React.FC = () => {
             leftIcon={currentLang === "ar" ? "arabic" : "usa"}
             rightIcon={openDropdown === "language" ? "chevron_up" : "chevron_down"}
             className={openDropdown === "language" ? "activeButton" : undefined} 
-
             onClick={() => handleToggleDropdown("language")}
           />
           {openDropdown === "language" && (
             <DropdownMenu
-              items={[
-                { icon: "usa", label: "English", onClick: () => changeLanguage("en") },
-                { icon: "arabic", label: "Arabic", onClick: () => changeLanguage("ar") },
-              ]}
+            items={[
+              {
+                icon: "usa",
+                label: english_label_text,
+                onClick: () => handleLanguageChange("en"),
+              },
+              {
+                icon: "arabic",
+                label: arabic_label_text,
+                onClick: () => handleLanguageChange("ar"),
+              },
+            ]}
+            
+              // items={[
+              //   { icon: "usa", label: english_label_text, onClick: () => changeLanguage("en") },
+              //   { icon: "arabic", label: arabic_label_text, onClick: () => changeLanguage("ar") },
+              // ]}
+
               selectedIndex={selectedIndex}
               setSelectedIndex={setSelectedIndex}
               isOpen={openDropdown === "language"}

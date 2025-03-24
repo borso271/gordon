@@ -4,7 +4,7 @@ export async function functionCallHandler(toolCall) {
     // Parse the arguments for any function call
     const { name, arguments: functionArgs } = toolCall.function;
     const args = JSON.parse(functionArgs);
-    args.language = "en";
+    // args.language = "en";
   
     // Decide which endpoint to call based on the function name
     if (name === "analyze_security") {

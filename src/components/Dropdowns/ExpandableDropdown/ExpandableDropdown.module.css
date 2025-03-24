@@ -21,6 +21,7 @@ gap: 12px;
 max-height: 42px;
 border: 1px solid var(--black-700, #232323);
 background: var(--black-800, #1A1A1A);
+cursor: pointer;
   }
   
   .dropdownItem:hover {

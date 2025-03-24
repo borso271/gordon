@@ -8,16 +8,18 @@ import GoDeeperLoader from "../Loaders/GoDeeperLoader";
 interface GoDeeperProps {
   items: string[];
   newSearch: (prompt: string) => void;
+  language: string;
 }
 
-const GoDeeper: React.FC<GoDeeperProps> = ({ items, newSearch }) => {
+const GoDeeper: React.FC<GoDeeperProps> = ({ items, newSearch, language}) => {
   if (!items || items.length === 0) {
     return <GoDeeperLoader />;
   }
+  const goDeeperTitle = language === "ar" ? "استكشاف أعمق" : "Go Deeper";
 
   return (
     <div className={styles.container}>
-      <SectionHeader icon="go_deeper_icon" title="Go Deeper" size={18} />
+      <SectionHeader icon="go_deeper_icon" title={goDeeperTitle} size={18} />
 
       <div className={styles.itemsContainer}>
         {items.map((item, index) => (

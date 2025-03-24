@@ -21,24 +21,72 @@
   width: 100%;
 }
 
+
+
+
 .chatInput {
   position: fixed;
   bottom: 0;
   width: calc(100% - 40px);
   max-width: 796px;
   z-index: 10;
-  height: 131px;
+  /* height: 131px; */
   overscroll-behavior: auto;
+
+  height: auto;
+  padding-bottom: 20px;
+
+}
+.chatSpacer {
+  height: 131px; /* default / fallback */
+  transition: height 0.2s ease; /* optional */
+  position:relative;
 }
 
-.chatSpacer {
-  height: 131px;
+
+/* 
+.chatSpacer::before {
+  content: "";
+  position: fixed;
+   bottom: 130px; 
+  left: 0;
+  width: 100%;
+  height: 80px; 
+  pointer-events: none; 
+
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 15, 15, 0) 0%,
+    rgba(15, 15, 15, 0.5) 50%,
+    var(--background) 100%
+  );
+} */
+
+.chatSpacer::before {
+  content: "";
+  position: absolute;
+  z-index: 11; /* ✅ Make sure this is higher than .chatSpacer (or others) */
+  
+  top: -79px; /* 👈 appears *above* the spacer */
+
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 15, 15, 0) 0%,
+    rgba(15, 15, 15, 0.5) 50%,
+    var(--background) 100%
+  );
 }
+
 
 .conversationPair::after {
   content: "";
   position: fixed;
-  bottom: 130px;
+  /* bottom: 130px; */
   left: 0;
   width: 100%;
   height: 80px; /* Adjust the fading area */
@@ -54,13 +102,12 @@
 
 /* Small (Mobile) */
 @media (max-width: 480px) {
-  .chatInput,
+  /* .chatInput,
   .chatSpacer {
-    height: 101px;
-  }
-  .conversationPair::after {
-    bottom: 100px;
-  }
+    
+     height: 101px; 
+  } */
+ 
 }
 
 .scrollDownButton {

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./ChartTooltip.module.css";
 import { useScreenSize } from "../../../../../app/context/screenSizeContext";
 
@@ -10,8 +10,8 @@ type ChartTooltipProps = {
 };
 
 const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProps) => {
+  
   const { isMobile } = useScreenSize(); // ✅ Hook moved to the top
-
   if (!hoveredPoint || !containerRef.current) return null; // ✅ Safe to have early return now
 
   const tooltipSize = {
@@ -51,8 +51,6 @@ const ChartTooltip = ({ hoveredPoint, mousePos, containerRef }: ChartTooltipProp
       className={styles.tooltip}
       style={{
         position: "absolute",
-        // width: tooltipSize.width,
-        // height: tooltipSize.height,
         left,
         top,
       }}

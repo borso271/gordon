@@ -11,21 +11,16 @@
     border-color: var(--additional-white-3);
 }
 
-/* 🔴 Disabled state */
 .sendButton:disabled {
     background: var(--black-800, #1A1A1A);
     cursor: not-allowed; /* Prevent clicks */
-   
 }
 
 .isDesktop {
     width: 46px;
     height: 46px;
-
 }
 
-
-/* Small (Mobile) */
 @media (max-width: 400px) {
     .sendButton {
         width: 38px;

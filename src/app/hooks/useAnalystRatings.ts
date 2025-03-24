@@ -87,8 +87,8 @@ export function useAnalystRatings(ticker_symbol: string) {
     };
   }, [ratings]);
 
-  const getPercentage = (count: number): string => {
-    return totalRatings ? ((count / totalRatings) * 100).toFixed(1) : "0";
+  const getPercentage = (count: number): number => {
+    return  totalRatings ? Math.round((count / totalRatings) * 100) : 0;
   };
 
   return {

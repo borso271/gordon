@@ -1,75 +1,50 @@
 .primaryButton {
-    display: inline-flex;
+display: inline-flex;
 height: 60px;
 padding: 0px 40px;
 justify-content: center;
 align-items: center;
 gap: 6px;
 flex-shrink: 0;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    border-radius: 100px;
+border: none;
+cursor: pointer;
+transition: background-color 0.3s ease, transform 0.2s ease;
+border-radius: 100px;
 background: var(--black-50, #F8F8F8);
   }
   
   .text {
-    color: var(--black-950, #020202);
-    text-align: center;
-    /* Text M/Medium */
-   
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%; /* 22.4px */
+  color: var(--black-950, #020202);
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%; /* 22.4px */
   }
   
-
-
-
   .primaryButton:hover {
-    
-  
 background: var(--lime-300, #C5FF4A);
   }
 
-
   .primaryButton:active {
-    
     background: var(--lime-500, #91DD05);
   }
   
-
-
   .icon {
     display: flex;
     align-items: center;
   }
   
-
-
 /* Medium (Tablets) */
+
+
 @media (max-width: 768px) {
     .primaryButton {
-        display: inline-flex;
 height: 50px;
-padding: 0px 40px;
-justify-content: center;
-align-items: center;
-gap: 6px;
-flex-shrink: 0;
     }
 
     .text {
-        color: var(--black-950, #020202);
-text-align: center;
-
-/* Text S/Medium */
-
 font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 140%; /* 19.6px */
     }
   
 }
@@ -77,25 +52,11 @@ line-height: 140%; /* 19.6px */
 /* Small (Mobile) */
 @media (max-width: 480px) {
     .primaryButton {
-        display: inline-flex;
 height: 44px;
-padding: 0px 40px;
-justify-content: center;
-align-items: center;
-gap: 6px;
-flex-shrink: 0;
     }
 
     .text {
-        color: var(--black-950, #020202);
-text-align: center;
-
-/* Text XS/Medium */
-
 font-size: 12px;
-font-style: normal;
-font-weight: 500;
-line-height: 140%; /* 16.8px */
     }
 
   

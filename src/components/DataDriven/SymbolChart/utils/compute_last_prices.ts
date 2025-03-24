@@ -1,4 +1,4 @@
-import { Period, PricePoint, LastPriceResult, PriceDataMap } from "../../../../app/interfaces";
+import { Period, PricePoint, LastPriceResult, PriceDataMap } from "../../../../interfaces";
 
 const computeLastPrices = (data: PriceDataMap): LastPriceResult[] => {
   return Array.from(data.entries())

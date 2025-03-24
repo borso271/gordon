@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ConversationPair } from "../interfaces";
+import { ConversationPair } from "../../interfaces";
 
 // Define the shape of our context
 interface ConversationContextType {

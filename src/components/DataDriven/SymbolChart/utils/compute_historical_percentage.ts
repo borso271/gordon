@@ -1,4 +1,4 @@
-import { Period, PricePoint } from "../../../../app/interfaces";
+import { Period, PricePoint } from "../../../../interfaces";
 // interface IntradayDataPoint {
 //   timestamp: number; // assuming UNIX timestamp in milliseconds
 // }

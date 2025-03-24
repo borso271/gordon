@@ -1,5 +1,5 @@
 
-import { PricePoint, IntradayMap, LastUpdateRef } from "../../../../app/interfaces";
+import { PricePoint, IntradayMap, LastUpdateRef } from "../../../../interfaces";
 
 type Period = "1D"; // extend this if other periods are used
 

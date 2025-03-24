@@ -1,12 +1,11 @@
 .actionButton {
-    display: inline-flex;
-    padding: 8px 18px;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-
-   background: var(--black-900);
-   border-radius: 100px;
+display: inline-flex;
+padding: 8px 18px;
+justify-content: center;
+align-items: center;
+gap: 4px;
+background: var(--black-900);
+border-radius: 100px;
 border: 1px solid var(--additional-white-8)
   }
   
@@ -14,7 +13,6 @@ border: 1px solid var(--additional-white-8)
     border-radius: 100px;
 border: 1px solid var(--additional-white-3, rgba(255, 255, 255, 0.03));
 background: var(--black-800, #1A1A1A);
-
   }
   
   .icon {
@@ -23,10 +21,8 @@ background: var(--black-800, #1A1A1A);
   }
   
   .text {
-    color: var(--black-200, #B4B4B4);
+color: var(--black-200, #B4B4B4);
 text-align: center;
-/* Text S/Regular */
-
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

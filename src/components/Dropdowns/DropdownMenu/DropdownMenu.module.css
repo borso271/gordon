@@ -2,12 +2,10 @@
   .dropdownMenu {
     position: absolute;
     top: 120%; /* Positions the menu below the button */
-   
     z-index: 100; /* Makes sure it appears above other elements */
     background: var(--black-800);
     border: 1px solid var(--black-700);
     border-radius: 12px;
-
     opacity: 0;
     transform: translateY(-10px); /* Smooth opening animation */
     pointer-events: none; /* Ensures it's not clickable when hidden */
@@ -22,10 +20,9 @@
   }
   
   .menuItem {
-    display: flex;
+display: flex;
 height: 42px;
 padding: 10px 20px;
-/* justify-content: space-between; */
 align-items: center;
 align-self: stretch;
 gap:6px;
@@ -39,16 +36,10 @@ gap:6px;
   .menuItem.active {
     background: var(--black-600, #323232); /* Light hover effect */
   }
-  
-  .icon {
-    margin-right: 8px; /* Space between icon and text */
-  }
+
   
   .label {
     color: var(--black-50, #F8F8F8);
-
-    /* Text S/Regular */
-
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

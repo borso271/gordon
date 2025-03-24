@@ -3,7 +3,7 @@ this takes an offset width,
 a start time, and end time (in unix ms), and assign an x coordinate to the point based on this.
 */
 
-import { DataPoint,DataPointWithX } from "../../../../../app/interfaces";
+import { DataPoint,DataPointWithX } from "../../../../../interfaces";
 
 export function assignXCoordinateByTime(
   dataPoint: DataPoint,

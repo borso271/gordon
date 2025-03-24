@@ -1,14 +1,18 @@
-/* Do the similar stock component taking from the database,
-but first do the actual snapshot.
-
-Then do the response parts */
 import React from "react";
 import styles from "./SuggestedSymbols.module.css";
 import SymbolSnapshot from "../../../DataDriven/Snapshot";
 
+interface SuggestedSymbolItem {
+  symbol: string;
+  asset_type: string;
+  exchange_mic: string;
+}
+
 interface SuggestedSymbolsProps {
-  data: { suggestions: { symbol: string; asset_type: string; exchange_mic: string }[] };
-  handleManualFunctionCall: (functionName: string, args: any) => void;
+  data: {
+    suggestions: SuggestedSymbolItem[];
+  };
+  handleManualFunctionCall: (functionName: string, args: Record<string, any>) => void;
 }
 
 const SuggestedSymbols: React.FC<SuggestedSymbolsProps> = ({ data, handleManualFunctionCall }) => {

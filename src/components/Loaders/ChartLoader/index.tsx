@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./ChartLoader.module.css"; // ✅ Import module styles
-import PrimaryDivider from "../../Layout/PrimaryDivider";
 const ChartLoader: React.FC = () => {
   return (
     <div className={styles.chartGroup}>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect, FormEvent } from "react";
+import React, { useRef, useState, FormEvent } from "react";
 import styles from "./ChatInput.module.css";
 import SecondaryButton from "../../../Buttons/SecondaryButton";
 import BotHeading from '../../../Headings/BotHeading'

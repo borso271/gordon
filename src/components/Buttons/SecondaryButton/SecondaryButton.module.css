@@ -6,11 +6,8 @@
     justify-content: center;
     align-items: center;
     gap: 4px;
-  
     color: var(--black-200, #B4B4B4);
 text-align: center;
-
-/* Text S/Medium */
 font-family: var(--font-family-inter);
 font-size: 14px;
 font-style: normal;
@@ -25,7 +22,6 @@ background: var(--black-800, #1A1A1A);
   
   .secondaryButton:hover {
     border-radius: 100px;
-
 background:  var(--black-700, #232323);
   }
   
@@ -50,22 +46,11 @@ background:  var(--black-700, #232323);
 
 /* Medium (Tablets) */
 @media (max-width: 768px) {
+
+
     .secondaryButton {
-    
 height: 44px;
-
-justify-content: center;
-align-items: center;
-gap: 4px;
 flex-shrink: 0;
-
-text-align: center;
-
-/* Text S/Medium */
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 140%; /* 19.6px */
 
     }
 }
@@ -77,46 +62,22 @@ line-height: 140%; /* 19.6px */
 height: 40px;
 padding: 8px 16px;
 padding-left:14px;
-justify-content: center;
-align-items: center;
-gap: 4px;
+
 flex-shrink: 0;
-
-
-text-align: center;
-
 font-size: 12px;
-font-style: normal;
-font-weight: 500;
-line-height: 140%; /* 16.8px */
     }
-
-  
 }
-
-
-
-
 
 
 /* Small (Mobile) */
 @media (max-width: 400px) {
   .secondaryButton {
- 
 height: 38px;
 padding: 8px 15px;
 padding-left:13px;
-justify-content: center;
-align-items: center;
 gap: 3px;
 flex-shrink: 0;
-
-text-align: center;
-
 font-size: 10px;
-font-style: normal;
-font-weight: 500;
-line-height: 140%; /* 16.8px */
   }
 
 

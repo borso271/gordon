@@ -2,7 +2,6 @@ import React from "react";
 
 import { useMediaQuery } from "react-responsive";
 
-
 const icons = {
 
   temp_logo: (
@@ -237,10 +236,7 @@ send: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http:/
   </g>
 </svg>
 
-
   ),
-
-
 
   check:(
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -367,8 +363,6 @@ related_icon: (<svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns
                       )
 };
 
-
-// import your icons map here, e.g., import icons from './iconsMap';
 
 interface IconProps {
   name: string;

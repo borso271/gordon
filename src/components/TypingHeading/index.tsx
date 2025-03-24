@@ -43,14 +43,12 @@ const TypingHeading: React.FC<TypingHeadingProps> = ({
 
     return () => {
       clearTimeout(typingTimeout);
-      // clearInterval(caretInterval);
     };
   }, [text, speed]);
 
   return (
     <span>
       {typedText}
-      {/* {showCaret && <span className="caret">|</span>} */}
     </span>
   );
 };

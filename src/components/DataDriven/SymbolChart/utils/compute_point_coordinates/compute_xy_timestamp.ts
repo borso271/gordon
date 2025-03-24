@@ -1,4 +1,4 @@
-import { DataPoint, DataPointWithXY } from "../../../../../app/interfaces";
+import { DataPoint, DataPointWithXY } from "../../../../../interfaces";
 
 export function assign_list_XYCoordinateTimestamp(
     dataPoints: DataPoint[],

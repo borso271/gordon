@@ -1,6 +1,5 @@
 .dropdownButton {
-    
-    display: inline-flex;
+display: inline-flex;
 gap:4px;
 height: 40px;
 padding: 10px;
@@ -14,8 +13,6 @@ background:transparent;
   .text {
     color: var(--black-50, #F8F8F8);
     text-align: center;
-    
-    /* Text S/Regular */
     font-family: var(--font-family-inter);
     font-size: var(--font-size-xxs);
     font-style: normal;
@@ -23,12 +20,9 @@ background:transparent;
     line-height: var(--line-height-140); /* 19.6px */
   }
 
-
-
   .dropdownButton:hover {
     font-style: normal;
   }
-  
   
   .icon {
     display: flex;

@@ -1,7 +1,5 @@
 "use client";
 import '../styles/globals.css'; // Import global styles
-// import TopNavBar from '../components/TopNavbar';
-
 import I18nProvider from '../components/I18nProvider';
 import { ScreenSizeProvider } from './context/screenSizeContext';
 import { ConversationProvider } from './context/conversationContext';
@@ -20,9 +18,8 @@ function RootLayout({ children }: RootLayoutProps) {
             <ScreenSizeProvider>
             <ConversationProvider>
             <FunctionExecutionProvider>
-              <NavBar />
+              <NavBar/>
               <main>{children}</main> {/* Page-specific content */}
-             
               </FunctionExecutionProvider>
               </ConversationProvider>
             </ScreenSizeProvider>

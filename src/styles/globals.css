@@ -266,7 +266,7 @@ ul {
 
 
 li {
-  display:block;
+  display:flex;
   position: relative;
   padding-left:20px;
 } 

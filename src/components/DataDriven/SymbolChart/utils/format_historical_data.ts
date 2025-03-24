@@ -1,4 +1,4 @@
-import { PricePoint } from "../../../../app/interfaces";
+import { PricePoint } from "../../../../interfaces";
 interface RawHistoricalDataPoint {
   timestamp: number; // assumed to be in UNIX seconds or ms
   close: number;

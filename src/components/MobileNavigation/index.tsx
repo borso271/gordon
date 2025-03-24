@@ -4,7 +4,6 @@ import NavigationItem from "../NavigationSidebar/components/NavigationItem";
 import { useConversation } from "../../app/context/conversationContext"; // ✅ Import context
 
 const VISIBLE_ITEMS = 8; // ✅ Always show 8 items
-
 const MobileNavigation: React.FC = () => {
   const { conversationPairs, currentIndex, setCurrentIndex } = useConversation();
   // ✅ Only show the last 8 items
@@ -15,11 +14,7 @@ const MobileNavigation: React.FC = () => {
 
   return (
     <>
-   
-    <div
-      className={styles.navigationContainer}
-     
-    >
+    <div className={styles.navigationContainer}>
         <div className={styles.header}>
             History
         </div>

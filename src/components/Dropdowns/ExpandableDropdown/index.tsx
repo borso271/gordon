@@ -3,8 +3,16 @@ import styles from "./ExpandableDropdown.module.css";
 import Icon from "../../Icons/Icon";
 import Markdown from "react-markdown";
 
+interface DropdownItem {
+  label: string;
+  content: string;
+}
 
-const ExpandableDropdown = ({ items }) => {
+interface ExpandableDropdownProps {
+  items: DropdownItem[];
+}
+
+const ExpandableDropdown: React.FC<ExpandableDropdownProps> = ({ items }) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
@@ -16,21 +24,20 @@ const ExpandableDropdown = ({ items }) => {
       {items.map((item, index) => (
         <div
           key={index}
-          className={`${styles.dropdownItem} ${expandedIndex === index ? styles.expanded : ""}`}
+          className={`${styles.dropdownItem} ${
+            expandedIndex === index ? styles.expanded : ""
+          }`}
         >
-          {/* ✅ Ensure clicking anywhere inside `.header` toggles the dropdown */}
           <div className={styles.header} onClick={() => handleToggle(index)}>
             <span className={styles.label}>{item.label}</span>
-            {/* ✅ Remove onClick from the icon itself */}
             <Icon
-    name={expandedIndex === index ? "chevron_up" : "chevron_down"}
-    size={18}
-    className={styles.icon}
-    style={{ pointerEvents: "none" }} // ✅ Key fix
-  />
+              name={expandedIndex === index ? "chevron_up" : "chevron_down"}
+              size={18}
+              className={styles.icon}
+              style={{ pointerEvents: "none" }}
+            />
           </div>
 
-          {/* ✅ Expanded Content */}
           {expandedIndex === index && (
             <div className={styles.content}>
               <Markdown>{item.content}</Markdown>
@@ -43,6 +50,7 @@ const ExpandableDropdown = ({ items }) => {
 };
 
 export default ExpandableDropdown;
+
 
 // const ExpandableDropdown = ({ items }) => {
 //   const [expandedIndex, setExpandedIndex] = useState<number | null>(null); // ✅ Track only one open item

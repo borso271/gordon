@@ -1,12 +1,12 @@
 
 import styles from "./SymbolChart.module.css";
-import PeriodSelector from "./components/PeriodSelector/index.jsx";
+import PeriodSelector from "./components/PeriodSelector";
 import ChartCanvas from "./components/ChartCanvas";
-import ChartSnapshot from "./components/ChartSnapShot/index.jsx";
-import PriceLegend from "./components/PriceLegend/index.jsx";
-import PriceChangeOverview from "./components/PriceChangeOverview/index.jsx";
+import ChartSnapshot from "./components/ChartSnapShot";
+import PriceLegend from "./components/PriceLegend";
+import PriceChangeOverview from "./components/PriceChangeOverview";
 import PriceMiniOverview from "./components/PriceMiniOverview";
-import PrimaryDivider from "../../Layout/PrimaryDivider/index.jsx";
+import PrimaryDivider from "../../Layout/PrimaryDivider";
 import ChartLoader from "../../Loaders/ChartLoader";
 import { useSymbolChart } from "../../../app/hooks/useSymbolChart";
 

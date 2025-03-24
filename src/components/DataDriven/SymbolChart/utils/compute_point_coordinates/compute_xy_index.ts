@@ -3,7 +3,7 @@
 Now give me a function that given the enriched list
 */
 
-import { IndexedDataPoint, DataPointWithXY, DataPointBase } from "../../../../../app/interfaces";
+import { IndexedDataPoint, DataPointWithXY, DataPointBase } from "../../../../../interfaces";
 
 export function assign_list_XYCoordinatesIndex(
   dataPoints: IndexedDataPoint[],

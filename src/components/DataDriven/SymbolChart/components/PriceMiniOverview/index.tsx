@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./PriceMiniOverview.module.css";
 import SecondaryH2 from "../../../../Headings/SecondaryH2";
-import { Period } from "../../../../../app/interfaces";
+import { Period } from "../../../../../interfaces";
 
 interface ChangeEntry {
   period: Period;

@@ -1,122 +1,3 @@
-.inputForm {
-  display: flex;
-  width: 100%;
-  padding: 10px;
-  padding-bottom: 40px;
-  order: 1;
-}
-
-.input {
-  flex-grow: 1;
-  padding: 16px 0px;
-  margin-right: 10px;
-  border-radius: 60px;
-  border: 2px solid transparent;
-  font-size: 1em;
-
- 
-}
-
-.input:focus {
-  outline: none !important;
-  border-color: #000;
-  
-}
-
-.button {
-  padding: 8px 24px;
-  background-color: #000;
-  color: white;
-  border: none;
-  font-size: 1em;
-  border-radius: 60px; /* Removed duplicate border-radius property */
-}
-
-.button:disabled {
-  background-color: lightgrey;
-}
-
-.messages {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  order: 2;
-  white-space: pre-wrap;
-}
-
-.userMessage,
-.assistantMessage,
-.codeMessage {
-  margin: 8px 0;
-  padding: 8px 16px;
-  align-self: flex-start;
-  border-radius: 15px;
-  max-width: 80%;
-  overflow-wrap: break-word;
-}
-
-.assistantMessage img {
-  max-width: 100%;
-  margin: 8px 0px 8px 0px;
-  border-radius: 8px;
-}
-
-
-.assistantMessage {
-  background-color: #000;
-}
-
-.codeMessage {
-  padding: 10px 16px;
-  background-color: #000;
-  font-family: monospace;
-  counter-reset: line;
-}
-
-.codeMessage > div {
-  margin-top: 4px;
-}
-
-.codeMessage span {
-  color: #b8b8b8;
-  margin-right: 8px;
-}
-
-
-
-.chatContainer {
-  height: 100vh;
-  width: 100%;
-  overflow-y: scroll;  /* or auto, whichever you need */
-  scroll-snap-type: y mandatory;
-
-  /* Hide scrollbars in WebKit browsers (Chrome, Safari, etc.) */
-  -webkit-overflow-scrolling: touch; /* if you want momentum scrolling on iOS */
-}
-
-
-/* BotChat.module.css (example) */
-.outerSnapContainer {
-  height: 100vh;
-  width: 100%;
-  overflow-y: auto;
-
-  /* Snap-scrolling between pairs */
-  scroll-snap-type: y mandatory; 
-  scroll-behavior: smooth;
-
-  /* Hide scrollbar if desired */
-  -ms-overflow-style: none;    /* IE/Edge */
-  scrollbar-width: none;       /* Firefox */
-}
-.outerSnapContainer::-webkit-scrollbar {
-  display: none; /* Chrome/Safari/Opera */
-}
-
-
-
 /* If you want to hide the scroll bar completely */
 .slideContainer::-webkit-scrollbar {
   display: none;
@@ -126,38 +7,34 @@
   scrollbar-width: none;
 }
 
-
 .slideContainer {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 80px);
   overflow: hidden;
-  width:100%;
+  width: 100%;
 }
 
 .conversationPair {
   flex: 1; /* Takes up all available space */
   overflow-y: auto; /* Enables scrolling for chat messages */
-  width:100%;
+  width: 100%;
 }
 
 .chatInput {
-  position:fixed;
+  position: fixed;
   bottom: 0;
   width: calc(100% - 40px);
-  max-width:796px;
+  max-width: 796px;
   z-index: 10;
   height: 131px;
   overscroll-behavior: auto;
 }
 
 .chatSpacer {
-
-  height:131px;
+  height: 131px;
 }
 
-
-/* 🔥 Gradient Overlay for Fading Effect */
 .conversationPair::after {
   content: "";
   position: fixed;
@@ -166,31 +43,24 @@
   width: 100%;
   height: 80px; /* Adjust the fading area */
   pointer-events: none; /* Ensures this does not block clicks */
-  
-background: linear-gradient(
-  to bottom, 
-   rgba(15, 15, 15, 0) 0%,    
-  rgba(15, 15, 15, 0.5) 50%,  /* Intermediate step at 50% opacity */
-  var(--background) 100%   /* Fully opaque at the bottom */
-);
-}
 
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 15, 15, 0) 0%,
+    rgba(15, 15, 15, 0.5) 50%,
+    var(--background) 100%
+  );
+}
 
 /* Small (Mobile) */
 @media (max-width: 480px) {
-
-
-.chatInput, .chatSpacer {
- 
-  height: 101px;
-}
-
-.conversationPair::after {
-   
-  bottom: 100px;
-}
-
-
+  .chatInput,
+  .chatSpacer {
+    height: 101px;
+  }
+  .conversationPair::after {
+    bottom: 100px;
+  }
 }
 
 .scrollDownButton {
@@ -198,22 +68,14 @@ background: linear-gradient(
   bottom: 150px;
   width: 40px;
   z-index: 100;
-  left: 50%;  /* Position the left edge at 50% of the viewport */
+  left: 50%; /* Position the left edge at 50% of the viewport */
   transform: translateX(-50%); /* Move it left by half its own width */
   cursor: pointer;
 }
 
-
-
 /* Small (Mobile) */
 @media (max-width: 480px) {
-
-
   .scrollDownButton {
-   
     bottom: 120px;
-   
   }
-  
-  
-  }
+}

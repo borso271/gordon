@@ -1,70 +1,46 @@
 .loadingContainer {
-    display: flex;
-    align-items: baseline;
-  gap:4px;
- 
-  }
-  
-  .text {
-    color: var(--black-500, #535353);
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
 
-    /* H2/Medium */
-    font-family: var(--font-family-inter);
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 125%; /* 37.5px */
-    letter-spacing: -0.6px;
-  }
-  
-  .dots {
-    display: flex;
-  }
-  
-  .dot {
-    color: var(--black-500, #535353);
-  
-    font-size: 30px;
-  }
-  
-  .activeDot {
-    opacity: 1;
-    color: var(--lime-400, #B1F625);
-    font-size: 30px;
-  }
-  
+.text {
+  color: var(--black-500, #535353);
+  font-family: var(--font-family-inter);
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 125%;
+  letter-spacing: -0.6px;
+}
 
+.dots {
+  display: flex;
+}
 
+.dot {
+  color: var(--black-500, #535353);
+  font-size: 30px;
+}
 
-
-
-/* Medium (Tablets) */
-@media (max-width: 768px) {
- 
+.activeDot {
+  opacity: 1;
+  color: var(--lime-400, #b1f625);
+  font-size: 30px;
 }
 
 /* Small (Mobile) */
 @media (max-width: 480px) {
-    .text {
-   
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 130%; /* 23.4px */
-          }
-        
-          .dot {
-           
-          
-            font-size: 24px;
-          }
-          
-          .activeDot {
-        
-            font-size: 24px;
-          }
-          
-  
+  .text {
+    font-size: 18px;
+    line-height: 130%; /* 23.4px */
+  }
+
+  .dot {
+    font-size: 24px;
+  }
+
+  .activeDot {
+    font-size: 24px;
+  }
 }
-
-

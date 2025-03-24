@@ -7,7 +7,6 @@ interface SectionIconProps {
   tagColor?: string | null; // Optional or null allowed
   size?: number | null;
 }
-
 const SectionIcon: React.FC<SectionIconProps> = ({ icon, tagColor=null, size=null }) => {
   return (
     <div
@@ -17,7 +16,6 @@ const SectionIcon: React.FC<SectionIconProps> = ({ icon, tagColor=null, size=nul
      
     }}
   >
-
     <Icon name={icon} size={size}/>
   </div>
   );

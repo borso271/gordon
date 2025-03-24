@@ -1,4 +1,4 @@
-import { PricePoint } from "../../../../app/interfaces";
+import { PricePoint } from "../../../../interfaces";
 interface RawIntradayDataPoint {
   timestamp: number; // in milliseconds
   price: number;

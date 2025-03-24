@@ -1,5 +1,5 @@
-import { Period } from "../../../../app/interfaces";
-import { PricePoint } from "../../../../app/interfaces";
+import { Period } from "../../../../interfaces";
+import { PricePoint } from "../../../../interfaces";
 
 type IntradayMap = Map<Period, PricePoint[]>;
 

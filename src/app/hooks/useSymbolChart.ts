@@ -13,7 +13,7 @@ import { computeHistoricalPercentage} from "../../components/DataDriven/SymbolCh
 
 // Same logic, just moved into a hook:
 
-import { PricePoint, IntradayMap, LastPriceResult, PriceDataMap, Period} from "../../app/interfaces";
+import { PricePoint, IntradayMap, LastPriceResult, PriceDataMap, Period} from "../../interfaces/index.js";
 
 export function useSymbolChart(symbol: string) {
   // 1) Sizing logic

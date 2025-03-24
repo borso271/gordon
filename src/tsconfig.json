@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/api/suggest/index.jsx", "components/Chat/components/AssistantMessage/index.jsx", "components/Chat/utils/copyToClipboard.jsx"  ],
+, "app/api/suggest/index.jsx", "components/Chat/components/AssistantMessage/index.tsx", "components/Chat/utils/copyToClipboard.js"  ],
   "exclude": [
     "node_modules"
   ]

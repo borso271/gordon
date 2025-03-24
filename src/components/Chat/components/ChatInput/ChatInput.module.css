@@ -1,164 +1,122 @@
 /* Base container styling (applies to both scenarios) */
+
+.buttonGroup {
+  display: inline-flex;
+    justify-content: space-between;
+
+}
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: var(--black-900);
-    gap: 16px;
-  }
-  
-  /* Fixed at the bottom (classic chat scenario) */
-  .fixed {
-    height:100%;
-   
-  }
-  
-  /* Centered (first prompt scenario) */
-
-    .centered {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 24px 20px;
-        overscroll-behavior: auto;
-      }
-      
-  
-  /* The inner container for content alignment */
-  .innerContainer {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 796px;
-    display:flex;
-    flex-direction:column;
-    gap: 16px;
-    padding-top:5px;
-  }
-  
-  .form {
-    width: 100%;
-  }
-  
-  .inputForm {
-    display: flex;
-    gap: 16px;
-  }
-  
-  .input {
-    flex: 1;
-    
-    color: var(--black-50, #F8F8F8);
-
-    font-size: 30px;
-    font-weight: 500;
-    line-height: 125%;
-    letter-spacing: -0.6px;
-    background: transparent;
-    border: none;
-    outline: none;
-    padding: 0;
-    caret-color: white;
-  }
-  
-
-  /* 👇 This ensures the caret is visible even when the placeholder is shown */
-.input:placeholder-shown {
-  caret-color: white; /* Default caret visible before typing */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--black-900);
+  gap: 16px;
 }
 
-  .input::placeholder {
-color: var(--black-500, #535353);
-font-family: var(--font-family-inter);
-font-size: var(--font-size-xl);
-font-style: normal;
-font-weight: var(--font-weight-medium);
-line-height: var(--line-height-125); /* 37.5px */
-letter-spacing: var(--letter-spacing-xl);
-  }
-  
-  .button {
-    padding: 12px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .buttonGroup {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    justify-content: space-between;
-  }
-  
+/* Fixed at the bottom (classic chat scenario) */
+.fixed {
+  height: 100%;
+}
 
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 24px 20px;
+  overscroll-behavior: auto;
+}
+
+/* The inner container for content alignment */
+.innerContainer {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 796px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 5px;
+}
+
+.form {
+  width: 100%;
+}
+
+.inputForm {
+  display: flex;
+  gap: 16px;
+}
+
+.input {
+  flex: 1;
+  color: var(--black-50, #f8f8f8);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 125%;
+  letter-spacing: -0.6px;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  caret-color: white;
+}
+
+.input:placeholder-shown {
+  caret-color: white;
+}
+
+.input::placeholder {
+  color: var(--black-500, #535353);
+  font-family: var(--font-family-inter);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-125); /* 37.5px */
+  letter-spacing: var(--letter-spacing-xl);
+}
 
 .promptButtons {
-  display:flex;
+  display: flex;
   flex-direction: row;
   gap: 12px;
 }
 
 /* Medium (Tablets) */
 @media (max-width: 838px) {
-    
+  .buttonGroup {
+    gap: 14px;
+  }
 
-    .buttonGroup {
-        gap: 14px;
-    }
+  .botHeading {
+    margin-bottom: 4px;
+  }
 
-
-
-.botHeading {
-    margin-bottom:4px;
-}
-
-  .input, .input::placeholder {
-
+  .input,
+  .input::placeholder {
     font-size: 26px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 125%; /* 32.5px */
     letter-spacing: -0.52px;
-      }
-
-
+  }
 }
 
 /* Small (Mobile) */
 @media (max-width: 480px) {
-
-
-
-
-.botHeading {
-    margin-bottom:0px;
-}
-    .input, .input::placeholder {
-   
+  .botHeading {
+    margin-bottom: 0px;
+  }
+  .input,
+  .input::placeholder {
     font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
     line-height: 130%; /* 23.4px */
-      }
+  }
 
-
-      .fixed {
-        /* height: auto; */
-         height: 121px;
-      }
+  .fixed {
+    /* height: auto; */
+    height: 121px;
+  }
 }
 
 .fixedButton {
-        position: fixed; /* ✅ Fixes button in place */
-        right: 20px; /* ✅ 20px from the right */
-        bottom: 20px; /* ✅ 20px from the bottom */
+  position: fixed; /* ✅ Fixes button in place */
+  right: 20px; /* ✅ 20px from the right */
+  bottom: 20px; /* ✅ 20px from the bottom */
 }

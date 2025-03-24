@@ -134,7 +134,7 @@ useEffect(() => {
 <div ref={spacerRef} className={styles.chatSpacer} ></div>
       <div className={styles.chatInput} ref={chatInputRef}>
       <ChatInput
-       isFirstPrompt={false}
+        isFirstPrompt={false}
         userInput={userInput}
         setUserInput={setUserInput}
         inputDisabled={inputDisabled}

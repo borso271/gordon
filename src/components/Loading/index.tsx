@@ -5,7 +5,7 @@ const Loading: React.FC = () => {
   const [activeDot, setActiveDot] = useState<number>(0); // Explicitly typed
   const {currentLang} = useLanguage();
 
-  const thinkingText = currentLang === "en" ? "Thinking" : "يفكر...";
+  const thinkingText = currentLang === "en" ? "Thinking" : "يفكر";
 
   useEffect(() => {
     const interval = setInterval(() => {

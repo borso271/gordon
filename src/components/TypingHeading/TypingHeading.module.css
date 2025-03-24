@@ -1,0 +1,3 @@
+.inactive {
+    color: var(--black-500, #535353) !important;
+}

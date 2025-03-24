@@ -22,6 +22,10 @@ background:transparent;
 
   .dropdownButton:hover {
     font-style: normal;
+    border: 1px solid var(--additional-white-8, rgba(255, 255, 255, 0.08));
+background: var(--black-800, #1A1A1A);
+
+
   }
   
   .icon {

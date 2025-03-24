@@ -9,6 +9,30 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* SuggestedSymbols.module.css */
+.cardsContainer {
+  display: grid;
+  grid-template-columns: 1fr; /* default: 1 column */
+  gap: 12px; /* same vertical and horizontal spacing */
+  width: 100%;
+}
+
+/* medium screens: 2 columns */
+@media (min-width: 640px) {
+  .cardsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* desktop screens: 3 columns */
+@media (min-width: 1024px) {
+  .cardsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* 
 .cardsContainer {
   display: flex;
   flex-wrap: wrap;
@@ -18,20 +42,20 @@
 }
 
 .cardsContainer > * {
-  flex: 1 1 calc(33.33% - 12px); /* Ensures three equal columns minus gap */
+  flex: 1 1 calc(33.33% - 12px); 
   max-width: calc(33.33% - 12px);
 }
 
 @media (max-width: 1024px) {
   .cardsContainer > * {
-    flex: 1 1 calc(50% - 12px); /* Two columns on smaller screens */
+    flex: 1 1 calc(50% - 12px); 
     max-width: calc(50% - 12px);
   }
 }
 
 @media (max-width: 768px) {
   .cardsContainer > * {
-    flex: 1 1 100%; /* Stacks in a single column */
+    flex: 1 1 100%;
     max-width: 100%;
   }
-}
+} */

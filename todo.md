@@ -5,9 +5,6 @@ Next three things:
 
 4. Test that language is updating correctly on refresh.
 
-
-1. Fix is marketOpen, why not working what the hell???
-
 ------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
 
 Next:

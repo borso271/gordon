@@ -3,7 +3,6 @@ import i18n from "../../i18n";
 
 export function useLanguage() {
   const [currentLang, setCurrentLang] = useState(i18n.language);
-
   // Sync when language changes externally
   useEffect(() => {
     const handleLanguageChanged = (lng: string) => {

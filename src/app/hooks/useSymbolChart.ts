@@ -5,7 +5,7 @@ import mergeIntradayData from "../../components/DataDriven/SymbolChart/utils/mer
 import getSymbolSnapshot from "../../services/database/get_symbol_snapshot.js";
 import fetch_symbol_info from "../../services/database/fetch_symbol_info";
 import formatTimestamp from "../../components/DataDriven/SymbolChart/utils/format_timestsamp";
-import isMarketOpenNow from "../../utils/is_market_open_now";
+// import isMarketOpenNow from "../../utils/is_market_open_now";
 import returnPriceLegendSegments from "../../components/DataDriven/SymbolChart/utils/compute_price_legend/return_price_legend_metadata";
 import { assign_list_XYCoordinatesIndexSimple } from "../../components/DataDriven/SymbolChart/utils/compute_point_coordinates/compute_xy_index";
 import computeLastPrices from "../../components/DataDriven/SymbolChart/utils/compute_last_prices";
@@ -76,14 +76,43 @@ export function useSymbolChart(symbol: string) {
   // 3) Market open logic
   const [isMarketOpen, setMarketOpen] = useState(false);
   
+
   const checkMarketStatus = async () => {
     try {
-      const marketOpen: boolean = await isMarketOpenNow(asset_type, exchange_mic); // ✅ Ensure it's a boolean
-      setMarketOpen(marketOpen); 
+      const response = await fetch("api/market_status", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          asset_type,     // e.g. "stock" or "crypto"
+          exchange_mic,   // e.g. "XNAS"
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+  
+      const data = await response.json();
+      const marketOpen: boolean = data.isOpen;
+  
+      setMarketOpen(marketOpen);
     } catch (error) {
-      console.error("Error checking market status:", error);
+      console.error("❌ Error checking market status:", error);
+      setMarketOpen(false); // Fallback to false on error
     }
   };
+  
+
+//   const checkMarketStatus = async () => {
+//     try {
+//       const marketOpen: boolean = await isMarketOpenNow(asset_type, exchange_mic); // ✅ Ensure it's a boolean
+//       setMarketOpen(marketOpen); 
+//     } catch (error) {
+//       console.error("Error checking market status:", error);
+//     }
+//   };
+
+
 
   useEffect(() => {
     if (!asset_type || !exchange_mic) return;

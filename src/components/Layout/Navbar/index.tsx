@@ -28,7 +28,6 @@ const Navbar: React.FC = () => {
 
  const {currentLang} = useLanguage();
 
- console.log("CURRENT LANG IS: ", currentLang)
   const handleLanguageChange = (lang: string) => {
     changeLanguage(lang);
     handleToggleDropdown(null);

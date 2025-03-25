@@ -51,7 +51,6 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
     }
   }, [nothingYet]);
   
-  console.log("PAIR IS: ", pair)
   const languageClass =
   pair.language === "ar"
     ? "rightToLeft"

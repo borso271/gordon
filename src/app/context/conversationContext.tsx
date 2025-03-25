@@ -41,6 +41,7 @@ export const ConversationProvider: React.FC<{ children: ReactNode }> = ({ childr
   const [userInput, setUserInput] = useState("");
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
   const {currentLang} = useLanguage();
+  
   const LOCAL_STORAGE_KEY = "conversationPairs";
   const LOCAL_STORAGE_INDEX_KEY = "currentIndex";
 
@@ -77,8 +78,11 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(conversationPairs));
   }, [conversationPairs]);
 
+
   // ✅ Generate a new conversation pair with a UUID
   const addUserMessage = useCallback((message: string) => {
+    console.log("CURRENT LANG AT THIS POINT IS: ", currentLang)
+
     const newPair: ConversationPair = {
       id: uuidv4(),
       user: message,

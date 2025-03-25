@@ -3,6 +3,8 @@ Next three things:
 
 <!-- 1. TEST SEARCH WITHOUT SUGGEST STOCKS, BUT ONLY WITH ONLINE SEARCH. -->
 
+4. Test that language is updating correctly on refresh.
+
 
 1. Fix is marketOpen, why not working what the hell???
 
@@ -23,11 +25,6 @@ EASILY DOABLE:
 
 This LATER yes, also for historical data and for the right symbols. Just run it should already be ok.
 Both aggregator and stocks.
-
-------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
-
-4. Test that language is updating correctly on refresh.
-
 
 ------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
 

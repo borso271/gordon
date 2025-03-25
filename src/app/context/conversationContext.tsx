@@ -41,7 +41,6 @@ export const ConversationProvider: React.FC<{ children: ReactNode }> = ({ childr
   const [userInput, setUserInput] = useState("");
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
   const {currentLang} = useLanguage();
-  console.log("currentLang in conversation provider is: ", currentLang)
   const LOCAL_STORAGE_KEY = "conversationPairs";
   const LOCAL_STORAGE_INDEX_KEY = "currentIndex";
 

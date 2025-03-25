@@ -1,92 +1,67 @@
-0. Fix nav menu
-2. dropdown button must be 40*40 to 42*40
-3. Send button inactive color
-6. Remove container on simple answer
-4. Suggest buttons back to left...
-5. Menu only if at least 2 prompts
+
+Next three things:
+
+1. TEST ASK ANALYSIS FOR SECURITY NOT IN THE DATABASE
+
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
+
+2. RETEST AND CLEAN WEBSOCKETS, DO IT THE RIGHT AWAY WITH THE RIGHT TIMINGS.
+
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
+
+3. RERUN DATA FETCHING FOR THE RIGHT CRYPTOS (THE 7 CRYPTOS YOU HAVE IN THE DATABASE), AND THE OTHER STOCKS.
+
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
+
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
 
 
-7. Ok icon only for copy button
-8. Dropdown men too big...
-9. Tooltip dimensions...
-12. 5 go deeper prompts
+4. GIVE THE CRUX OF THE ANALYSIS TO GPT FOR CONTEXT...
 
-13. Gap in snapshot from 6 to 8
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
 
-21. Change powered icon with logo
-23. Submit button (explore gordon), 3 states on desktop, 2 on mobile.
-24. When I click the button will show but disabled..., not visible at the beginning.
-25. Add gap between arrow and price in trend...
-
-20. Faq menu overlapping wrongly with main chat...
-18. Too muchh padding on normal (i think this means elements not aligned)
-11. Ratings card has been changed
-
-----
+7. faq menu sometimes opening wrong side?
 
 
-/* should be fairly easy */
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
 
+AGAIN FUCKING THREAD id !!!
 
-
-try removing:  -webkit-line-clamp
-
-
-
-// scroll down not working...
-// close navigation menu when go to new page...
-// reput icons and try fixing more css for problems...
-
-
-MOBILE:
-input should always be visible,
-scroll again not working.
+EventStream.ts:159 Uncaught (in promise) OpenAIError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+    at AssistantStream._EventStream_handleError (EventStream.ts:159:40)Caused by: SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at Stream.iterator (streaming.ts:121:32)
+    at async AssistantStream._fromReadableStream (AssistantStream.ts:175:22)
 
 
 
-Today:
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
 
+Tomorrow:
+And test... use only stocks.
 
-FINISH THESE THINGS:
+CREATE THE COMPONENT...
 
-Today plan to begin with:
+4. - ⁠List (It makes you a list with top performing stocks)
+- ⁠The list can be queried, for example it can be reordered by volume, or by price
+- ⁠List needs to be for ETFs, Stocks, Funds for example
+- ⁠We need shariah compliant assets from saudi market
 
-3. Draggable tooltip on mobile. First you have to clean the component.
+You need an extra function call for this...
 
-4. fix icons size.
+- TYPE OF SECURITY... STOCK, ETF, FUND...
+- SORTED BY... VOLUME, PRICE, MARKET CAP... ... DEFAULT: VOLUME...
+- LATEST PRICE AS WELL (LATEST PRICES ARE UPDATED UP TO YESTERDAY...)
+- WE CAN ALSO HAVE SHARIA COMPLIANT... THE LIST IS...
 
----
-
-5. Numbers can get to big on price chart (example bitcoin).
-
-6. Big numbers with commas.
-
----
-
-4. Transitions all the way around.
-
----
-
-Then start cleaning.
-
-BIG PROBLEMS:
-1. Mobile font looks too thin, not regular
-31. CLIENT SIDE EXCEPTION? Why?
+You do this for prototyping only, not hard data fetching... also sharia compliant probably should not be the right way...
+If you do the list...
 
 
 
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
+------------------------------------------------------------------------------------------------------------------------- --------------------------- --------------------------- ----------
 
-
-
-
-
-
-
-
-32. The user can ask only for chart.
-33. Add multilanguage all the way around.
-
-
-
----
-cleanup
+Add the etfs stuff

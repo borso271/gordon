@@ -25,7 +25,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     try {
       await onClick();
 
-      if (text === "Copy") {
+      if (text === "Copy" || text === "نسخ") {
         setCurrentIcon(successIcon);
         setTimeout(() => {
           setCurrentIcon(iconName);

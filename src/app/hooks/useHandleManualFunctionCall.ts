@@ -3,11 +3,12 @@ import { useCallback } from "react";
 import { v4 as uuidv4 } from "uuid"; // ✅ Import UUID generator
 import { useConversation } from "../context/conversationContext"; // ✅ Import context
 import { useLanguage } from "./useLanguage";
+
 export function useManualFunctionCall() {
   const { setConversationPairs, setCurrentIndex } = useConversation();
   const { t } = useTranslation(); // ✅ Add this
   const {currentLang} = useLanguage() 
-  
+
   const handleManualFunctionCall = useCallback(
     async (
       functionName: string,

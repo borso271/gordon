@@ -11,12 +11,11 @@ border: 1px solid var(--card-border);
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+display: flex;
+flex-direction: column;
+gap: 16px;
 }
 
-/* Analysis Summary - Show only 3 lines initially */
 .analysisSummaryContainer {
 display: flex;
 flex-direction: column;
@@ -35,12 +34,12 @@ overflow: hidden;
 text-overflow: ellipsis;
 display: -webkit-box;
 -webkit-line-clamp: 3; 
-  -webkit-box-orient: vertical;
+-webkit-box-orient: vertical;
 }
 
 .analysisSummary.expanded {
-  font-size: 14px;
-  -webkit-line-clamp: unset;
+font-size: 14px;
+-webkit-line-clamp: unset;
 }
 
 

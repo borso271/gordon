@@ -30,14 +30,11 @@ export default function ChatInput({
   const {currentLang} = useLanguage();
   const { isMobile } = useScreenSize(); // ✅ Get isMobile globally
   const formRef = useRef<HTMLFormElement>(null);
-
   const inputRef = useRef<HTMLTextAreaElement>(null);
-
   const [isFocused, setIsFocused] = useState(false); // Track input focus
   const { onManualFunctionCall } = useFunctionExecution();
   const isSendDisabled = inputDisabled || userInput.trim().length < 2;
   
-
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserInput(e.target.value);
@@ -64,6 +61,15 @@ export default function ChatInput({
         value={userInput}
         placeholder={t("main_input_placeholder_text")}
         onChange={handleInput}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            if (!isSendDisabled) {
+              formRef.current?.requestSubmit(); // Submit the form
+            }
+          }
+        }}
+        
         // onChange={(e) => setUserInput(e.target.value)}
         disabled={inputDisabled}
         ref={inputRef}
@@ -75,23 +81,6 @@ export default function ChatInput({
   }}
   rows={1}
 />
-
-            {/* <input
-              type="text"
-              className={styles.input}
-              value={userInput}
-              placeholder={t("main_input_placeholder_text")}
-              onChange={(e) => setUserInput(e.target.value)}
-              disabled={inputDisabled}
-              ref={inputRef}
-              
-              onFocus={() => setIsFocused(true)}
-              onBlur={(e) => {
-                if (!e.relatedTarget || !e.relatedTarget.classList.contains("sendButton")) {
-                  setIsFocused(false);
-                }
-              }}
-            /> */}
 
             <button type="submit" style={{ display: "none" }} />
           </form>

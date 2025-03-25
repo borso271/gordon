@@ -226,8 +226,6 @@ html[dir="rtl"] .toBeSwitched {
   font-family: "Tajawal", sans-serif; /* Arabic-friendly font */
 }
 
-
-
 /* Buttons, images, containers stay LTR */
 .leftToRight {
   direction: ltr !important; 
@@ -238,9 +236,6 @@ html[dir="rtl"] .toBeSwitched {
   direction: rtl !important; 
   text-align: right !important;
 }
-
-
-
 
 
 /* Medium (Tablets) */
@@ -270,6 +265,7 @@ ol {
   display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
 }
 
 ul {
@@ -278,15 +274,9 @@ ul {
   display: flex;
       flex-direction: column;
       gap: 24px;
+      width: 100%;
 }
 
-
-li {
-  display:block;
-  position: relative;
-  padding-left:20px;
-  margin-top:-20px;
-} 
 
 
 strong {
@@ -294,14 +284,35 @@ strong {
   
 }
 
+li {
+  display:block;
+  width: 100%;
+  position: relative;
+  padding-left:20px;
+  /* margin-top:-20px; */
+} 
+
 li::before {
   content: "•";
+  top: 0;
     left: 0;
     top:20px;
     font-size: 1.2em;
     line-height: 1;
     position: absolute;
 } 
+
+
+.rightToLeft li {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+.rightToLeft li::before {
+  left: auto;
+  right: 0;
+  content: "•"; /* or change symbol if needed */
+}
 
 
 /* Ignore nested lists */
@@ -331,6 +342,7 @@ ol > li::before {
   content: "•";
   position: absolute;
   left: 0;
+  top: 0;
   font-size: 1.2em;
   line-height: 1;
 }
@@ -341,7 +353,6 @@ li ol li::before {
   content: none;
 }
 
-
 li * {
   display: inline;
   margin: 0;
@@ -351,4 +362,14 @@ li * {
   column-width: initial !important;
   column-gap: initial !important;
   white-space: normal;
+}
+
+li:has(> p) {
+  /* Styles for li that contains a <p> directly inside */
+  display: flex;
+}
+
+li:not(:has(> p)) {
+  /* Styles for li that does NOT contain a <p> directly inside */
+  display: block;
 }

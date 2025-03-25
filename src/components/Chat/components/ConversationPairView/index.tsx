@@ -1,4 +1,4 @@
-import React, {RefObject} from "react";
+import React, {useState, useEffect, RefObject} from "react";
 import { motion } from "framer-motion";
 import UserMessage from "../UserMessage";
 import AssistantMessage from "../AssistantMessage";
@@ -7,7 +7,7 @@ import Analysis from "../../../Analysis";
 import Suggestion from "../../../Suggestion";
 import Loading from "../../../Loading";
 import styles from "./ConversationPairView.module.css";
-import { extractTwoValues } from "../../utils/extractTwoValues";
+import { extractTwoValues } from "../../../../app/utils/extractTwoValues";
 
 
 interface ConversationPair {
@@ -37,10 +37,19 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
 }) => {
 
 
-  const nothingYet =
-    !pair.assistant && !pair.code && !pair.analysisData && !pair.suggestionData;
+  const nothingYet = !pair.assistant && !pair.code && !pair.analysisData && !pair.suggestionData;
 
   const [responseHeading, responseContent] = extractTwoValues(pair.assistant || "");
+  const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
+  useEffect(() => {
+    if (nothingYet) {
+      const timeout = setTimeout(() => {
+        setShowTimeoutMessage(true);
+      }, 30000); // ⏱ 10 seconds (adjust as needed)
+  
+      return () => clearTimeout(timeout); // cleanup if component unmounts or re-renders
+    }
+  }, [nothingYet]);
   
   const languageClass =
   pair.language === "ar"
@@ -60,6 +69,45 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
         <UserMessage text={pair.user} />
 
         <div className={styles.assistantResponse}>
+          
+        {nothingYet ? (
+  showTimeoutMessage ? (
+    <AssistantMessage
+      heading="Sorry... For some reason I could not process your request."
+      text="Please try again or ask for support at hi.finh.cc@gmail.com!"
+    />
+  ) : (
+    <Loading />
+  )
+) : (
+  <>
+    {pair.assistant && (
+      <AssistantMessage heading={responseHeading} text={responseContent} />
+    )}
+
+    {pair.code && <CodeMessage text={pair.code} />}
+
+    {pair.analysisData && (
+      <Analysis
+        data={pair.analysisData}
+        language={pair.language}
+        handleManualFunctionCall={handleManualFunctionCall}
+        newSearch={newSearch}
+      />
+    )}
+
+    {pair.suggestionData && (
+      <Suggestion
+        data={pair.suggestionData}
+        language={pair.language}
+        handleManualFunctionCall={handleManualFunctionCall}
+      />
+    )}
+  </>
+)}
+
+          
+{/*           
           {nothingYet ? (
             <Loading />
           ) : (
@@ -87,7 +135,10 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
                 />
               )}
             </>
-          )}
+          )} */}
+
+
+
         </div>
       </div>
     </motion.div>

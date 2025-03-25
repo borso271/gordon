@@ -6,7 +6,7 @@ export async function POST(req) {
     try {
         console.log("Attempting to read JSON body...");
         body = await req.json(); // Read JSON body
-        // console.log("JSON body read:", body);
+        console.log("JSON body read:", body);
 
     } catch (error) {
         console.error("Invalid JSON format:", error);
@@ -19,10 +19,10 @@ export async function POST(req) {
     }
 
     try {
+
         //console.log("Calling process_analysis with body:", body);
         const result = await process_analysis(body); // Call your function
         //console.log("process_analysis completed with result:", result);
-
         return new Response(JSON.stringify({ success: true, data: result }), {
             status: 200,
             headers: { "Content-Type": "application/json" },

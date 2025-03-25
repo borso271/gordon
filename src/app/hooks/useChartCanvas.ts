@@ -165,7 +165,7 @@ export function useChartCanvas({
         minDist = dist;
       }
     }
-
+  
     // 6.4) Update hovered point
     setHoveredPoint({
       ...nearest,
@@ -205,6 +205,8 @@ export function useChartCanvas({
         minDist = dist;
       }
     }
+
+  
     // 4) Update hovered point
     setHoveredPoint({
       ...nearest,

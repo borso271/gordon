@@ -3,7 +3,7 @@ import React, { useRef, useEffect} from "react";
 import styles from "./chat.module.css";
 import { AssistantStream } from "openai/lib/AssistantStream";
 import ChatInput from './components/ChatInput';
-import { sendMessage } from "./utils/apiActions";
+import { sendMessage } from "../../app/utils/apiActions";
 import ConversationPairView from "./components/ConversationPairView";
 import { useSlideshowNavigation } from "../../app/hooks/useSlideShowNavigation";
 import { useConversation } from "../../app/context/conversationContext";
@@ -11,7 +11,7 @@ import DropdownButton from "../Buttons/DropdownButton";
 import { useHandleSubmit } from "../../app/hooks/useHandleSubmit";
 import { useMobileSlideshowNavigation } from "../../app/hooks/useMobileSlideShowNavigation";
 import { useFunctionExecution } from "../../app/context/functionExecutionContext";
-import { scrollDownManually } from "./utils/scrollDownManually";
+import { scrollDownManually } from "../../app/utils/scrollDownManually";
 
 export default function BotChat() {
   

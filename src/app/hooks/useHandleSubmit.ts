@@ -2,64 +2,55 @@ import { FormEvent } from "react";
 import { AssistantStream } from "openai/lib/AssistantStream";
 import { useConversation } from "../context/conversationContext";
 import { useStreamHandlers } from "./useStreamHandlers";
-import { attachStreamHandlers } from "../../components/Chat/utils/streamHandlers";
-import { sendMessage } from "../../components/Chat/utils/apiActions";
-import { functionCallHandler } from "../utils/functionCallHandler";
+import { sendMessage } from "../utils/apiActions";
+import { useThread } from "./useThread";
+// import { functionCallHandler } from "../utils/functionCallHandler";
 import {useRouter} from "next/navigation"
 
 export function useHandleSubmit() {
     const router = useRouter();
-  
+    const { createThread } = useThread();
     const {
       addUserMessage,
       userInput,
       setUserInput,
       setInputDisabled,
       threadId,
+      setThreadId,
     } = useConversation();
   
-    const { onTextCreated, onTextDelta, onToolCallCreated, onToolCallDelta, onRequiresAction } =
-      useStreamHandlers();
-  
-    const attachHandlers = (stream: AssistantStream) => {
-      attachStreamHandlers(stream, {
-        onTextCreated,
-        onTextDelta,
-        onToolCallCreated,
-        onToolCallDelta,
-        onRequiresAction: async (event: any) => {
-          await onRequiresAction(event, functionCallHandler);
-          setInputDisabled(false);
-        },
-        onRunCompleted: () => setInputDisabled(false),
-      });
-    };
+    const { attachHandlers } = useStreamHandlers();
   
     const handleSubmit = async (
-      e?: FormEvent | MouseEvent | null, // ✅ Accepts both form and button events
+      e?: FormEvent | MouseEvent | null,
       isLandingPage: boolean = false
     ) => {
-     
-  
-      // ✅ Only call preventDefault if e exists and it's a FormEvent
       if (e && "preventDefault" in e) {
         e.preventDefault();
       }
   
-      if (!userInput.trim()) {
-        return;
-      }
+      if (!userInput.trim()) return;
   
-      if (isLandingPage) {
-        router.push("/chat");
-      }
-  
+      setInputDisabled(true);
       addUserMessage(userInput);
       setUserInput("");
-      setInputDisabled(true);
   
+      let finalThreadId = threadId;
+  
+      if (isLandingPage) {
+        // ✅ Create thread before navigating
+        if (!finalThreadId) {
+          const createdId = await createThread();
+          finalThreadId = createdId;
+          setThreadId(createdId); // optional, keep this if you use it elsewhere
+        }
+      
+        // ✅ Redirect to /chat with threadId as a query param
+        router.push(`/chat?threadId=${finalThreadId}`);
+      }
+      
       try {
-        const response = await sendMessage(threadId, userInput);
+        const response = await sendMessage(finalThreadId, userInput);
         const stream = AssistantStream.fromReadableStream(response.body);
         attachHandlers(stream);
       } finally {
@@ -69,5 +60,56 @@ export function useHandleSubmit() {
   
     return { handleSubmit, attachHandlers };
   }
+
+  
+// export function useHandleSubmit() {
+//     const router = useRouter();
+//     const {createThread} = useThread()
+//     const {
+//       addUserMessage,
+//       userInput,
+//       setUserInput,
+//       setInputDisabled,
+//       threadId,
+//     } = useConversation();
+  
+//     const { attachHandlers } =
+//       useStreamHandlers();
+  
+//     const handleSubmit = async (
+//       e?: FormEvent | MouseEvent | null, // ✅ Accepts both form and button events
+//       isLandingPage: boolean = false
+//     ) => {
+     
+  
+//       // ✅ Only call preventDefault if e exists and it's a FormEvent
+//       if (e && "preventDefault" in e) {
+//         e.preventDefault();
+//       }
+  
+//       if (!userInput.trim()) {
+//         return;
+//       }
+  
+//       if (isLandingPage) {
+//         router.push("/chat");
+//       }
+  
+//       addUserMessage(userInput);
+
+//       setUserInput("");
+//       setInputDisabled(true);
+  
+//       try {
+//         const response = await sendMessage(threadId, userInput);
+//         const stream = AssistantStream.fromReadableStream(response.body);
+//         attachHandlers(stream);
+//       } finally {
+//         setInputDisabled(false);
+//       }
+//     };
+  
+//     return { handleSubmit, attachHandlers };
+//   }
   
   

@@ -2,8 +2,8 @@ import React from "react";
 import Markdown from "react-markdown";
 import styles from "./AssistantMessage.module.css";
 import ActionsGroup from "../../../ActionsGroup";
-import copyToClipboard from "../../utils/copyToClipboard";
-import shareContent from "../../utils/shareContent";
+import copyToClipboard from "../../../../app/utils/copyToClipboard";
+import shareContent from "../../../../app/utils/shareContent";
 import BotHeading from "../../../Headings/BotHeading";
 import { useTranslation } from 'react-i18next';
 

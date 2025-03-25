@@ -7,14 +7,14 @@ import Providers from '../Providers';
 import RelatedSymbols from '../Related';
 import AnalysisPart from '../AnalysisPart';
 import ActionsGroup from '../ActionsGroup';
-import copyToClipboard from '../Chat/utils/copyToClipboard';
-import shareContent from '../Chat/utils/shareContent';
+import copyToClipboard from '../../app/utils/copyToClipboard';
+import shareContent from '../../app/utils/shareContent';
 import SymbolChart from '../DataDriven/SymbolChart';
 import AnalysisPartLoader from '../Loaders/AnalysisPartLoader';
 import GoDeeperLoader from '../Loaders/GoDeeperLoader';
 import { useTranslation } from 'react-i18next';
 import { useGetAnalysisData } from '../../app/hooks/useGetAnalysisData';
-
+import { getFormattedText } from '../../app/utils/getFormattedText';
 /*
 fetch all data at top component, including
 names, and other stuff that you need to use
@@ -49,24 +49,25 @@ const { t } = useTranslation();
 useEffect(() => {
   const { positives, negatives, summary, prompts, news, related_symbols, providers, ratings, loading, error } = analysisData;
 
-  console.log("🧪 getAnalysisData:", JSON.stringify({
-    positives,
-    negatives,
-    summary,
-    prompts,
-    news,
-    related_symbols,
-    providers,
-    ratings: {
-      totalRatings: ratings?.totalRatings,
-      mostVotedRating: ratings?.mostVotedRating,
-      ratings: ratings?.ratings,
-      loading: ratings?.loading,
-      error: ratings?.error
-    },
-    loading,
-    error
-  }, null, 2));
+  // console.log("🧪 getAnalysisData:", JSON.stringify({
+  //   positives,
+  //   negatives,
+  //   summary,
+  //   prompts,
+  //   news,
+  //   related_symbols,
+  //   providers,
+  //   ratings: {
+  //     totalRatings: ratings?.totalRatings,
+  //     mostVotedRating: ratings?.mostVotedRating,
+  //     ratings: ratings?.ratings,
+  //     loading: ratings?.loading,
+  //     error: ratings?.error
+  //   },
+  //   loading,
+  //   error
+  // }, null, 2));
+
 }, [analysisData]);
 
   const ai_response = useMemo(() => {
@@ -81,18 +82,33 @@ useEffect(() => {
     return rawAnalysis || {};
   }, [rawAnalysis]);
 
-  const positives = ai_response.positives;
-  const negatives = ai_response.risks_and_concerns;
-  const summary = ai_response.summary;
   const prompts = ai_response.suggested_prompts;
   const symbolName = symbol;
-
 
 const positivesHeading = language == "en" ? "Good Things" : "أشياء إيجابية";
 const negativesHeading = language == "en" ? "Bad Things" : "أشياء سلبية";
 const summaryHeading   = language == "en" ? "Key Takeaways" : "الخلاصات الرئيسية";
 
+const positives = ai_response.positives;
+const negatives = ai_response.risks_and_concerns;
+const summary = ai_response.summary;
+
+
+
+  // 1) Build the multiline text:
+  const textToCopy = getFormattedText({
+    positivesHeading,
+    negativesHeading,
+    summaryHeading,
+    positives,
+    negatives,
+    summary,
+  });
+
+
+
   return (
+
     <div className={styles.container}>
 <SymbolChart symbol={symbol} language={language}/>
 
@@ -156,13 +172,12 @@ const summaryHeading   = language == "en" ? "Key Takeaways" : "الخلاصات 
          <Providers symbol={symbol} language={language}/>
          <RelatedSymbols symbol_id={symbol_id} language={language} handleManualFunctionCall={handleManualFunctionCall}/>
          <ActionsGroup
-        actions={[
-          { iconName: "share", text: t("share"), onClick: () => shareContent("hello") },
-          { iconName: "copy", text: t("copy"), onClick: () => copyToClipboard("hello") }, // ✅ Pass function properly
-        ]}
+          actions={[
+            { iconName: "share", text: t("share"), onClick: () => shareContent(textToCopy) },
+            { iconName: "copy", text: t("copy"), onClick: () => copyToClipboard(textToCopy) }, // ✅ Pass function properly
+          ]}
         disabled={false}
       /> 
-
       </div>
   
   );

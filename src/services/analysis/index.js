@@ -17,9 +17,8 @@ import insertStockAnalysis from "./insert_data/insert_analysis_response.js";
 export async function process_analysis(parameters) {
 
   console.log("process_analysis started with parameters:", parameters);
-  const { symbol, asset_type,language } = parameters;
+  const { symbol, asset_type, language } = parameters;
   
-  console.log("LANGUAGE COMING TO BACKEND IS: ", language)
   try {
     // 1️⃣ Fetch stock data
     const { id, ticker_symbol, data_for_ai } = await fetchFormatData(symbol, asset_type, supabase_client);

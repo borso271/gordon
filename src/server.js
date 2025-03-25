@@ -43,7 +43,6 @@ app.prepare().then(() => {
         ws.send(SUBSCRIBE_MESSAGE);
     });
     
-    
     ws.on("message", async (data) => {
         try {
             const stockData = JSON.parse(data);
@@ -64,7 +63,6 @@ app.prepare().then(() => {
             console.error("❌ Error parsing WebSocket message:", err);
         }
     });
-    
 
     ws.on("error", (err) => console.error("❌ WebSocket error:", err));
     ws.on("close", () => console.log("⚠️ WebSocket connection closed."));

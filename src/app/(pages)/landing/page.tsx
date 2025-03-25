@@ -1,6 +1,7 @@
 "use client"
 
-import React, {useEffect} from 'react';
+import React, {useEffect, FormEvent} from 'react';
+
 import styles from './page.module.css'
 import { useConversation } from '../../context/conversationContext';
 import ChatInput from '../../../components/Chat/components/ChatInput';
@@ -9,8 +10,7 @@ import {useThread} from '../../hooks/useThread';
 
 const TestChatPage = () => {
 
-   const {setAreNavigationItemsVisible, inputDisabled, setInputDisabled,userInput, setUserInput, setThreadId, resetConversationState} = useConversation();
-   const {handleSubmit} = useHandleSubmit();
+   const {setAreNavigationItemsVisible, inputDisabled, setInputDisabled,userInput, setUserInput,setThreadId, resetConversationState} = useConversation();
 
   // ✅ Reset threadId only on mount
   useEffect(() => {
@@ -18,8 +18,18 @@ const TestChatPage = () => {
    setInputDisabled(false);
     setThreadId(""); // ✅ Runs only once on mount
   }, []);
-   const { threadId } = useThread();
+
+  // const { threadId } = useThread();
+
+  const {handleSubmit} = useHandleSubmit();
+
   
+// ✅ Create a wrapper that sets isLandingPage = true
+const landingHandleSubmit = (e?: FormEvent | MouseEvent | null) => {
+  return handleSubmit(e, true);
+};
+
+
   return (
     <div className={styles.container}>
       <div className={styles.sidebarWrapper}
@@ -33,7 +43,7 @@ const TestChatPage = () => {
         isFirstPrompt={true}
         userInput={userInput}
         setUserInput={setUserInput}
-        handleSubmit={handleSubmit}
+        handleSubmit={landingHandleSubmit}
         inputDisabled={inputDisabled}
       />
       </div>

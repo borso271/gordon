@@ -4,12 +4,14 @@ export async function POST(request) {
     
   try {
     const body = await request.json(); // ✅ Read asset_type from the request body
-    const assetType = body.asset_type; // ✅ Extract asset_type
 
+    console.log("Body received:", body);
+
+    const assetType = body.asset_type; // ✅ Extract asset_type
     let suggestions = [];
 
-    if (assetType === "stock") {
-        // console.log("asset type is stock")
+    if (assetType === "stock" || assetType === "stocks") {
+
       suggestions = [
         { symbol: "AAPL", asset_type: "stock", exchange_mic: "XNAS" },
         { symbol: "GOOG", asset_type: "stock", exchange_mic: "XNAS" },
@@ -18,7 +20,7 @@ export async function POST(request) {
         { symbol: "MSFT", asset_type: "stock", exchange_mic: "XNAS" },
         { symbol: "PLTR", asset_type: "stock", exchange_mic: "XNYS" },
       ];
-    } else if (assetType === "crypto") {
+    } else if (assetType === "crypto" || assetType === "cryptos") {
       suggestions = [
         { symbol: "BTC", asset_type: "crypto", exchange_mic: "BINANCE" },
         { symbol: "ETH", asset_type: "crypto", exchange_mic: "BINANCE" },
@@ -28,10 +30,20 @@ export async function POST(request) {
         { symbol: "SOL", asset_type: "crypto", exchange_mic: "BINANCE" },
       ];
     } else {
-      return NextResponse.json(
-        { error: "Invalid asset type. Must be 'stock' or 'crypto'." },
-        { status: 400 }
-      );
+
+      suggestions = [
+        { symbol: "AAPL", asset_type: "stock", exchange_mic: "XNAS" },
+        { symbol: "GOOG", asset_type: "stock", exchange_mic: "XNAS" },
+        { symbol: "TSLA", asset_type: "stock", exchange_mic: "XNAS" },
+        { symbol: "NVDA", asset_type: "stock", exchange_mic: "XNAS" },
+        { symbol: "MSFT", asset_type: "stock", exchange_mic: "XNAS" },
+        { symbol: "PLTR", asset_type: "stock", exchange_mic: "XNYS" },
+      ];
+
+      // return NextResponse.json(
+      //   { error: "Invalid asset type. Must be 'stock' or 'crypto'." },
+      //   { status: 400 }
+      // );
     }
 
     return NextResponse.json({ suggestions });

@@ -1,6 +1,7 @@
 const shareContent = (assistantText: string): void =>  {
     if (navigator.share) {
       // Use Web Share API if available
+
       navigator.share({
         title: "Check this out!",
         text: assistantText,

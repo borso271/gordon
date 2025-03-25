@@ -14,7 +14,6 @@ const AnalystRatings = ({ ticker_symbol, language }) => {
     mostVotedRating,
     getPercentage,
   } = useAnalystRatings(ticker_symbol);
-  console.log("language in ratings is: ", language)
   const getTranslatedLabel = (label) => {
     if (language === "ar") {
       switch (label) {

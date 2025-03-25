@@ -1,7 +1,8 @@
 import React, { createContext, useContext } from "react";
-import { functionCallHandler } from "../../app/utils/functionCallHandler";
+// import { functionCallHandler } from "../../app/utils/functionCallHandler";
 import { useManualFunctionCall } from "../hooks/useHandleManualFunctionCall";
 import {useRouter} from 'next/navigation'
+import { useFunctionCallHandler } from "../hooks/useFunctionCallHandler";
 
 interface FunctionExecutionContextType {
   onManualFunctionCall: (functionName: string, args: any, isFirstPrompt?: boolean) => Promise<void>;
@@ -13,7 +14,9 @@ const FunctionExecutionContext = createContext<FunctionExecutionContextType | un
 // Provider component
 export const FunctionExecutionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter();
+  const {functionCallHandler} = useFunctionCallHandler()
   const { handleManualFunctionCall } = useManualFunctionCall();
+
 
   const onManualFunctionCall = async (functionName: string, args: any, isFirstPrompt?: boolean) => {
     if (isFirstPrompt) {

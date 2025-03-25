@@ -38,7 +38,7 @@ const StockWebSocketListener = () => {
     });
 
     socket.on("stock_update", (stock) => {
-      console.log("📡 WebSocket received stock update:", stock);
+      //console.log("📡 WebSocket received stock update:", stock);
 
       if (!stock || typeof stock !== "object") {
         console.warn("❌ Received invalid stock update (not an object), ignoring...", stock);

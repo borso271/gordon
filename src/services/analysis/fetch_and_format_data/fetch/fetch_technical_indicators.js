@@ -20,7 +20,7 @@ async function fetchTechnicalIndicators(tickerSymbol, symbol_id, supabase_client
             formattedData[item.label || item.indicator] = item.value;
         });
 
-        console.log(JSON.stringify(formattedData, null, 2));
+        // console.log(JSON.stringify(formattedData, null, 2));
         return formattedData;
 
     } catch (error) {

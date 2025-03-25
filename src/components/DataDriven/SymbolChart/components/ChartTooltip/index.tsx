@@ -10,7 +10,7 @@ type ChartTooltipProps = {
   containerRef: React.RefObject<HTMLDivElement>;
 };
 
-const ChartTooltip = ({ hoveredPoint, mousePos,language, containerRef }: ChartTooltipProps) => {
+const ChartTooltip = ({ hoveredPoint, mousePos, language, containerRef }: ChartTooltipProps) => {
    
   const { isMobile } = useScreenSize(); // ✅ Hook moved to the top
   if (!hoveredPoint || !containerRef.current) return null; // ✅ Safe to have early return now
@@ -20,14 +20,16 @@ const ChartTooltip = ({ hoveredPoint, mousePos,language, containerRef }: ChartTo
     height: isMobile ? 56 : 60,
   };
 
-  const formattedTime = new Date(hoveredPoint.time).toLocaleString(["ar", "en-US"], {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  const locale = language === "ar" ? "ar" : "en-US";
+
+const formattedTime = new Date(hoveredPoint.time).toLocaleString(locale, {
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
 
   // 📌 Get container bounds
   const rect = containerRef.current.getBoundingClientRect();

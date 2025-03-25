@@ -22,7 +22,7 @@ async function fetchExternalIndicators(tickerSymbol, symbol_id, supabase_client)
             }
         });
 
-        console.log(JSON.stringify(formattedData, null, 2));
+        // console.log(JSON.stringify(formattedData, null, 2));
         return formattedData;
 
     } catch (error) {

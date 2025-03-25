@@ -16,7 +16,7 @@ import insertStockAnalysis from "./insert_data/insert_analysis_response.js";
 
 export async function process_analysis(parameters) {
 
-  console.log("process_analysis started with parameters:", parameters);
+  // console.log("process_analysis started with parameters:", parameters);
   const { symbol, asset_type, language } = parameters;
   
   try {

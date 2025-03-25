@@ -4,9 +4,9 @@ export async function POST(req) {
     
     let body;
     try {
-        console.log("Attempting to read JSON body...");
+        // console.log("Attempting to read JSON body...");
         body = await req.json(); // Read JSON body
-        console.log("JSON body read:", body);
+        // console.log("JSON body read:", body);
 
     } catch (error) {
         console.error("Invalid JSON format:", error);

@@ -1,12 +1,10 @@
 
-import { useLanguage } from "../hooks/useLanguage";
-
 export async function functionCallHandler(toolCall) {
   const { name, arguments: functionArgs } = toolCall.function;
   const args = JSON.parse(functionArgs);
-  const { currentLang } = useLanguage()
-  console.log("FUNCTION CALLL HANDLER HAS BEEN CALLED AND TOOLCALL IS: ", toolCall)
-  
+
+  // console.log("FUNCTION CALLL HANDLER HAS BEEN CALLED AND TOOLCALL IS: ", toolCall)
+
   if (name === "analyze_security") {
     try {
       const response = await fetch("api/analysis", {

@@ -31,6 +31,7 @@ export function useSymbolChart(symbol: string) {
 
   useEffect(() => {
     // Small delay to ensure layout has settled
+    
     setTimeout(updateChartSize, 500); 
     // Initial size
     updateChartSize(); 
@@ -102,6 +103,7 @@ export function useSymbolChart(symbol: string) {
   const lastUpdateTimeRef = useRef<number>(0);
 
   useEffect(() => {
+   
     if (!symbol_id || !exchange_mic || !asset_type) {
       console.warn("⏭️ Skipping getChartData - Missing required values.");
       return;
@@ -112,11 +114,13 @@ export function useSymbolChart(symbol: string) {
   // 5) Intraday data + live data merging logic
   const [intradayData, setIntradayData] = useState<any[]>([]);
   useEffect(() => {
+    console.log("SERIES DATA IS: ", seriesesData )
     setIntradayData(seriesesData.get("ID") || []);
   }, [seriesesData]);
 
   const liveData = useSelector((state: any) => state.stocks[symbol] || []);
   
+
 
 useEffect(() => {
     if (!liveData.length) return;

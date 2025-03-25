@@ -19,7 +19,7 @@ async function fetchCompanyProfile(tickerSymbol, symbol_id, supabase_client) {
         throw new Error(`No company profile found for ticker: ${tickerSymbol}`);
       }
        
-      console.log(JSON.stringify(data, null, 2));
+      // console.log(JSON.stringify(data, null, 2));
   
       return  { name: data.name, description: data.description } ;
     } catch (err) {

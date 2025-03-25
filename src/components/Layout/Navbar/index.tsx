@@ -8,7 +8,7 @@ import Link from "next/link";
 import MobileNavigation from "../../MobileNavigation";
 import { useNavbarLogic } from "../../../app/hooks/useNavbarLogic";
 import { useTranslation } from 'react-i18next';
-
+import { useLanguage } from "../../../app/hooks/useLanguage";
 const Navbar: React.FC = () => {
   const { t } = useTranslation();
   const english_label_text = t("english")
@@ -17,7 +17,6 @@ const Navbar: React.FC = () => {
   
   const {
     openDropdown,
-    currentLang,
     selectedIndex,
     setSelectedIndex,
     handleToggleDropdown,
@@ -27,7 +26,9 @@ const Navbar: React.FC = () => {
     faqItems,
   } = useNavbarLogic();
 
+ const {currentLang} = useLanguage();
 
+ console.log("CURRENT LANG IS: ", currentLang)
   const handleLanguageChange = (lang: string) => {
     changeLanguage(lang);
     handleToggleDropdown(null);

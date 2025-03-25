@@ -1,5 +1,7 @@
 
 function isMarketOpenNow(asset_type, exchange_mic = null): boolean {
+
+  console.log("exchange mic passed to is market open now is: ", exchange_mic)
     if (asset_type == "crypto") {
       return true;
     } else if (exchange_mic == "XNAS" || exchange_mic == "XNYS") {
@@ -33,6 +35,11 @@ function isMarketOpenNow(asset_type, exchange_mic = null): boolean {
   }
   
   export default isMarketOpenNow;
+
+
+  // for this you should really have a call to an openai, to check for market status, and recall only if you passed the 30 minutes...
+  // else use cached response...
+  
   
 // function isMarketOpenNow(asset_type, exchange_mic=null) {
 

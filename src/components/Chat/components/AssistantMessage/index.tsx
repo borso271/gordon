@@ -1,11 +1,15 @@
 import React from "react";
 import Markdown from "react-markdown";
+import ReactMarkdown from 'react-markdown';
+
 import styles from "./AssistantMessage.module.css";
 import ActionsGroup from "../../../ActionsGroup";
 import copyToClipboard from "../../../../app/utils/copyToClipboard";
 import shareContent from "../../../../app/utils/shareContent";
 import BotHeading from "../../../Headings/BotHeading";
 import { useTranslation } from 'react-i18next';
+import remarkGfm from 'remark-gfm';
+
 
 
 interface AssistantMessageProps {
@@ -19,11 +23,11 @@ const AssistantMessage: React.FC<AssistantMessageProps> = ({ heading, text }) =>
 
   return (
     <div className={styles.fullResponse}>
-      <BotHeading>{heading}</BotHeading>
+      <BotHeading> <Markdown>{heading}</Markdown></BotHeading>
 
       {text && (
         <div className={styles.assistantMessage}>
-          <Markdown>{formattedText}</Markdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{formattedText}</ReactMarkdown>
         </div>
       )}
 

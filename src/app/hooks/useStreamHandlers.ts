@@ -60,20 +60,41 @@ export function useStreamHandlers() {
       event: any,
       functionCallHandler: (toolCall: any) => Promise<string>
     ) => {
+      const availableSymbols = ["AAPL", "TSLA", "MSFT"]; // or fetch dynamically if needed
 
       const toolCalls = event.data.required_action.submit_tool_outputs.tool_calls;
       const runId = event.data.id;
 
-      // console.log("ON REQUIRES ACTION HAS BEEN CALLED AND TOOLCALLS ARE: ", toolCalls)
-      
+  
       const toolCallOutputs: { tool_call_id: string; output: string }[] = [];
   
       for (const toolCall of toolCalls) {
         // toolCall.function.arguments.language = currentLang;
-    
+        
+        const functionName = toolCall.function?.name;
+        const parsedArgs = JSON.parse(toolCall.function.arguments);
+
+        console.log("parsed args are: ", parsedArgs)
+
+
+if (functionName === "analyze_security") {
+  const symbol = parsedArgs.symbol;
+  
+  if (!availableSymbols.includes(symbol)) {
+    const friendlyMessage = `The selected stock "${symbol}" is not available since this is only a prototype. Inform the user about this and tell the user that the available symbols are: ${availableSymbols.join(", ")}.`;
+
+    toolCallOutputs.push({
+      tool_call_id: toolCall.id,
+      output:  friendlyMessage ,
+    });
+
+    console.log("⚠️ Symbol not supported, sending custom output to OpenAI:", symbol);
+    continue; // ❌ Skip normal function call
+  }
+}
         const result = await functionCallHandler(toolCall);
         const parsedResult = JSON.parse(result);
-        const functionName = toolCall.function?.name;
+
   
         // Update local UI state based on function
         setConversationPairs((prev) => {
@@ -83,14 +104,19 @@ export function useStreamHandlers() {
   
           if (functionName === "analyze_security") {
             last.analysisData = parsedResult;
+            
+            // console.log("parsed results is: ", parsedResult);
+            submitActionResult(threadId, runId, parsedResult.response.analysis);
+
           } else if (functionName === "suggest_securities") {
             last.suggestionData = parsedResult;
           }
   
           return [...prev.slice(0, -1), last];
         });
-  
+        
         // ✅ Only push to OpenAI if function is "search_web"
+
         if (functionName === "search_web") {
           toolCallOutputs.push({
             tool_call_id: toolCall.id,
@@ -101,6 +127,7 @@ export function useStreamHandlers() {
   
       // ✅ Only submit back to OpenAI and continue the stream if allowed
       if (toolCallOutputs.length > 0) {
+        console.log("we arrive at this point", toolCallOutputs)
         const response = await submitActionResult(threadId, runId, toolCallOutputs);
         const stream = AssistantStream.fromReadableStream(response.body);
         attachHandlers(stream);
@@ -117,3 +144,70 @@ export function useStreamHandlers() {
 
 /* here check the stock openai is asking analysis for, and if not in database, return to openai the data,
 and set */
+
+
+
+
+  // const onRequiresAction = useCallback(
+  //   async (
+  //     event: any,
+  //     functionCallHandler: (toolCall: any) => Promise<string>
+  //   ) => {
+
+  //     const toolCalls = event.data.required_action.submit_tool_outputs.tool_calls;
+  //     const runId = event.data.id;
+
+  
+  //     const toolCallOutputs: { tool_call_id: string; output: string }[] = [];
+  
+  //     for (const toolCall of toolCalls) {
+  //       // toolCall.function.arguments.language = currentLang;
+        
+  //       const toolCallArguments = toolCall.function.arguments;
+  //       const functionName = toolCall.function?.name;
+  //       const result = await functionCallHandler(toolCall);
+
+  //       const parsedResult = JSON.parse(result);
+       
+  
+  //       // Update local UI state based on function
+  //       setConversationPairs((prev) => {
+  //         if (prev.length === 0) return prev;
+  //         const last = { ...prev[prev.length - 1] };
+  //         last.assistant = "";
+  
+  //         if (functionName === "analyze_security") {
+  //           last.analysisData = parsedResult;
+            
+  //           // console.log("parsed results is: ", parsedResult);
+  //           submitActionResult(threadId, runId, parsedResult.response.analysis);
+
+  //         } else if (functionName === "suggest_securities") {
+  //           last.suggestionData = parsedResult;
+  //         }
+  
+  //         return [...prev.slice(0, -1), last];
+  //       });
+        
+  //       // ✅ Only push to OpenAI if function is "search_web"
+
+  //       if (functionName === "search_web") {
+  //         toolCallOutputs.push({
+  //           tool_call_id: toolCall.id,
+  //           output: result,
+  //         });
+  //       }
+  //     }
+  
+  //     // ✅ Only submit back to OpenAI and continue the stream if allowed
+  //     if (toolCallOutputs.length > 0) {
+  //       const response = await submitActionResult(threadId, runId, toolCallOutputs);
+  //       const stream = AssistantStream.fromReadableStream(response.body);
+  //       attachHandlers(stream);
+  //     } else {
+  //       // ❌ If nothing to submit to OpenAI, just re-enable input
+  //       setInputDisabled(false);
+  //     }
+  //   },
+  //   [setConversationPairs, threadId, attachHandlers]
+  // );

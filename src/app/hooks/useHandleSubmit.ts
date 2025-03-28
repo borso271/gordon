@@ -23,13 +23,16 @@ export function useHandleSubmit() {
   
     const handleSubmit = async (
       e?: FormEvent | MouseEvent | null,
-      isLandingPage: boolean = false
+      isLandingPage: boolean = false,
+      customQuery?: string
     ) => {
       if (e && "preventDefault" in e) {
         e.preventDefault();
       }
   
-      if (!userInput.trim()) return;
+      const inputToSend = customQuery ?? userInput;
+  
+      if (!inputToSend.trim()) return;
   
       setInputDisabled(true);
       addUserMessage(userInput);
@@ -38,19 +41,16 @@ export function useHandleSubmit() {
       let finalThreadId = threadId;
   
       if (isLandingPage) {
-        // ✅ Create thread before navigating
         if (!finalThreadId) {
           const createdId = await createThread();
           finalThreadId = createdId;
-          setThreadId(createdId); // optional, keep this if you use it elsewhere
+          setThreadId(createdId);
         }
-      
-        // ✅ Redirect to /chat with threadId as a query param
         router.push(`/chat?threadId=${finalThreadId}`);
       }
-      
+  
       try {
-        const response = await sendMessage(finalThreadId, userInput);
+        const response = await sendMessage(finalThreadId, inputToSend);
         const stream = AssistantStream.fromReadableStream(response.body);
         attachHandlers(stream);
       } finally {
@@ -58,10 +58,67 @@ export function useHandleSubmit() {
       }
     };
   
-    return { handleSubmit, attachHandlers };
+    return { handleSubmit };
   }
+  
+// export function useHandleSubmit() {
+
+//     const router = useRouter();
+//     const { createThread } = useThread();
+//     const {
+//       addUserMessage,
+//       userInput,
+//       setUserInput,
+//       setInputDisabled,
+//       threadId,
+//       setThreadId,
+//     } = useConversation();
+   
+//     const { attachHandlers } = useStreamHandlers();
+//     const handleSubmit = async (
+//       e?: FormEvent | MouseEvent | null,
+//       isLandingPage: boolean = false
+//     ) => {
+//       if (e && "preventDefault" in e) {
+//         e.preventDefault();
+//       }
+  
+//       if (!userInput.trim()) return;
+  
+//       setInputDisabled(true);
+//       addUserMessage(userInput);
+//       setUserInput("");
+  
+//       let finalThreadId = threadId;
+  
+//       if (isLandingPage) {
+//         // ✅ Create thread before navigating
+//         if (!finalThreadId) {
+//           const createdId = await createThread();
+//           finalThreadId = createdId;
+//           setThreadId(createdId); // optional, keep this if you use it elsewhere
+//         }
+
+//         // ✅ Redirect to /chat with threadId as a query param
+//         router.push(`/chat?threadId=${finalThreadId}`);
+//       }
+      
+//       try {
+//         const response = await sendMessage(finalThreadId, userInput);
+//         const stream = AssistantStream.fromReadableStream(response.body);
+//         attachHandlers(stream);
+//       } finally {
+//         setInputDisabled(false);
+//       }
+//     };
+  
+//     return { handleSubmit };
+//   }
 
   
+
+
+
 // export function useHandleSubmit() {
 //     const router = useRouter();
 //     const {createThread} = useThread()

@@ -23,12 +23,9 @@ const openai = new OpenAI({
  * @returns {Object|boolean} - Parsed analysis from OpenAI or boolean `false` if something fails.
  */
 
-
 async function fetch_openai_response_structured(ticker_symbol, asset_type, symbol_id, language, company_data) {
-
   
   try {
-   
     // Extract the company name from the nested data object
     const company_name = company_data["Company Profile"]?.["Name"] || ticker_symbol;
 
@@ -111,10 +108,7 @@ async function fetch_openai_response_structured(ticker_symbol, asset_type, symbo
         },
       ],
       response_format: zodResponseFormat(AnalysisSchemaEn, "financial_analysis"),
-    });
-
-    }
-
+    });}
 
     // 3️⃣ PARSE THE STRUCTURED RESPONSE
     const financial_analysis = completion.choices[0].message.parsed;

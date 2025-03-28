@@ -374,29 +374,3 @@ li:not(:has(> p)) {
   display: block;
 }
 
-
-
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  line-height: 1.5;
-  overflow-x: auto;
-  display: block;
-}
-
-thead th {
-  border-bottom: 1px solid #ccc;
-  text-align: left;
-  padding: 8px 12px;
-  padding-left: 0px;
-  white-space: nowrap;
-}
-
-td {
-  padding: 8px 12px;
-  padding-left: 0px;
-  text-align: left;
-  white-space: nowrap;
-}

@@ -1,0 +1,502 @@
+[
+  {
+    "ticker_symbol": "CRYPTO:USDTUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCUSDT.svg",
+    "name": "Tether USDt"
+  },
+  {
+    "ticker_symbol": "CRYPTO:BTCUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg",
+    "name": "Bitcoin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ETHUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCETH.svg",
+    "name": "Ethereum"
+  },
+  {
+    "ticker_symbol": "CRYPTO:USDCUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCUSDC.svg",
+    "name": "USDC"
+  },
+  {
+    "ticker_symbol": "CRYPTO:FDUSDUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCFDUSD.svg",
+    "name": "First Digital USD"
+  },
+  {
+    "ticker_symbol": "CRYPTO:XRPUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCXRP.svg",
+    "name": "XRP"
+  },
+  {
+    "ticker_symbol": "CRYPTO:SOLUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSOL.svg",
+    "name": "Solana"
+  },
+  {
+    "ticker_symbol": "CRYPTO:DOGEUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCDOGE.svg",
+    "name": "Dogecoin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:BNBUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCBNB.svg",
+    "name": "BNB"
+  },
+  {
+    "ticker_symbol": "CRYPTO:PEPEUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCPEPE.svg",
+    "name": "Pepe"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ADAUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCADA.svg",
+    "name": "Cardano"
+  },
+  {
+    "ticker_symbol": "CRYPTO:SUIUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSUI.svg",
+    "name": "Sui"
+  },
+  {
+    "ticker_symbol": "CRYPTO:WETHUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCWETH.svg",
+    "name": "WETH"
+  },
+  {
+    "ticker_symbol": "CRYPTO:MOVEMUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCMOVEM.svg",
+    "name": "Movement"
+  },
+  {
+    "ticker_symbol": "CRYPTO:SHIBUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSHIB.svg",
+    "name": "Shiba Inu"
+  },
+  {
+    "ticker_symbol": "CRYPTO:LTCUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCLTC.svg",
+    "name": "Litecoin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:TRUMPOFUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCTRUMPOF.svg",
+    "name": "OFFICIAL TRUMP"
+  },
+  {
+    "ticker_symbol": "CRYPTO:HYPEHUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCHYPEH.svg",
+    "name": "Hyperliquid"
+  },
+  {
+    "ticker_symbol": "CRYPTO:TRXUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCTRX.svg",
+    "name": "TRON"
+  },
+  {
+    "ticker_symbol": "CRYPTO:LINKUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCLINK.svg",
+    "name": "Chainlink"
+  },
+  {
+    "ticker_symbol": "CRYPTO:BCHUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCBCH.svg",
+    "name": "Bitcoin Cash"
+  },
+  {
+    "ticker_symbol": "CRYPTO:SATSOUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSATSO.svg",
+    "name": "SATS (Ordinals)"
+  },
+  {
+    "ticker_symbol": "CRYPTO:AVAXUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCAVAX.svg",
+    "name": "Avalanche"
+  },
+  {
+    "ticker_symbol": "CRYPTO:PI3USD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCPI3.svg",
+    "name": "PI"
+  },
+  {
+    "ticker_symbol": "CRYPTO:MEWUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCMEW.svg",
+    "name": "cat in a dogs world"
+  },
+  {
+    "ticker_symbol": "CRYPTO:JELLYJELLYUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCJELLYJELLY.svg",
+    "name": "Jelly-My-Jelly"
+  },
+  {
+    "ticker_symbol": "CRYPTO:WIFUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCWIF.svg",
+    "name": "dogwifhat"
+  },
+  {
+    "ticker_symbol": "CRYPTO:LAYERSUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCLAYERS.svg",
+    "name": "Solayer"
+  },
+  {
+    "ticker_symbol": "CRYPTO:AAVEUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCAAVE.svg",
+    "name": "Aave"
+  },
+  {
+    "ticker_symbol": "CRYPTO:WBTCUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCWBTC.svg",
+    "name": "Wrapped Bitcoin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:HBARUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCHBAR.svg",
+    "name": "Hedera"
+  },
+  {
+    "ticker_symbol": "CRYPTO:PNUTPUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCPNUTP.svg",
+    "name": "Peanut the Squirrel"
+  },
+  {
+    "ticker_symbol": "CRYPTO:FARTCOINUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCFARTCOIN.svg",
+    "name": "Fartcoin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:XLMUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCXLM.svg",
+    "name": "Stellar"
+  },
+  {
+    "ticker_symbol": "CRYPTO:NILUSD",
+    "image_url": null,
+    "name": "Nillion"
+  },
+  {
+    "ticker_symbol": "CRYPTO:RUNEUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCRUNE.svg",
+    "name": "THORChain"
+  },
+  {
+    "ticker_symbol": "CRYPTO:MNTUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCMNT.svg",
+    "name": "Mantle"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ENAUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCENA.svg",
+    "name": "Ethena"
+  },
+  {
+    "ticker_symbol": "CRYPTO:CAKEUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCCAKE.svg",
+    "name": "PancakeSwap"
+  },
+  {
+    "ticker_symbol": "CRYPTO:CRVUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCCRV.svg",
+    "name": "Curve DAO Token"
+  },
+  {
+    "ticker_symbol": "CRYPTO:CROUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCCRO.svg",
+    "name": "Cronos"
+  },
+  {
+    "ticker_symbol": "CRYPTO:CBBTCCUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCCBBTCC.svg",
+    "name": "Coinbase Wrapped BTC"
+  },
+  {
+    "ticker_symbol": "CRYPTO:NEARUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCNEAR.svg",
+    "name": "NEAR Protocol"
+  },
+  {
+    "ticker_symbol": "CRYPTO:DOTUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCDOT.svg",
+    "name": "Polkadot"
+  },
+  {
+    "ticker_symbol": "CRYPTO:SONIUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSONI.svg",
+    "name": "Sonic (prev. FTM)"
+  },
+  {
+    "ticker_symbol": "CRYPTO:BGBUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCBGB.svg",
+    "name": "Bitget Token"
+  },
+  {
+    "ticker_symbol": "CRYPTO:BONKUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCBONK.svg",
+    "name": "Bonk"
+  },
+  {
+    "ticker_symbol": "CRYPTO:POLYGUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCPOLYG.svg",
+    "name": "POL (ex-MATIC)"
+  },
+  {
+    "ticker_symbol": "CRYPTO:FLOKIUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCFLOKI.svg",
+    "name": "FLOKI"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ATOMUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCATOM.svg",
+    "name": "Cosmos"
+  },
+  {
+    "ticker_symbol": "CRYPTO:TONUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCTON.svg",
+    "name": "Toncoin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ZETACUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCZETAC.svg",
+    "name": "ZetaChain"
+  },
+  {
+    "ticker_symbol": "CRYPTO:AUCTIONUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCAUCTION.svg",
+    "name": "Bounce Token"
+  },
+  {
+    "ticker_symbol": "CRYPTO:WLDWUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCWLDW.svg",
+    "name": "Worldcoin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:IMXUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCIMXIMMUTABLEX.svg",
+    "name": "Immutable"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ONDOUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCONDO.svg",
+    "name": "Ondo"
+  },
+  {
+    "ticker_symbol": "CRYPTO:BERAUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCBERA.svg",
+    "name": "Berachain"
+  },
+  {
+    "ticker_symbol": "CRYPTO:INJUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCINJ.svg",
+    "name": "Injective"
+  },
+  {
+    "ticker_symbol": "CRYPTO:SONICSVUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSONICSV.svg",
+    "name": "Sonic SVM"
+  },
+  {
+    "ticker_symbol": "CRYPTO:DAIUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCDAI.svg",
+    "name": "Dai"
+  },
+  {
+    "ticker_symbol": "CRYPTO:UNIUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCUNI.svg",
+    "name": "Uniswap"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ARBIUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCARBI.svg",
+    "name": "Arbitrum"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ANIMECUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCANIMEC.svg",
+    "name": "Animecoin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:FETUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCFET.svg",
+    "name": "Artificial Superintelligence Alliance"
+  },
+  {
+    "ticker_symbol": "CRYPTO:FILUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCFIL.svg",
+    "name": "Filecoin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:EOSUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCEOS.svg",
+    "name": "EOS"
+  },
+  {
+    "ticker_symbol": "CRYPTO:DYMUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCDYM.svg",
+    "name": "Dymension"
+  },
+  {
+    "ticker_symbol": "CRYPTO:RSRUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCRSR.svg",
+    "name": "Reserve Rights"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ZROLUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCZROL.svg",
+    "name": "LayerZero"
+  },
+  {
+    "ticker_symbol": "CRYPTO:OPUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCOP.svg",
+    "name": "Optimism"
+  },
+  {
+    "ticker_symbol": "CRYPTO:OMUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCOM.svg",
+    "name": "MANTRA"
+  },
+  {
+    "ticker_symbol": "CRYPTO:VIRTUALUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCVIRTUAL.svg",
+    "name": "Virtuals Protocol"
+  },
+  {
+    "ticker_symbol": "CRYPTO:MUBARAKUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCMUBARAK.svg",
+    "name": "Mubarak"
+  },
+  {
+    "ticker_symbol": "CRYPTO:APTOUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCAPTO.svg",
+    "name": "Aptos"
+  },
+  {
+    "ticker_symbol": "CRYPTO:RENDERUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCRNDR.svg",
+    "name": "Render"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ETCUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCETC.svg",
+    "name": "Ethereum Classic"
+  },
+  {
+    "ticker_symbol": "CRYPTO:TAOBUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCTAOB.svg",
+    "name": "Bittensor"
+  },
+  {
+    "ticker_symbol": "CRYPTO:SWELLUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSWELL.svg",
+    "name": "Swell Network"
+  },
+  {
+    "ticker_symbol": "CRYPTO:API3USD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCAPI3.svg",
+    "name": "API3"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ZECUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCZEC.svg",
+    "name": "Zcash"
+  },
+  {
+    "ticker_symbol": "CRYPTO:RAYUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCRAY.svg",
+    "name": "Raydium"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ORDIUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCORDI.svg",
+    "name": "ORDI"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ANKRUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCANKR.svg",
+    "name": "Ankr"
+  },
+  {
+    "ticker_symbol": "CRYPTO:MKRUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCMKR.svg",
+    "name": "Maker"
+  },
+  {
+    "ticker_symbol": "CRYPTO:IPUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCIP.svg",
+    "name": "Story"
+  },
+  {
+    "ticker_symbol": "CRYPTO:USDEEUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCUSDEE.svg",
+    "name": "Ethena USDe"
+  },
+  {
+    "ticker_symbol": "CRYPTO:BOMEUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCBOME.svg",
+    "name": "BOOK OF MEME"
+  },
+  {
+    "ticker_symbol": "CRYPTO:LDOUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCLDO.svg",
+    "name": "Lido DAO"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ARKMUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCARKM.svg",
+    "name": "Arkham"
+  },
+  {
+    "ticker_symbol": "CRYPTO:UXLINKUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCUXLINK.svg",
+    "name": "UXLINK"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ALGOUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCALGO.svg",
+    "name": "Algorand"
+  },
+  {
+    "ticker_symbol": "CRYPTO:ICPUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCICP.svg",
+    "name": "Internet Computer"
+  },
+  {
+    "ticker_symbol": "CRYPTO:XMRUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCXMR.svg",
+    "name": "Monero"
+  },
+  {
+    "ticker_symbol": "CRYPTO:WUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCW.svg",
+    "name": "Wormhole"
+  },
+  {
+    "ticker_symbol": "CRYPTO:KAITOUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCKAITO.svg",
+    "name": "KAITO"
+  },
+  {
+    "ticker_symbol": "CRYPTO:SEIUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSEI.svg",
+    "name": "Sei"
+  },
+  {
+    "ticker_symbol": "CRYPTO:SANDUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSAND.svg",
+    "name": "The Sandbox"
+  },
+  {
+    "ticker_symbol": "CRYPTO:VINEUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCVINE.svg",
+    "name": "Vine Coin"
+  },
+  {
+    "ticker_symbol": "CRYPTO:STXSUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCSTXS.svg",
+    "name": "Stacks"
+  },
+  {
+    "ticker_symbol": "CRYPTO:NEIROFUSD",
+    "image_url": "https://s3-symbol-logo.tradingview.com/crypto/XTVCNEIROF.svg",
+    "name": "First Neiro On Ethereum"
+  }
+]

@@ -8,17 +8,9 @@ import Suggestion from "../../../Suggestion";
 import Loading from "../../../Loading";
 import styles from "./ConversationPairView.module.css";
 import { extractTwoValues } from "../../../../app/utils/extractTwoValues";
-
-
-interface ConversationPair {
-  user: string;
-  assistant?: string | null;
-  code?: string | null;
-  analysisData?:any;
-  suggestionData?: any;
-  language: string;
-}
-
+import { ConversationPair } from "../../../../interfaces";
+import TickerList from "../../../TickerList";
+import { useLanguage } from "../../../../app/hooks/useLanguage";
 interface ConversationPairViewProps {
   pair: ConversationPair;
   direction: "up" | "down";
@@ -38,14 +30,29 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
 
 
   const nothingYet = !pair.assistant && !pair.code && !pair.analysisData && !pair.suggestionData;
-
+  const {currentLang} = useLanguage()
   const [responseHeading, responseContent] = extractTwoValues(pair.assistant || "");
   const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
+
+  const messages = {
+    en: {
+      heading: "Sorry... For some reason I could not process your request.",
+      text: "Please try again or ask for support at hi.finh.cc@gmail.com!",
+    },
+    ar: {
+      heading: "عذرًا... لم أتمكن من معالجة طلبك لسبب ما.",
+      text: "يرجى المحاولة مرة أخرى أو طلب الدعم على hi.finh.cc@gmail.com!",
+    },
+  };
+  
+  const lang = currentLang === "ar" ? "ar" : "en"; // default to 'en'
+
+  
   useEffect(() => {
     if (nothingYet) {
       const timeout = setTimeout(() => {
         setShowTimeoutMessage(true);
-      }, 30000); // ⏱ 10 seconds (adjust as needed)
+      }, 40000); // ⏱ 10 seconds (adjust as needed)
   
       return () => clearTimeout(timeout); // cleanup if component unmounts or re-renders
     }
@@ -72,16 +79,18 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
           
         {nothingYet ? (
   showTimeoutMessage ? (
-    <AssistantMessage
-      heading="Sorry... For some reason I could not process your request."
-      text="Please try again or ask for support at hi.finh.cc@gmail.com!"
-    />
+<AssistantMessage
+  heading={messages[lang].heading}
+  text={messages[lang].text}
+/>
   ) : (
     <Loading />
   )
 ) : (
   <>
-    {pair.assistant && (
+    {pair.assistant &&
+    !pair.analysisData &&
+    !pair.tickerListData && (
       <AssistantMessage heading={responseHeading} text={responseContent} />
     )}
 
@@ -101,6 +110,15 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
         data={pair.suggestionData}
         language={pair.language}
         handleManualFunctionCall={handleManualFunctionCall}
+      />
+    )}
+
+{pair.tickerListData && (
+      <TickerList
+        data={pair.tickerListData}
+        language={pair.language}
+        // handleManualFunctionCall={handleManualFunctionCall}
+        // newSearch={newSearch}
       />
     )}
   </>

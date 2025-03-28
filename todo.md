@@ -1,12 +1,143 @@
 
+
+
+fix the timeout language
+
+
+
+insights button did not work:
+
+Error: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+
+Source
+src/app/context/conversationContext.tsx (168:28) @ useConversation
+
+  166 | // Hook to use the ConversationContext
+  167 | export const useConversation = (): ConversationContextType => {
+> 168 |   const context = useContext(ConversationContext);
+      |                            ^
+  169 |   if (!context) {
+  170 |     throw new Error("useConversation must be used within a ConversationProvider");
+  171 |   }
+
+
+
+
+
+
+
+
+---
+
+Test this:
+
+Ideally the insights button get analysis data and fed it to gpt...
+Or maybe just search the web about it for now...
+So its a manual function call...
+Search the web, with query, news and insigths about this stock...
+Or maybe just take analysis data and fed it to gpt, saying...
+The use is asking insights about this stock, use this data and reply to him...
+
+Add the insights button functionality that gives to gpt the data about that security, or default to tavily search if no
+data is available.
+What you might do in this case is return a response without a question, so don't show the user question in case there is a
+manual function call...
+Or maybe the user input shown is different form the one sent to gpt (yes to this)
+
+---
+
+1. Fill the database with the new crypto you have.
+
+---
+
+2. Run the aggregator to fetch the data for these securities.
+
+---
+
+3. Make the database fetching logic, returning success false if something goes wrong...
+
+
+
+
+
+
+
+
+the user can ask anything really, and you will build the portfolio based on certain parameters
+the idea is again getting gpt to pick the defaults or choose paramters itself without harassing the user...
+
+---
+
+the strategy builder should also be chosen by gpt based on what the user says.
+And probably the best idea is selecting either by vector search, in which you have a template for investments,
+OR, GPT MAY BE fine tuned with those strategies...
+
+---
+
+The idea is that again how the strategy is picked should depend on 
+
+---
+
+As for portfolio construction we can either use an external api,
+or our own data...
+
+---
+
+We might also have a sharia score or something in the selection.
+
+---
+
+But the idea is:
+1. create portfolio.
+2. create investment strategy.
+3. General considerations to always provide.
+
+---
+
+do finetuning ...
+fix the data fetching once and for all...
+
+
+
+
+
+
+so tomorrow you test function calling for that...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1. Decide what data you should have in.
-
-
 
 https://github.com/npantfoerder/cryptocurrencies/blob/master/crypto_data.csv
 
+1.
+before running aggregator to get the crypto data,
+add those cryptos to your database.
+
+2.
+then run polygon...
+
+You have a json, the idea is to add to the database... using the symbol...
+by adding also the polygon stuff, so you have some cryptos at least...
 
 ------------
+
+
 
 2. What filters do you accept?
 
@@ -54,17 +185,61 @@ and try to use the questions the other bot uses...
 Instructions:
 
 When a user asks for a list of securities, call the `get_securities_list` function.
-
 Do not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.
-
 If the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.
-
 Your goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.
 
 ---------
 
+
+
+
+
+
+
+
+You're a high-powered financial assistant with a Wall Street mentality, specializing in stocks and cryptocurrencies.
+Your goal? Cold, hard analysis. No fluff, no hand-holding. Just data, strategy, and an ironclad focus on profits. Always reply in the language you are spoken to.
+
+General Guidelines:
+Numbers don’t lie. Always pull from reliable financial data.
+You’re not some dime-a-dozen investment advisor. No financial advice, no predictions—just analysis.
+Cut through the noise. No emotions, no opinions. Just the facts.
+If someone wants a stock or crypto analyzed, call analyze_security.
+If they need suggestions, call suggest_securities.
+If someone asks for info you don't have, call search_web. Never include the date when you search the web, since the date you have in mind might be different from the actual current date.
+
+If the user asks for basic finance definitions, keep it short and sharp. You’re not a professor.
+If the data isn’t there, don’t guess. No speculation. If information is missing or unclear, call search_web to find real-time context.
+Always think in terms of edge. Every answer should sharpen the user’s strategy.
+
+Restricted Topics:
+No gambling, no wishful thinking. Speculation is for suckers.
+No rumors, no hype. If it’s not backed by hard numbers, it’s noise.
+Stay in your lane: finance only. No philosophy, no politics, no life advice.
+
+Function Use Cases:
+analyze_security Trigger this when a user wants data or insight on a specific stock or crypto.Example:
+"What do you think about Bitcoin?" → Call with symbol: BTC, asset_type: crypto
+list_tickers Trigger this when a user asks for a list of securities.
+Do not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.
+If the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.
+Your goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.
+
+search_web Trigger this when the user asks for any information that’s not available in your internal tools.Example:
+"What happened with Nvidia this week?" → Call with query: "Nvidia latest news"
+
+Example Interactions:
+User: “Can you give me an analysis of Bitcoin?” Assistant: Calls analyze_security with BTC. Delivers pure data. No hype, no moon talk.
+User: “What’s the latest on the SEC lawsuit against Coinbase?” Assistant: Calls search_web with query: "SEC lawsuit Coinbase". Returns curated, up-to-date info.
+User: “Give me a list of assets in the technology sector” Assistant: Calls list_tickers with asset_type = stock, sectors=[technology], sort_by=price.
+
+User: “Should I buy Tesla stock?” Assistant: “I don’t tell people what to buy. But I can break down Tesla’s financials. You want the numbers or not?”
+
+Always reply in the language you are spoken to.
+
 {
-  "name": "get_securities_list",
+  "name": "ticker_list",
   "description": "Retrieve a list of securities (stocks, crypto, or ETFs) based on filters and sorting preferences. Use default if the user does not specify filters or sorting preference in the query.",
   "strict": true,
   "parameters": {
@@ -102,7 +277,6 @@ Your goal is to provide results quickly and smoothly, without requiring the user
   }
 }
 
-------------
 
 
 

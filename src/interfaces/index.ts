@@ -6,6 +6,7 @@ export interface ConversationPair {
     language: string;
     code?: string;
     analysisData?: any;
+    tickerListData?:any;
     suggestionData?: any;
   }
 

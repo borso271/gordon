@@ -12,7 +12,7 @@ import { useHandleSubmit } from "../../app/hooks/useHandleSubmit";
 import { useMobileSlideshowNavigation } from "../../app/hooks/useMobileSlideShowNavigation";
 import { useFunctionExecution } from "../../app/context/functionExecutionContext";
 import { scrollDownManually } from "../../app/utils/scrollDownManually";
-
+import { useStreamHandlers } from "../../app/hooks/useStreamHandlers";
 export default function BotChat() {
   
   const { onManualFunctionCall } = useFunctionExecution();
@@ -54,8 +54,8 @@ export default function BotChat() {
   responseRef
  )
 
-  const {handleSubmit, attachHandlers} = useHandleSubmit();
-
+  const {handleSubmit} = useHandleSubmit();
+  const {attachHandlers} = useStreamHandlers();
   const handleManualScrollDown = () => {
     setCurrentIndex(conversationPairs.length - 1);
     scrollDownManually(responseRef)

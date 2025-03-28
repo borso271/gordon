@@ -219,8 +219,6 @@ export function useChartCanvas({
     setHoveredPoint(null);
   };
 
-  
-
   // 7) Colors & styles
   const lineColor = isPositiveChange ? "#1AED87" : "#ED441A";
   const stopColor1 = isPositiveChange

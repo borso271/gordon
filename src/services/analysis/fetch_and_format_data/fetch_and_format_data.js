@@ -5,7 +5,7 @@ import fetchFinancials from "./fetch/fetch_financials.js";
 import fetchTechnicalIndicators from "./fetch/fetch_technical_indicators.js";
 import formatFinancialData from "./format/format_financials.js";
 import fetch_symbol_info from "../../database/fetch_symbol_info.js";
-
+import supabase_client from "../../../lib/supabaseClient.js";
 /**
  * Fetches and formats financial data for a given ticker symbol.
  * This function retrieves different sets of data depending on whether the asset type is a stock or crypto.
@@ -15,7 +15,7 @@ import fetch_symbol_info from "../../database/fetch_symbol_info.js";
  * @returns {Promise<Object>} - A structured object containing financial data for AI processing.
  * @throws {Error} - If the symbol ID is not found in the database.
  */
-async function fetchFormatData(ticker_symbol, asset_type, supabase_client) {
+async function fetchFormatData(ticker_symbol, asset_type) {
     // 🔍 Fetch the symbol ID from the database
     const { id: symbol_id } = await fetch_symbol_info(ticker_symbol) || {};
 

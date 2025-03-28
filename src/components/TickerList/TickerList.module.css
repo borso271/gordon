@@ -1,0 +1,99 @@
+/* .tableContainer {
+  overflow-x: auto;
+  width: 100%;
+  scrollbar-width: none;        
+  -ms-overflow-style: none;     
+}
+
+.tableContainer::-webkit-scrollbar {
+  display: none;              
+}
+
+
+ */
+
+
+
+
+.tableContainer {
+  position: relative;
+  overflow-x: auto;
+}
+
+.scrollableTableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: max-content;
+  border-collapse: collapse;
+}
+
+/* Make the last column sticky */
+.tdSticky,
+.thSticky {
+  position: sticky;
+  right: 0;
+  background: var(--background);
+  z-index: 1;
+}
+
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--black-400);
+  border-radius: 0.8rem;
+  /* overflow: scroll; */
+  table-layout: auto; /* let columns size based on content */
+
+}
+
+.thead {
+  background-color: transparent;
+  border-bottom: 1px solid var(--black-400);
+}
+
+.th,
+.td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  width: 100%; /* allow cells to grow */
+  word-wrap: break-word;
+}
+
+.td {
+  border-bottom: 1px solid var(--black-400);
+}
+
+.table tbody tr:last-child .td {
+  border-bottom: none;
+}
+
+.trHover:hover {
+
+  background:  var(--black-700, #232323);
+
+  }
+  
+
+
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: auto;
+  display: block;
+}
+
+.thead .th {
+  white-space: nowrap;
+}
+
+.td {
+  white-space: nowrap;
+}

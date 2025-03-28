@@ -21,7 +21,7 @@ export async function process_analysis(parameters) {
   
   try {
     // 1️⃣ Fetch stock data
-    const { id, ticker_symbol, data_for_ai } = await fetchFormatData(symbol, asset_type, supabase_client);
+    const { id, ticker_symbol, data_for_ai } = await fetchFormatData(symbol, asset_type);
     
     // console.log("✅ Symbol ID fetched:", id);
     // console.log("✅ Symbol fetched:", symbol);

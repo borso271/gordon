@@ -38,16 +38,12 @@
   z-index: 1;
 }
 
-
-
 .table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid var(--black-400);
   border-radius: 0.8rem;
-  /* overflow: scroll; */
   table-layout: auto; /* let columns size based on content */
-
 }
 
 .thead {
@@ -72,15 +68,10 @@
 }
 
 .trHover:hover {
-
-  background:  var(--black-700, #232323);
-
+background:transparent;
+  /* background:  var(--black-700, #232323); */
   }
   
-
-
-
-
 .table {
   width: 100%;
   border-collapse: collapse;

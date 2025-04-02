@@ -11,13 +11,13 @@ import { extractTwoValues } from "../../../../app/utils/extractTwoValues";
 import { ConversationPair } from "../../../../interfaces";
 import TickerList from "../../../TickerList";
 import { useLanguage } from "../../../../app/hooks/useLanguage";
+
 interface ConversationPairViewProps {
   pair: ConversationPair;
   direction: "up" | "down";
   responseRef: RefObject<HTMLDivElement>;
   handleManualFunctionCall: (functionName: string, args: any) => void;
  newSearch: (prompt: string) => Promise<void>
-
 }
 
 const ConversationPairView: React.FC<ConversationPairViewProps> = ({
@@ -124,39 +124,7 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
   </>
 )}
 
-          
-{/*           
-          {nothingYet ? (
-            <Loading />
-          ) : (
-            <>
-              {pair.assistant && (
-                <AssistantMessage heading={responseHeading} text={responseContent} />
-              )}
-
-              {pair.code && <CodeMessage text={pair.code} />}
-
-              {pair.analysisData && (
-                <Analysis
-                  data={pair.analysisData}
-                  language={pair.language}
-                  handleManualFunctionCall={handleManualFunctionCall}
-                  newSearch={newSearch}
-                />
-              )}
-
-              {pair.suggestionData && (
-                <Suggestion
-                  data={pair.suggestionData}
-                  language={pair.language}
-                  handleManualFunctionCall={handleManualFunctionCall}
-                />
-              )}
-            </>
-          )} */}
-
-
-
+    
         </div>
       </div>
     </motion.div>

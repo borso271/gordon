@@ -1,0 +1,13 @@
+.snapshotContainer {
+        height: auto;
+        /* padding: 20px 16px; */
+        align-items: center;
+        gap: 8px;
+        flex-direction:row;
+        border-radius: 12px;
+        background-color: var(--card-background);
+        border: 1px solid var(--card-border);
+        width: auto;
+        cursor: pointer;
+    }
+    

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { getTextBeforeHyphen } from "../utils/getTextBeforeHyphen";
 
@@ -17,7 +17,6 @@ interface SymbolSnapshotData {
   }
   
   export function useSymbolSnapshot(symbol: string): SymbolSnapshotData {
-    // ...existing logic
 
   const [symbolInfo, setSymbolInfo] = useState<any>(null);
   const [snapshot, setSnapshot] = useState<any>(null);
@@ -44,7 +43,7 @@ interface SymbolSnapshotData {
         console.error("Error fetching symbol info:", err);
       }
     };
-
+    console.log("calling fetch data for symbol: ", symbol);
     fetchData();
   }, [symbol]);
 
@@ -61,26 +60,33 @@ interface SymbolSnapshotData {
         console.error("🚨 Error fetching snapshot:", err);
       }
     };
+    console.log("calling fetch snapshot for symbol: ", symbol);
 
     fetchSnapshot();
   }, [symbol_id]);
 
   // Update price and compute % change
+  const fetchedFallbackRef = useRef(false);
+
   useEffect(() => {
     let isMounted = true;
-
+   
+  
     const updatePrice = async () => {
       let latestPrice;
-
+  
       if (liveData.length > 0) {
         latestPrice = liveData[liveData.length - 1]?.price;
-      } else {
+      } else if (!fetchedFallbackRef.current && symbol_id) {
+
+        console.log("calling fetchLatestPrice for symbol: ", symbol);
         const fallback = await fetchLatestPrice(symbol_id);
         if (fallback && isMounted) {
+          fetchedFallbackRef.current = true;
           latestPrice = fallback.value;
         }
       }
-
+  
       if (isMounted && latestPrice) {
         setLastLivePrice(latestPrice);
         if (snapshot?.last_close) {
@@ -89,15 +95,25 @@ interface SymbolSnapshotData {
         }
       }
     };
-
-    updatePrice();
-    const interval = setInterval(updatePrice, 5000);
-    return () => {
-      isMounted = false;
-      clearInterval(interval);
-    };
-  }, [liveData, snapshot, symbol_id]);
-
+  
+    if (liveData.length > 0) {
+      // 🔁 Polling only when live data is flowing
+      const interval = setInterval(updatePrice, 5000);
+      updatePrice();
+  
+      return () => {
+        isMounted = false;
+        clearInterval(interval);
+      };
+    } else {
+      // 📦 Just one-time fallback fetch
+      updatePrice();
+      return () => {
+        isMounted = false;
+      };
+    }
+  }, [liveData, symbol_id]);
+  
   return {
     snapshot,
     asset_type,
@@ -107,3 +123,42 @@ interface SymbolSnapshotData {
     percentageChange,
   };
 }
+
+
+
+
+//   useEffect(() => {
+//     let isMounted = true;
+
+//     const updatePrice = async () => {
+//       let latestPrice;
+
+//       if (liveData.length > 0) {
+//         latestPrice = liveData[liveData.length - 1]?.price;
+//       } else {
+//         console.log("calling fetchLatestPrice for symbol: ", symbol);
+
+//         const fallback = await fetchLatestPrice(symbol_id);
+//         if (fallback && isMounted) {
+//           latestPrice = fallback.value;
+//         }
+//       }
+
+//       if (isMounted && latestPrice) {
+//         setLastLivePrice(latestPrice);
+//         if (snapshot?.last_close) {
+//           const change = ((latestPrice - snapshot.last_close) / snapshot.last_close) * 100;
+//           setPercentageChange(change);
+//         }
+//       }
+//     };
+
+//     updatePrice();
+//     const interval = setInterval(updatePrice, 5000);
+//     return () => {
+//       isMounted = false;
+//       clearInterval(interval);
+//     };
+//   }, [liveData, snapshot, symbol_id]);
+
+

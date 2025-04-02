@@ -18,7 +18,6 @@ import supabase_client from "../../../lib/supabaseClient.js";
 async function fetchFormatData(ticker_symbol, asset_type) {
     // 🔍 Fetch the symbol ID from the database
     const { id: symbol_id } = await fetch_symbol_info(ticker_symbol) || {};
-
     
     // ❌ If symbol ID is not found, throw an error to prevent further processing
     if (!symbol_id) {
@@ -46,8 +45,6 @@ async function fetchFormatData(ticker_symbol, asset_type) {
                 ...external_indicators    // 🔄 Merge external indicators
             }
             }
-
-            
         };
     }
     
@@ -64,7 +61,7 @@ async function fetchFormatData(ticker_symbol, asset_type) {
         
         // 📊 Format financial data to be more structured for AI processing
         const formatted_financials = formatFinancialData(financials);
-        
+        console.log("formatted data is: ", formatted_financials)
         return {
             "id": symbol_id,
             "ticker_symbol": ticker_symbol,

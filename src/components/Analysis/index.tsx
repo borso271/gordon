@@ -22,8 +22,8 @@ save all in the pair, so that is can also be copied,
 etc.
 TOMORROW: ADD SEARCH USING BING API? Search content, and return it,
 search website, 
-
 */
+import TradingViewChart from '../TradingView/Chart'
 
 interface AnalysisProps {
   data: any; // You should type this more specifically if possible
@@ -106,11 +106,15 @@ const summary = ai_response.summary;
   });
 
 
-
   return (
+  <div className={styles.container}>
+  <TradingViewChart
+  language={language}
+  symbol={symbol}
+  currency="USD"/>
 
-    <div className={styles.container}>
-<SymbolChart symbol={symbol} language={language}/>
+{/* 
+<SymbolChart symbol={symbol} language={language}/> */}
 
 {/* Good Things Section */}
 {positives ? (

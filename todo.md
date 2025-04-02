@@ -1,5 +1,202 @@
+1. Comparison
+2. Single list single scroll
+   text response, different agent
+3. Search with gpt how to handle, highly inefficient to just search and give the response to the assistant...
+   streaming the response directly from completions is an option, sounds tricky too...
+
+   A. stream directly from completions but give context also to assistant
+   B. Give just to assistant, and tell it to present these results to the user in the best possible way and to
+      preserve citations where needed...
+
+--- --- ---
+   
+   try exa how well it performs...
+
+CITATIONS (you need citations in.)
+
+------------------------------------------------------------------------- --- --- ---
+
+...
+...
+...
+
+
+
+
+
+2. Fetch data for comparison, make a function fetchig data to compare stocks...
+
+
+
+
+Do ANNOTATIONS, YOU WANT TO HAVE ANNOTATIONS AS WELL...
+
+1. Finish search and try use the new openai search, show results.
+   2. Use Tavily maybe as fallback if there are errors, for a 100% reliability.
+
+
+---
+
+3. Add ratings and other stuff to stocks...? And default to search if there is failure.
+So do the listing better.
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- 
+
+5. Have the show_infographic function you can call...
+   Basically, you call show_infographic, name of infographic (chart, table), list of stocks...
+
+---
+
+6. Try to add openai code interpreter (understand exactly what it does)
+
+
+
+
+
+
+
+
+
+------------------------------------------------------
+
+For saudi data use https://twelvedata.com/exchanges/XSAU
+
+0. Search
+Try Tavily more
+Try other services for AI
+Try gpt search
+Try Bing
+
+------------------
+
+1. Comparison
+- Fetch double symbol chart
+- have a function to fetch a list of financial data and present them in a table,
+  saying which wins pehaps in a third table.
+  Include performance over past month, 6 months and year perhaps...
+
+- You might have 10 points, including the analysts.
+- What about comparing more than 2 stocks? I guess it might be an option...
+  default is two but can be more than 2, in case you fetch data for more stocks...
+  and in which case,
+
+  You might perhaps compare against the nasdaq, in which case you don't have the table of comparison
+  you do only IF THEY HAVE THE SAME ASSET TYPE.
+
+  In which case, have a table with 4 columns or more, and telling also who is the winner.
+
+------------------
+
+2. Strategies:
+Have, given a portfolio and allotments, a list of strategies saved,
+and a method to select based on user profile. So perhaps first you should have a way to map the user profile,
+and then select the right strategy, perhaps YOU MIGHT ALSO SELECT A SEMANTIC SEARCH, if you have tags and descriptions
+for the strategies. Or perhaps not, but you need a mapping.
+The strategies are general and can be described in general terms or applied to a list of stocks...
+In which case YOU NEED TO UNDERSTAND HOW TO APPLY A GIVEN STRATEGY TO A SPECIFIC SET OF STOCKS, IF THERE ARE PRINCIPLES THERE.
+
+------------------
+
+3. Lists:
+Just the way you are doing it, but add more filters and sorting possibilities.
+
+------------------
+
+4. Portfolios:
+
+For portolios you can use etfs or portfolios from vanguard and blackrock and store them and present them to the user
+
+Or you can have again a list of methods, that presents you with percentages of stocks from different sectors
+and with different technical parameters depending on the user preference.
+
+If you use blackrock and vanguard you might want to extract only the stocks if you cannot present anything else.
+For the pie chart, you should keep in mind you MIGHT HAVE MANY STOCKS, SO ACTUALLY NOT THE BEST IDEA,
+if not to show something else like the allocation of the sectors, etc.
+
+Or else again just fetch from database...
+
+------------------
+
+5. Reports:
+
+To have a report really you should extract info from the portfolio, and just give it to openai.
+
+(reports for now can be done with llama index perhaps...)
+(if you also have history and chats and messages and other stuff)
+
+This should be easy and depends on the personal portfolio page of the user, it can have a list of stocks and each of them
+with a transaction history, so you can extract a list of how the whole portfolio has been performing, over a week, a month, a year, pinpoint what has going well and what has going badly.
+And COMPARE TO MARKET PERFORMANCE AS WELL.
+- How much you did, in different periods of time.
+- What is the trend.
+- How compares to market.
+- What went best.
+- What is not going well.
+For each equity you must have INFO LIKE ASSET_TYPE, SECTOR, and some indicators.
+So that you can perhaps also ask gpt about some thoughts about it.
+
+------------------
+
+6. Analysis (FOR NOW KEEP WHAT YOU ALREADY HAVE)
+For Analysis the best way to do it I believe is still to have the bot speak and explain data to you and present a table with the data. But for now we can just keep what we have since it is working.
+
+------------------
+
+
+
+
+
+
+
+
+
+
+
+1. Where to take etf data which is important.
+2. How to create a portfolio, and I guess, have 50 pre-installed, that are different than etfs,
+   and test it.
+3. STOCK PORTFOLIOS...
+
+then allocate...
+then apply strategy...
+
+Strategies should be categorized by parameters like risk, etc.
+
+
+
+
+
+
+
+Chart vs last price and quote, that might be easily done with websockets since you don't need
+to store everything...
+
+// so for the snapshot:
+get last close...
+then subscribe to the websocket, using redux, to get the latest quote
+
+--> What if thousands of stocks are required?
+    If they are not getting live data themselves, no need.
+    But then you cannot have action buttons, unless
+
+
+Be sure conversations are always labeled and capitalized.
+Call analysis and give the backup message and chart only if that fails, rather than prechecking.
+Do the crypto fetching with python.
+
+
+Start thinking about database and vector database or llama index.
 
 2. Run the aggregator to fetch the data for these securities.
+
+
+
+/*
+Every time there is a submit you might want either to show a custom query,
+or to show a query, since you have it in your menu */
 
 ---
 
@@ -430,3 +627,25 @@ test lists using only tavily...
 else, do the normal search, and if does not succeed fall back to tavily...
 should return as a table if succeeds...
 
+
+
+
+
+
+
+TypeError: Failed to fetch
+
+Source
+src/app/utils/apiActions.ts (19:12) @ submitActionResult
+
+  17 |     toolCallOutputs: any
+  18 |   ): Promise<Response> {
+> 19 |     return fetch(`/api/assistants/threads/${threadId}/actions`, {
+     |            ^
+  20 |       method: "POST",
+  21 |       headers: { "Content-Type": "application/json" },
+  22 |       body: JSON.stringify({ runId, toolCallOutputs }),
+useStreamHandlers.useCallback[onRequiresAction]
+src/app/hooks/useStreamHandlers.ts (169:49)
+async onRequiresAction
+src/app/hooks/useStreamHandlers.ts (64:9)

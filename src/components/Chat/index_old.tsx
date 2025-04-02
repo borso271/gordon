@@ -40,8 +40,7 @@ export default function BotChat() {
     conversationPairs.length
   );
 
-  console.log("conversation pairs are: ", conversationPairs);
-  
+  // console.log("conversation paris are: ", conversationPairs)
 
   const {
    handleTouchStart,

@@ -23,9 +23,9 @@ export async function process_analysis(parameters) {
     // 1️⃣ Fetch stock data
     const { id, ticker_symbol, data_for_ai } = await fetchFormatData(symbol, asset_type);
     
-    // console.log("✅ Symbol ID fetched:", id);
-    // console.log("✅ Symbol fetched:", symbol);
-    // console.log("✅ Financial data fetched:", data_for_ai);
+    console.log("✅ Symbol ID fetched:", id);
+    console.log("✅ Symbol fetched:", symbol);
+    console.log("✅ Financial data fetched:", data_for_ai);
     
     // 2️⃣ Get AI response (or cached result)
     const ai_response = await fetch_openai_response_structured(symbol, asset_type,id, language, data_for_ai);

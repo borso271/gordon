@@ -11,6 +11,19 @@ export interface ConversationPair {
   }
 
 
+export interface Message {
+  id: string; // ✅ Unique identifier
+  role: string;
+  type?: string; // if role is chart, then maybe type can be stock chart or something else, and the metadata can be the type of chart
+                 // and whatever other things we want to add
+  language: string;
+  code?: string;
+  metadata?: any; // for now any, metadata is kept but data is what is actually shown
+  data?: any; 
+
+}
+
+
 export type Period = "1D" | "1W" | "1M" | "1Y" | "5Y" | "ID";
 
 

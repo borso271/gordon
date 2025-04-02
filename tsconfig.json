@@ -24,7 +24,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(pages)/(marketing)/page.jsx", "src/components/Chat/chat.tsx", "src/app/clientWrapper.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/(pages)/(marketing)/page.jsx", "src/components/Chat/chat.tsx", "src/app/clientWrapper.jsx", "src/app/api/openai_summarize/route.ts"],
   "exclude": ["node_modules"]
 }
 

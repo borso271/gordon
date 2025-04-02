@@ -2,14 +2,19 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { ConversationPair } from "../../interfaces";
+import { ConversationPair, Message } from "../../interfaces";
 import { useLanguage } from "../hooks/useLanguage";
+
 // Define the shape of our context
 interface ConversationContextType {
   conversationPairs: ConversationPair[];
+  messages: Message[];
+
   activeConversationPair: ConversationPair | null;
   currentIndex: number;
   setConversationPairs: React.Dispatch<React.SetStateAction<ConversationPair[]>>;
+  setMessages: React.Dispatch<React.SetStateAction<Message[]>>;
+
   setActiveConversationPair: React.Dispatch<React.SetStateAction<ConversationPair | null>>;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
   addUserMessage: (message: string) => void;
@@ -41,7 +46,7 @@ export const ConversationProvider: React.FC<{ children: ReactNode }> = ({ childr
   const [userInput, setUserInput] = useState("");
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
   const {currentLang} = useLanguage();
-  
+
   const LOCAL_STORAGE_KEY = "conversationPairs";
   const LOCAL_STORAGE_INDEX_KEY = "currentIndex";
 

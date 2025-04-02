@@ -7,16 +7,16 @@ import supabase_client from "../../lib/supabaseClient";
 
 
 const sectorsMap = {
-    technology: "Technology",
-    finance: "Finance",
-    healthcare: "Healthcare",
+    technology: "Information Technology",
+    finance: "Financials",
+    healthcare: "Health Care",
     energy: "Energy",
-    consumer: "Consumer",
+    consumer: "Consumer Staples",
     utilities: "Utilities",
     real_estate: "Real Estate",
     industrials: "Industrials",
     materials: "Materials",
-    communication: "Communication"
+    communication: "Communication Services"
   };
   
   export async function fetchSymbolSnapshots(asset_type, sectors = []) {

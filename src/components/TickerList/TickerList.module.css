@@ -30,13 +30,6 @@
 }
 
 /* Make the last column sticky */
-.tdSticky,
-.thSticky {
-  position: sticky;
-  right: 0;
-  background: var(--background);
-  z-index: 1;
-}
 
 .table {
   width: 100%;
@@ -68,9 +61,20 @@
 }
 
 .trHover:hover {
-background:transparent;
-  /* background:  var(--black-700, #232323); */
+   background:  var(--black-700, #232323); 
   }
+
+  .tdSticky,
+.thSticky {
+  position: sticky;
+  right: 0;
+  background: var(--background);
+  z-index: 1;
+}
+
+.trHover:hover .tdSticky {
+  background-color: var(--black-700, #232323) !important;
+}
   
 .table {
   width: 100%;

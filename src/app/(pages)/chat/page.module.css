@@ -1,10 +1,23 @@
   
   .container {
+    
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    padding-top: 40px;
+    height:100%;
   }
+  
+
+  .container::-webkit-scrollbar {
+    display: none;
+  }
+  .container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   
   .sidebarWrapper {
     position: absolute;

@@ -6,9 +6,12 @@ import styles from './page.module.css'
 import { useConversation } from '../../context/conversationContext';
 import ChatInput from '../../../components/Chat/components/ChatInput';
 import { useHandleSubmit } from '../../hooks/useHandleSubmit';
-import {useThread} from '../../hooks/useThread';
+
 
 const TestChatPage = () => {
+
+  const LOCAL_STORAGE_KEY = "chatSession";
+ 
 
    const {setAreNavigationItemsVisible, inputDisabled, setInputDisabled,userInput, setUserInput,setThreadId, resetConversationState} = useConversation();
 
@@ -16,6 +19,7 @@ const TestChatPage = () => {
   useEffect(() => {
    resetConversationState();
    setInputDisabled(false);
+   localStorage.removeItem(LOCAL_STORAGE_KEY);
     setThreadId(""); // ✅ Runs only once on mount
   }, []);
 

@@ -81,7 +81,6 @@ async function fetchFinancials(tickerSymbol, symbol_id, supabase_client) {
             }
         }
        
-        //await saveToJson(formatFinancialData(formattedData));  // Saves data to 'formatted_data.json'
         return formattedData;
 
     } catch (error) {

@@ -10,6 +10,7 @@ import BotHeading from "../../../Headings/BotHeading";
 import { useTranslation } from 'react-i18next';
 import remarkGfm from 'remark-gfm';
 
+
 interface AssistantMessageProps {
   heading: string;
   text: string;
@@ -21,7 +22,7 @@ const AssistantMessage: React.FC<AssistantMessageProps> = ({ heading, text }) =>
 
   return (
     <div className={styles.fullResponse}>
-      {/* <BotHeading> <Markdown>{heading}</Markdown></BotHeading> */}
+      <BotHeading> <Markdown>{heading}</Markdown></BotHeading>
 
       {text && (
         <div className={styles.assistantMessage}>

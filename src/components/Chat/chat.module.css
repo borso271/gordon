@@ -1,4 +1,48 @@
 /* If you want to hide the scroll bar completely */
+
+/* .slideContainer {
+ 
+  display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: scroll;
+    width: 100%;
+    padding-bottom:80px;
+    
+} */
+
+/* .conversationPair {
+  flex: 1;
+  overflow-y: auto; 
+  width: 100%;
+  position: relative;
+} */
+/* 
+.chatInput {
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 40px);
+  max-width: 796px;
+  z-index: 10;
+  overscroll-behavior: auto;
+  background:var(--background);
+  height: auto;
+  padding-bottom: 20px;
+
+}
+ */
+
+
+
+.slideContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%; 
+  overflow: hidden;
+  position: relative;
+}
+
 .slideContainer::-webkit-scrollbar {
   display: none;
 }
@@ -7,109 +51,48 @@
   scrollbar-width: none;
 }
 
-.slideContainer {
- 
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 80px);
-  overflow: hidden;
-  width: 100%;
+.conversationList {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-bottom: 8px;
 }
 
-.conversationPair {
-  flex: 1; /* Takes up all available space */
-  overflow-y: auto; /* Enables scrolling for chat messages */
-  width: 100%;
-  position: relative;
+.conversationList::-webkit-scrollbar {
+  display: none;
 }
-
-
+.conversationList {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
 
 .chatInput {
-  position: fixed;
-  bottom: 0;
-  width: calc(100% - 40px);
-  max-width: 796px;
-  z-index: 10;
-  /* height: 131px; */
-  overscroll-behavior: auto;
-
+  position:relative;
+  flex-shrink: 0;
+  background:var(--background);
   height: auto;
   padding-bottom: 20px;
-
-}
-.chatSpacer {
-  height: 131px; /* default / fallback */
-  transition: height 0.2s ease; /* optional */
-  position:relative;
-}
-
-
-/* 
-.chatSpacer::before {
-  content: "";
-  position: fixed;
-   bottom: 130px; 
-  left: 0;
-  width: 100%;
-  height: 80px; 
-  pointer-events: none; 
-
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 15, 15, 0) 0%,
-    rgba(15, 15, 15, 0.5) 50%,
-    var(--background) 100%
-  );
-} */
-/* 
-.chatSpacer::before {
-  content: "";
-  position: absolute;
-  z-index: 11;
   
-  top: -79px;
-
-  left: 0;
-  width: 100%;
-  height: 80px;
-  pointer-events: none;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 15, 15, 0) 0%,
-    rgba(15, 15, 15, 0.5) 50%,
-    var(--background) 100%
-  );
-} */
-
-
-.conversationPair::after {
-  content: "";
-  position: absolute;
-  /* bottom: 130px; */
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 80px; /* Adjust the fading area */
-  pointer-events: none; /* Ensures this does not block clicks */
-
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 15, 15, 0) 0%,
-    rgba(15, 15, 15, 0.5) 50%,
-    var(--background) 100%
-  );
+ 
 }
+
+
+
+.chatInput:before {
+content: "";
+    position: absolute;
+    left: 0;
+    top: -80px;
+    width: 100%;
+    height: 80px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, #0f0f0f00 0%, #0f0f0f80 50%, var(--background) 100%);
+}
+
 
 /* Small (Mobile) */
 @media (max-width: 480px) {
-  /* .chatInput,
-  .chatSpacer {
-    
-     height: 101px; 
-  } */
+ 
  
 }
 
@@ -128,4 +111,5 @@
   .scrollDownButton {
     bottom: 120px;
   }
+
 }

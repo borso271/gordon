@@ -52,7 +52,7 @@ export function useHandleSubmit() {
       try {
         const response = await sendMessage(finalThreadId, inputToSend);
         const stream = AssistantStream.fromReadableStream(response.body);
-        attachHandlers(stream);
+        attachHandlers(stream); 
       } finally {
         setInputDisabled(false);
       }

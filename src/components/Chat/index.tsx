@@ -13,11 +13,11 @@ import { useMobileSlideshowNavigation } from "../../app/hooks/useMobileSlideShow
 import { useFunctionExecution } from "../../app/context/functionExecutionContext";
 import { scrollDownManually } from "../../app/utils/scrollDownManually";
 import { useStreamHandlers } from "../../app/hooks/useStreamHandlers";
+
 export default function BotChat() {
-  
   const { onManualFunctionCall } = useFunctionExecution();
   const {
-    conversationPairs,
+    chatSession,
     addUserMessage,
     currentIndex,
     setCurrentIndex,
@@ -30,35 +30,19 @@ export default function BotChat() {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const {
-    handleWheel,
     responseRef,
     direction,
     isAwayFromBottom
   } = useSlideshowNavigation(
     currentIndex,
     setCurrentIndex,
-    conversationPairs.length
+    chatSession.interactions.length
   );
-
-  console.log("conversation pairs are: ", conversationPairs);
-  
-
-  const {
-   handleTouchStart,
-   handleTouchEnd,
-   handleTouchMove
-  }
- = useMobileSlideshowNavigation(
-  currentIndex,
-  setCurrentIndex,
-  conversationPairs.length,
-  responseRef
- )
 
   const {handleSubmit} = useHandleSubmit();
   const {attachHandlers} = useStreamHandlers();
   const handleManualScrollDown = () => {
-    setCurrentIndex(conversationPairs.length - 1);
+    setCurrentIndex(chatSession.interactions.length - 1);
     scrollDownManually(responseRef)
   }
   
@@ -91,23 +75,16 @@ useEffect(() => {
   return () => resizeObserver.disconnect();
 }, []);
 
-
-
   return (
-    <div
-      className={styles.slideContainer}
-      onWheel={handleWheel}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      ref={containerRef}
-    >
-      {/* Show scrollDown button conditionally */}
-      { (currentIndex < conversationPairs.length - 1 ||
-        (isAwayFromBottom)) && (
-        <div className={styles.scrollDownButton}>
 
-      <DropdownButton
+
+<div className={styles.slideContainer} ref={containerRef}>
+  {/* Scroll button */}
+  { (currentIndex < chatSession.interactions.length - 1 ||
+  (isAwayFromBottom)) && (
+  <div className={styles.scrollDownButton}>
+     
+     <DropdownButton
         text=""
         rightIcon="arrow_down"
         rightIconSize={20} // Provide a default size for the right icon
@@ -116,34 +93,92 @@ useEffect(() => {
         width={40}
         onClick={() => handleManualScrollDown()}
       />
-        </div>
-      )}
-
-      <div className={styles.conversationPair}>
-        {conversationPairs.length > 0 && (
-          <ConversationPairView
-            key={currentIndex}
-            pair={conversationPairs[currentIndex]}
-            direction={direction}
-            responseRef={responseRef}
-            handleManualFunctionCall={onManualFunctionCall}
-            newSearch={newSearch}
-          />
-        )}
-      </div>
-
-<div ref={spacerRef} className={styles.chatSpacer} ></div>
-      <div className={styles.chatInput} ref={chatInputRef}>
-      <ChatInput
-        isFirstPrompt={false}
-        userInput={userInput}
-        setUserInput={setUserInput}
-        inputDisabled={inputDisabled}
-        handleSubmit={handleSubmit}
-      />
-      </div>
     </div>
+  )}
+
+  {/* Scrollable message area */}
+  <div className={styles.conversationList}>
+    <div className={styles.conversationPair}>
+      {chatSession.interactions.map((interaction, index) => (
+        <ConversationPairView
+          key={interaction.id || index}
+          interaction={interaction}
+          direction={direction}
+          responseRef={index === currentIndex ? responseRef : null}
+          handleManualFunctionCall={onManualFunctionCall}
+          newSearch={newSearch}
+        />
+      ))}
+    </div>
+  </div>
+
+  {/* Input stays at bottom */}
+  <div className={styles.chatInput} ref={chatInputRef}>
+    <ChatInput
+      isFirstPrompt={false}
+      userInput={userInput}
+      setUserInput={setUserInput}
+      inputDisabled={inputDisabled}
+      handleSubmit={handleSubmit}
+    />
+  </div>
+</div>
+
   );
 }
 
 
+
+
+
+
+
+
+// <div
+// className={styles.slideContainer}
+// ref={containerRef}>
+  
+// {/* Show scrollDown button conditionally */}
+// { (currentIndex < chatSession.interactions.length - 1 ||
+//   (isAwayFromBottom)) && (
+//   <div className={styles.scrollDownButton}>
+
+// <DropdownButton
+//   text=""
+//   rightIcon="arrow_down"
+//   rightIconSize={20} // Provide a default size for the right icon
+//   leftIcon={null} // If you don't need a left icon, set it to null
+//   className="scrollDownButton"
+//   width={40}
+//   onClick={() => handleManualScrollDown()}
+// />
+//   </div>
+// )}
+
+
+// <div className={styles.conversationList}>
+// <div className={styles.conversationPair}>
+// {chatSession.interactions.map((interaction, index) => (
+// <ConversationPairView
+// key={interaction.id || index}
+// interaction={interaction}
+// direction={direction}
+// // isCurrent={index === currentIndex}
+// responseRef={index === currentIndex ? responseRef : null}
+// handleManualFunctionCall={onManualFunctionCall}
+// newSearch={newSearch}
+// />
+// ))}
+// </div>
+// </div>
+
+// <div className={styles.chatInput} ref={chatInputRef}>
+// <ChatInput
+//   isFirstPrompt={false}
+//   userInput={userInput}
+//   setUserInput={setUserInput}
+//   inputDisabled={inputDisabled}
+//   handleSubmit={handleSubmit}
+// />
+// </div>
+// </div>

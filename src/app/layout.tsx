@@ -16,7 +16,9 @@ function RootLayout({ children }: RootLayoutProps) {
         <ClientWrapper>
           <I18nProvider> 
             <ScreenSizeProvider>
-            <ConversationProvider>
+            {/* <ConversationProvider> */}
+            <ConversationProvider forceNewSession={true}>
+
             <FunctionExecutionProvider>
               <NavBar/>
               <main>{children}</main> {/* Page-specific content */}

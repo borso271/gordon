@@ -5,6 +5,7 @@
     justify-content: space-between;
 
 }
+
 .container {
   display: flex;
   flex-direction: column;
@@ -122,6 +123,13 @@
   .input::placeholder {
     font-size: 18px;
     line-height: 130%; /* 23.4px */
+  }
+
+
+  .innerContainer {
+   
+    gap: 0px;
+    
   }
 
 }

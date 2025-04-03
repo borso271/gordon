@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, memo } from 'react';
 import styles from './Chart.module.css'
 type TradingViewChartProps = {
+  args: any;
   language: string;
-  symbol: string;    // e.g. "AAPL"
-  currency: string;  // e.g. "USD"
 };
 
 const localeMap: Record<'ar' | 'en', string> = {
@@ -11,23 +10,19 @@ const localeMap: Record<'ar' | 'en', string> = {
   en: 'en',
 };
 
-const TradingViewChart: React.FC<TradingViewChartProps> = ({ language, symbol, currency }) => {
-  const container = useRef<HTMLDivElement>(null);
+const returnWidgetConfig = (symbols, chart_type, style, currency, language) => {
+  const firstSymbol = symbols[0];
+  console.log("first symbol is: ", firstSymbol)
+  const otherSymbols = symbols.slice(1);
 
-  useEffect(() => {
-    if (!container.current) return;
+  // A list of fallback colors to assign to comparison lines
+  const lineColors = ["#FF9800", "#4CAF50", "#03A9F4", "#E91E63", "#9C27B0"];
+  console.log("PARAMSSSSSSS for the chart are: ", symbols, chart_type, style, currency, language)
 
-    // Clear previous widget
-    container.current.innerHTML = '<div class="tradingview-widget-container__widget"></div>';
-
-    const script = document.createElement("script");
-    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
-    script.type = "text/javascript";
-    script.async = true;
-
-    const widgetConfig = {
+  if (style == "simple") {
+    const chartConfig = {
       symbols: [
-        [`${symbol}`, `${symbol}|1D|${currency}`],
+        [`${firstSymbol}|1D|${currency}`],
       ],
       chartOnly: false,
       width: "100%",
@@ -52,7 +47,7 @@ const TradingViewChart: React.FC<TradingViewChartProps> = ({ language, symbol, c
       maLineWidth: 1,
       maLength: 9,
       headerFontSize: "medium",
-      backgroundColor: "rgba(15, 15, 15, 0)",
+      backgroundColor: "transparent",
       lineWidth: 2,
       lineType: 0,
       dateRanges: [
@@ -63,30 +58,95 @@ const TradingViewChart: React.FC<TradingViewChartProps> = ({ language, symbol, c
         "60m|1W",
         "all|1M",
       ],
+      // 👇 Conditionally add compareSymbol only if valid
+      ...(chart_type == "comparison" && otherSymbols.length > 0 && {
+        compareSymbol: {
+          symbol: otherSymbols[0], // or format it like "NASDAQ:AAPL"
+          lineColor: lineColors[0],
+          lineWidth: 2,
+          showLabels: true
+        }
+      })
     };
 
-    script.innerHTML = JSON.stringify(widgetConfig);
-    container.current.appendChild(script);
-  }, [language, symbol, currency]);
+    return chartConfig;
+  }
 
+  else if (style == "advanced") {
+    const firstSymbol = symbols[0];
+    const otherSymbols = symbols.slice(1);
+  
+    const chartConfig = {
+      autosize: true,
+      symbol: firstSymbol,
+      interval: "D",
+      timezone: "Etc/UTC",
+      theme: "dark",
+      style: "1",
+      locale: localeMap[language],
+      allow_symbol_change: true,
+      support_host: "https://www.tradingview.com",
+      ...(chart_type === "comparison" && otherSymbols.length > 0 && {
+        compareSymbols: otherSymbols.map((symbol) => ({
+          symbol: symbol,
+          position: "SameScale"
+        }))
+      })
+    };
+return chartConfig
+  }
+  return null;
+};
+
+const TradingViewChart: React.FC<TradingViewChartProps> = ({ args, language }) => {
+  const container = useRef<HTMLDivElement>(null);
+  const {tickers, currency, chart_type, style} = args;
+  const mainSymbol = tickers[0];
+
+  useEffect(() => {
+    if (!container.current) return;
+  
+    // Clear previous widget (fully reset)
+    container.current.innerHTML = "";
+  
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
+    script.type = "text/javascript";
+    script.async = true;
+  
+    // Proper config: script content must be a raw JS object
+    script.innerHTML = JSON.stringify(returnWidgetConfig(tickers, chart_type, style, currency, language));
+  
+    // Create the outer container (must match TradingView spec)
+    const wrapper = document.createElement("div");
+    wrapper.className = "tradingview-widget-container__widget";
+  
+    container.current.appendChild(wrapper);
+    container.current.appendChild(script);
+  }, [language, tickers, currency, chart_type, style]);
+
+  
   return (
     <div className={styles.chartContainer}>
     <div className="tradingview-widget-container" ref={container}>
       <div className="tradingview-widget-container__widget"></div>
-      <div className="tradingview-widget-copyright">
+
         <a
           href={language === 'ar' ? "https://ar.tradingview.com/" : "https://www.tradingview.com/"}
           rel="noopener nofollow"
           target="_blank"
         >
-          <span className="blue-text">
-            {language === 'ar' ? 'تتبع جميع الأسواق على TradingView' : 'Track all markets on TradingView'}
-          </span>
+         
         </a>
       </div>
     </div>
-    </div>
+    
+    
   );
 };
 
 export default memo(TradingViewChart);
+
+
+
+

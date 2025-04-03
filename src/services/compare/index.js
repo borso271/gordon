@@ -1,7 +1,5 @@
 /*
 
-
-
 if compare stocks is called,
 tables and charts are added to the chat,
 and you say the bot; this is the data, explain it to the user, and give an overview of this comparison.
@@ -133,12 +131,6 @@ Financial data fetched: {
       'Net Cash Flow': [Object]
     },
 
-    comprehensive_income: {
-      'Comprehensive Income/Loss': [Object],
-      'Comprehensive Income/Loss Attributable To Parent': [Object],
-      'Other Comprehensive Income/Loss': [Object]
-    },
-
     income_statement: {
       Revenues: [Object],
       'Benefits Costs and Expenses': [Object],
@@ -162,3 +154,4 @@ Financial data fetched: {
     }
   }
 }
+  */

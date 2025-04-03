@@ -3,7 +3,7 @@ import fetchExternalIndicators from "./fetch/fetch_external_indicators.js";
 import fetchCompanyProfile from "./fetch/fetch_profile.js";
 import fetchFinancials from "./fetch/fetch_financials.js";
 import fetchTechnicalIndicators from "./fetch/fetch_technical_indicators.js";
-import formatFinancialData from "./format/format_financials.js";
+import formatFinancialData from "./format/format_financials";
 import fetch_symbol_info from "../../database/fetch_symbol_info.js";
 import supabase_client from "../../../lib/supabaseClient.js";
 /**

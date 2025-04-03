@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding-bottom: 40px;
+    /* padding-bottom: 40px; */
   }
   
   /* Medium (Tablets) */

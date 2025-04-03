@@ -1,3 +1,91 @@
+{
+  "name": "analyze_security",
+  "description": "Retrieve an in-depth analysis of a given stock or cryptocurrency.",
+  "strict": true,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "symbol": {
+        "type": "string",
+        "description": "The ticker symbol of the asset (e.g., 'AAPL' for Apple stock, 'BTC' for Bitcoin)."
+      },
+      "asset_type": {
+        "type": "string",
+        "enum": [
+          "stock",
+          "crypto"
+        ],
+        "description": "Specify whether the asset is a stock or a cryptocurrency."
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "symbol",
+      "asset_type"
+    ]
+  }
+}
+
+
+
+
+
+Write the fetch financials...
+Show financial comparison...
+
+
+
+First try with analaysis
+then try with show_chart,
+and see it can call both
+
+try also with fetch financials...
+
+
+
+Today:
+1. Understand how tool calls work
+2. Decide how to handle the flow
+3. Do comparison(s)
+4. Do search
+
+Tomorrow:
+1. Do Portfolio creation from what you have (as lists of stocks)
+2. Do Strategy creation by having a store of strategies (give back to gpt to explain it to the user)
+
+Afterwards:
+1. Perfectionate lists
+2. Do basic portfolio page with chart
+
+--- --- --- ---
+
+Add possibly more text part but assistant_text is the assistant text...
+save now the chatsession in localstorage, fill localstorage if the user goes in landing
+finally do comparison, in which you try to add chart, tables, and assistant response...
+
+Fix search with gpt in which you can actually use gpt stream to show the user and add to context of assistant...
+so that you don't need to wait
+You can have that flow, ...
+
+ORGANIZE FLOWS BASED ON FUNCTION CALLS IN A SCALABLE WAY
+
+ORGANIZE DATA FETCHING ...
+
+
+try timings with the normal search, you can have:
+searching the web... as a message status...
+
+
+If too slow, do exa or tavily and add some extra files and llama index, for stuff like
+sukuk, sharia compliant, etc.
+
+---
+
+---
+---
+---
+---
+
 1. Comparison
 2. Single list single scroll
    text response, different agent
@@ -14,15 +102,14 @@
 
 CITATIONS (you need citations in.)
 
+--- --- ---
+
+
 ------------------------------------------------------------------------- --- --- ---
 
 ...
 ...
 ...
-
-
-
-
 
 2. Fetch data for comparison, make a function fetchig data to compare stocks...
 

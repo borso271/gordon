@@ -15,7 +15,7 @@ const TestChatPage = () => {
       id="sidebarWrapper"
        onMouseEnter={() => setAreNavigationItemsVisible(true)} 
        onMouseLeave={() => setAreNavigationItemsVisible(false)}>
-        <NavigationSidebar />
+        {/* <NavigationSidebar /> */}
       </div>
       <div className={styles.chatWrapper}>
         <BotChat />

@@ -32,17 +32,23 @@
   /* Inner scrolling container for assistant response */
   .assistantResponse {
     flex-grow: 1; /* Takes available space */
-   
-  }
+  
+    
+    display: flex
+;
+    flex-direction: column;
+    gap: 24px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+  
   
   /* Hide scrollbar */
   .assistantResponse::-webkit-scrollbar {
     display: none;
   }
-  .assistantResponse {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+
   
 
 

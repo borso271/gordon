@@ -79,7 +79,7 @@ interface SymbolSnapshotData {
         latestPrice = liveData[liveData.length - 1]?.price;
       } else if (!fetchedFallbackRef.current && symbol_id) {
 
-        console.log("calling fetchLatestPrice for symbol: ", symbol);
+        //console.log("calling fetchLatestPrice for symbol: ", symbol);
         const fallback = await fetchLatestPrice(symbol_id);
         if (fallback && isMounted) {
           fetchedFallbackRef.current = true;

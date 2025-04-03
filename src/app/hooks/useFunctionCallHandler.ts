@@ -16,11 +16,17 @@ export function useFunctionCallHandler() {
     // ✅ Add language from context
     args.language = currentLang;
 
+     if (name == "show_ticker_chart"){
+      return JSON.stringify(arguments)
+     }
+
     const endpointMap = {
       analyze_security: "api/analysis",
       suggest_securities: "api/suggest",
       search_web: "api/tavily_search",
       list_tickers: "api/list_tickers", // ✅ Added new function mapping
+      analyze_ticker: "api/analyze_ticker", // ✅ Added new function mapping
+      show_financial_data: "api/show_financial_data"
     };
 
     if (!endpointMap[name]) {

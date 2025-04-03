@@ -93,8 +93,6 @@ const positives = ai_response.positives;
 const negatives = ai_response.risks_and_concerns;
 const summary = ai_response.summary;
 
-
-
   // 1) Build the multiline text:
   const textToCopy = getFormattedText({
     positivesHeading,
@@ -105,13 +103,14 @@ const summary = ai_response.summary;
     summary,
   });
 
+const chartArgs = {tickers: [symbol], currency: "USD", chart_type: "single", style: "simple"}
 
   return (
   <div className={styles.container}>
   <TradingViewChart
+  args={chartArgs}
   language={language}
-  symbol={symbol}
-  currency="USD"/>
+  />
 
 {/* 
 <SymbolChart symbol={symbol} language={language}/> */}

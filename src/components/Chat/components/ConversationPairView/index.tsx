@@ -1,4 +1,4 @@
-import React, {useState, useEffect, RefObject} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import { motion } from "framer-motion";
 import UserMessage from "../UserMessage";
 import AssistantMessage from "../AssistantMessage";
@@ -11,13 +11,16 @@ import { extractTwoValues } from "../../../../app/utils/extractTwoValues";
 import { Interaction, BotMessagePart} from "../../../../interfaces";
 import TickerList from "../../../TickerList";
 import { useLanguage } from "../../../../app/hooks/useLanguage";
-import TradingViewChart from '../../../TradingView/Chart'
+// import TradingViewChart from '../../../TradingView/Chart'
+import TradingViewSingleChart from '../../../TradingView/SingleChart'
 import ActionsGroup from "../../../ActionsGroup";
 import shareContent from "../../../../app/utils/shareContent";
 import copyToClipboard from "../../../../app/utils/copyToClipboard";
 import { useTranslation } from 'react-i18next';
 import DataTable from "../../../DataTable";
-
+import FollowUps from "../../../FollowUps";
+import { useConversation } from "../../../../app/context/conversationContext";
+import { createQueryFromBotParts } from "../../../../app/utils/createQueryFromBotParts";
 interface ConversationPairViewProps {
   interaction: Interaction;    // renamed from pair
   direction?: "up" | "down";
@@ -38,11 +41,61 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
   const { currentLang } = useLanguage();
   const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
 
-  // Extract user text
-  const userText = interaction.userMessage.text || "";
+const [followUpSuggestions, setFollowUpSuggestions] = useState<Array<string>>([]);
 
-  // Extract bot parts
-  const botParts = interaction.botMessage.parts || [];
+
+const userText = interaction.userMessage.text || "";
+
+// Extract bot parts
+const botParts = interaction.botMessage.parts || [];
+// inside your component
+
+
+const { isRunning } = useConversation(); // from Zustand or context
+// const prevIsRunning = useRef<boolean>(false);
+console.log("initial is Running is: ", isRunning)
+useEffect(() => {
+ console.log("is running is: ", isRunning)
+}, [isRunning, botParts]);
+
+const prevIsRunning = useRef<boolean>(isRunning);
+
+useEffect(() => {
+  // Detect transition from true → false
+  if (prevIsRunning.current === true && isRunning === false) {
+    console.log("Bot finished running (transitioned from true to false)");
+
+    const query = createQueryFromBotParts(botParts, 300);
+
+    if (query) {
+      fetch("/api/follow_ups", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (Array.isArray(data.result) && data.result.length > 0) {
+            setFollowUpSuggestions(data.result);
+          } else {
+            setFollowUpSuggestions([]);
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching follow-ups:", err);
+          setFollowUpSuggestions([]); // fallback to empty array on error
+        });
+    }
+  }
+
+  // Update ref so next render can compare
+  prevIsRunning.current = isRunning;
+}, [isRunning, botParts]);
+
+
+useEffect(() => {
+  console.log("RE-RENDER: isRunning is now", isRunning);
+}, [isRunning]);
 
   // Check if we have *no* content from the bot yet (use your own logic)
   // e.g., if only one text part with empty content, or array is empty => "nothingYet"
@@ -77,7 +130,7 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
 
   // Render logic for each part
   const renderBotPart = (part: BotMessagePart, index: number) => {
-   // console.log("PART IS: ", part);
+    //console.log("PART type IS: ", part.type);
     switch (part.type) {
       case "assistantText":
         // If you used to do "pair.assistant" → text, you can parse heading vs text if you want
@@ -91,9 +144,10 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
 
         case "tickers_chart":
           return (
-          <TradingViewChart
-                 args={part.data}
-                 language={interaction.language}
+          <TradingViewSingleChart
+          language = {interaction.language}
+            symbol = {part.data.tickers[0]}
+             currency = {part.data.currency}
                 /> )
 
       case "ticker_analysis":
@@ -106,10 +160,11 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
               /> )
 
       case "financials_table":
+        return (
         <DataTable 
         title = {part.data.title}
         data = {part.data.data}
-        />
+        />)
         return null;
 
       case "tool_output":
@@ -154,7 +209,8 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
               <Loading />
             )
           ) : (
-            // We have some bot parts, so render them all
+
+          //  We have some bot parts, so render them all
           //  botParts.map(renderBotPart)
 
             botParts.map((part, index) => (
@@ -171,8 +227,22 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
           { iconName: "share", text: t("share"), onClick: () => shareContent("hello") },
           { iconName: "copy", text: t("copy"), onClick: () => copyToClipboard("hello") },
         ]}
+
+        
+        
+        /* here you show the follow ups, when the response is finished...
+        you send the first part of the response */
+
       />
-      </div>
+
+{followUpSuggestions.length > 0 && (
+ 
+    
+          <FollowUps suggestions={followUpSuggestions} newSearch={newSearch} />
+         
+        )}
+        </div>
+      
     </motion.div>
   );
 };
@@ -294,3 +364,6 @@ export default ConversationPairView;
 // };
 
 // export default ConversationPairView;
+
+
+

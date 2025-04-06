@@ -1,0 +1,19 @@
+.chartContainer {
+    height:400px;
+    padding: 24px;
+    border-radius: 16px;
+    background-color: var(--card-background);
+    background: var(--card-background);
+    border: 1px solid var(--card-border);
+    }
+    
+
+
+/* Small (Mobile) */
+@media (max-width: 480px) {
+    .chartContainer {
+        height:360px;
+       
+        }
+        
+}

@@ -1,3 +1,162 @@
+
+
+Can you do all with responses by:
+- Having threads created
+- Saving to database
+- Having tool calls like analysis, show_infographics (type: chart, etc.)
+
+
+
+
+MODIFY, NEW,
+
+YOU SHOULD HAVE AN AGENT SPECIALIZED FOR THIS...
+BUT IT SHOULD BE ABLE TO SEE THE HISTORY...
+
+
+
+IT CAN JUST CALL:
+MODFY OLD TABLE..., NEW TABLE...
+THEN BASICALLY GO TO A DIFFERENT ASSISTANT THAT RETURNS THE OUTPUTS...
+AND DOES IT...
+
+AND FOR THAT YOU JUST STREAM, AND SEND THE OTUPUT ALSO TO THE OTHER AGENT...
+
+--- --- ---
+Send the user input to the other agent... with context...
+Take the stream from the other agent and show it to the user
+
+
+All should be done by assistant...
+They can call to modify...
+But really having the thing done by another assistant specialized in that would be nice...
+But how much context you need to send to the other agent?
+
+
+
+You need to create flows of prompts:
+1. If analysis if called:
+   - the responses is first instructured: that that a table is shown to the user, and it should summarize this information:
+     when output is finished
+   - you immediately feed another prompt to responses
+   In the meantime, you show something by adding to the agent flow text like:
+
+   I am Fetching the Income Statement...
+
+   I am Fetching the Cash Flow Statement...
+
+   Let me Wrap up Some Conclusions...
+
+Flows can be done with assistant api too...
+
+
+DEFINE A FLOW FRAMEWORK THAT YOU CAN REUTILIZE...
+
+WHAT IS THE PROMPT...
+ETC. ETC.
+THEN YOU CAN USE AND SHOW...
+
+AS FOR WEBSEARCH, MAKE IT USE WEBSEARCH WITH GPT-MINI SO IT IS FAST.
+Ask it to include citations...
+
+---------
+For quizzes you can also have a flow...
+WHEN THE USER CLICK NEXT QUESTION,
+the next question is displayed to him...
+
+QUIZZES ARE STATIC, YOU GO BACK TO CHATBOT MODE...
+
+
+
+
+---------
+Or you have an agent that alwyas return structured output,
+Text for the user:
+That is: presenting a multi answer question to the user
+Is Quiz Question? true false
+
+If is Quiz Question is true
+
+
+Quizzes are static, you start and can go to next question, or you can go back to chat.
+They are static, though they are in the flow...
+
+
+---------
+
+Websearch you can stream the response, and feed it back to assistant.
+Try both: give the results are present them to the user, feed back to assistant and make it retell...
+
+---------
+
+Quizzes... One way to do quizzes online is that when you start a quiz
+You 
+
+
+
+
+
+Do Flows, Try Search with simple feeding, Do Langgraph for portfolio generation...
+
+
+
+
+
+--- --- --- --- ---
+
+0. TRY WEB SEARCH WITH STRUCTURED OUTPUT... from openai responses
+
+1. Actually do the news search that it works well... (with links/tags...)
+
+2. Go on with background functionalities, basic design...
+   No buy and sell yet...
+
+3. Figure out why data is not fetched and saved (you have to upgrade your supabase account)
+
+--- --- --- --- ---
+
+Tomorrow:
+Understand how to have annotation and how to style them...
+
+Try making the knowledge center both and understand how might be the flow...
+Ask me questions about sukuk, I want to know what I know and what not...
+
+- The bot will present you some questions, and you always have go to next question...
+in the end...
+
+--> Ask me another question...
+    Next question:
+
+One thing to do it is to present the user with different quizzes...
+Try one of these quizzes and see how well you do...
+You might do it as a nice flow in which you send 
+
+
+Option 1 is that you keep track of what the user writes, and if it ask why... etc.
+it will respond to you
+
+
+
+
+
+
+1. Transactions (with user)
+
+Next thing to do is:
+Portfolio Making functionality.
+
+- Try flow
+- Do Suggestions
+- Try knowledge Bot
+
+--- --- ---
+
+If you want to test the flow would be: give an introduction to the user about the stock,
+then call show_chart with 
+
+
+
+
 {
   "name": "analyze_security",
   "description": "Retrieve an in-depth analysis of a given stock or cryptocurrency.",

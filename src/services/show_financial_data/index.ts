@@ -11,6 +11,17 @@ import fetchFormatData from "../analysis/fetch_and_format_data/fetch_and_format_
  * @returns {Object} - AI response
  */
 
+function transformTo2DObject(input: Record<string, number>): Record<string, { Value: number }> {
+    const result: Record<string, { Value: number }> = {};
+  
+    for (const key in input) {
+      result[key] = { Value: input[key] };
+    }
+  
+    return result;
+  }
+
+  
 export async function show_financial_data(parameters) {
   // You have two options here: overview and in depth...
   // return the data to GPT, and the TWO DIFFERENT PROMPS
@@ -19,22 +30,19 @@ export async function show_financial_data(parameters) {
   const { ticker, asset_type,data_type, language } = parameters;
   
   try {
-
     // 1️⃣ Fetch stock data
     const { id, data_for_ai, ticker_symbol} = await fetchFormatData(ticker, asset_type);
-    
     let table_data;
-
     switch (data_type) {
         case "technical_indicators":
           // Handle technical indicators logic here
-          table_data = data_for_ai["Tehnical Indicators"]
+          table_data =transformTo2DObject(data_for_ai["Technical Indicators"]);
           console.log("Selected: Technical Indicators");
           break;
       
-        case "cash_flow":
+        case "cash_flow_statement":
           // Handle cash flow logic here
-          table_data = data_for_ai["Financials"]["cash_flow"]
+          table_data = data_for_ai["Financials"]["cash_flow_statement"]
           console.log("Selected: Cash Flow Statement");
           break;
       

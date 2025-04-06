@@ -1,0 +1,26 @@
+.container {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .dateFilter {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .dateInput {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dateInput label {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+  

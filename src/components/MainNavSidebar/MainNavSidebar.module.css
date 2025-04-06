@@ -1,0 +1,41 @@
+.sidebar {
+    height: 100vh;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .expanded {
+    width: 200px;
+  }
+  
+  .collapsed {
+    width: 60px;
+  }
+  
+  .menu {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .menuItem {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .icon {
+    margin-right: 0.5rem;
+  }
+  
+  .label {
+    font-size: 14px;
+    color: #333;
+  }
+  

@@ -30,7 +30,7 @@ export async function analyze_ticker(parameters) {
   
     const stringified_data = JSON.stringify(data_for_ai);
     const prompt = `This is ${ticker_symbol} financial data, to use for an in depth analysis, explains the positives, negatives of the ticker, and finally provide a conclusion.
-   Before this show the ticker chart to the user by calling the function show_tickers_chart. The data is:  ${stringified_data}`;
+   Before this show the ticker chart to the user by calling the function show_tickers_chart. And as you illustrate the data, show it to the user by using: show_financial_data. The data is:  ${stringified_data}`;
    
     const response = { message: "success", response: prompt};
     return response;

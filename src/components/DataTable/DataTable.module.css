@@ -1,22 +1,48 @@
 .table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    font-family: sans-serif;
-    font-size: 14px;
+    border-collapse: separate;
+    border-spacing: 0 0.75rem;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    color: var(--black-200);
   }
   
-  
   .titleRow {
-
- 
-    font-weight: bold;
-    text-align: center;
-    font-size: 16px;
+    text-align: left;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .table thead tr:nth-child(2) th {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: #666;
+    text-align: left;
+    letter-spacing: 0.05em;
   }
   
   .rowHeader {
-    font-weight: bold;
-  
+    font-weight: 500;
+    padding-right: 1rem;
   }
   
+  .table td {
+    padding-right: 1rem;
+  }
+  
+  .table tbody tr:hover {
+    color: #1d4ed8; /* a nice blue */
+    transition: all 0.2s ease-in-out;
+  }
+  
+
+/* Add these for percentage coloring */
+.positive {
+    color: #059669; /* tailwind green-600 */
+  }
+  
+  .negative {
+    color: #dc2626; /* tailwind red-600 */
+  }

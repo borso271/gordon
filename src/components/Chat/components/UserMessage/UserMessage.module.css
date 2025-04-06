@@ -3,15 +3,23 @@
     max-width: 80%;
     padding: 8px 20px;
     font-family: var(--font-family-inter);
-    font-size: var(--font-size-xl);
+    /* font-size: var(--font-size-xl); */
     font-style: normal;
-    font-weight: 500;
-    line-height: 125%; 
+ 
     letter-spacing: -0.6px;
     border-radius: 24px;
     background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
     max-width:80%;
     margin-top:20px;
+
+/* Text M/Medium */
+
+/* Text S/Regular */
+
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
 }
 
 .userMessageOuter{
@@ -20,12 +28,6 @@
     width: 100%;
 }
 
-
-
-
-
-  
-  
 
 
 /* Medium (Tablets) */
@@ -44,13 +46,13 @@ letter-spacing: -0.52px;
 @media (max-width: 480px) {
 
     .userMessage {
+        display: flex;
+        max-width: 300px;
         padding: 6px 12px;
-        border-radius: 16px;
-font-size: 18px;
-font-style: normal;
-font-weight: 500;
-line-height: 130%; /* 23.4px */
-margin-top:10px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+font-size: 14px;
     }
 }
 

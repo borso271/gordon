@@ -6,7 +6,8 @@ align-items: center;
 gap: 4px;
 background: var(--black-900);
 border-radius: 100px;
-border: 1px solid var(--additional-white-8)
+border: 1px solid var(--additional-white-8);
+cursor: pointer;
   }
   
   .actionButton:hover {

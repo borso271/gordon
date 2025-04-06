@@ -1,0 +1,30 @@
+.layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Sidebar styles handled in its own component/module */
+  
+  .rightPanel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .rightPanel > :first-child {
+    /* NavBar */
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
+  }
+  
+  .pageContent {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+  

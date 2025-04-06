@@ -186,7 +186,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  padding: 20px 24px;
 }
 
 * {
@@ -386,3 +385,16 @@ li:not(:has(> p)) {
 }
 
 
+
+table {
+  width: 100%
+  
+}
+td {
+  padding: 8px 6px;
+}
+
+tr {
+  padding: 8px 6px;
+  
+}

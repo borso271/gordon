@@ -36,7 +36,8 @@ interface ConversationContextType {
   inputDisabled: boolean;
   setInputDisabled: React.Dispatch<React.SetStateAction<boolean>>;
   resetConversationState: () => void; // ✅ Added function type
-
+  isRunning: boolean;
+  setIsRunning: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // Create the context
@@ -51,6 +52,9 @@ export const ConversationProvider: React.FC<{ children: ReactNode, forceNewSessi
   const [threadId, setThreadId] = useState<string>("");
   const [userInput, setUserInput] = useState("");
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
+
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+
   const {currentLang} = useLanguage();
 
   const LOCAL_STORAGE_KEY = "chatSession";
@@ -346,6 +350,8 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
         userInput,
         inputDisabled,
         chatSession,
+        isRunning,
+        setIsRunning,
         setChatSession,
         setThreadId,
         setConversationPairs,

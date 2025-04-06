@@ -23,7 +23,8 @@ export function useFunctionCallHandler() {
     const endpointMap = {
       analyze_security: "api/analysis",
       suggest_securities: "api/suggest",
-      search_web: "api/tavily_search",
+     //search_web: "api/tavily_search",
+      search_web: "api/openai_search",
       list_tickers: "api/list_tickers", // ✅ Added new function mapping
       analyze_ticker: "api/analyze_ticker", // ✅ Added new function mapping
       show_financial_data: "api/show_financial_data"

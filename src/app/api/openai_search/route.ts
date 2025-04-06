@@ -17,37 +17,10 @@ export async function POST(req: NextRequest) {
 console.log("openai client is: ", client)
 
 const response = await client.responses.create({
-    model: "gpt-4o",
+    model: "gpt-4o-mini",
     tools: [ { type: "web_search_preview" } ],
     input: "What are upcoming ipos in the saudi market?",
 });
-
-
-console.log("response is: ", response)
-
-    // const response = await client.chat.completions.create({
-    //   model: "gpt-4o",
-    //   messages: [
-    //     {
-    //       role: "user",
-    //       content: query,
-    //     },
-    //   ],
-    //   tools: [
-    //     {
-    //       type: "function",
-    //       function: {
-    //         name: "web_search", // required name for built-in web search tool
-    //       },
-    //     },
-    //   ],
-    //   tool_choice: {
-    //     type: "function",
-    //     function: {
-    //       name: "web_search", // match the tool name above
-    //     },
-    //   },
-    // });
 
     const messageBlock = response.output.find((block: any) => block.type === 'message');
     const contentItem = messageBlock?.content?.find((c: any) => c.type === 'output_text');

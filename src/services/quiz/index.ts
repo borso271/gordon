@@ -1,0 +1,33 @@
+/*
+
+You should probably have only a few quizzes for now
+just to show the functionality
+
+no need to set up pinecone at this point...
+
+How to search?
+
+You might use semantic search anyway...
+
+Have three quizzes that are not computed on the fly...
+show to the user...
+
+The second option again is to have the knowledge_center bot asking you questions...
+
+Can you give me a quiz about?
+
+If the user ask you about a quiz, you should start asking him questions, and give them...
+When they click
+
+Ask me about anything...
+I can you... specialized in quizzes etc. etc.
+
+
+I would do it like that...
+The bot should be focused on something else.
+
+So you might have only one quiz...
+And it will tell you: this is the quiz I came up with...
+
+
+*/

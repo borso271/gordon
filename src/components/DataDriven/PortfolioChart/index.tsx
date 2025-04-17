@@ -99,6 +99,8 @@ const PortfolioChart = ({ symbol,language }: { symbol: string, language: string}
                 isPositiveChange={isPositiveChange}
                 marketOpen={true}
                 language={language}
+                width={width}
+                height={height}
               />
 
             </div>

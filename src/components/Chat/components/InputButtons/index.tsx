@@ -12,11 +12,31 @@ const InputButtons = () => {
   const isRTL = i18n.dir() === 'rtl';
 
   const buttons = [
-    { text: t('inputButtons.searchAsset', 'Search For an Asset'), prompt: 'show assets', icon: "search_asset" },
-    { text: t('inputButtons.compareStocks', 'Compare Stocks'), prompt: 'compare stocks', icon: "comparison" },
-    { text: t('inputButtons.summarizePortfolio', 'Summarize my Portfolio'), prompt: 'summarize portfolio', icon:"summarize" },
-    { text: t('inputButtons.analyzeStock', 'Analyze a Stock'), prompt: 'analyze stock', icon:"suggest" },
-    { text: t('inputButtons.knowledgeCenter', 'Knowledge Center'), prompt: 'knowledge center', icon:"lamp" },
+    {
+      text: t('landing.suggestions.suggest.label'),
+      prompt: t('landing.suggestions.suggest.prompt'),
+      icon: "search_asset",
+    },
+    {
+      text: t('landing.suggestions.compare.label'),
+      prompt: t('landing.suggestions.compare.prompt'),
+      icon: "comparison",
+    },
+    {
+      text: t('landing.suggestions.summarize.label'),
+      prompt: t('landing.suggestions.summarize.prompt'),
+      icon: "summarize",
+    },
+    {
+      text: t('landing.suggestions.analyze.label'),
+      prompt: t('landing.suggestions.analyze.prompt'),
+      icon: "suggest",
+    },
+    {
+      text: t('landing.suggestions.learn.label'),
+      prompt: t('landing.suggestions.learn.prompt'),
+      icon: "lamp",
+    },
   ];
 
   const scrollRef = useRef<HTMLDivElement>(null);

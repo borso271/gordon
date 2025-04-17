@@ -14,6 +14,8 @@ import { useOverlay } from "../../../app/context/overlayContext";
 import DropdownButton from "../../Buttons/DropdownButton";
 import CircledIconButton from "../../Buttons/CircleActionButton";
 import { current_balance, old_balance } from "../../../constants";
+
+
 type NavbarProps = {
     onToggle?: () => void;
     expanded:boolean;
@@ -100,7 +102,7 @@ const handleNewChatClick = () => {
 
          className={styles.balanceOverviewItem}>
             <div className={styles.balanceOverviewItemLabel}>
-            {"Balance"}
+            {t('portfolio.balance')}
             </div>
 
             <div className={styles.balanceValue}>
@@ -120,7 +122,7 @@ const handleNewChatClick = () => {
 className={styles.balanceOverviewItem} 
           >
              <div className={styles.balanceOverviewItemLabel}>
-             {"24h Change"}
+             {t('portfolio.change24h')}
                 </div>
 
                 <div className={changeClass}>

@@ -110,11 +110,34 @@
 
 
 
-
-
-
+"landing": {
+  "suggestions": {
+    "summarize": {
+      "label": "Summarize My Portfolio",
+      "prompt": "Can you give me a summary of my current portfolio performance?"
+    },
+    "analyze": {
+      "label": "Analyze a Stock",
+      "prompt": "Can you analyze a stock for me?"
+    },
+    "suggest": {
+      "label": "Suggest a Stock",
+      "prompt": "Can you suggest me stocks in the tech sector?"
+    },
+    "compare": {
+      "label": "Compare Stocks",
+      "prompt": "Can you compare two stocks?"
+    },
+    "learn": {
+      "label": "Knowledge Center",
+      "prompt": "Knowledge Center"
+    }
+  }}
+  ,
 
 "portfolio": {
+    "balance": "Balance",
+    "change24h": "24h Change",
    "total_market_value": "Total Market Value",
   "overview": {
     "title": "Holdings",
@@ -260,7 +283,12 @@
         ,
 
 
-    
+        "history": {
+          "today": "Today",
+          "lastWeek": "Last Week",
+          "lastMonth": "Last Month",
+          "older": "Older"
+        },
 
         "price_overview": {
           "title": "Price Chart",

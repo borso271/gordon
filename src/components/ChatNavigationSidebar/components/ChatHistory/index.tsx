@@ -6,6 +6,9 @@ import { useConversation } from '../../../../app/context/conversationContext';
 import { useRouter } from 'next/navigation'; // for App Router
 import Icon from '../../../Icons/Icon';
 /* ... */
+import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
+
 
 type Conversation = {
   id: string;
@@ -17,7 +20,7 @@ type GroupedConversations = {
   [key: string]: Conversation[];
 };
 
-const groupByDate = (conversations: Conversation[]): GroupedConversations => {
+const groupByDate = (conversations: Conversation[], t: TFunction): GroupedConversations => {
   const now = new Date();
   const today = new Date(now);
   today.setHours(0, 0, 0, 0);
@@ -29,25 +32,26 @@ const groupByDate = (conversations: Conversation[]): GroupedConversations => {
   oneMonthAgo.setMonth(now.getMonth() - 1);
 
   const groups: GroupedConversations = {
-    Today: [],
-    'Last Week': [],
-    'Last Month': [],
-    Older: []
+    [t('history.today')]: [],
+    [t('history.lastWeek')]: [],
+    [t('history.lastMonth')]: [],
+    [t('history.older')]: []
   };
 
   for (const convo of conversations) {
     const created = new Date(convo.created_at);
 
     if (created >= today) {
-      groups['Today'].push(convo);
+      groups[t('history.today')].push(convo);
     } else if (created >= oneWeekAgo) {
-      groups['Last Week'].push(convo);
+      groups[t('history.lastWeek')].push(convo);
     } else if (created >= oneMonthAgo) {
-      groups['Last Month'].push(convo);
+      groups[t('history.lastMonth')].push(convo);
     } else {
-      groups['Older'].push(convo);
+      groups[t('history.older')].push(convo);
     }
   }
+
   return groups;
 };
 
@@ -63,6 +67,10 @@ export default function ConversationHistory({
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+
+const { t } = useTranslation();
+
+
   useEffect(() => {
     const fetchConversations = async () => {
       try {
@@ -74,7 +82,7 @@ export default function ConversationHistory({
 
         const json = await res.json();
         const data: Conversation[] = json.conversations || [];
-        const grouped = groupByDate(data);
+        const grouped = groupByDate(data, t);
         setGrouped(grouped);
       } catch (err) {
         console.error('Failed to fetch conversations:', err);
@@ -84,7 +92,7 @@ export default function ConversationHistory({
     };
 
     fetchConversations();
-  }, [user_id]);
+  }, [user_id, t]);
 
 
   async function handleDeleteThread(thread_id: string) {

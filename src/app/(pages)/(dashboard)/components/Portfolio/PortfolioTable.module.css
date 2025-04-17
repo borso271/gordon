@@ -74,10 +74,15 @@ line-height: 140%;
 .gridTableWrapper {
     width:100%;
 }
+
+
+.allocationChange {
+  width: 50px;
+}
 .gridTable {
     display: grid;
    
-    grid-template-columns: 1.5fr 1fr 1.5fr 1fr 1fr 1.5fr;
+    grid-template-columns: 1.5fr 1fr 1.5fr 1fr 1fr 1fr;
     width: 100%;
     border-collapse: collapse;
   }
@@ -104,19 +109,29 @@ line-height: 140%;
   
   /* --- Header Cell Specific Styles --- */
   .gridHeaderCell {
-    color: var(--black-400, #757575);
+
     /* Caption/C2- 14 reg */
    
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%; /* 16.8px */
     cursor: pointer;
     user-select: none;
 
     background:var(--card-background-light);
 
+    color: var(--black-400, #757575);
+/* Caption/C2- 14 reg */
+font-family: var(--font-family-ibm);
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 120%; /* 16.8px */
+
   }
+
+  .gridCell {
+    font-size:16px;
+  }
+
+
 /* 
   .gridHeaderCell:hover {
     background-color: var(--table-header-bg-hover, #383838);
@@ -191,7 +206,7 @@ line-height: 140%;
   
   
   .allocationBar{
-    width:75px;
+    width:100px;
   }
   
   /* Allocation cell specific content styling */
@@ -199,13 +214,13 @@ line-height: 140%;
     display: flex;
     flex-direction: row;
     width: 100%;
-    gap: 4px;
+    gap: 12px;
     /* Align items to the right within the allocation cell */
     align-items: center;
    justify-content: flex-start
   }
   .allocationContent span {
-    font-size: 0.9em;
+    font-size: 16px;
     width:40px;
     text-align: right; /* Ensure percentage text aligns right */
   }

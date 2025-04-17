@@ -72,7 +72,7 @@ export function useChartCanvas({
   ) => {
     if (!area || !data.length) return "";
     // Extra "bottom" so area goes off-screen
-    const bottomY = 2000;
+    const bottomY = 400;
     const lastX = data[data.length - 1].x;
     const firstX = data[0].x;
     const extendedData = [
@@ -204,13 +204,16 @@ export function useChartCanvas({
 
   console.log("POSITIVE CHANGE IS: ", isPositiveChange);
 
-  const lineColor = isPositiveChange ? "#1AED87" : "#ED441A";
+  
+  
+
+  const lineColor = isPositiveChange ? "rgba(177, 246, 37, 1)" : "#ED441A";
   const stopColor1 = isPositiveChange
-    ? "rgba(26, 237, 135, 0.1)"
-    : "rgba(237, 68, 26, 0.1)";
-  const stopColor2 = isPositiveChange
-    ? "rgba(26, 237, 135, 0.2)"
+    ? "rgba(177, 246, 37, 0.2)"
     : "rgba(237, 68, 26, 0.2)";
+  const stopColor2 = isPositiveChange
+  ? "rgba(177, 246, 37, 0.1)"
+  : "rgba(237, 68, 26, 0.1)";
 
 
     console.log("stopcolors are: ", stopColor1, stopColor2)

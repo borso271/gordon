@@ -68,6 +68,8 @@ const CustomComparisonChart = ({ symbols,language }: { symbols: string[], langua
                 minPrice={adjustedLow}
                 marketOpen={isMarketOpen}
                 language={language}
+                width={width}
+                height={height}
 
               />
               

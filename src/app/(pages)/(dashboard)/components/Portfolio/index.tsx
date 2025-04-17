@@ -110,8 +110,9 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
             {renderHeader("name",        'portfolio_table.headers.name')}
             {renderHeader("last_price",  'portfolio_table.headers.price')}
             {renderHeader("allocation",  'portfolio_table.headers.allocation')}
-            {renderHeader("quantity",    'portfolio_table.headers.amount')}
             {renderHeader("pnl",         'portfolio_table.headers.pnl')}
+            {renderHeader("quantity",    'portfolio_table.headers.amount')}
+           
             <div className={styles.gridHeaderCell}>
               {t('portfolio_table.headers.actions')}
             </div>
@@ -130,6 +131,9 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
                 
               <div className={styles.gridCell} data-label={t('portfolio_table.headers.allocation')}>
                 <div className={styles.allocationContent}>
+                 
+                  <div className={styles.allocationChange}>{`${item.allocation ?? 0}%`}</div>
+
                   <div className={styles.allocationBar}>
                     <ProgressBar
                       percentage={item.allocation ?? 0}
@@ -137,10 +141,12 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
                       fillColor="#F9FFE5"
                     />
                   </div>
-                  <span>{`${item.allocation ?? 0}%`}</span>
                 </div>
               </div>
 
+              <div className={styles.gridCell} data-label={t('portfolio_table.headers.pnl')}>
+                <ValueTrend value={(item.last_price-item.avg_price)/item.avg_price} />
+              </div>
               <div className={styles.gridCell} data-label={t('portfolio_table.headers.amount')}>
                 <ValueTrend
                   value={item.quantity * item.last_price}
@@ -150,9 +156,6 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
                 />
               </div>
 
-              <div className={styles.gridCell} data-label={t('portfolio_table.headers.pnl')}>
-                <ValueTrend value={item.pnl} />
-              </div>
 
               <div className={styles.gridCell} data-label={t('portfolio_table.headers.actions')}>
                 <ActionsPart item={item} />

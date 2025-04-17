@@ -7,7 +7,7 @@ import { useConversation } from '../../context/conversationContext';
 import ChatInput from '../../../components/Chat/components/ChatInput';
 import { useHandleSubmit } from '../../hooks/useHandleSubmit';
 import { useRouter } from 'next/navigation';
-import BotHeading from '../../../components/Headings/BotHeading';
+
 import LandingSuggestion from './components/Suggestion';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../hooks/useLanguage';
@@ -71,29 +71,35 @@ const handleLandingSubmit = async (e?: FormEvent) => {
         inputDisabled={inputDisabled}
       />
 
-      <div className={styles.landingSuggestions}>
-      <LandingSuggestion
-  icon="green_magic_stick"
-  label="Suggest a stock"
-  prompt="Can you suggest a good tech stock for 2025?"
-/>
-<LandingSuggestion
-  icon="green_magic_stick"
-  label="Suggest a stock"
-  prompt="Can you suggest a good tech stock for 2025?"
-/>
-<LandingSuggestion
-  icon="green_magic_stick"
-  label="Suggest a stock"
-  prompt="Can you suggest a good tech stock for 2025?"
-/>
-<LandingSuggestion
-  icon="green_magic_stick"
-  label="Suggest a stock"
-  prompt="Can you suggest a good tech stock for 2025?"
-/>
 
-      </div>
+
+    <div className={styles.landingSuggestions}>
+      <LandingSuggestion
+        icon="green_magic_stick"
+        label={t("landing.suggestions.label")}
+        prompt={t("landing.suggestions.prompt")}
+      />
+      <LandingSuggestion
+        icon="green_magic_stick"
+        label={t("landing.suggestions.label")}
+        prompt={t("landing.suggestions.prompt")}
+      />
+      <LandingSuggestion
+        icon="green_magic_stick"
+        label={t("landing.suggestions.label")}
+        prompt={t("landing.suggestions.prompt")}
+      />
+      <LandingSuggestion
+        icon="green_magic_stick"
+        label={t("landing.suggestions.label")}
+        prompt={t("landing.suggestions.prompt")}
+      />
+    </div>
+  
+
+
+
+
       </div>
     </div>
   );

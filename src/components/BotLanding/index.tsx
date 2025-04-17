@@ -43,7 +43,7 @@ const handleLandingSubmit = async (e?: FormEvent) => {
   //  router.push(`/landing?threadId=${newSession.id}`);
 
   setTimeout(() => {
-    console.log("WE ARE ABOUT TO CALL HANDLESUBMIT")
+   
     handleSubmit(null, userInput, newSession.id); // Or pass `userInput` here explicitly if needed
   }, 50);
 };
@@ -74,38 +74,37 @@ const handleLandingSubmit = async (e?: FormEvent) => {
 
 
 {/* search_asset,comparison,summarize,suggest,lamp */}
-      <div className={styles.landingSuggestions}>
-
-        <div className={styles.suggestionsRow}>
-
-  <LandingSuggestion
-  icon="search_asset"
-  label="Suggest a stock"
-  prompt="Can you suggest a good tech stock for 2025?"
-/>
-<LandingSuggestion
-  icon="comparison"
-  label="Compare Equities"
-  prompt="Can you suggest a good tech stock for 2025?"
-/>
-<LandingSuggestion
-  icon="lamp"
-  label="Knowledge Center"
-  prompt="Can you suggest a good tech stock for 2025?"
-/>
-</div>
-<div className={styles.suggestionsRow}>
-<LandingSuggestion
-  icon="summarize"
-  label="Summarize My Portfolio"
-  prompt="Can you suggest a good tech stock for 2025?"
-/>
-<LandingSuggestion
-  icon="suggest"
-  label="Analyze a Stock"
-  prompt="Can you suggest a good tech stock for 2025?"
-/>
-</div>
+<div className={styles.landingSuggestions}>
+      <div className={styles.suggestionsRow}>
+        <LandingSuggestion
+          icon="search_asset"
+          label={t('landing.suggestions.suggest.label')}
+          prompt={t('landing.suggestions.suggest.prompt')}
+        />
+        <LandingSuggestion
+          icon="comparison"
+          label={t('landing.suggestions.compare.label')}
+          prompt={t('landing.suggestions.compare.prompt')}
+        />
+        <LandingSuggestion
+          icon="lamp"
+          label={t('landing.suggestions.learn.label')}
+          prompt={t('landing.suggestions.learn.prompt')}
+        />
+      </div>
+      <div className={styles.suggestionsRow}>
+        <LandingSuggestion
+          icon="summarize"
+          label={t('landing.suggestions.summarize.label')}
+          prompt={t('landing.suggestions.summarize.prompt')}
+        />
+        <LandingSuggestion
+          icon="suggest"
+          label={t('landing.suggestions.analyze.label')}
+          prompt={t('landing.suggestions.analyze.prompt')}
+        />
+      </div>
+    
       </div>
       </div>
     </div>

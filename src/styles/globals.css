@@ -71,7 +71,7 @@
    /* --------------------------------
      FONT FAMILIES
   -------------------------------- */
-  --font-family-dm-sans: "DM Sans", Helvetica;
+  --font-family-ibm: "DM Sans", Helvetica;
   --font-family-inter: "Inter", Helvetica;
 
   /* --------------------------------
@@ -386,11 +386,11 @@ li {
 
 li::before {
   content: "•";
-  top: 0;
+ 
     left: 0;
-    top:20px;
-    font-size: 1.2em;
-    line-height: 1;
+   
+    
+    
     position: absolute;
 } 
 
@@ -434,7 +434,7 @@ ol > li::before {
   content: "•";
   position: absolute;
   left: 0;
-  top: 0;
+  top: 2px;
   font-size: 1.2em;
   line-height: 1;
 }

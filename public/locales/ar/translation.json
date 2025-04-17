@@ -169,12 +169,46 @@
   
 
 
+"history": {
+  "today": "اليوم",
+  "lastWeek": "الأسبوع الماضي",
+  "lastMonth": "الشهر الماضي",
+  "older": "أقدم"
+},
 
+
+  "landing": {
+    "suggestions": {
+      "summarize": {
+        "label": "تلخيص محفظتي",
+        "prompt": "هل يمكنك إعطائي ملخصًا لأداء محفظتي الحالي؟"
+      },
+      "analyze": {
+        "label": "تحليل سهم",
+        "prompt": "قم بتحليل سهم AAPL وأخبرني إن كان شراءً جيدًا الآن."
+      },
+      "suggest": {
+        "label": "اقتراح سهم",
+        "prompt": "اقترح سهمًا واعدًا في قطاع التكنولوجيا."
+      },
+      "compare": {
+        "label": "مقارنة الأسهم",
+        "prompt": "قارن بين Apple وMicrosoft وNvidia."
+      },
+      "learn": {
+        "label": "مركز المعرفة",
+        "prompt": "ما هو معدل السعر إلى الأرباح وكيف يُستخدم؟"
+      }
+    }
+  
+},
 
 
 
 
   "portfolio": {
+     "balance": "الرصيد",
+    "change24h": "التغير خلال ٢٤ ساعة",
     "total_market_value": "القيمة السوقية الإجمالية",
     "overview": {
     "title": "الحيازات",

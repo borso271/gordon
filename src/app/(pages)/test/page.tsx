@@ -10,7 +10,8 @@ import TestCompareAPI from '../../../components/tests/test_compare_api';
 import AssetsWithInsight from '../../../components/AssetsWithInsight';
 import TestExaSearch from '../../../components/tests/test_exa_seach';
 import ReadingIndicator from '../../../components/SpeakingAnimation';
-
+import { generatePriceSeriesPerlin } from '../../../utils/generate_chart_points';
+import { generatePriceSeriesPivots } from '../../../utils/generate_chart_points_pivots';
 import Loading from '../../../components/Loading';
 interface RawDataEntry {
   ticker: string;
@@ -438,6 +439,38 @@ const ratings = [
     }
   }];
 
+
+//   const now        = Date.now();
+// const eightHours = 8 * 60 * 60 * 1000;
+
+// const oneDayData = generatePriceSeriesPerlin(
+//   120.0,        // open
+//   151.55,       // close
+//   5,          // max ±0.60 fluctuation
+//   now - eightHours,
+//   now,
+//   50             // six points → like your sample
+// );
+
+// // Map into your periodDataMap
+// console.log(JSON.stringify(oneDayData))
+
+
+
+
+const now         = Date.now();
+const eightHours  = 8 * 60 * 60 * 1000;
+
+const series = generatePriceSeriesPivots(
+  150,         // start price
+  152,         // end   price
+  0.9,         // max deviation ±
+  now - eightHours,
+  now,
+  60           // 60 points
+);
+
+console.log(JSON.stringify(series))
 return (
 
     <div>

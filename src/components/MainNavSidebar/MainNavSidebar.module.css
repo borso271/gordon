@@ -31,7 +31,16 @@
     align-items: center;
     /* padding: 12px; */
     cursor: pointer;
+    border-radius: 12px;
     transition: background-color 0.2s ease;
+    border: 1px solid transparent;
+  }
+
+
+  .menuItem:hover {
+
+border: 1px solid var(--additional-white-5, rgba(255, 255, 255, 0.05));
+background: var(--additional-white-3, rgba(255, 255, 255, 0.03));
   }
   
 
@@ -67,6 +76,9 @@
     font-style: normal;
     font-weight: 500;
     line-height: 140%; /* 19.6px */
+
+
+
 
   }
 
@@ -187,9 +199,7 @@ line-height: 140%; /* 16.8px */
     cursor: pointer;
   }
   
-  .menuItem:hover {
-    opacity: 0.7;
-  }
+  
   
   .menuItem.active {
     opacity: 1;

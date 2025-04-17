@@ -15,6 +15,8 @@ interface ChartCanvasProps {
   area?: boolean;
   marketOpen?: boolean;
   curvy?: boolean;
+  width?:number;
+  height?:number;
 }
 
 const ChartCanvas: React.FC<ChartCanvasProps> = ({
@@ -24,19 +26,19 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
   area = true,
   marketOpen = true,
   curvy = false,
+  width,
+  height
 }) => {
   // 1) use the new multi-line hook
 
-  console.log("data map is: ", dataMap)
   const {
     svgRef,
     containerRef,
     hoveredPoints,
     hoverPositions,
-    chartPaths,         // Map of ticker => { linePath, areaPath, lastX, lastY }
+    chartPaths, 
     handlePointerMove,
     handlePointerLeave,
-    // optional color logic
   } = useComparisonChartCanvas({
     dataMap,
     minPrice,
@@ -51,6 +53,15 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
   );
   
   
+
+  // 1️⃣  Choose a fallback height if none was passed
+const chartHeight = height ?? 240;          // px; choose a sensible default
+const chartWidth  = width  ?? "100%";       // keep existing behaviour
+
+// 2️⃣  Pre‑compute the 5 Y‑positions (0, 25 %, 50 %, 75 %, 100 %)
+const gridY = Array.from({ length: 5 }, (_, i) => (chartHeight / 4) * i);
+
+
   if (totalPoints < 2) {
     return (
       <div className={styles.chartWrapper} ref={containerRef}>
@@ -73,6 +84,19 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
       >
         {/* We'll define a gradient for each ticker if needed, or a single one if you prefer */}
        
+  {/* ───── GRID 5 horizontal dashed lines ───── */}
+  <g className={styles.grid}>
+    {/* 0 % (top) */}
+    {/* <line x1="0" x2="100%" y1="0%"   y2="0%"   stroke="var(--black-700)" strokeWidth="1" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" /> */}
+    {/* 25 % */}
+    <line x1="0" x2="100%" y1="25%"  y2="25%"  stroke="var(--black-700)" strokeWidth="1" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" />
+    {/* 50 % (middle) */}
+    <line x1="0" x2="100%" y1="50%"  y2="50%"  stroke="var(--black-700)" strokeWidth="1" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" />
+    {/* 75 % */}
+    <line x1="0" x2="100%" y1="75%"  y2="75%"  stroke="var(--black-700)" strokeWidth="1" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" />
+    {/* 100 % (bottom) */}
+    <line x1="0" x2="100%" y1="100%" y2="100%" stroke="var(--black-700)" strokeWidth="1" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" />
+  </g>
 
         {/* 3) Render line+area for each ticker in chartPaths */}
         {Object.entries(chartPaths).map(([ticker, { linePath, areaPath, lastX, lastY }], index) => {
@@ -100,24 +124,26 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
   );
 })}
 
-
         {/* Example single crosshair/hover circle if hoveredPoint exists */}
 
-        {Object.entries(hoveredPoints).map(([ticker, point]) => (
-  point && (
+        {Object.entries(hoveredPoints).map(([ticker, point]) => {
+  const index = Object.keys(chartPaths).indexOf(ticker); // ✅ get the same index used for lines
+  const color = tickersPalette[index % tickersPalette.length];
+
+  return point ? (
     <g key={ticker}>
       <circle
         cx={point.x}
         cy={point.y}
         r={4}
-        fill="#0F0F0F"
-        stroke="#1AED87"
+        fill={color}
         strokeWidth={2}
         pointerEvents="none"
       />
     </g>
-  )
-))}
+  ) : null;
+})}
+
 
 {Object.values(hoveredPoints).length === 2 && (
   <line
@@ -127,9 +153,12 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
       Object.values(hoveredPoints)[0]!.y,
       Object.values(hoveredPoints)[1]!.y
     )}
-    y2={2000}
-    stroke="#1AED87"
-    strokeWidth={1.5}
+    y2={height}
+
+    stroke={"rgba(98, 98, 98, 0.4)"}
+
+    strokeWidth={1}
+    strokeDasharray="4 2"
     pointerEvents="none"
   />
 )}

@@ -49,8 +49,6 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
     data,
     minPrice,
     isPositiveChange,
-    width,
-    height,
     area,
     marketOpen,
     curvy,

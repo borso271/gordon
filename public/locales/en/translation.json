@@ -17,7 +17,21 @@
       }
     ,
 
-    
+    "suggestions": {
+    "top_gainers_losers": "Top Gainers and Losers",
+    "good_investment": "What Makes a Good Investment?",
+    "latest_market_news": "What Are the Latest News on the Market?",
+    "upcoming_ipos_sa": "Upcoming IPOs in Saudi Arabia",
+    "bullish_market": "What is a Bullish Market?",
+
+    "portfolio_review": "How is my portfolio performing?",
+    "rebalance_portfolio": "How should I rebalance my portfolio?",
+    "diversify_portfolio": "How do I diversify my investments?",
+    "evaluate_stock": "Is Apple still a good investment?",
+    "asset_allocation": "What's the ideal asset allocation?"
+
+  }
+    ,
 
     "hi_message": "Hi! I'm here to help you become a better investor.",
     "hi_subtitle": "Ask me anything or pick a path.",
@@ -103,7 +117,7 @@
 "portfolio": {
    "total_market_value": "Total Market Value",
   "overview": {
-    "title": "Portfolio Overview",
+    "title": "Holdings",
     "insights": "Insights"
   }
 },

@@ -85,16 +85,15 @@ const currency = "$"
 
       <div className={styles.priceContainer}>
 
-       <div className={styles.bigPrice}>{current_price}</div>
+       <div className={styles.bigPrice}>{currency}{current_price}</div>
 
-       <div className={styles.priceCurrency}>{currency}</div>
       </div>
 
 
 
       <div className={changeClass}>
   <div>
-    <Icon name={iconName} size={14}/>
+    <Icon name={iconName} size={10}/>
   </div>
 
   <div className={styles.currencyAndAmount}>

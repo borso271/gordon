@@ -69,17 +69,15 @@ const Navbar: React.FC = () => {
 
 <div className={styles.navbarIcons}>
 
-{conversationPairs.length > 1 && (
+
           <div className={styles.historyButton}>
-            <div className={styles.navbarIconWrapper} onClick={() => handleToggleDropdown("history")}>
+            <div className={styles.navbarIconWrapper} onClick={() => {}}>
 <Icon name="eye" size={30}></Icon>
 </div>
 
            
-             {openDropdown === "history" && (
-            <MobileNavigation />)}
           </div>
-        )} 
+        
 
 <div className={styles.navbarIconWrapper} >
 <Icon name="notifications"></Icon>

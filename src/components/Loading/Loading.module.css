@@ -5,13 +5,15 @@
 }
 
 .text {
-  color: var(--black-500, #535353);
-  font-family: var(--font-family-inter);
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 125%;
-  letter-spacing: -0.6px;
+ 
+
+
+  color: var(--black-50, #F8F8F8);
+
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: 30px; /* 150% */
 }
 
 .dots {
@@ -44,3 +46,37 @@
     font-size: 24px;
   }
 }
+
+
+/* In your corresponding CSS file (e.g., styles.module.css) */
+
+.firstPart {
+  display:flex;
+  flex-direction:row;
+  gap:8px;
+  align-items:center;
+}
+.iconWrapper {
+  /* --- Size and Shape --- */
+  width: 28px;          /* Set width */
+  height: 28px;         /* Set height (equal to width for circle) */
+  border-radius: 50%;   /* Makes it a circle */
+
+  /* --- Centering the Icon Inside --- */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+
+  /* --- Optional Appearance --- */
+  background-color: #B1F625; /* Example background */
+  /* border: 1px solid var(--icon-wrapper-border, #ccc); */ /* Optional border */
+  /* box-shadow: 0 1px 3px rgba(0,0,0,0.1); */ /* Optional shadow */
+
+  /* --- Prevent icon distortion (usually not needed for SVG icons) --- */
+  overflow: hidden; /* Hide any part of the icon that might overflow */
+}
+
+/* Optional: Target the icon itself if needed for specific color/fill */
+/* .iconWrapper svg {
+  fill: var(--icon-color, #333);
+} */

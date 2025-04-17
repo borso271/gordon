@@ -10,6 +10,8 @@ import TestCompareAPI from '../../../components/tests/test_compare_api';
 import AssetsWithInsight from '../../../components/AssetsWithInsight';
 import TestExaSearch from '../../../components/tests/test_exa_seach';
 import ReadingIndicator from '../../../components/SpeakingAnimation';
+
+import Loading from '../../../components/Loading';
 interface RawDataEntry {
   ticker: string;
   data: {
@@ -440,6 +442,7 @@ return (
 
     <div>
 
+<Loading/>
    {/* <AssetsWithInsight data={staticTestResults}/> */}
       {/* <MetricComparison rawData={dataForComparisonTable}/> */}
 

@@ -1,6 +1,7 @@
 .TerziaryH2 {
-    color: var(--black-100, #D7D7D7);
+  
     /* Text L/Medium */
+    color: var(--Black-50, #F8F8F8);
 
     font-size: 18px;
     font-style: normal;

@@ -5,7 +5,7 @@ import { useComparisonChartCanvas } from "../../../../../app/hooks/useComparison
 import ChartTooltip from "../ChartTooltip";
 // import { useChartSizeObserver } from "../../../../../app/hooks/useChartSizeObserver";
 import { PricePoint } from "../../../../../interfaces";
-
+import { tickersPalette } from "../../../../../constants";
 // or Map<string, PricePoint[]>;
 
 interface ChartCanvasProps {
@@ -59,6 +59,7 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
     );
   }
 
+
   return (
     <div className={styles.chartWrapper} ref={containerRef}>
       <svg
@@ -71,40 +72,34 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
         style={{ overflowY: "auto", touchAction: "none" }}
       >
         {/* We'll define a gradient for each ticker if needed, or a single one if you prefer */}
-        <defs>
-          <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#1AED87" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#1AED87" stopOpacity="0" />
-          </linearGradient>
-        </defs>
+       
 
         {/* 3) Render line+area for each ticker in chartPaths */}
-        {Object.entries(chartPaths).map(([ticker, { linePath, areaPath, lastX, lastY }]) => (
-          <g key={ticker}>
-            {/* line */}
-            <path
-              d={linePath}
-              fill="none"
-              stroke="#1AED87" 
-              strokeWidth={2}
-            />
+        {Object.entries(chartPaths).map(([ticker, { linePath, areaPath, lastX, lastY }], index) => {
+  const color = tickersPalette[index % tickersPalette.length]; // Cycle if > 4 tickers
 
-            {/* area */}
-            {area && (
-              <path d={areaPath} fill="url(#lineGradient)" stroke="none" />
-            )}
+  return (
+    <g key={ticker}>
+      <defs>
+        <linearGradient id={`gradient-${ticker}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.2" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </linearGradient>
+      </defs>
 
-            {/* If marketOpen => circle at last data point */}
-            {marketOpen && (
-              <circle
-                cx={lastX}
-                cy={lastY}
-                r={5}
-                fill="#1AED87"
-              />
-            )}
-          </g>
-        ))}
+      <path d={linePath} fill="none" stroke={color} strokeWidth={2} />
+
+      {area && (
+        <path d={areaPath} fill={`url(#gradient-${ticker})`} stroke="none" />
+      )}
+
+      {marketOpen && (
+        <circle cx={lastX} cy={lastY} r={5} fill={color} />
+      )}
+    </g>
+  );
+})}
+
 
         {/* Example single crosshair/hover circle if hoveredPoint exists */}
 

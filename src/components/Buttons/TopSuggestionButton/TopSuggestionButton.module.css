@@ -5,7 +5,7 @@
     padding: 8px 12px;
     align-items: center;
     gap: 12px;
-    color: var(--Black-300, #929292);
+   
 
     border-radius: 100px;
 border: 1px solid var(--additional-white-3, rgba(255, 255, 255, 0.03));
@@ -13,10 +13,20 @@ background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
 
 /* Text XS/Regular */
 
-font-size: 12px;
+
+color: var(--black-50, #F8F8F8);
+/* Text S/Regular */
+
+font-size: 14px;
 font-style: normal;
 font-weight: 400;
-line-height: 140%; /* 16.8px */
+line-height: 140%; /* 19.6px */
+
+
+
+
+
+
 
 
     white-space: nowrap;

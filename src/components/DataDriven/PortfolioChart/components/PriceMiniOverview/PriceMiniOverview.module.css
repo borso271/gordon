@@ -50,6 +50,7 @@ line-height: 140%; /* 16.8px */
 
 
 .changeValue {
+    font-size:12px;
     display:flex;
     flex-direction:row;
     gap:4px;

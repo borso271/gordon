@@ -1,4 +1,4 @@
-import {useRef, useMemo} from 'react';
+import {useRef} from 'react';
 import styles from "./ComparisonChart.module.css";
 import PeriodSelector from "./components/PeriodSelector";
 import ChartCanvas from "./components/ChartCanvas";
@@ -8,7 +8,7 @@ import PrimaryDivider from "../../Layout/PrimaryDivider";
 import ChartLoader from "../../Loaders/ChartLoader";
 import { useChartSizeObserver } from '../../../app/hooks/useChartSizeObserver';
 import { useComparisonChart } from '../../../app/hooks/useComparisonChart';
-import TimeLegend from "./components/TimeLegend";
+
 
 import { useTranslation } from "react-i18next";
 

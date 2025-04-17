@@ -29,7 +29,7 @@ line-height: 140%; /* 19.6px */
     padding:20px;
     position: absolute;
     z-index: 10;
-    margin-top: 4px;
+  
     background-color: #1e1e1e;
     border: 1px solid #181818;
     border-radius: 8px;

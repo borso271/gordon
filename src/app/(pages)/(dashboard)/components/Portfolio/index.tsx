@@ -22,16 +22,6 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
   const [sortAsc, setSortAsc] = useState(true);
   const [filter, setFilter] = useState<"all" | "stock" | "crypto" | "etf">("all");
 
- 
-
-
-
-
-
-
-
-
-
 
   const handleSort = (key: keyof PortfolioItem) => { // Use keyof
     if (key === sortKey) {

@@ -49,7 +49,7 @@ const handleScroll = () => {
             <div className={styles.buttonWrapper} key={index}>
               <TopSuggestionButton
                 text={suggestion.label}
-                icon="magic_stick"
+                icon="green_magic_stick"
                 onClick={() => submitQuery(suggestion.label)}
 
               />

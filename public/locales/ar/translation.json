@@ -34,6 +34,24 @@
 
 
 
+  "suggestions": {
+    "top_gainers_losers": "أعلى الرابحين والخاسرين",
+    "good_investment": "ما الذي يجعل الاستثمار جيدًا؟",
+    "latest_market_news": "ما هي آخر أخبار السوق؟",
+    "upcoming_ipos_sa": "الاكتتابات العامة القادمة في السعودية",
+    "bullish_market": "ما هو السوق الصاعد؟",
+    "portfolio_review": "كيف أداء محفظتي الاستثمارية؟",
+    "rebalance_portfolio": "كيف يمكنني إعادة توازن المحفظة؟",
+    "diversify_portfolio": "كيف أُنوِّع استثماراتي؟",
+    "evaluate_stock": "هل لا تزال Apple استثمارًا جيدًا؟",
+    "asset_allocation": "ما هو التوزيع المثالي للأصول؟"
+  }
+,
+
+
+
+
+
 
 "stocks": "الأسهم",
   "crypto": "العملات الرقمية",
@@ -159,7 +177,7 @@
   "portfolio": {
     "total_market_value": "القيمة السوقية الإجمالية",
     "overview": {
-      "title": "نظرة عامة على المحفظة",
+    "title": "الحيازات",
       "insights": "رؤى"
     }
   },

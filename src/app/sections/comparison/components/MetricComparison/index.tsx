@@ -10,6 +10,7 @@ import DropdownMenu from "../../../../../components/Dropdowns/DropdownMenu";
 import { useTranslation } from "react-i18next";
 import SidebarHeading from "../../../../../components/Headings/SidebarHeading";
 import { useLanguage } from "../../../../hooks/useLanguage";
+import { tickersPalette } from "../../../../../constants";
 interface RawDataEntry {
   ticker: string;
   data: {
@@ -35,7 +36,6 @@ interface DropdownItem {
 
 // const VALUE_OPTIONS = ["value", "one_quarter_trend", "one_year_trend"];
 
-const COLORS = ["#F9FFE5", "#B1F625",];
 
 /* MetricComparison.tsx */
 
@@ -73,7 +73,7 @@ const slug = (str: string): string =>
     .replace(/[^a-z0-9]+/g, "_")     // Replace all non-alphanumeric groups with _
     .replace(/^_+|_+$/g, "");        // Remove leading/trailing underscores
 
-    
+
 const MetricComparison: React.FC<MetricComparisonProps> = ({
   rawData,
   maxHeight = 200,
@@ -232,7 +232,7 @@ const MetricComparison: React.FC<MetricComparisonProps> = ({
       {/* Chart */}
       <BarChart
         key={`${metricToUse}-${selectedField}`}
-        colors={COLORS}
+        colors={tickersPalette}
         data={barData}
         isPercentage={selectedField !== "value"}
         maxHeight={maxHeight}
@@ -251,7 +251,7 @@ const MetricComparison: React.FC<MetricComparisonProps> = ({
         ))}
       </div>
 
-      <TickersLegend rawData={rawData} colors={COLORS} />
+      <TickersLegend rawData={rawData} colors={tickersPalette} />
     </div>
   );
 };

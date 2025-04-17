@@ -5,7 +5,7 @@ import styles from "./MainNavSidebar.module.css";
 import Icon from "../Icons/Icon";
 import { useRouter } from "next/navigation";
 import { usePathname } from 'next/navigation';
-
+import PrimaryDivider from "../Layout/PrimaryDivider";
 // Mock user data
 const user = {
   name: "John Doe",
@@ -21,13 +21,13 @@ type MenuItem = {
 
 const topMenuItems: MenuItem[] = [
   { icon: "portfolio", label: "Portfolio", path: "/" },
-  { icon: "layers", label: "History", path: "/history" }
+  { icon: "clock", label: "History", path: "/history" }
   // { icon: "gordon_logo_white", label: "Try Gordon", path: "/landing" },
 ];
 
 const bottomMenuItems: MenuItem[] = [
   { icon: "settings", label: "Settings", path: "/" },
-  { icon: "headphones", label: "Help Center", path: "/" },
+  // { icon: "headphones", label: "Help Center", path: "/" },
 ];
 
 export default function MainNavSidebar({
@@ -66,6 +66,7 @@ const pathname = usePathname(); // this returns a string like "/dashboard"
       </div>
 
       {/* Top Menu Group */}
+      <PrimaryDivider/>
       <div className={styles.menu}>
     
 {topMenuItems.map((item, index) => {

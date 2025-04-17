@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Loading.module.css";
 import { useLanguage } from "../../app/hooks/useLanguage";
-
+import Icon from "../Icons/Icon";
 interface LoadingProps {
   thinkingText?: string;
 }
@@ -23,7 +23,12 @@ const Loading: React.FC<LoadingProps> = ({ thinkingText }) => {
 
   return (
     <div className={styles.loadingContainer}>
+      <div className={styles.firstPart}>
+      <div className={styles.iconWrapper}>
+      <Icon name={"gordon_logo_black"} size={16} />
+      </div>
       <span className={styles.text}>{displayText}</span>
+      </div>
       <span className={styles.dots}>
         <span className={activeDot === 0 ? styles.activeDot : styles.dot}>.</span>
         <span className={activeDot === 1 ? styles.activeDot : styles.dot}>.</span>
@@ -34,4 +39,5 @@ const Loading: React.FC<LoadingProps> = ({ thinkingText }) => {
 };
 
 export default Loading;
+
 

@@ -14,6 +14,10 @@ export const languageMap = {
     en: "English"
 }
 
+
+
+export const tickersPalette = ["#F9FFE5", "#B1F625",];
+
 export const current_balance = 100000;
 export const old_balance= 90000;
 

@@ -12,7 +12,7 @@ interface ChartSnapshotProps {
   lastClose: number | null;
   language: string;
   currency: string;
-  asset_type: string;
+  asset_type: "stock"|"crypto"|"etf";
   icon?: boolean;
 }
 

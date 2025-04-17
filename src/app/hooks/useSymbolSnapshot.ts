@@ -8,7 +8,7 @@ import fetchLatestPrice from "../../services/database/fetch_latest_price";
 
 interface SymbolSnapshotData {
     snapshot: any; // or use actual type
-    asset_type: string | null;
+    asset_type: "stock" | "crypto" | "etf";
     symbol_id: string | null;
     symbol_name: string | null;
     lastLivePrice: number | null;

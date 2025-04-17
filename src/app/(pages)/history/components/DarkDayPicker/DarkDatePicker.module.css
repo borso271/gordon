@@ -1,0 +1,63 @@
+.wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .input {
+    width: 100%;
+ 
+    background-color: transparent;
+
+    border:none;
+    /* border: 1px solid #181818; */
+   
+    cursor: pointer;
+    outline: none;
+
+    color: var(--Black-300, #929292);
+/* Text S/Regular */
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+
+  }
+  
+  .calendarWrapper {
+    padding:20px;
+    position: absolute;
+    z-index: 10;
+    margin-top: 4px;
+    background-color: #1e1e1e;
+    border: 1px solid #181818;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Custom DayPicker styles */
+  .root {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 8px;
+  }
+  
+  .caption {
+    color: white;
+  }
+  
+  .day {
+    border-radius: 4px;
+  }
+  
+  .day:hover {
+    background-color: #4c4c4c;
+  }
+  
+  .selected {
+    background-color: #4c4c4c !important;
+    color: white !important;
+  }
+  
+/* Make the calendar nav arrows white */

@@ -1,21 +1,19 @@
-/* Base container styling (applies to both scenarios) */
-
 .buttonGroup {
   display: inline-flex;
     justify-content: space-between;
 
 }
-
 .container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: var(--black-900);
+  /* background-color: var(--black-900); */
   gap: 16px;
+  /* max-width:600px; */
 }
 
 /* Fixed at the bottom (classic chat scenario) */
-.fixed {
+/* .fixed {
   height: 100%;
 }
 
@@ -26,9 +24,8 @@
   transform: translate(-50%, -50%);
   padding: 24px 20px;
   overscroll-behavior: auto;
-}
+} */
 
-/* The inner container for content alignment */
 .innerContainer {
   margin: 0 auto;
   width: 100%;
@@ -49,52 +46,68 @@
 }
 
 .input {
-  flex: 1;
-  color: var(--black-50, #f8f8f8);
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1.25; /* was 125% */
-  letter-spacing: -0.6px;
-  background: transparent;
-  border: none;
+
+  display: flex;
+/* padding: 12px 14px 12px 16px; */
+flex-direction: column;
+align-items: center;
+gap: 10px;
+flex: 1 0 0;
+
+
+
+color: var(--black-50, #f8f8f8);
+background: transparent;
+
+width: 100%;
+
   outline: none;
-  caret-color: white;
+border: none;
   font-family: var(--font-family-inter);
-  /* New additions for multiline support */
   overflow-y: auto;
-  max-height: calc(1.25em * 3); /* 3 lines max */
-  min-height: 1.25em; /* 1 line min */
+  max-height: calc(44px * 3);
+  /* min-height: 44px;  */
   height: auto;
-  padding: 0;
+
   box-sizing: border-box;
-  resize: none;         /* 🔥 Removes the resize corner */
-  overflow: hidden;
+  resize: none;        
+  overflow: hidden; 
+
+  width:100%;
 }
 
-
-
-
-
-
+.microphoneIconWrapper {
+  display:flex;
+  padding-right: 10px;
+  align-items:center;
+  
+}
 
 .input:placeholder-shown {
-  caret-color: white;
+  caret-color: var(--black-400, #757575);
 }
 
 .input::placeholder {
-  color: var(--black-500, #535353);
-  font-family: var(--font-family-inter);
-  font-size: var(--font-size-xl);
+  color: var(--black-400, #757575);
+  /* Text S/Regular */
+
+  font-size: 14px;
   font-style: normal;
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-125); /* 37.5px */
-  letter-spacing: var(--letter-spacing-xl);
+  font-weight: 400;
+  line-height: 140%; /* 19.6px */
 }
 
 .promptButtons {
   display: flex;
   flex-direction: row;
   gap: 12px;
+}
+
+
+.inputButtons {
+  display: flex;
+  flex-direction: row;
+  align-items:center;
 }
 
 /* Medium (Tablets) */
@@ -138,4 +151,35 @@
   position: fixed; /* ✅ Fixes button in place */
   right: 20px; /* ✅ 20px from the right */
   bottom: 20px; /* ✅ 20px from the bottom */
+}
+
+
+
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  /* max-width:600px; */
+  background: var(--black-800, #1A1A1A);
+
+
+  padding: 12px 14px 12px 16px;
+
+border-radius: 12px;
+
+}
+
+
+
+.sendButton {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
 }

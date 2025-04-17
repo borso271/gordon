@@ -1,5 +1,6 @@
 /* Main Container */
 .container {
+  width:100%;
     display: flex;
     flex-direction: column;
     padding: 24px;
@@ -9,7 +10,7 @@
     min-height: 296px;
     background-color: var(--card-background);
     background: var(--card-background);
-    border: 1px solid var(--card-border);
+  
   }
   
   .header {
@@ -43,7 +44,8 @@
   .row {
     display: inline-flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+    gap:12px;
     height: 20px; /* Use a percentage-based height instead of 20px */
     
   }
@@ -70,6 +72,7 @@
   }
   
   .percentageBarContainer {
+    width:200px;
     padding: 0 4px;
   }
 

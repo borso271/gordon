@@ -1,0 +1,74 @@
+.symbolTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* padding-right: 8px; */
+  }
+  
+  .iconWrapper {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .labelWrapper {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  
+  .ticker {
+    color: var(--Black-50, #F8F8F8);
+/* Text S/Regular */
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+  }
+/*   
+  .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    color: var(--black-400, #757575);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    max-width:100px;
+  } */
+
+  .name {
+    /* Core Truncation Styles */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100px; /* Or your desired max-width */
+  
+    /* Text Styling */
+    color: var(--black-400, #757575);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+  
+    /* --- Alignment --- */
+    /* Default alignment for LTR */
+    text-align: left;
+  }  
+  
+
+  .price {
+    color: var(--Black-50, #F8F8F8);
+text-align: right;
+/* Text M/Regular */
+
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 22.4px */
+  }
+
+

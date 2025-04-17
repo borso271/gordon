@@ -26,11 +26,6 @@ const sectorsMap = {
     try {
       const dbSectors = sectors.map(s => sectorsMap[s]).filter(Boolean);
   
-
-      console.log(`🔍 Starting fetchSymbolSnapshots`);
-      console.log(`📦 asset_type: ${asset_type}`);
-      console.log(`📦 sectors: ${JSON.stringify(dbSectors)}`);
-      console.log(`🔎 Filtering indexes by: ${INDEX_FILTER.join(', ')}`);
   
       // 1. Fetch all symbols matching criteria
       const { data: symbols, error: symbolError } = await supabase_client
@@ -46,7 +41,7 @@ const sectorsMap = {
   
       for (const symbol of symbols) {
         const { id: symbol_id, ticker, name, asset_type } = symbol;
-        console.log(`\n🔄 Processing symbol: ${ticker} (id: ${symbol_id})`);
+    //    console.log(`\n🔄 Processing symbol: ${ticker} (id: ${symbol_id})`);
   
         // 2. Fetch latest price and volume from historical_week
         // 1. Try to fetch latest price from historical_week
@@ -86,26 +81,6 @@ if (fallbackYear) {
   console.log(`📆 Fallback price: ${price}, volume: ${latestVolume}`);
 }
 }
-
-console.log(`📈 Final price: ${price}, volume: ${latestVolume}`);
-
-        // const { data: latestWeek, error: weekError } = await supabase_client
-        //   .from('historical_week')
-        //   .select('close, volume, timestamp')
-        //   .eq('symbol_id', symbol_id)
-        //   .order('timestamp', { ascending: false })
-        //   .limit(1)
-        //   .maybeSingle();
-  
-        // if (weekError) throw new Error(`❌ Week data error for ${ticker}: ${weekError.message}`);
-        // if (!latestWeek) {
-        //   console.warn(`⚠️ No weekly data found for ${ticker}`);
-        // }
-  
-        // const price = latestWeek?.close || null;
-        // const latestVolume = latestWeek?.volume || null;
-        // console.log(`📈 Latest price: ${price}, volume: ${latestVolume}`);
-  
         // 3. Fetch earliest and latest entries from historical_year
         const { data: yearly, error: yearError } = await supabase_client
           .from('historical_year')
@@ -131,6 +106,7 @@ console.log(`📈 Final price: ${price}, volume: ${latestVolume}`);
         }
   
         results.push({
+          symbol_id: symbol.id,
           ticker,
           name,
           asset_type,
@@ -148,69 +124,3 @@ console.log(`📈 Final price: ${price}, volume: ${latestVolume}`);
     }
   }
   
-// export async function fetchSymbolSnapshots(asset_type, sectors = []) {
-//   const INDEX_FILTER = ['SP500', 'vanguard_etf', 'top_cryptos'];
-//   const results = [];
-
-//   try {
-//     // 1. Fetch all symbols matching criteria
-//     const { data: symbols, error: symbolError } = await supabase_client
-//       .from('symbols')
-//       .select('id, ticker, name, sector, asset_type, indexes')
-//       .eq('asset_type', asset_type)
-//       .in('sector', sectors)
-//       .or('indexes.cs.{SP500},indexes.cs.{vanguard_etf},indexes.cs.{top_cryptos}');
-
-//     if (symbolError) throw new Error(`Symbol fetch error: ${symbolError.message}`);
-
-//     for (const symbol of symbols) {
-//       const { id: symbol_id, ticker, name, asset_type } = symbol;
-
-//       // 2. Fetch latest price and volume from historical_week
-//       const { data: latestWeek, error: weekError } = await supabase_client
-//         .from('historical_week')
-//         .select('close, volume')
-//         .eq('symbol_id', symbol_id)
-//         .order('timestamp', { ascending: false })
-//         .limit(1)
-//         .maybeSingle();
-
-//       if (weekError) throw new Error(`Week data error for ${ticker}: ${weekError.message}`);
-
-//       const price = latestWeek?.close || null;
-
-//       // 3. Fetch earliest and latest entries from historical_year for YTD return
-//       const { data: yearly, error: yearError } = await supabase_client
-//         .from('historical_year')
-//         .select('timestamp, close, volume')
-//         .eq('symbol_id', symbol_id)
-//         .order('timestamp', { ascending: true });
-
-//       if (yearError) throw new Error(`Year data error for ${ticker}: ${yearError.message}`);
-
-//       const earliest = yearly?.[0];
-//       const latest = yearly?.[yearly.length - 1];
-
-//       const ytd_return = (earliest && latest && earliest.close)
-//         ? ((latest.close - earliest.close) / earliest.close) * 100
-//         : null;
-
-//       const volume = latest?.volume || null;
-
-//       results.push({
-//         ticker,
-//         name,
-//         asset_type,
-//         price,
-//         volume,
-//         ytd_return
-//       });
-//     }
-
-//     return results;
-//   } catch (err) {
-//     console.error('❌ Error in fetchSymbolSnapshots:', err.message);
-//     return [];
-//   }
-// }
-

@@ -4,6 +4,12 @@
   "get_started": "ابدأ الآن",
   "powered_by_ai": "مدعوم بالذكاء الاصطناعي",
   "bot_first_message": "حسنًا، أيها الذكي، ما هي الخطة التي ستجعلنا نغتني اليوم؟",
+
+"hi_message": "هلا! أنا هنا علشان أساعدك تصير مستثمر أفضل",
+"hi_subtitle": "اسألني أي شيء أو اختر مسار",
+
+"asset_type_allotment": "أنواع الأصول",
+
   "bot_first_placeholder": "أخبرني بمشكلتك المالية يا بطل.",
   "suggest_stocks": "اقترح أسهماً",
   "suggest_cryptos": "اقترح عملات رقمية",
@@ -22,7 +28,223 @@
     "copy": "نسخ",
   "share": "مشاركة",
   "read_less": "اقرأ أقل",
-"read_more": "اقرأ المزيد"
+"read_more": "اقرأ المزيد",
+
+
+
+
+
+
+"stocks": "الأسهم",
+  "crypto": "العملات الرقمية",
+  "etf": "الصناديق المتداولة",
+
+
+  "analyst_ratings": {
+     "subheading": "بناءً على {{count}} من تقييمات المحللين",
+  "strong_buy": "شراء قوي",
+  "buy": "شراء",
+  "hold": "احتفاظ",
+  "sell": "بيع",
+  "strong_sell": "بيع قوي",
+  "ratings": {
+    "title": "التقييمات",
+    "based_on": "بناءً على {{total}} تقييم من المحللين",
+
+    "breakdown": "تفصيل التقييمات"
+  },
+  "says": "يقول",
+  "loading": "جارٍ التحميل...",
+  "error": {
+    "general": "حدث خطأ ما"
+  }}
+,
+
+  "comparison_ratings": {
+  "title": "المحللون يفضلون {{name}}",
+  "subheading": "استنادًا إلى {{leftCount}} مقابل {{rightCount}} من تقييمات المحللين",
+  "strong_buy": "شراء قوي",
+  "buy": "شراء",
+  "hold": "احتفاظ",
+  "sell": "بيع",
+  "strong_sell": "بيع قوي"
+}
+
+
+  ,
+    "ticker_snapshot": {
+      "current_price": "سعر الحالي",
+      "low": "أدنى سعر",
+      "high": "أعلى سعر",
+      "open": "سعر الافتتاح",
+      "volume": "حجم التداول",
+      "prev_close": "الإغلاق السابق"
+    }
+  
+  ,
+  "latest_news": "آخر الأخبار",
+  "based_on_n_sources": {
+  "zero": "استنادًا إلى لا شيء من المصادر",
+  "one": "استنادًا إلى مصدر واحد",
+  "two": "استنادًا إلى مصدرين",
+  "few": "استنادًا إلى {{count}} مصادر",
+  "many": "استنادًا إلى {{count}} مصدرًا",
+  "other": "استنادًا إلى {{count}} مصدر"
+},
+"price_chart": "مخطط السعر",
+"chart": {
+  
+    "1D": "يوم",
+    "1W": "أسبوع",
+    "1M": "شهر",
+    "1Y": "سنة",
+    "5Y": "٥ سنوات"
+  
+  
+},
+
+"metric_comparison":
+
+{
+  "loading": "جاري تحميل المقاييس...",
+  "value": "القيمة",
+  "one_quarter_trend": "ربع سنوي",
+  "one_year_trend": "سنوي"
+
+},
+"units":{
+  "billion": "مليار",
+  "million": "مليون",
+  "thousand": "ألف"
+},
+
+"metrics": {
+  "assets": "الأصول",
+  "current_assets": "الأصول الحالية",
+  "inventory": "المخزون",
+  "fixed_assets": "الأصول الثابتة",
+  "liabilities": "الخصوم",
+  "current_liabilities": "الخصوم الحالية",
+  "long_term_debt": "الديون طويلة الأجل",
+  "equity": "حقوق المساهمين",
+  "net_cash_flow_from_operating_activities": "صافي التدفق النقدي من الأنشطة التشغيلية",
+  "net_cash_flow_from_investing_activities": "صافي التدفق النقدي من الأنشطة الاستثمارية",
+  "net_cash_flow_from_financing_activities": "صافي التدفق النقدي من الأنشطة التمويلية",
+  "net_cash_flow": "صافي التدفق النقدي",
+  "revenues": "الإيرادات",
+  "cost_of_revenue": "تكلفة الإيرادات",
+  "gross_profit": "الربح الإجمالي",
+  "operating_expenses": "المصروفات التشغيلية",
+  "research_and_development": "البحث والتطوير",
+  "operating_income_loss": "الدخل/الخسارة التشغيلية",
+  "income_tax_expense_benefit": "مصاريف/فوائد ضريبة الدخل",
+  "net_income_loss": "صافي الدخل/الخسارة",
+  "basic_earnings_per_share": "ربحية السهم الأساسية",
+  "diluted_earnings_per_share": "ربحية السهم المخففة",
+  "basic_average_shares": "متوسط الأسهم الأساسية",
+  "diluted_average_shares": "متوسط الأسهم المخففة"
+},
+"watchlist": {
+  "title": "قائمة المتابعة الخاصة بك",
+  "view_all": "عرض الكل"
+},
+  
+
+
+
+
+
+
+
+  "portfolio": {
+    "total_market_value": "القيمة السوقية الإجمالية",
+    "overview": {
+      "title": "نظرة عامة على المحفظة",
+      "insights": "رؤى"
+    }
+  },
+
+  "portfolio_table": {
+    "headers": {
+      "name": "الاسم",
+      "price": "السعر",
+      "allocation": "التوزيع",
+      "amount": "الكمية",
+      "pnl": "صافي الربح/الخسارة ($)",
+      "actions": "إجراءات"
+    }
+  },
+
+  "portfolio_performance": {
+    "title": "أداء المحفظة",
+    "summarize": "تلخيص محفظتي"
+  }
+
+  ,
+  "common": {
+    "na": "غير متاح"
+  },
+
+
+
+"portfolio_summary": {
+  "title": "ملخص المحفظة"
+},
+
+"asset_type": {
+    "all": "الكل",
+    "stock": "الأسهم",
+    "crypto": "العملات الرقمية",
+    "etf": "الصناديق المتداولة"
+  },
+
+"total_transactions": "إجمالي المعاملات",
+  "start_market_value": "قيمة السوق عند البداية",
+  "end_market_value": "قيمة السوق عند النهاية",
+  "realized_gain_loss": "الأرباح/الخسائر المحققة",
+  "unrealized_gain_loss": "الأرباح/الخسائر غير المحققة",
+  "net_profit_loss": "صافي الربح/الخسارة",
+
+
+"top_winners": "أعلى الرابحين",
+"top_losers": "أعلى الخاسرين",
+"all_assets": "الكل",
+
+"reading": "جارٍ القراءة...",
+
+ "vs": "ضد",
+
+"snapshot": {
+  "price": "السعر",
+  "change": "التغير",
+  "volume": "الحجم",
+  "prev_close": "الإغلاق السابق"
+},
+
+"asset": {
+  "insightLabel": "معلومة: ",
+  
+    "suggested_assets": "الأصول المقترحة:"
+},
+"trade": "تداول"
+,
+
+"price_overview": {
+  "title": "مخطط السعر",
+  "no_data": "لا توجد بيانات لهذه الفترة.",
+  "periods": {
+    "1w": "الأسبوع الماضي",
+    "1m": "الشهر الماضي",
+    "1y": "العام الماضي",
+    "5y": "الخمسة أعوام الماضية",
+    "1d": "اليوم الماضي"
+  }
+}
+
+
+
+
+
 
 
 }

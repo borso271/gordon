@@ -1,0 +1,24 @@
+.dragHandle {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    z-index: 50;
+    cursor: ew-resize;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* width: 400px; */
+    max-width: 100vw;
+    height: 100vh;
+    /* background-color: "white"; */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+    z-index: 100;
+    overflow: hidden;
+  }
+  

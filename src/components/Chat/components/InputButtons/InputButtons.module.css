@@ -1,0 +1,61 @@
+.wrapper {
+    position: relative;
+    width:100%;
+  }
+  
+  .container {
+  
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.5rem 0.25rem;
+    scroll-behavior: smooth;
+    width:100%;
+    display:flex;
+gap:12px;
+
+  }
+  
+  .button {
+    display: flex;
+    gap: 4px;
+    padding: 6px 12px;
+    align-items: center;
+    border-radius: 100px;
+border: 1px solid rgba(255, 255, 255, 0.10);
+background: var(--additional-white-3, rgba(255, 255, 255, 0.03));
+
+
+color: var(--black-100, #D7D7D7);
+/* Text XS/Medium */
+
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 16.8px */
+cursor: pointer;
+
+  }
+  
+  .button:hover {
+    background-color: transparent;
+  }
+  
+  .fade {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .fadeLeft {
+    left: 0;
+    background: linear-gradient(to right,var(--background), rgba(255, 255, 255, 0));
+  }
+  
+  .fadeRight {
+    right: 0;
+    background: linear-gradient(to left, var(--background), rgba(255, 255, 255, 0));
+  }
+  

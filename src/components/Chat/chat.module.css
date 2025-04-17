@@ -1,94 +1,153 @@
-/* If you want to hide the scroll bar completely */
-
-/* .slideContainer {
- 
+/* --- Keep Existing Styles --- */
+.mainWrapper {
   display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: scroll;
-    width: 100%;
-    padding-bottom:80px;
-    
-} */
-
-/* .conversationPair {
-  flex: 1;
-  overflow-y: auto; 
+  height: calc(100vh - 65px); /* Example height calculation */
   width: 100%;
-  position: relative;
-} */
-/* 
-.chatInput {
-  position: fixed;
-  bottom: 0;
-  width: calc(100% - 40px);
-  max-width: 796px;
-  z-index: 10;
-  overscroll-behavior: auto;
-  background:var(--background);
-  height: auto;
-  padding-bottom: 20px;
-
+  overflow: hidden;
+  position: relative; /* Add if using position:absolute for drawer */
 }
- */
 
-
-
-.slideContainer {
+.chatColumn {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%; 
-  overflow: hidden;
-  position: relative;
+  min-width: 0;
+  padding: 20px; /* Default padding */
+   /* Add transition for smooth padding change */
+  transition: padding-bottom 0.3s ease-in-out;
 }
 
-.slideContainer::-webkit-scrollbar {
-  display: none;
-}
-.slideContainer {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.conversationList {
+.chatThreadWrapper {
   flex: 1 1 auto;
   overflow-y: auto;
-  padding-bottom: 8px;
-}
-
-.conversationList::-webkit-scrollbar {
-  display: none;
-}
-.conversationList {
+  min-height: 0;
+  /* Scrollbar hiding */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
+.chatThreadWrapper::-webkit-scrollbar {
+  display: none;
+}
 
 .chatInput {
-  position:relative;
   flex-shrink: 0;
-  background:var(--background);
-  height: auto;
-  padding-bottom: 20px;
-  
- 
+  background: var(--background);
+  z-index: 1;
+  position: relative;
 }
-
-
-
 .chatInput:before {
-content: "";
-    position: absolute;
-    left: 0;
-    top: -80px;
-    width: 100%;
-    height: 80px;
-    pointer-events: none;
-    background: linear-gradient(to bottom, #0f0f0f00 0%, #0f0f0f80 50%, var(--background) 100%);
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -80px;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+     rgba(15, 15, 15, 0) 0%,
+     rgba(15, 15, 15, 0.7) 50%,
+     var(--background) 100%
+  );
 }
 
+/* Sidebar Styles (Large Screen - Default) */
+.sidebarColumn {
+  width: 440px; /* Default width */
+  flex-shrink: 0;
+  overflow: hidden; /* Hide overflow initially */
+  background-color: var(--background); /* Example background */
+  display: flex; /* Use flex for content wrapper */
+  flex-direction: column;
+  transition: width 0.3s ease; /* Animate width on large screens if needed */
+}
+
+/* Wrapper for actual sidebar content */
+.sidebarContentWrapper {
+  flex-grow: 1; /* Allow content to take space */
+  overflow-y: auto; /* Scroll content */
+  min-height: 0; /* Flexbox fix */
+}
+
+
+/* --- Drawer Header (Only visible on small screens) --- */
+.drawerHeader {
+  display: none; /* Hidden by default */
+  /* Styles will be applied within media query */
+}
+.drawerTitle {
+    /* Styles for your title */
+    flex-grow: 1;
+    padding: 0 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*
+MEDIA QUERIES
+*/
+@media (max-width: 768px) { /* Adjust breakpoint */
+
+  .chatColumn {
+
+      /* Padding will be adjusted via inline style based on drawer state */
+  }
+
+  .sidebarColumn.drawer { /* Renamed class for clarity */
+    /* --- Drawer Positioning & Base Style --- */
+    position: fixed; /* Fixed relative to viewport */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%; /* Full width */
+    height: 50vh; /* Example max expanded height */
+    max-height: 70vh; /* Absolute max */
+    flex-shrink: 1; /* Allow shrinking if needed, though height controls it */
+    overflow: hidden; /* Crucial for hiding content */
+  
+    z-index: 50; /* Ensure it's above most content */
+  
+    display: flex; /* Use flex for header/content */
+    flex-direction: column;
+    /* --- Initial Collapsed State --- */
+    /* Start mostly hidden, only header visible */
+    transform: translateY(calc(100% - 50px)); /* Adjust 50px to match header height */
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* --- Expanded Drawer State --- */
+  .sidebarColumn.drawer.drawerOpen {
+    transform: translateY(0); /* Slide fully into view */
+  }
+
+  /* --- Drawer Header (Visible on Small Screens) --- */
+  .drawerHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px; /* Fixed height for the handle */
+    padding: 0 15px;
+   
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent header from shrinking */
+    
+  }
+
+  /* --- Drawer Content --- */
+ 
+
+  /* --- Hide Original Large Screen Sidebar Behavior --- */
+  /* No width transition needed */
+  .sidebarColumn {
+     transition: none;
+  }
+}
+
+/*
+
+MEDIA QUERIES
+
+*/
 
 /* Small (Mobile) */
 @media (max-width: 480px) {
@@ -113,3 +172,9 @@ content: "";
   }
 
 }
+
+
+
+
+
+

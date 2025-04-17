@@ -5,6 +5,7 @@ export async function POST(req: NextRequest) {
   try {
     const args = await req.json();
     const data = await list_tickers(args); // Call your local function
+    
     return Response.json(data);
   } catch (error) {
     console.error("Error in list_tickers handler:", error);

@@ -11,8 +11,6 @@ interface SectionHeaderProps {
   size?: number;
   tagColor?: string;
 }
-
-
 const SectionHeader: React.FC<SectionHeaderProps> = ({ icon, title, tagColor=null, size=null }) => {
   return (
     <header className={styles.header}>

@@ -1,14 +1,12 @@
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
- padding: 10px 20px;
+ 
+ padding: 20px 0px;
   width: 100%;
   background: var(--background);
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   align-items: center;
-  justify-content: space-between;
+
   align-items: center;
 
   z-index: 300;
@@ -25,6 +23,33 @@ pointer-events: none;
 background: linear-gradient(to bottom, var(--background) 0%, rgba(15, 15, 15, 0.7)  50%,  rgba(15, 15, 15, 0) 100%);
 } */
   
+
+
+
+.gordonIconWrapper {
+  width: 40px;            /* or 24px, 32px — same as icon size + padding */
+  height: 40px;
+  border-radius: 50%;
+
+  display: flex;
+  width: 32px;
+  height: 32px;
+  padding: 8.889px;
+  justify-content: center;
+  align-items: center;
+
+
+background: #B1F625;
+cursor: pointer;
+
+}
+
+.gordonIconWrapper:hover {
+  background-color: #e0e0e0;  /* subtle hover effect */
+}
+
+
+
   
   .left {
     display: flex;
@@ -66,6 +91,33 @@ background: linear-gradient(to bottom, var(--background) 0%, rgba(15, 15, 15, 0.
 }
 
 
+
+
+
+.navbarIcons {
+
+display: flex;;
+flex-direction: row;
+gap: 12px;
+align-items: center;
+
+}
+
+.navbarIconWrapper {
+  height:40px;
+  width:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor: pointer;
+}
+
+.languageDropdownWrapper {
+  position:absolute;
+  top: 65px;
+  right: 50px;
+}
+
 /* Responsive adjustments for small screens */
 @media (max-width: 480px) {
   .dropdownContainer > div {
@@ -88,4 +140,6 @@ background: linear-gradient(to bottom, var(--background) 0%, rgba(15, 15, 15, 0.
   }
 
 }
+
+
 

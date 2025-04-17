@@ -21,6 +21,9 @@ import DataTable from "../../../DataTable";
 import FollowUps from "../../../FollowUps";
 import { useConversation } from "../../../../app/context/conversationContext";
 import { createQueryFromBotParts } from "../../../../app/utils/createQueryFromBotParts";
+import NewsList from "../../../NewNews/NewsList";
+import MessageActions from "../../../MessageActions";
+
 interface ConversationPairViewProps {
   interaction: Interaction;    // renamed from pair
   direction?: "up" | "down";
@@ -28,6 +31,47 @@ interface ConversationPairViewProps {
   handleManualFunctionCall?: (...args: any) => void;
   newSearch?: (prompt: string) => Promise<void>;
 }
+
+
+const handleNewSuggestions = async (
+  suggestions: string[],
+  interaction: Interaction,
+ 
+  setFollowUpSuggestions: React.Dispatch<React.SetStateAction<string[]>>,
+  updateLastInteractionBotParts: any
+) => {
+  // 1. Update local state
+  setFollowUpSuggestions(suggestions);
+
+  const followUpsPart = {
+    type: 'follow_ups',
+    data: suggestions,
+    sidebar: false,
+    both: false,
+  } as const;
+
+  updateLastInteractionBotParts([followUpsPart], interaction.id)
+  // interaction.botMessage.parts.push(followUpsPart);
+
+  // 3. Save to backend
+  try {
+    await fetch("/api/save_follow_ups", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+    
+        interaction_id: interaction.id,
+        bot_message_id: interaction.botMessage.id,
+        suggestions,
+      }),
+    });
+  } catch (error) {
+    console.error("Failed to save follow-ups:", error);
+  }
+};
+
 
 const ConversationPairView: React.FC<ConversationPairViewProps> = ({
   interaction,
@@ -37,35 +81,66 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
   newSearch,
 }) => {
 
-  const { t } = useTranslation();
-  const { currentLang } = useLanguage();
-  const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
+const { t } = useTranslation();
+const { currentLang } = useLanguage();
+const {appendAssistantText, setInputDisabled, updateLastInteractionBotParts} = useConversation();
+
+const [assistantText, setAssistantText] = useState("");
+
+const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
+
+
 
 const [followUpSuggestions, setFollowUpSuggestions] = useState<Array<string>>([]);
 
-
 const userText = interaction.userMessage.text || "";
-
-// Extract bot parts
 const botParts = interaction.botMessage.parts || [];
-// inside your component
 
+
+console.log("BOT PARTS ARE: ", botParts)
+
+const filteredParts = botParts.filter(
+  (part) => part.sidebar !== true
+);
 
 const { isRunning } = useConversation(); // from Zustand or context
-// const prevIsRunning = useRef<boolean>(false);
-console.log("initial is Running is: ", isRunning)
 useEffect(() => {
- console.log("is running is: ", isRunning)
-}, [isRunning, botParts]);
+  const followUpsPart = botParts.find(p => p.type === 'follow_ups');
+if (followUpsPart) setFollowUpSuggestions(Array.isArray(followUpsPart.data) ? followUpsPart.data : JSON.parse(followUpsPart.data));
+
+}, [botParts]);
 
 const prevIsRunning = useRef<boolean>(isRunning);
 
+
 useEffect(() => {
-  // Detect transition from true → false
-  if (prevIsRunning.current === true && isRunning === false) {
+ 
     console.log("Bot finished running (transitioned from true to false)");
 
-    const query = createQueryFromBotParts(botParts, 300);
+    // ✅ Extract assistant text here
+    const text = filteredParts
+      .filter((part) => part.type === "assistantText")
+      .map((part) => part.text)
+      .join("\n");
+
+    setAssistantText(text); // 👈 store it for speech or analysis
+},[]);
+
+
+/* THIS IS RECALLED EVERY TIME AND RE-RENDERED */
+useEffect(() => {
+  if (prevIsRunning.current === true && isRunning === false && followUpSuggestions.length ==0) {
+    console.log("Bot finished running (transitioned from true to false)");
+
+    // ✅ Extract assistant text here
+    const text = filteredParts
+      .filter((part) => part.type === "assistantText")
+      .map((part) => part.text)
+      .join("\n");
+
+    setAssistantText(text); // 👈 store it for speech or analysis
+
+    const query = createQueryFromBotParts(filteredParts, 300);
 
     if (query) {
       fetch("/api/follow_ups", {
@@ -76,41 +151,46 @@ useEffect(() => {
         .then((res) => res.json())
         .then((data) => {
           if (Array.isArray(data.result) && data.result.length > 0) {
-            setFollowUpSuggestions(data.result);
+            // setFollowUpSuggestions(data.result);
+            handleNewSuggestions(data.result, interaction,setFollowUpSuggestions,updateLastInteractionBotParts);
+
+           
           } else {
             setFollowUpSuggestions([]);
           }
         })
         .catch((err) => {
           console.error("Error fetching follow-ups:", err);
-          setFollowUpSuggestions([]); // fallback to empty array on error
+          setFollowUpSuggestions([]);
         });
     }
   }
 
-  // Update ref so next render can compare
   prevIsRunning.current = isRunning;
-}, [isRunning, botParts]);
+}, [isRunning, filteredParts]);
 
 
 useEffect(() => {
-  console.log("RE-RENDER: isRunning is now", isRunning);
+  //console.log("RE-RENDER: isRunning is now", isRunning);
 }, [isRunning]);
 
   // Check if we have *no* content from the bot yet (use your own logic)
   // e.g., if only one text part with empty content, or array is empty => "nothingYet"
   const nothingYet =
-    botParts.length === 0 ||
-    (botParts.length === 1 &&
-      botParts[0].type === "assistantText" &&
-      botParts[0].content.trim() === "");
+    filteredParts.length === 0 ||
+    (filteredParts.length === 1 &&
+      filteredParts[0].type === "assistantText" &&
+      filteredParts[0].text.trim() === "");
 
   // Timeout logic (similar to your old approach)
   useEffect(() => {
     if (nothingYet) {
       const timeout = setTimeout(() => {
         setShowTimeoutMessage(true);
-      }, 40000); // 40s or whatever you need
+        appendAssistantText(messages[lang].text);
+        interaction.status = "failure";
+        setInputDisabled(false)
+      }, 120000); // 40s or whatever you need
       return () => clearTimeout(timeout);
     }
   }, [nothingYet]);
@@ -130,7 +210,7 @@ useEffect(() => {
 
   // Render logic for each part
   const renderBotPart = (part: BotMessagePart, index: number) => {
-    //console.log("PART type IS: ", part.type);
+    console.log("we are calling this with PART type IS: ", part);
     switch (part.type) {
       case "assistantText":
         // If you used to do "pair.assistant" → text, you can parse heading vs text if you want
@@ -138,7 +218,7 @@ useEffect(() => {
           <AssistantMessage
             key={index}
             heading={""} // or parse a heading from content if you want
-            text={part.content}
+            text={part.text}
           />
         );
 
@@ -150,23 +230,15 @@ useEffect(() => {
              currency = {part.data.currency}
                 /> )
 
-      case "ticker_analysis":
-        return (
-        <Analysis
-                data={part.data}
-                language={interaction.language}
-                handleManualFunctionCall={handleManualFunctionCall}
-                newSearch={newSearch}
-              /> )
 
-      case "financials_table":
+      case "latest_news":
+        console.log("case latest new ")
         return (
-        <DataTable 
-        title = {part.data.title}
-        data = {part.data.data}
+        <NewsList 
+        // title = {part.data.title}
+        data = {part.data}
         />)
-        return null;
-
+      
       case "tool_output":
         // Could be code interpreter or something else
         if (part.toolName === "code_interpreter") {
@@ -181,6 +253,10 @@ useEffect(() => {
     }
   };
 
+
+  "e27e3a8d-5c21-489a-8ae7-d7d5c9a39c1a"
+
+  console.log("INTERACTION IS: ", interaction);
   // Determine language direction for this conversation
   const languageClass =
     interaction.userMessage.language === "ar" ? "rightToLeft" : "leftToRight";
@@ -213,7 +289,7 @@ useEffect(() => {
           //  We have some bot parts, so render them all
           //  botParts.map(renderBotPart)
 
-            botParts.map((part, index) => (
+          filteredParts.map((part, index) => (
               <React.Fragment key={part.type + "-" + index}>
                 {renderBotPart(part, index)}
               </React.Fragment>
@@ -222,22 +298,17 @@ useEffect(() => {
           )}
           
         </div>
-        <ActionsGroup
-        actions={[
-          { iconName: "share", text: t("share"), onClick: () => shareContent("hello") },
-          { iconName: "copy", text: t("copy"), onClick: () => copyToClipboard("hello") },
-        ]}
 
-        
-        
-        /* here you show the follow ups, when the response is finished...
-        you send the first part of the response */
-
+        <MessageActions
+       
+        text={assistantText}
+        language={interaction.language}
+      
       />
 
+
+
 {followUpSuggestions.length > 0 && (
- 
-    
           <FollowUps suggestions={followUpSuggestions} newSearch={newSearch} />
          
         )}
@@ -248,122 +319,8 @@ useEffect(() => {
 };
 
 export default ConversationPairView;
-// interface ConversationPairViewProps {
-//   pair: Interaction;
-//   direction: "up" | "down";
-//   responseRef: RefObject<HTMLDivElement>;
-//   handleManualFunctionCall: (functionName: string, args: any) => void;
-//  newSearch: (prompt: string) => Promise<void>
-// }
-
-// const ConversationPairView: React.FC<ConversationPairViewProps> = ({
-//   pair,
-//   direction,
-//   responseRef,
-//   handleManualFunctionCall,
-//   newSearch,
-// }) => {
-
-//   const nothingYet = !pair.assistant && !pair.code && !pair.analysisData && !pair.suggestionData;
-//   const {currentLang} = useLanguage()
-//   const [responseHeading, responseContent] = extractTwoValues(pair.assistant || "");
-//   const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
-
-//   const messages = {
-//     en: {
-//       heading: "Sorry... For some reason I could not process your request.",
-//       text: "Please try again or ask for support at hi.finh.cc@gmail.com!",
-//     },
-//     ar: {
-//       heading: "عذرًا... لم أتمكن من معالجة طلبك لسبب ما.",
-//       text: "يرجى المحاولة مرة أخرى أو طلب الدعم على hi.finh.cc@gmail.com!",
-//     },
-//   };
-  
-//   const lang = currentLang === "ar" ? "ar" : "en"; // default to 'en'
-  
-//   useEffect(() => {
-//     if (nothingYet) {
-//       const timeout = setTimeout(() => {
-//         setShowTimeoutMessage(true);
-//       }, 40000); // ⏱ 10 seconds (adjust as needed)
-  
-//       return () => clearTimeout(timeout); // cleanup if component unmounts or re-renders
-//     }
-//   }, [nothingYet]);
-  
-//   const languageClass =
-//   pair.language === "ar"
-//     ? "rightToLeft"
-//     : "leftToRight";
-
-//   return (
-//     <motion.div
-//       key={pair.user}
-//       initial={{ y: direction === "up" ? 100 : -100, opacity: 0 }}
-//       animate={{ y: 0, opacity: 1 }}
-//       exit={{ y: direction === "up" ? -100 : 100, opacity: 0 }}
-//       transition={{ duration: 1, ease: "easeInOut" }}
-//       className={styles.pairWrapper}
-//     >
-//       <div ref={responseRef} className={`${styles.pair} ${languageClass}`}>
-//         <UserMessage text={pair.user} />
-
-//         <div className={styles.assistantResponse}>
-          
-//         {nothingYet ? (
-//   showTimeoutMessage ? (
-// <AssistantMessage
-//   heading={messages[lang].heading}
-//   text={messages[lang].text}
-// />
-//   ) : (
-//     <Loading />
-//   )
-// ) : (
-//   <>
-//     {pair.assistant &&
-//     !pair.analysisData &&
-//     !pair.tickerListData && (
-//       <AssistantMessage heading={responseHeading} text={responseContent} />
-//     )}
-
-//     {pair.code && <CodeMessage text={pair.code} />}
-
-//     {pair.analysisData && (
-//       <Analysis
-//         data={pair.analysisData}
-//         language={pair.language}
-//         handleManualFunctionCall={handleManualFunctionCall}
-//         newSearch={newSearch}
-//       />
-//     )}
-
-//     {pair.suggestionData && (
-//       <Suggestion
-//         data={pair.suggestionData}
-//         language={pair.language}
-//         handleManualFunctionCall={handleManualFunctionCall}
-//       />
-//     )}
-
-// {pair.tickerListData && (
-//       <TickerList
-//         data={pair.tickerListData}
-//         language={pair.language}
-//         // handleManualFunctionCall={handleManualFunctionCall}
-//         // newSearch={newSearch}
-//       />
-//     )}
-//   </>
-// )}
-//         </div>
-//       </div>
-//     </motion.div>
-//   );
-// };
-
-// export default ConversationPairView;
 
 
-
+/* Do it only once,
+save them as you are doing one,
+when you fetch them render them in the follow up part) */

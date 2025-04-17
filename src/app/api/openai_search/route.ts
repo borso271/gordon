@@ -13,7 +13,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing 'query'" }, { status: 400 });
     }
 
-
 console.log("openai client is: ", client)
 
 const response = await client.responses.create({
@@ -32,11 +31,10 @@ const response = await client.responses.create({
     // To get tool calls (like web search events):
     const toolCalls = response.output.filter((block: any) => block.type === 'web_search_call');
     
-    console.log("stuff is: ", messageText, annotations, toolCalls)
     return NextResponse.json({
+      instructions: "Give the user these web results as they are, keep citations.",
         result: messageText,
-        citations: annotations,
-        toolCalls: toolCalls
+
       });
       
   } catch (error: any) {

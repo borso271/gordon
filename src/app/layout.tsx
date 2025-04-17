@@ -9,11 +9,19 @@ import NavBar from '../components/Layout/Navbar';
 import {useState} from 'react'
 import MainNavSidebar from '../components/MainNavSidebar';
 import styles from './Layout.module.css'
+import { BuySellModalProvider } from './context/buySellModalContext';
+import BuySellModalPortal from '../components/BuySell/BuySellModalPortal';
+import OverlayRenderer from '../components/OverlayRenderer';
+import { OverlayProvider } from './context/overlayContext';
+import NavigationSidebar from '../components/NavigationSidebar';
+import { ChatNavigationSidebarProvider } from './context/chatNavigationContext';
+// _app.tsx or wherever you define providers
+import { SpeakingProvider } from './context/speakingContext';
+
+
+
 type RootLayoutProps = React.PropsWithChildren<unknown>;
-
-
 function RootLayout({ children }: RootLayoutProps) {
-  const [sidebarExpanded, setSidebarExpanded] = useState(true);
 
   return (
     <html lang="en">
@@ -22,19 +30,19 @@ function RootLayout({ children }: RootLayoutProps) {
           <I18nProvider>
             <ScreenSizeProvider>
               <ConversationProvider forceNewSession={true}>
+              <SpeakingProvider>
                 <FunctionExecutionProvider>
-                 
-
-                <div className={styles.layout}>
-          <MainNavSidebar onToggle={setSidebarExpanded} />
-
-          <div className={styles.rightPanel}>
-            <NavBar />
-            <div className={styles.pageContent}>{children}</div>
-          </div>
-        </div>
-                  
+                <BuySellModalProvider>
+                <OverlayProvider>
+                <ChatNavigationSidebarProvider>
+               {children}
+               </ChatNavigationSidebarProvider>
+        <BuySellModalPortal /> {/* always rendered */}
+    <OverlayRenderer />
+    </OverlayProvider>
+    </BuySellModalProvider>
                 </FunctionExecutionProvider>
+                </SpeakingProvider>
               </ConversationProvider>
             </ScreenSizeProvider>
           </I18nProvider>
@@ -42,29 +50,46 @@ function RootLayout({ children }: RootLayoutProps) {
       </body>
     </html>
   );
-
-  // return (
-  
-  //   <html lang="en">
-  //     <body>
-  //       <ClientWrapper>
-  //         <I18nProvider> 
-  //           <ScreenSizeProvider>
-  //           {/* <ConversationProvider> */}
-  //           <ConversationProvider forceNewSession={true}>
-
-  //           <FunctionExecutionProvider>
-  //             <NavBar/>
-  //             <main>{children}</main> {/* Page-specific content */}
-  //             </FunctionExecutionProvider>
-  //             </ConversationProvider>
-  //           </ScreenSizeProvider>
-  //         </I18nProvider> 
-  //       </ClientWrapper>
-  //     </body>
-  //   </html>
-  // );
 }
 
 export default RootLayout;
 
+
+
+
+
+
+
+// return (
+//   <html lang="en">
+//     <body>
+//       <ClientWrapper>
+//         <I18nProvider>
+//           <ScreenSizeProvider>
+//             <ConversationProvider forceNewSession={true}>
+//               <FunctionExecutionProvider>
+//               <OverlayProvider>
+//               <BuySellModalProvider>
+
+//               <div className={styles.layout}>
+
+//         <MainNavSidebar onToggle={setSidebarExpanded} />
+//         <div className={styles.rightPanel}>
+//           <div className={styles.pageContent}>{children}</div>
+//         </div>
+
+//       </div>
+
+//       <BuySellModalPortal /> {/* always rendered */}
+//   </BuySellModalProvider>
+//   <OverlayRenderer />
+//   </OverlayProvider>
+                
+//               </FunctionExecutionProvider>
+//             </ConversationProvider>
+//           </ScreenSizeProvider>
+//         </I18nProvider>
+//       </ClientWrapper>
+//     </body>
+//   </html>
+// );

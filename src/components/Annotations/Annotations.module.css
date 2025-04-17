@@ -1,0 +1,16 @@
+.annotationWrapper {
+    background: var(--card-background);
+    border-radius:16px;
+}
+
+.itemsContainer {
+    display:flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.container {
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}

@@ -1,0 +1,32 @@
+.actionsGroup {
+    display: flex;
+        flex-direction: row;
+        gap: 12px;
+}
+.iconWrapper {
+    color: #929292; /* default */
+    transition: color 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .iconWrapper:hover {
+    color: #91DD05; /* hover */
+  }
+  
+  .iconWrapper:active {
+    color: #39590E; /* pressed */
+  }
+  
+  /* Speaking state (pause icon) */
+  .active {
+    color: #91DD05; /* same as hover */
+  }
+  
+  .disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  

@@ -3,7 +3,28 @@
     "homepage_subheading": "Providing simple, actionable insights\nfor your financial investments.",
     "get_started": "Get Started",
     "powered_by_ai": "Powered by AI",
+
+
+
     "bot_first_message": "Alright, hotshot, what's the play that's gonna make us both rich today?",
+
+
+
+    
+      "portfolio_performance": {
+        "title": "Portfolio Performance",
+        "summarize": "Summarize My Portfolio"
+      }
+    ,
+
+    
+
+    "hi_message": "Hi! I'm here to help you become a better investor.",
+    "hi_subtitle": "Ask me anything or pick a path.",
+
+
+"asset_type_allotment": "Asset Types",
+
     "bot_first_placeholder": "Hit me with your financial dilemma, kid.",
     "suggest_stocks": "Suggest Stocks",
     "suggest_cryptos": "Suggest Cryptos",
@@ -22,7 +43,225 @@
     "copy": "Copy",
     "share": "Share",
     "read_less": "Read Less",
-    "read_more": "Read More"
+    "read_more": "Read More",
+
+
+   "based_on_n_sources": {
+  "one": "Based on {{count}} source",
+  "other": "Based on {{count}} sources"
+
+  
+},
+"vs": "vs",
+
+
+
+
+
+
+"metric_comparison": 
+{
+  "loading": "Loading metrics...",
+  "value": "Value",
+  "one_quarter_trend": "Quarterly",
+  "one_year_trend": "Yearly"
+
+
+},
+"units":{
+
+  "billion": "Billion",
+  "million": "Million",
+  "thousand": "K"
+}
+,
+
+"reading": "Reading...",
+
+
+"total_transactions": "Total Transactions",
+"start_market_value": "Start Market Value",
+"end_market_value": "End Market Value",
+"realized_gain_loss": "Realized Gain/Loss",
+"unrealized_gain_loss": "Unrealized Gain/Loss",
+"net_profit_loss": "Net Profit/Loss",
+"watchlist": {
+    "title": "Your Watchlist",
+    "view_all": "View All"
+  },
+
+"portfolio_summary": {
+  "title": "Portfolio Summary"
+},
+
+
+
+
+
+
+
+"portfolio": {
+   "total_market_value": "Total Market Value",
+  "overview": {
+    "title": "Portfolio Overview",
+    "insights": "Insights"
+  }
+},
+
+"portfolio_table": {
+  "headers": {
+    "name": "Name",
+    "price": "Price",
+    "allocation": "Allocation",
+    "amount": "Amount",
+    "pnl": "PnL ($)",
+    "actions": "Actions"
+  }
+},
+"common": {
+  "na": "N/A"
+}
+,
+
+
+  "top_winners": "Top Winners",
+  "top_losers": "Top Losers",
+  "all_assets": "All",
+
+    "asset_type": {
+      "all": "All",
+      "stock": "Stock",
+      "crypto": "Crypto",
+      "etf": "ETF"
+    }
+,
+
+  
+
+
+"metrics":
+{
+  
+    "assets": "Assets",
+    "current_assets": "Current Assets",
+    "inventory": "Inventory",
+    "fixed_assets": "Fixed Assets",
+    "liabilities": "Liabilities",
+    "current_liabilities": "Current Liabilities",
+    "long_term_debt": "Long-term Debt",
+    "equity": "Equity",
+    "net_cash_flow_from_operating_activities": "Net Cash Flow From Operating Activities",
+    "net_cash_flow_from_investing_activities": "Net Cash Flow From Investing Activities",
+    "net_cash_flow_from_financing_activities": "Net Cash Flow From Financing Activities",
+    "net_cash_flow": "Net Cash Flow",
+    "revenues": "Revenues",
+    "cost_of_revenue": "Cost Of Revenue",
+    "gross_profit": "Gross Profit",
+    "operating_expenses": "Operating Expenses",
+    "research_and_development": "Research and Development",
+    "operating_income_loss": "Operating Income/Loss",
+    "income_tax_expense_benefit": "Income Tax Expense/Benefit",
+    "net_income_loss": "Net Income/Loss",
+    "basic_earnings_per_share": "Basic Earnings Per Share",
+    "diluted_earnings_per_share": "Diluted Earnings Per Share",
+    "basic_average_shares": "Basic Average Shares",
+    "diluted_average_shares": "Diluted Average Shares"
+  
+  
+},
+
+
+"price_chart": "Price Chart",
+"chart": {
+"1D": "1D",
+  "1W": "1W",
+  "1M": "1M",
+  "1Y": "1Y",
+  "5Y": "5Y"
+},
+
+"snapshot": {
+  
+    "price": "Price",
+    "change": "Change",
+    "volume": "Volume",
+    "prev_close": "Prev Close"
+  
+},
+
+"asset": {
+  "insightLabel": "Insight: ",
+  "suggested_assets": "Suggested Assets:"
+},
+
+
+"trade": "Trade",
+
+"latest_news": "Latest News",
+        "stocks": "Stocks",
+        "crypto": "Crypto",
+        "etf": "ETFs",
+
+"comparison_ratings": {
+  
+    "title": "Analysts Prefer {{name}}",
+    "subheading": "Based on {{leftCount}} vs {{rightCount}} analyst ratings",
+    "strong_buy": "Strong Buy",
+    "buy": "Buy",
+    "hold": "Hold",
+    "sell": "Sell",
+    "strong_sell": "Strong Sell"
+  
+},
+
+  "analyst_ratings": {
+     "subheading": "Based on {{count}} Analyst Ratings",
+        "strong_buy": "Strong Buy",
+        "buy": "Buy",
+        "hold": "Hold",
+        "sell": "Sell",
+        "strong_sell": "Strong Sell",
+        "ratings": {
+          "title": "Ratings",
+          "based_on": "Based on {{total}} analyst ratings",
+          "breakdown": "Ratings Breakdown"
+        },
+        "says": "says",
+        "loading": "Loading...",
+        "error": {
+          "general": "Something went wrong"
+        }}
+      ,
+
+        
+          "ticker_snapshot": {
+            "current_price": "Current Price",
+            "low": "Low",
+            "high": "High",
+            "open": "Open",
+            "volume": "Volume",
+            "prev_close": "Previous Close"
+          }
+        
+        ,
+
+
+    
+
+        "price_overview": {
+          "title": "Price Chart",
+          "no_data": "No data available for this period.",
+          "periods": {
+            "1w": "Last Week",
+            "1m": "Last Month",
+            "1y": "Last Year",
+            "5y": "Last Five Years",
+            "1d": "Last Day"
+          }
+        }
+      
+
+      
 }
   
   

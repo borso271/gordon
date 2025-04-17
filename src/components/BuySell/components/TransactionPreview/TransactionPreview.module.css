@@ -1,0 +1,191 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+   
+    margin: auto;
+    width:100%
+  }
+
+
+  .subText{
+    color: var(--type-Color-Grey-01, #717171);
+text-align: center;
+
+/* Product/English/Caption/Regular/MD */
+
+font-size: 10px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px;
+letter-spacing: -0.2px;
+  }
+
+
+  .limitPrice {
+    color: var(--black-100, #D7D7D7);
+
+/* Product/English/P/Regular/MD */
+font-size: 13px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px;
+letter-spacing:  -0.5px;
+  }
+  
+  .quantityBox {
+    display: flex;
+    padding: 12px 16px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: var(--radius-MD, 16px);
+background: var(--additional-white-3, rgba(255, 255, 255, 0.03));
+  }
+  
+  .estimate {
+    color: var(--grayscale-500, #949494);
+text-align: center;
+
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height:19px;
+letter-spacing: -0.5px;
+  }
+
+  .buyingPower {
+    color: var(--type-Color-Grey-02, #949494);
+
+/* Product/English/Caption/Medium/MD */
+
+font-size: 10px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px;
+letter-spacing: -0.2px;
+
+  }
+  .quantityInput {
+    all: unset;
+  }
+
+  .quantityInput {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: var(--black-50, #F8F8F8);
+    text-align: center;
+    /* H2/Medium */
+    background:transparent;
+    border:none;
+    
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 125%; /* 37.5px */
+    letter-spacing: -0.6px;
+  }
+  
+  .secondBox {
+    display: flex;
+    padding: 12px var(--card-Padding-MD, 16px);
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    width:100%;
+    border-radius: var(--radius-MD, 16px);
+background: var(--additional-white-3, rgba(255, 255, 255, 0.03));
+gap:6px;
+  }
+
+  .modeSelector {
+    padding: 4px 12px;
+    background: var(--additional-white-8, rgba(255, 255, 255, 0.08));
+    border-radius: var(--Mobile-Mobile-Outer-Margin, 16px);
+  }
+  .modeSelector select {
+    display: flex;
+
+justify-content: center;
+align-items: center;
+gap: 4px;
+
+background: transparent;
+color: var(--Black-50, #F8F8F8);
+/* Text XS/Regular */
+
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 16.8px */
+
+
+
+border: none;
+outline: none;
+background: none;
+
+padding: 0;
+margin: 0;
+  }
+
+  .priceControls {
+    display: flex;
+  
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+
+    width:100%;
+
+  }
+  
+  .priceButton {
+  
+        width: 28px;           /* or any equal width/height */
+        height: 28px;
+        border-radius: 50%;    /* makes it round */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      
+
+
+  
+  
+  .priceDisplay {
+    color: var(--black-50, #F8F8F8);
+    text-align: center;
+    /* H2/Medium */
+
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 125%; /* 37.5px */
+    letter-spacing: -0.6px;
+  }
+  
+  .placeOrderButton {
+    width: 100%;
+    padding: 0.75rem;
+    font-weight: bold;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+
+  .placeOrderButton:hover {
+    background-color: #45a049;
+  }
+  

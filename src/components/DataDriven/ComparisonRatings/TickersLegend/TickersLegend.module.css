@@ -1,0 +1,25 @@
+.legendWrapper {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .legendItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .colorDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .tickerText {
+    font-size: 14px;
+    color: white;
+  }
+  

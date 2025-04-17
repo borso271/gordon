@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/api/suggest/index.jsx", "components/Chat/components/AssistantMessage/index.tsx", "components/Chat/utils/copyToClipboard.js", "app/api/openai_summarize/route.ts"  ],
+, "app/api/suggest/index.jsx", "components/Chat/components/AssistantMessage/index.tsx", "components/Chat/utils/copyToClipboard.js", "app/api/openai_summarize/route.ts", "app/hooks/useComparisonChartCanvas.ts", "services/ticker_insight/fetch_ticker_data.js", "services/user_data/fetch_portfolio.js", "services/user_data/fetch_transaction_history.js", "services/user_data/fetch_watchlist.js"  ],
   "exclude": [
     "node_modules"
   ]

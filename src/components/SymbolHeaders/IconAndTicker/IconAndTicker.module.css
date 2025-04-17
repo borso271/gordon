@@ -1,0 +1,59 @@
+.symbolTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 8px;
+  }
+  
+  .iconWrapper {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .labelWrapper {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  
+  .ticker {
+    color: var(--Black-50, #F8F8F8);
+/* Text S/Regular */
+font-family: Inter;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+  }
+  
+ 
+  .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* 🔥 Prevents line breaks */
+  
+    color: var(--black-400, #757575);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 16.8px */
+    max-width:100px;
+    
+  }
+  
+
+  .price {
+    color: var(--Black-50, #F8F8F8);
+text-align: right;
+/* Text M/Regular */
+
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 22.4px */
+  }
+
+

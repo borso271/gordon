@@ -1,0 +1,11 @@
+.overlay {
+
+
+    inset: 0;
+    background: transparent; /* or just remove this line */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  

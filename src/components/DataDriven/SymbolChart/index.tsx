@@ -1,4 +1,6 @@
 
+import {useRef} from 'react'
+import { useChartSizeObserver } from '../../../app/hooks/useChartSizeObserver';
 import styles from "./SymbolChart.module.css";
 import PeriodSelector from "./components/PeriodSelector";
 import ChartCanvas from "./components/ChartCanvas";
@@ -10,11 +12,18 @@ import PrimaryDivider from "../../Layout/PrimaryDivider";
 import ChartLoader from "../../Loaders/ChartLoader";
 import { useSymbolChart } from "../../../app/hooks/useSymbolChart";
 import { arabicMonthMap } from "../../../interfaces";
+
 const SymbolChart = ({ symbol,language }: { symbol: string, language: string}) => {
   // ✅ Destructure all values from the hook
+
+  // just get the data here as prop rather than fetchig it...
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { width, height } = useChartSizeObserver(containerRef);
+
   const {
-    chartRef,
-    chartDimensions,
+    // chartRef,
+    // chartDimensions,
+
     selectedPeriod,
     setSelectedPeriod,
     periodData,
@@ -30,10 +39,8 @@ const SymbolChart = ({ symbol,language }: { symbol: string, language: string}) =
     timeLegendPercentage,
     lastPrices,
     adjustedLow,
-  } = useSymbolChart(symbol);
+  } = useSymbolChart(symbol,width, height);
    
-
-
   const asOf = language == "en" ? "As of " : "اعتبارًا من ";
   const localLastUpdated =
   language === "ar"
@@ -99,11 +106,11 @@ const SymbolChart = ({ symbol,language }: { symbol: string, language: string}) =
             } as React.CSSProperties}
           >
             <PriceLegend
-              height={chartDimensions.height}
+              height={height}
               metadata={priceLegendSegments}
               yoffset={0}
             />
-            <div ref={chartRef} className={styles.chartWrapper}>
+            <div ref={containerRef} className={styles.chartWrapper}>
               <ChartCanvas
                 data={finalPeriodData}
                 minPrice={adjustedLow}

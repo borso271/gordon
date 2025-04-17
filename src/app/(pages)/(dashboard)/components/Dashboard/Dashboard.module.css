@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    flex-direction: row;
+  width: 100%;
+
+  padding-bottom:20px;
+  box-sizing: border-box;
+}
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+}
+
+/* 
+.chartAndWatchlist {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    overflow: hidden;
+
+}
+
+
+  .chartWrapper {
+    flex: 0 0 60%;
+  }
+  
+  .watchlistWrapper {
+    flex: 0 0 40%;
+  
+  }
+   */
+   .chartAndWatchlist {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    overflow: hidden;
+  }
+  
+  .chartWrapper {
+    flex: 1; /* chart takes remaining space */
+    min-width: 0; /* allows content to shrink properly */
+    
+  }
+  
+  .watchlistWrapper {
+    width: 440px; /* fixed width */
+    flex-shrink: 0;
+    height:100%;
+  }
+  
+
+
+
+  

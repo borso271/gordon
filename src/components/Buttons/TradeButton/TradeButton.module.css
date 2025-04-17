@@ -1,0 +1,36 @@
+
+.tradeButton {
+    display: flex;
+    height: 32px;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    border-radius: 100px;
+border: 1px solid var(--Black-700, #232323);
+
+color: var(--black-50, #F8F8F8);
+/* Text S/Regular */
+
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+cursor: pointer;
+  }
+  
+  
+  .tradeButton:hover {
+    border-radius: 100px;
+    background: var(--black-50, #F8F8F8);
+    color: var(--black-900, #0F0F0F);
+
+  }
+  
+
+
+  .hovered {
+    border-radius: 100px;
+    background: var(--black-50, #F8F8F8);
+    color: var(--black-900, #0F0F0F);
+  }

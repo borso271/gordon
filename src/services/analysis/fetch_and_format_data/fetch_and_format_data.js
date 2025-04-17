@@ -17,7 +17,7 @@ import supabase_client from "../../../lib/supabaseClient.js";
  */
 async function fetchFormatData(ticker_symbol, asset_type) {
     // 🔍 Fetch the symbol ID from the database
-    const { id: symbol_id } = await fetch_symbol_info(ticker_symbol) || {};
+    const { id: symbol_id, name } = await fetch_symbol_info(ticker_symbol) || {};
     
     // ❌ If symbol ID is not found, throw an error to prevent further processing
     if (!symbol_id) {
@@ -37,6 +37,7 @@ async function fetchFormatData(ticker_symbol, asset_type) {
     
         return {
             "id": symbol_id,
+            "name": name,
             "ticker_symbol": ticker_symbol,
             "data_for_ai": {
                 "Company Profile": companyProfile,
@@ -50,7 +51,9 @@ async function fetchFormatData(ticker_symbol, asset_type) {
     
     // ✅ Fetch data for STOCK assets
     else if (asset_type === "stock") {
+
         // Fetch company profile data
+
         const companyProfile = await fetchCompanyProfile(ticker_symbol, symbol_id, supabase_client);
         
         // Fetch technical indicators (e.g., moving averages, volatility)
@@ -60,10 +63,13 @@ async function fetchFormatData(ticker_symbol, asset_type) {
         const financials = await fetchFinancials(ticker_symbol, symbol_id, supabase_client);
         
         // 📊 Format financial data to be more structured for AI processing
+        
         const formatted_financials = formatFinancialData(financials);
         console.log("formatted data is: ", formatted_financials)
+
         return {
             "id": symbol_id,
+            "name": name,
             "ticker_symbol": ticker_symbol,
             "data_for_ai": {
                 "Company Profile": companyProfile,

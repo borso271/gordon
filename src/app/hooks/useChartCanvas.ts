@@ -10,12 +10,12 @@ interface UseChartCanvasProps {
   data?: any[];
   minPrice: number;
   isPositiveChange: boolean;
-  width?: number;
-  height?: number;
+ 
   area?: boolean;
   marketOpen?: boolean;
   curvy?: boolean;
 }
+
 
 /**
  * Custom hook with all the logic from ChartCanvas,
@@ -25,11 +25,10 @@ export function useChartCanvas({
   data = [],
   minPrice,
   isPositiveChange,
-  width = 500,
-  height = 300,
+
   area = true,
   marketOpen = true,
-  curvy = true,
+  curvy = false,
 }: UseChartCanvasProps) {
   // ----------------------------
   //  Refs, states, dependencies
@@ -45,23 +44,6 @@ export function useChartCanvas({
   // 1) Sort the data if needed
   // (Original code: "const sortedData = data;")
   const sortedData = data;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -128,15 +110,31 @@ export function useChartCanvas({
     return { lastX, lastY };
   };
 
-  // 5) Build final line & area paths
-  const linePath = useMemo(() => generateLinePath(sortedData, curvy), [sortedData, curvy]);
-  const areaPath = useMemo(() => generateAreaPath(sortedData, minPrice, curvy, area), [
-    sortedData,
-    minPrice,
-    curvy,
-    area,
-  ]);
-  const { lastX, lastY } = useMemo(() => computeLastPoint(sortedData), [sortedData]);
+  const linePath = useMemo(() => generateLinePath(data, curvy), [data, curvy]);
+
+
+  const areaPath = useMemo(
+    () => generateAreaPath(sortedData, minPrice, curvy, area),
+    [sortedData, minPrice, curvy, area]
+  );
+  
+  const { lastX, lastY } = useMemo(
+    () => computeLastPoint(sortedData),
+    [sortedData]
+  );
+  
+  // const linePath = useMemo(() => generateLinePath(sortedData, curvy), [sortedData, curvy]);
+  // const areaPath = useMemo(() => generateAreaPath(sortedData, minPrice, curvy, area), [
+  //   sortedData,
+  //   minPrice,
+  //   curvy,
+  //   area,
+  // ]);
+  // const { lastX, lastY } = useMemo(() => computeLastPoint(sortedData), [sortedData]);
+
+
+
+
 
   // 6) Mouse move & nearest point
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
@@ -254,8 +252,7 @@ export function useChartCanvas({
     dashArray,
     circleRadius,
     circleStrokeWidth,
-    width,
-    height,
+
     area,
     marketOpen,
   };

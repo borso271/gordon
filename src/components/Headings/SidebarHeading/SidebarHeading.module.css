@@ -1,0 +1,8 @@
+.primaryH2 {
+    color: var(--black-50, #F8F8F8);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+  }
+  

@@ -1,0 +1,218 @@
+.navbar {
+    /* position: fixed;
+    top: 0;
+    left: 0; */
+    height:65px;
+    padding: 4px 16px;
+    width: 100%;
+    background: var(--background);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-items: center;
+    z-index: 300;
+    border-bottom: 1.5px solid var(--additional-white-8, rgba(255, 255, 255, 0.07));
+    background: transparent;
+    }
+
+
+    .sidebarActions {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+    }
+
+  .gordonIconWrapper {
+    width: 40px;            /* or 24px, 32px — same as icon size + padding */
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    width: 32px;
+    height: 32px;
+    padding: 8.889px;
+    justify-content: center;
+    align-items: center;
+  background: #B1F625;
+  }
+  
+  
+  
+  
+    
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    
+    .right {
+      display: flex;
+      align-items: center;
+      flex-direction:row;
+      gap: 12px;
+    }
+  
+
+
+    .balanceOverview{
+        display:flex;
+        flex-direction:row;
+        gap: 16px;
+        
+    }
+
+
+    .balanceOverviewItem {
+display:flex;
+flex-direction:column;
+    }
+
+    .balanceOverviewItemLabel {
+color: var(--black-400, #757575);
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 16.8px */
+    }
+
+    .changeValue {
+        display:flex;
+        flex-direction:row;
+        gap: 4px;
+        align-items:flex-end;
+    }
+
+    .balanceValue {
+    
+        display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            height: 100%;
+    }
+  
+    .dropdownContainer {
+      position: relative;
+    }
+    
+    .dropdownContainer > div {
+      position: absolute;
+      top: 120%; 
+      /* right: 0; */
+      z-index: 100; 
+    }
+  
+  
+  :dir(ltr) .dropdownContainer > div {
+    right: 0;
+  }
+  
+  :dir(rtl) .dropdownContainer > div {
+    left: 0;
+  }
+  
+  
+  .historyButton {
+    position: relative; /* This is essential */
+  }
+  
+  .navbarIcons {
+  
+  display: flex;;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  
+  }
+  
+  .navbarIconWrapper {
+    height:40px;
+    width:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  
+  
+  /* Responsive adjustments for small screens */
+  @media (max-width: 480px) {
+    .dropdownContainer > div {
+      max-width: calc(100vw - 40px); /* Uses viewport width on small screens */
+
+    }
+
+  }
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+     
+      .left {
+        gap: 8px;
+      }
+
+    .balanceOverview{
+      display:none;
+    }
+    }
+    
+  /* Medium (Tablets) */
+  @media (min-width: 1336px) {
+    
+    .historyButton {
+        display:none
+    }
+  
+  }
+  
+  
+  
+  
+
+
+  .circledButton {
+    background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
+    display: flex;
+    border-radius:100px;
+width: 40px;
+height: 40px;
+padding: 7.2px;
+justify-content: center;
+align-items: center;
+gap: 7.2px;
+flex-shrink: 0;
+cursor: pointer;
+  }
+
+
+.pchange {
+    overflow: hidden;
+
+text-overflow: ellipsis;
+/* Text S/Regular */
+
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+
+}
+
+  .positive {
+    color: var(--spring-Green-500, #1AED87);
+  }
+
+  .negative {
+
+    color: var(--pomegranate-500, #ED441A);
+  }
+
+
+  .currencyAndAmount {
+    /* Text L/Regular */
+
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+
+    display:flex;
+    flex-direction:row;
+  }

@@ -1,0 +1,236 @@
+/* Keep .container, .portfolioHeader, .headerTop, .filterButtons, .filterButton, .active */
+
+.container {
+    display: flex;
+  width: 100%;
+  /* padding:32px; */
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+  border-radius: 12px;
+  background: var(--card-background);
+  }
+
+  .portfolioHeader {
+    display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between; 
+      width: 100%;
+       padding: 32px; 
+      padding-bottom: 0px;
+      padding-bottom: 0;
+      gap: 24px;
+  }
+  
+
+.headerContent {
+    display:flex;
+    align-items:center;
+    gap: 2px;
+     justify-content:flex-start;
+  }
+  
+  .gridHeaderCell:nth-child(1) .headerContent {
+    justify-content:flex-start;  
+ }
+
+
+  .filterButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    cursor: pointer;
+  }
+  
+  .filterButton {
+    display: flex;
+    height: 32px;
+    padding: 0px 16px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+color: var(--black-400, #757575);
+text-align: right;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; 
+  }
+  
+  
+  .active {
+    background: var(--black-700, #232323);
+    color: var(--black-50, #F8F8F8);
+  }
+  
+  .headerTop {
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+  }
+
+.gridTableWrapper {
+    width:100%;
+}
+.gridTable {
+    display: grid;
+   
+    grid-template-columns: 1.5fr 1fr 1.5fr 1fr 1fr 1.5fr;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Row wrappers using display: contents */
+  .gridHeaderRow,
+  .gridRow {
+    display: contents;
+  }
+  
+  /* --- Generic Cell Base Styles (Applied to ALL cells) --- */
+  .gridHeaderCell,
+  .gridCell {
+    padding: 16px 12px;
+     /* border-bottom: 1px solid var(--table-border-color, #444);  */
+    display: flex; /* Use flex for internal alignment */
+    align-items: center; /* Default vertical centering */
+    min-width: 0;
+  }
+
+  .gridHeaderCell {
+    padding: 12px 12px;
+  }
+  
+  /* --- Header Cell Specific Styles --- */
+  .gridHeaderCell {
+    color: var(--black-400, #757575);
+    /* Caption/C2- 14 reg */
+   
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 16.8px */
+    cursor: pointer;
+    user-select: none;
+
+    background:var(--card-background-light);
+
+  }
+/* 
+  .gridHeaderCell:hover {
+    background-color: var(--table-header-bg-hover, #383838);
+  } */
+
+
+
+  .gridHeaderCell:first-child {
+    padding-left: 32px;
+  }
+
+  .gridHeaderCell:last-child {
+    padding-right: 32px;
+  }
+
+
+  .gridCell:first-child {
+    padding-left: 32px;
+  }
+
+  .gridCell:last-child {
+    padding-right: 32px;
+  }
+  
+  /* Header Content Alignment (Label left, Icon right) */
+  .headerContent {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+    
+  }
+
+  .headerContent span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Sort Icon Styles */
+  .sortIcon {
+    flex-shrink: 0;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+  .gridHeaderCell.sorted .sortIcon,
+  .gridHeaderCell:hover .sortIcon {
+    opacity: 1;
+  }
+  
+  /* --- Data Cell Specific Styles --- */
+  .gridCell {
+    color: var(--neutral-text-title, #f5f5f5);
+    /* Optional: Alternate row background (harder with display: contents) */
+  }
+  
+  /* --- Alignment Overrides --- */
+  
+  /* Default: First column left-aligned (Header and Data) */
+  
+
+  .gridHeaderCell:nth-child(n + 2), 
+  .gridCell:nth-child(n + 2) {      
+    justify-content: flex-start;  
+    text-align: left;          
+  }
+  .gridHeaderCell:last-child,
+  .gridCell:last-child {
+    justify-content: flex-end; 
+    text-align: right; 
+  }
+  
+  
+  .allocationBar{
+    width:75px;
+  }
+  
+  /* Allocation cell specific content styling */
+  .allocationContent {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 4px;
+    /* Align items to the right within the allocation cell */
+    align-items: center;
+   justify-content: flex-start
+  }
+  .allocationContent span {
+    font-size: 0.9em;
+    width:40px;
+    text-align: right; /* Ensure percentage text aligns right */
+  }
+  /* Ensure ProgressBar aligns correctly if it has internal alignment */
+  
+  
+
+
+  /*
+ ARABIC STYLES */
+
+
+[dir="rtl"] .gridHeaderCell:first-child ,
+[dir="rtl"] .gridCell:first-child {
+    padding-left: 0px;
+  padding-right: 32px;
+}
+
+
+[dir="rtl"] .gridHeaderCell:last-child ,
+[dir="rtl"] .gridCell:last-child {
+padding-right:0px;
+    padding-left: 32px;
+}
+
+
+
+

@@ -26,7 +26,7 @@ const GoDeeper: React.FC<GoDeeperProps> = ({ items, newSearch, language}) => {
           <React.Fragment key={index}>
             <div className={styles.goItem} onClick={() => newSearch(item)}>
               <span className={styles.text}>{item}</span>
-              <Icon name="circled_plus" size={18} className={styles.icon} />
+              <Icon name="send" size={18} className={styles.icon} />
             </div>
 
             {index < items.length - 1 && (

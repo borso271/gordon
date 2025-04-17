@@ -18,9 +18,11 @@ export async function POST(req) {
         return new Response(JSON.stringify({ error: "Missing parameters" }), { status: 400 });
     }
 
+
     try {
         //console.log("Calling process_analysis with body:", body);
         const result = await analyze_ticker(body); // Call your function
+        
         //console.log("process_analysis completed with result:", result);
         return new Response(JSON.stringify({ success: true, data: result }), {
             status: 200,

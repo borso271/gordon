@@ -1,0 +1,144 @@
+.container {
+    display: flex;
+  width: 100%;
+  padding:0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 12px;
+  /* background: var(--card-background); */
+  }
+  
+  
+  .tableWrapper {
+    overflow-x: auto;
+    margin-top: 20px;
+    /* border: 1px solid #e2e2e2; */
+   
+    width:100%;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background-color: transparent;
+  }
+  
+  .tableHead {
+    background: var(--additional-white-2, rgba(255, 255, 255, 0.02));
+    margin: 12px 0;
+  }
+  
+  
+  .tableHeadCell {
+    color: var(--black-400, #757575);
+    /* Caption/C- 14 reg */
+    /* font-family: "IBM Plex Sans"; */
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 16.8px */
+    padding:24px 0;
+    
+    text-align:left;
+   }
+  
+  /* .tableBody {} */
+  
+  .tableRow {
+    transition: background-color 0.2s ease;
+  }
+  
+  .tableRow:hover {
+     background-color: transparent;
+  }
+  
+  .tableCell {
+    padding-bottom: 32px;
+    
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  
+    /* border-bottom: 1px solid #eee; */
+  
+  }
+  
+  
+  .tableCell:first-child, .tableHeadCell:first-child {
+    padding-left: 32px;
+    text-align:left;
+    max-width:300px;
+  }
+  
+  .tableCell:last-child,
+  .tableHeadCell:last-child {
+    text-align: right;
+    padding-right: 32px;
+  }
+  
+  .tableRow:first-child .tableCell {
+    padding-top: 12px;
+  }
+  
+
+
+
+[dir="rtl"]  .tableCell:first-child,
+[dir="rtl"] .tableHeadCell:first-child {
+  padding-left: 0px;
+  text-align:right;
+  padding-right:32px;
+  max-width:300px;
+}
+
+[dir="rtl"] .tableCell:last-child,
+[dir="rtl"] .tableHeadCell:last-child {
+  text-align: left;
+  padding-right: 0px;
+  padding-left:32px;
+}
+
+
+
+
+
+
+  
+  
+  
+  .profit {
+    /* Text M/Regular */
+  
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 22.4px */
+    color: var(--Spring-Green-500, #1AED87);
+  
+    /* font-weight: bold; */
+  }
+  
+  .loss {
+    /* Text M/Regular */
+  
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 22.4px */
+    color: var(--Pomegranate-500, #ED441A);
+  
+    /* font-weight: bold; */
+  }
+  
+  .neutral {
+    color: #6c757d;
+  }
+  
+  
+  
+  .tableHeadCell .tableCell {
+    max-width:200px
+  }

@@ -7,7 +7,7 @@ const openai = new OpenAI({
 
 export async function generate_follow_ups(body: { query: string }) {
   const { query } = body;
-  console.log("request to generate follow ups with query: ", query)
+  //console.log("request to generate follow ups with query: ", query)
   const response = await openai.responses.create({
     model: "gpt-4o-mini",
     input: [

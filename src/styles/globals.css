@@ -1,7 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap'); */
 
 :root {
-  white-space: pre-line;
+
   /* colors */
   --lime-50: rgba(249, 255, 229, 1);
   --lime-100: rgba(241, 255, 199, 1);
@@ -52,11 +52,16 @@
   --additional-white-8: rgba(255, 255, 255, 0.08); 
   --additional-white-3: rgba(255, 255, 255, 0.03);
   --additional-white-1: rgba(255, 255, 255, 0.01);
-  --background: var(--black-900);
+
+
+
+  --background:  #060606;
 --card-border: #282828;
 --card-shimmer: rgb(30, 30, 30);
 
-  --card-background: #151515; 
+  --card-background: rgba(255, 255, 255, 0.06);/* #121212; */
+
+  --card-background-light: #202020; 
 
   --default-icon-background: rgba(255, 255, 255, 0.05);
     --breakpoint-sm: 480px;   /* Small Phones */
@@ -114,7 +119,12 @@
   --letter-spacing-l: -0.52px;    /* used for 26px text (H3) */
   --letter-spacing-m: -0.40px;    /* used for 20px text (H4) */
   --letter-spacing-s: 0px;        /* used for 18px and below */
- --dynamic-symbol-icon: 60
+ --dynamic-symbol-icon: 60;
+
+
+
+
+ --accent-color: rgba(145, 221, 5, 1);
   
 }
 
@@ -124,6 +134,9 @@
     --dynamic-symbol-icon: 46;
   }
 }
+
+
+
 
 /* Ensure full height layout */
 html, body {
@@ -161,13 +174,43 @@ main {
 
 h1 {
  
-    line-height: 110%;
+    line-height: 30px;
+    font-size:20px;
+    font-weight: 700;
 
 }
+
+
+h2 {
+  line-height: 28px;
+    font-size:18px;
+    font-weight: 600;
+
+}
+
+strong {
+  line-height: 24px;
+    font-size:16px;
+    font-weight: 700;
+}
+
+p {
+  line-height: 24px;
+    font-size:16px;
+    font-weight: 400;
+
+}
+
+
+
+
+
+
 
 button {
   all: unset; /* Resets all browser styles */
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 
@@ -203,6 +246,7 @@ ul {
 a {
   color: inherit;
   text-decoration: none;
+  color: var(--lime-400, #B1F625);
 }
 
 /* LTR (English, French, Spanish, etc.) */
@@ -222,6 +266,22 @@ html[dir="rtl"] body {
 button, img {
   direction: ltr !important; 
   text-align: left !important;
+}
+
+
+.chartGrid {
+  direction: ltr !important; 
+  text-align: left !important;
+}
+
+
+table thead th {
+  text-align: left;
+}
+
+/* If the element is inside something with dir="rtl" (e.g., Arabic) */
+[dir="rtl"] table thead th {
+  text-align: right;
 }
 
 #sidebarWrapper{
@@ -247,11 +307,21 @@ html[dir="rtl"] .toBeSwitched {
   text-align: right !important;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 
 /* Medium (Tablets) */
 @media (max-width: 768px) {
-  body {
-  padding: 20px}
+ 
 }
 
 /* Small (Mobile) */
@@ -267,6 +337,9 @@ ul {
 }
 
 }
+
+
+
 
 ol {
   list-style: none;
@@ -286,6 +359,7 @@ ul {
       gap: 24px;
       width: 100%;
 }
+
 
 
 
@@ -374,27 +448,147 @@ li * {
   white-space: normal;
 }
 
+
+li > p { display: inline-block; }
+
+/* 
 li:has(> p) {
-  /* Styles for li that contains a <p> directly inside */
+  
   display: flex;
+} */
+
+
+
+/* 
+li {
+  display:block;
 }
 
 li:not(:has(> p)) {
-  /* Styles for li that does NOT contain a <p> directly inside */
+ 
   display: block;
 }
 
+li:has(> p:only-child) {
+  display: flex;
+} */
 
-
-table {
-  width: 100%
-  
+li > p {
+  display: inline; /* flatten weird list paragraph nesting */
+  margin: 0;
 }
-td {
-  padding: 8px 6px;
+
+li > p > strong {
+  font-weight: 600;
+
 }
 
-tr {
-  padding: 8px 6px;
-  
+
+
+
+
+
+
+
+
+
+/* ===== ROOT TABLE ===== *//* Styles scoped to tables with the class "myStyledTable" */
+
+.myStyledTable {
+  /* layout */
+  width: 100%;
+  table-layout: fixed;          /* gives every column the same width (flex‑1 equivalent) */
+  border-collapse: separate;    /* lets us keep border‑radius */
+  border-spacing: 0;            /* reset default gaps */
+
+  /* frame + rounding */
+  border: 1.5px solid var(--black-800);
+  border-radius: 12px;
+  overflow: hidden;             /* Important for border-radius clipping with background */
+}
+
+/* ===== HEADER ===== */
+.myStyledTable thead tr {
+  background-color: var(--black-800);
+}
+
+.myStyledTable thead th {
+  padding: 12px 0;              /* Base vertical padding */
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 140%;
+  color: #c6c6c6;
+  text-align: left;
+  /* first & last th keep the rounded corners (implicitly due to parent overflow:hidden) */
+}
+/* Apply horizontal padding */
+.myStyledTable thead th:first-child {
+  padding-left: 20px;
+}
+.myStyledTable thead th:not(:first-child) {
+  padding-left: 20px; /* Horizontal "gap" */
+}
+
+/* ===== BODY ROWS ===== */
+.myStyledTable tbody td {
+  padding: 16px 0;              /* Base vertical padding */
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  color: #c6c6c6;
+  text-align: left;
+  /* Apply border to cells since collapse is separate */
+  border-bottom: 1.5px solid var(--black-800, #1A1A1A);
+}
+
+/* Apply horizontal padding */
+.myStyledTable tbody td:first-child {
+  padding-left: 20px;
+}
+.myStyledTable tbody td:not(:first-child) {
+  padding-left: 20px; /* Horizontal "gap" */
+}
+
+/* Override for the final row's cells */
+.myStyledTable tbody tr:last-child td {
+  border-bottom: none;   /* no bottom border on last row's cells */
+}
+
+
+/* This rule might be redundant with border-collapse: separate and the td border styles,
+   but kept to match original structure if there's a specific edge case */
+
+
+
+
+
+
+
+.circularLink {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px; /* adjust size */
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--card-background-light);
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+
+.rdp-today:not(.rdp-outside)
+{
+  color: var(--accent-color) !important;
+}
+.rdp-chevron {
+  fill: var(--accent-color) !important;
+}
+
+.rdp-selected .rdp-day_button {
+  border: var(--accent-color) !important;
 }

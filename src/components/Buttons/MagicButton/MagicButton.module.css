@@ -1,0 +1,15 @@
+.magicButton {
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    color: var(--lime-400, #B1F625);
+
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 16.8px */
+
+gap: 6px;
+cursor: pointer;
+
+}

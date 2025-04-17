@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getUserTransactionHistory } from "../../../services/user_data/fetch_trading_history";
+import { getUserTransactionHistory } from "../../../services/user_data/fetch_transaction_history";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();

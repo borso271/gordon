@@ -1,0 +1,11 @@
+
+.wrapper {
+  display: flex;
+  align-items: flex-end; /* bars grow upward */
+  gap: 5px;             /* space between bars  */
+}
+
+.bar {
+  border-radius: 9999px; /* fully rounded corners */
+  /* width + colour supplied inline from props */
+}

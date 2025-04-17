@@ -13,10 +13,10 @@
     gap: 18px;
     align-self: stretch;
     border-radius: 12px;
-background: var(--additional-white-3, rgba(255, 255, 255, 0.03));
+background:var(--card-background); 
 cursor: pointer;
 
-color: var(--Black-300, #929292);
+color: var(--black-300, #929292);
 /* Text S/Regular */
 font-family: Inter;
 font-size: 14px;
@@ -28,3 +28,8 @@ line-height: 140%; /* 19.6px */
 .suggestion:hover {
     color: var(--lime-400, #b1f625);
   }
+
+  .iconWrapper {
+    color: var(--accent-color);
+  }
+  

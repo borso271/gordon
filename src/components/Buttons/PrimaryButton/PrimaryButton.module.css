@@ -11,6 +11,7 @@ cursor: pointer;
 transition: background-color 0.3s ease, transform 0.2s ease;
 border-radius: 100px;
 background: var(--black-50, #F8F8F8);
+
   }
   
   .text {

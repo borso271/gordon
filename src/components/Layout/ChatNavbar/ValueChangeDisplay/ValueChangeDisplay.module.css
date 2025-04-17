@@ -1,0 +1,44 @@
+
+.positive {
+    color: var(--spring-Green-500, #1AED87);
+  }
+
+  .negative {
+
+    color: var(--pomegranate-500, #ED441A);
+  }
+
+
+  .pchange {
+    overflow: hidden;
+
+text-overflow: ellipsis;
+/* Text S/Regular */
+
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+
+}
+
+
+
+.changeValue {
+    display:flex;
+    flex-direction:row;
+    gap: 4px;
+    align-items:flex-end;
+}
+
+
+  .currencyAndAmount {
+    /* Text L/Regular */
+
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+
+    display:flex;
+    flex-direction:row;
+  }

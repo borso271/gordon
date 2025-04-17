@@ -1,13 +1,13 @@
 import supabase_client from "../../lib/supabaseClient.js";
 
 async function fetchIntradayData(symbol, symbol_id, isMarketOpen) {
-  console.log(`📈 fetchIntradayData START — symbol: ${symbol}, symbol_id: ${symbol_id}, isMarketOpen: ${isMarketOpen}`);
+  // console.log(`📈 fetchIntradayData START — symbol: ${symbol}, symbol_id: ${symbol_id}, isMarketOpen: ${isMarketOpen}`);
 
   try {
     let marketData = [];
 
     if (isMarketOpen) {
-      console.log(`🟢 Market is open — querying intraday_data for symbol_id: ${symbol_id}`);
+      // console.log(`🟢 Market is open — querying intraday_data for symbol_id: ${symbol_id}`);
 
       const { data: intradayData, error: intradayError } = await supabase_client
         .from("intraday_data")
@@ -18,7 +18,7 @@ async function fetchIntradayData(symbol, symbol_id, isMarketOpen) {
       if (intradayError) {
         console.error(`❌ Supabase error fetching intraday data for ${symbol}:`, intradayError);
       } else {
-        console.log(`✅ Fetched ${intradayData.length} intraday records for ${symbol}`);
+        // console.log(`✅ Fetched ${intradayData.length} intraday records for ${symbol}`);
 
         if (intradayData.length > 0) {
           const mappedData = intradayData.map((entry) => ({
@@ -35,10 +35,10 @@ async function fetchIntradayData(symbol, symbol_id, isMarketOpen) {
         }
       }
     } else {
-      console.log("🔴 Market is closed — skipping intraday fetch.");
+     // console.log("🔴 Market is closed — skipping intraday fetch.");
     }
 
-    console.log(`🔚 Returning empty intraday data array for ${symbol}`);
+    //console.log(`🔚 Returning empty intraday data array for ${symbol}`);
     return [];
 
   } catch (error) {

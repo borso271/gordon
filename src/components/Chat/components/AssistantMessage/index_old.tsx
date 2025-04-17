@@ -30,14 +30,18 @@ const AssistantMessage: React.FC<AssistantMessageProps> = ({ heading, text }) =>
         </div>
       )}
 
-      {/* <ActionsGroup
-        actions={[
-          { iconName: "share", text: t("share"), onClick: () => shareContent(text) },
-          { iconName: "copy", text: t("copy"), onClick: () => copyToClipboard(text) },
-        ]}
-      /> */}
+    
     </div>
   );
 };
 
 export default AssistantMessage;
+
+
+
+  {/* <ActionsGroup
+        actions={[
+          { iconName: "share", text: t("share"), onClick: () => shareContent(text) },
+          { iconName: "copy", text: t("copy"), onClick: () => copyToClipboard(text) },
+        ]}
+      /> */}

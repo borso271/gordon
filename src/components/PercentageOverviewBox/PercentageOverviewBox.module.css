@@ -1,0 +1,22 @@
+.box {
+    display: flex;
+    padding: 16px 16px 20px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    align-self: stretch;
+    border-radius: 16px;
+background: var(--card-background);
+  }
+  
+  .title {
+    color: var(--neutral-text-title-title, #F5F5F5);
+    /* Text M/Regular */
+ 
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+  }
+  

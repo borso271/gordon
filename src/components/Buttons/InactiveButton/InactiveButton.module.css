@@ -9,6 +9,12 @@
     backdrop-filter: blur(2px);
     background: transparent;
     cursor: default; /* Prevents interaction */
+
+
+
+    border-radius: 12px;
+border: 1px solid var(--additional-white-3, rgba(255, 255, 255, 0.03));
+background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
   }
   
   .icon {

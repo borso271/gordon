@@ -1,0 +1,35 @@
+.trend {
+    display: flex;
+    align-items: center; /* <-- CHANGE THIS */
+    gap: 4px;
+    font-weight: 400;
+    font-size:  14px;
+    
+  }
+
+  
+  .positive {
+    color:var(--spring-Green-500, #1AED87);
+  }
+  
+  .negative {
+    color: var(--pomegranate-500, #ED441A);
+  }
+  
+
+.small {
+  font-size: 14px;
+}
+
+.medium {
+  font-size: 16px;
+}
+
+.large {
+  font-size: 18px;
+}
+
+.value {
+  display:flex;
+  
+}

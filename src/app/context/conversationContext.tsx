@@ -1,10 +1,11 @@
 /* use this to define and use important states like what conversationsPairs is visible */
 
-import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import React, { createContext, useContext, useRef, useState, useEffect, useCallback, ReactNode } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { ConversationPair, Message, Interaction, ChatSession, BotMessagePart } from "../../interfaces";
 import { useLanguage } from "../hooks/useLanguage";
-
+import { createThread as createThreadAPI } from "../utils/apiActions";
+import { fetchChatSessionFromDB } from "../utils/fetchChatSession";
 // Define the shape of our context
 interface ConversationContextType {
  
@@ -15,15 +16,14 @@ interface ConversationContextType {
   currentIndex: number;
   setConversationPairs: React.Dispatch<React.SetStateAction<ConversationPair[]>>;
   
+  interactionRef: React.MutableRefObject<Interaction | null>;
+
+
   setActiveConversationPair: React.Dispatch<React.SetStateAction<ConversationPair | null>>;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
- updateLastInteractionBotPart: (newPart: BotMessagePart) => void
-
+  updateLastInteractionBotParts: (newParts: BotMessagePart[]) => void;
   addUserMessage: (message: string) => void;
-
   appendAssistantText: (text: string) => void;
-
-  // updateLastPair: (update: Partial<ConversationPair>) => void;
 
   areNavigationItemsVisible: boolean;
   setAreNavigationItemsVisible: (visible: boolean) => void;
@@ -38,6 +38,13 @@ interface ConversationContextType {
   resetConversationState: () => void; // ✅ Added function type
   isRunning: boolean;
   setIsRunning: React.Dispatch<React.SetStateAction<boolean>>;
+  startNewChatSession: () => Promise<ChatSession>
+
+  activeInteraction: string | null;
+setActiveInteraction: (id: string | null) => void;
+
+
+loadChatSession: (threadId: string) => Promise<void>
 }
 
 // Create the context
@@ -45,24 +52,41 @@ const ConversationContext = createContext<ConversationContextType | undefined>(u
 // Context Provider Component
 export const ConversationProvider: React.FC<{ children: ReactNode, forceNewSession:boolean }> = ({ children,forceNewSession = false  }) => {
 
+  const interactionRef = useRef<Interaction | null>(null);
 
   const [activeConversationPair, setActiveConversationPair] = useState<ConversationPair | null>(null);
   const [areNavigationItemsVisible, setAreNavigationItemsVisible] = useState<boolean>(false);
   const [isMobileNavigationVisible, setIsMobileNavigationVisible] = useState<boolean>(false);
-  const [threadId, setThreadId] = useState<string>("");
+
+
   const [userInput, setUserInput] = useState("");
   const [inputDisabled, setInputDisabled] = useState<boolean>(false);
-
   const [isRunning, setIsRunning] = useState<boolean>(false);
-
   const {currentLang} = useLanguage();
-
   const LOCAL_STORAGE_KEY = "chatSession";
   const LOCAL_STORAGE_MESSAGES_KEY = "messages";
   const LOCAL_STORAGE_INDEX_KEY = "currentIndex";
 
+  const [activeInteraction, setActiveInteraction] = useState<string | null>(null);
+
+
+
+  const [threadId, setThreadId] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("threadId") || "";
+    }
+    return "";
+  });
+
+  useEffect(() => {
+    if (threadId) {
+      localStorage.setItem("threadId", threadId);
+    }
+  }, [threadId]);
+  
+  
 // ✅ Load initial value from localStorage
-const [currentIndex, setCurrentIndex] = useState<number>(() => {
+  const [currentIndex, setCurrentIndex] = useState<number>(() => {
   const storedIndex = localStorage.getItem(LOCAL_STORAGE_INDEX_KEY);
   // console.log("Loading stored currentIndex:", storedIndex);
   return storedIndex !== null ? JSON.parse(storedIndex) : -1;
@@ -98,87 +122,75 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
     }
   }, []);
 
-  // console.log("conversation pairs are: ", conversationPairs)
-  // ✅ Save conversationPairs to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(conversationPairs));
   }, [conversationPairs]);
 
 
-
-  // ✅ Generate a new conversation pair with a UUID
-  // const addUserMessage2 = useCallback((message: string) => {
-  //   console.log("CURRENT LANG AT THIS POINT IS: ", currentLang)
-
-  //   const newPair: ConversationPair = {
-  //     id: uuidv4(),
-  //     user: message,
-  //     assistant: "",
-  //     language: currentLang
-  //   };
-
-  //   setConversationPairs((prev) => {
-  //     const updatedPairs = [...prev, newPair];
-  //     setCurrentIndex(updatedPairs.length - 1);
-  //     return updatedPairs;
-  //   });
-  // });
-    
-
-
-  const [chatSession, setChatSession] = useState<ChatSession>(() => {
-    console.log('Initializing chat session state...'); // For debugging
-
-
-
-    // 1. Try to load from localStorage
-    const storedSessionJson = localStorage.getItem(LOCAL_STORAGE_KEY);
-
-    if (storedSessionJson && !forceNewSession) {
-      try {
-        const storedSession: ChatSession = JSON.parse(storedSessionJson);
-
-        // 2. Basic Validation (Optional but recommended)
-        //    Ensure the loaded data has the essential structure.
-        if (
-          storedSession &&
-          typeof storedSession.id === 'string' &&
-          typeof storedSession.title === 'string' &&
-          Array.isArray(storedSession.interactions) &&
-          typeof storedSession.createdAt === 'string' && // Check types match
-          typeof storedSession.updatedAt === 'string'
-        ) {
-           // You could add more specific validation for interaction structure if needed
-          console.log(`Loaded chat session "${storedSession.title}" (${storedSession.id}) from localStorage.`);
-          return storedSession; // Return the valid, loaded session
-        } else {
-          // Data structure is wrong, discard it
-          console.warn('Stored chat session data has invalid structure. Discarding.');
-          localStorage.removeItem(LOCAL_STORAGE_KEY); // Clean up bad data
-        }
-      } catch (error) {
-        console.error('Error parsing chat session from localStorage:', error);
-        // If parsing fails, remove the corrupted item
-        localStorage.removeItem(LOCAL_STORAGE_KEY);
+const [chatSession, setChatSession] = useState<ChatSession | null>(() => {
+  try {
+    const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed && typeof parsed === 'object' && parsed.id && parsed.interactions) {
+        return parsed;
       }
     }
+  } catch (err) {
+    console.warn("⚠️ Error reading chat session from localStorage:", err);
+  }
+  return null;
+});
 
-    // 3. If load failed or no data, create a new default session
-    console.log('No valid session in localStorage. Creating a new chat session.');
+ // console.log("starting new chat session.... id is: ", threadId)
+
+useEffect(() => {
+  if (chatSession) {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(chatSession));
+  } else {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+  }
+}, [chatSession]);
+
+
+  const startNewChatSession = useCallback(async () => {
+    const { threadId: newThreadId } = await createThreadAPI();
+    
+
+    console.log("New THread id is: ", threadId)
     const newSession: ChatSession = {
-      id: uuidv4(),
+      id: newThreadId,
       title: "New Chat",
       interactions: [],
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
-    return newSession;
-  });
+  
+    setThreadId(newThreadId);
+    setChatSession(newSession);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newSession));
+  
+    return newSession; // ✅ return it here!
+  }, [setThreadId, setChatSession]);
+  
 
+  const loadChatSession = useCallback(async (threadId: string) => {
+    if (chatSession?.id === threadId) return;
+  
+    const sessionFromDB = await fetchChatSessionFromDB(threadId);
+  
+    if (sessionFromDB) {
+      setChatSession(sessionFromDB);
+      setThreadId(sessionFromDB.id);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sessionFromDB));
+    } else {
+      console.warn("Thread not found");
+    }
+  }, [chatSession, setChatSession, setThreadId]);
+  
   // 4. Persist changes back to localStorage whenever chatSession updates
+
   useEffect(() => {
-    // console.log(`Saving chat session "${chatSession.title}" (${chatSession.id}) to localStorage.`);
-    // Update the timestamp whenever we save
     const sessionToSave = {
         ...chatSession,
         updatedAt: new Date().toISOString() // Keep updatedAt fresh on save
@@ -186,12 +198,12 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sessionToSave));
   }, [chatSession]); // Dependency array ensures this runs when chatSession changes
 
-
   const addUserMessage = useCallback((message: string) => {
     const newInteraction: Interaction = {
       id: uuidv4(),
       timestamp: new Date().toISOString(),
       language: currentLang,
+      status: "success",
       userMessage: {
         id: uuidv4(),
         role: "user",
@@ -205,13 +217,15 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
         role: "assistant",
         language: currentLang,
         parts: [
-          { type: "assistantText", content: "" } // For streaming updates
+          { type: "assistantText", text: "" } // For streaming updates
         ],
         metadata: {},
         createdAt: new Date().toISOString(),
       },
     };
   
+interactionRef.current = newInteraction;
+
     setChatSession((prevSession) => {
       const updatedInteractions = [...prevSession.interactions, newInteraction];
       return {
@@ -226,8 +240,12 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
   }, [currentLang]);
   
   const appendAssistantText = useCallback((text: string) => {
+   
     setChatSession((prevSession) => {
+      // console.log("chatSession is: ", JSON.stringify(prevSession));
       const lastIndex = prevSession.interactions.length - 1;
+
+      //console.log("last index is: ", lastIndex);
       if (lastIndex < 0) return prevSession;
   
       const lastInteraction = prevSession.interactions[lastIndex];
@@ -235,7 +253,7 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
   
       const newParts = bot.parts.map((part, i) =>
         i === 0 && part.type === "assistantText"
-          ? { ...part, content: part.content + text }
+          ? { ...part, text: part.text + text }
           : part
       );
   
@@ -246,6 +264,7 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
           parts: newParts,
         },
       };
+      interactionRef.current = updatedInteraction;
   
       return {
         ...prevSession,
@@ -257,65 +276,38 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
     });
   }, []);
   
-    // const appendAssistantText = useCallback((text: string) => {
-    //   setChatSession((prevSession) => {
-    //     if (prevSession.interactions.length === 0) return prevSession;
-    
-    //     return {
-    //       ...prevSession,
-    //       interactions: prevSession.interactions.map((interaction, index) => {
-    //         if (index !== prevSession.interactions.length - 1) return interaction;
-  
-    //         const bot = interaction.botMessage;
-    //         const newParts = bot.parts.map((part, i) =>
-    //           i === 0 && part.type === "assistantText"
-    //             ? { ...part, content: part.content + text }
-    //             : part
-    //         );
-    
-    //         return {
-    //           ...interaction,
-    //           botMessage: {
-    //             ...bot,
-    //             parts: newParts,
-    //           },
-    //         };
-    //       }),
-    //     };
-    //   });
-    // }, []);
+
+ 
 
 
-  // const updateLastMessage = useCallback((update: Partial<Message>) => {
-  //   setMessages((prev) => {
-  //     if (prev.length === 0) return prev;
-  //     return prev.map((message, index) =>
-  //       index === prev.length - 1 ? { ...message, ...update } : message
-  //     );
-  //   });
-  // }, []);
-
-
-  const updateLastInteractionBotPart = useCallback((newPart: BotMessagePart) => {
+  const updateLastInteractionBotParts = useCallback((
+    newParts: BotMessagePart[],
+    interactionId?: string
+  ) => {
     setChatSession((prevSession) => {
       const interactions = [...prevSession.interactions];
       if (interactions.length === 0) return prevSession;
-
-      const lastIndex = interactions.length - 1;
-      const lastInteraction = interactions[lastIndex];
-
-      const updatedParts = [...lastInteraction.botMessage.parts, newPart];
-
+  
+      const indexToUpdate = interactionId
+        ? interactions.findIndex(i => i.id === interactionId)
+        : interactions.length - 1;
+  
+      if (indexToUpdate === -1) return prevSession;
+  
+      const targetInteraction = interactions[indexToUpdate];
+      const updatedParts = [...targetInteraction.botMessage.parts, ...newParts];
+  
       const updatedInteraction: Interaction = {
-        ...lastInteraction,
+        ...targetInteraction,
         botMessage: {
-          ...lastInteraction.botMessage,
+          ...targetInteraction.botMessage,
           parts: updatedParts,
         },
       };
-
-      interactions[lastIndex] = updatedInteraction;
-
+  
+      interactionRef.current = updatedInteraction;
+      interactions[indexToUpdate] = updatedInteraction;
+  
       return {
         ...prevSession,
         interactions,
@@ -323,13 +315,45 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
       };
     });
   }, [setChatSession]);
+  
+
+  // const updateLastInteractionBotParts = useCallback((newParts: BotMessagePart[]) => {
+  //   setChatSession((prevSession) => {
+  //     const interactions = [...prevSession.interactions];
+  //     if (interactions.length === 0) return prevSession;
+  
+  //     const lastIndex = interactions.length - 1;
+  //     const lastInteraction = interactions[lastIndex];
+  
+  //     const updatedParts = [...lastInteraction.botMessage.parts, ...newParts];
+  
+  //     const updatedInteraction: Interaction = {
+  //       ...lastInteraction,
+  //       botMessage: {
+  //         ...lastInteraction.botMessage,
+  //         parts: updatedParts,
+  //       },
+  //     };
+  
+  //     interactionRef.current = updatedInteraction;
+  //     interactions[lastIndex] = updatedInteraction;
+  
+  //     return {
+  //       ...prevSession,
+  //       interactions,
+  //       updatedAt: new Date().toISOString(),
+  //     };
+  //   });
+  // }, [setChatSession]);
 
 
+
+
+  
 
 
  const resetConversationState = () => {
-  // console.log("Resetting conversation state...");
-
+ 
   setConversationPairs([]);
   setCurrentIndex(-1);
 
@@ -351,6 +375,9 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
         inputDisabled,
         chatSession,
         isRunning,
+        interactionRef,
+        activeInteraction,
+    setActiveInteraction,
         setIsRunning,
         setChatSession,
         setThreadId,
@@ -359,13 +386,15 @@ const [conversationPairs, setConversationPairs] = useState<ConversationPair[]>((
         setCurrentIndex,
         addUserMessage,
         appendAssistantText,
-        updateLastInteractionBotPart,
+        updateLastInteractionBotParts,
         // updateLastMessage,
         setAreNavigationItemsVisible,
         setIsMobileNavigationVisible,
         setUserInput,
         setInputDisabled,
-        resetConversationState
+        resetConversationState,
+        startNewChatSession,
+        loadChatSession
       }}
     >
       {children}

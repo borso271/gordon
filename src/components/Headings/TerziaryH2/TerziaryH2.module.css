@@ -1,0 +1,18 @@
+.TerziaryH2 {
+    color: var(--black-100, #D7D7D7);
+    /* Text L/Medium */
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%; /* 23.4px */
+  }
+
+/* Small (Mobile) */
+@media (max-width: 480px) {
+    .TerziaryH2 {  
+    font-size: 16px;
+  
+    }
+}
+

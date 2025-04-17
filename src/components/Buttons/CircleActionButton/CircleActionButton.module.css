@@ -1,0 +1,14 @@
+
+.circledButton {
+    background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
+    display: flex;
+    border-radius:100px;
+width: 40px;
+height: 40px;
+padding: 7.2px;
+justify-content: center;
+align-items: center;
+gap: 7.2px;
+flex-shrink: 0;
+cursor: pointer;
+  }

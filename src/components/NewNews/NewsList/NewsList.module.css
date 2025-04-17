@@ -1,0 +1,14 @@
+.newsList {
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+}
+
+.newsItemWrapper {
+    background-color: var(--card-background);
+    border-radius:16px;
+}
+
+.newsItemWrapper:hover {
+    background-color: var(--card-background-light)
+}

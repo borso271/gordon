@@ -26,3 +26,11 @@ export function useInsightsClick() {
 
   return { onInsightsClick };
 }
+
+
+
+
+
+/*
+
+hard to share the page now, because you don't have a thread id */

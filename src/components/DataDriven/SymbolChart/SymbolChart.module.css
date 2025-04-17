@@ -25,6 +25,7 @@ border-radius: 16px;
 }
 
 .chartGrid {
+    direction: ltr; /* 👈 force LTR layout so column 1 stays left */
     display: grid;
     grid-template-columns: 50px auto; /* Chart takes remaining space, RightLegend takes fixed width */
     grid-template-rows: auto; /* Chart takes remaining space, BottomLegend takes fixed height */
@@ -44,7 +45,7 @@ border-radius: 16px;
 
 .chartWrapper {
     height: 100%;
-    max-height:240px;
+    max-height:300px;
     width: 100%;
   
 }

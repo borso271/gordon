@@ -1,0 +1,49 @@
+.chartWrapper {
+    position: relative;
+    width: 100%;
+ 
+  }
+  
+  .zeroLine {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+   border-top:1px dashed #757575;
+  }
+  
+  .scrollWrapper {
+    overflow-x: auto;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .barContainer {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    gap: 8px; /* or dynamic in JS */
+    flex-wrap: nowrap;
+    padding:0 12px;
+  }
+  
+  .barWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1 0 32px; /* grow if possible, shrink to min 32px */
+    height: 100%;
+    max-width: 100%;
+  }
+  
+  .bar {
+    width: 100%;
+
+    transition: height 0.3s;
+  }
+  
+  .emptySpace {
+    width: 100%;
+    background: transparent;
+  }
+  

@@ -7,7 +7,7 @@ export function createQueryFromBotParts(
   
     const fullText = botParts
       .filter((part) => part.type === "assistantText")
-      .map((part) => part.content.trim())
+      .map((part) => part.text.trim())
       .join(" ")
       .trim();
   

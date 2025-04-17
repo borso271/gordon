@@ -1,0 +1,26 @@
+
+
+  .annotationNumber {
+    display: inline-block; /* KEY: Allows width/height but flows inline */
+    vertical-align: middle; /* KEY: Align vertically with the middle of the text */
+    width: 20px;        /* Example fixed size */
+    height: 20px;       /* Example fixed size */
+    border-radius: 50%; /* Make it a circle */
+    background-color: var(--card-background-light);
+    color: #fff;          /* Example text color */
+    font-size: 12px;      /* Smaller font for the number */
+    font-weight: bold;
+    text-align: center;
+    line-height: 20px;  /* Vertically center number (match height) */
+    margin-right: 5px;  /* KEY: Space between circle and title text */
+  
+    /* Prevent squishing if an outer container uses flex */
+    flex-shrink: 0;
+  }
+
+
+  [dir="rtl"] .annotationNumber {
+    margin-right: 0px;
+    margin-left:5px;
+  }
+  

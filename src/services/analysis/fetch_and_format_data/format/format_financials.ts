@@ -41,7 +41,7 @@ function removeContinuingLabelsRecursively(data) {
  */
 
 function removeIrrelevantEntries(data) {
-  const irrelevantKeys = ["Wages", 'Net Income/Loss Attributable To Parent',
+  const irrelevantKeys = ["Wages", 'Net Income/Loss Attributable To Parent', 'Accounts Payable', 'Noncurrent Liabilities',
   'Net Income/Loss Available To Common Stockholders, Basic', 'Selling, General, and Administrative Expenses', "Equity Attributable To Parent", "Liabilities And Equity"]; // Add more exact matches here
 
   // If the data is an array, apply the function to each element.

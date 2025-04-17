@@ -79,9 +79,7 @@ const TradingViewSingleChart: React.FC<TradingViewChartProps> = ({ language, sym
           rel="noopener nofollow"
           target="_blank"
         >
-          <span className="blue-text">
-            {language === 'ar' ? 'تتبع جميع الأسواق على TradingView' : 'Track all markets on TradingView'}
-          </span>
+        
         </a>
       </div>
     </div>

@@ -6,7 +6,6 @@ import getSymbolSnapshot from "../../services/database/get_symbol_snapshot";
 import fetch_symbol_info from "../../services/database/fetch_symbol_info";
 import fetchLatestPrice from "../../services/database/fetch_latest_price";
 
-
 interface SymbolSnapshotData {
     snapshot: any; // or use actual type
     asset_type: string | null;

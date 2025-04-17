@@ -1,0 +1,56 @@
+
+.layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .rightPanel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .pageContent {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  .pageContent::-webkit-scrollbar {
+    display: none;
+  }
+  .pageContent {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+
+.container {
+    width: 100%;
+    padding: 0px 32px;
+ 
+}
+/* 
+.container > :first-child {
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
+  }  */
+
+  .stickyHeader {
+    position: sticky;
+     top: 0; 
+    z-index: 1000;
+    background: var(--background); /* important to prevent content bleeding behind */
+    padding-bottom:12px;
+  }
+
+
+  .main {
+    padding-top:20px;
+    padding-bottom:32px;
+  }
+

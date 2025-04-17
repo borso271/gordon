@@ -1,4 +1,713 @@
+FIX SEARCHES AND SEARCHS BUTTON COMMANDS ANYWHERE
+FIX STOCK BUY/SELL EVERYWHERE (LIKE IN SINGLE ASSET)
 
+
+
+
+
+
+TypeError: Cannot read properties of undefined (reading 'x')
+
+Source
+src/app/hooks/useChartCanvas.ts (198:36) @ handlePointerMove
+
+  196 |     const mouseX = svgCoords.x;
+  197 |     let nearest = data[0];
+> 198 |     let minDist = Math.abs(nearest.x - mouseX);
+      |                                    ^
+  199 |     for (let i = 1; i < data.length; i++) {
+  200 |       const dist = Math.abs(data[i].x - mouseX);
+  201 |       if (dist < minDist) {
+
+
+
+
+
+
+
+
+1. Actually set chat session by adding a part...
+2. Render them...
+3. Don't recall when follow ups are already there!!!
+
+---
+
+
+
+
+
+
+
+1. Now do action buttons for:
+   - trade
+   - for sending a message
+   - To handle Manual Function Calls (not gpt that handles it)
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+2. Tomorrow:
+   - Handle First Flow (like for the knowledge center...)
+   - Make suggestions better (edge cases)
+   - Review all Four Functionalities
+   - Make suggest a stock better
+   - ADJUST DYNAMICS TRANSITIONS
+
+  Evening: Do Mobile Landing
+
+  CONTROL SUGGESTIONS BASED ON FUNCTION CALLED...
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+3. Thursday (LONG DAY ALONE IN OFFICE)
+   - Make Arabic AND RESPONSIVE, fix, fix, fix, fix, fix piece by piece.
+
+4. Friday:
+
+   - Try adding additional pieces... But fix a lot...
+
+
+5. Saturday, add and review, safe handling of edge cases... Q&A
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+  
+You have to decide:
+How to handle responsiveness. I would do a different mobile page for the main layout...
+Chatbot probably can be handled with queries.
+
+
+
+
+
+
+
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+- Knowledge Center... take for last, even because it is not decided yet...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="DropdownMenu-module__55Bx2G__dropdownMenu DropdownMenu-module__55Bx2G__show" style="top: 10px;"><div class="DropdownMenu-module__55Bx2G__menuItem DropdownMenu-module__55Bx2G__active"><span class="DropdownMenu-module__55Bx2G__label">الأصول</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">الأصول الحالية</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">المخزون</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Fixed Assets</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Liabilities</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Current Liabilities</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Long-term Debt</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Equity</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Net Cash Flow From Operating Activities</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Net Cash Flow From Investing Activities</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Net Cash Flow From Financing Activities</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Net Cash Flow</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Revenues</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Cost Of Revenue</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Gross Profit</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Operating Expenses</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Research and Development</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Operating Income/Loss</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Income Tax Expense/Benefit</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Net Income/Loss</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Basic Earnings Per Share</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Diluted Earnings Per Share</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Basic Average Shares</span></div><div class="DropdownMenu-module__55Bx2G__menuItem "><span class="DropdownMenu-module__55Bx2G__label">Diluted Average Shares</span></div></div>
+
+
+
+Next Steps:
+1. WEB SEARCH WITH ANNOTATIONS
+2. SUGGEST TICKERS WITH EXTRA TEXT AND ICONS TO SELECT MORE...
+3. ACTION BUTTONS FOR TRADE, OR SEND A QUESTION TO BOT
+4. DYNAMICS FOR OVERLAY VERSION OF BOT...
+
+--- --- --- --- ---
+
+
+DO COMPARISON...
+
+THEN DO WEB SEARCH...
+
+THEN DO TICKER LISTS...
+
+--- --- --- --- --- --- --- --- ---
+
+
+Today:
+
+1. Analysis
+2. Assets Lists
+3. Comparisons
+4. Web Search
+
+Tomorrow:
+Buttons all over around,
+Fallbacks for functions
+
+
+Wednesday:
+fixes and arabic version
+
+--- --- --- ---
+
+
+
+
+test bing...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Percentage Value
+2. Icons to smal in navbar
+
+--- --- --- --- --- --- ---
+
+1. FIX THE PORTFOLIO TYPES MESS
+2. FINISH THE COMPONENT FOR THE OVERVIEW (WITH HEADER DATA TOO TAKEN FROM HISTORY)
+3. FINE TUNE PROMPT SO THAT IT WORKS
+4. DO FINALLY THE CHART AS IT SHOULD BE
+
+--- --- --- --- --- --- ---
+
+Today we start like this:
+
+1. Move price_snaphot in its own folder.
+
+2. Do the portfolio_gains service.
+
+3. Be sure average price is computed in transactions
+
+Fix all fetching problems with polygon.
+
+--- --- --- --- --- --- ---
+
+4. Compute these fields:
+
+   - unrealized gain/loss
+   - top performers
+   - top losers
+   - number of assets
+   - assets type allocations
+   - stocks sector allocation
+
+--- --- --- --- --- --- ---
+
+5. Fetch the user cash to compute these fields:
+
+   - beginning balance cash/invested
+   - end balance cash/invested
+
+Where do you take the beginning invested?
+From transaction history for sure...
+You know by that date how much was invested, by...
+
+that's just gpt...
+both realized gain and loss and ..., ... ... ... ...
+
+--- --- --- --- --- --- ---
+
+6. Fetch the transaction history
+
+7. With 5. compute:
+   - number of transactions
+   - realized gain/loss
+   - last 5 transactions
+
+
+
+
+
+
+What the service should return to the frontend:
+---
+---
+---
+
+
+
+
+
+{
+   Start_date: date,
+  data_for_ai: {
+     Start_date: date,
+      Number of Assets: number,
+      Total Invested: number,
+      Allocation by Asset Type: {Stock: , Crypto: , Etf: },
+      Stocks Allocation by Sector: {Sector_Name: , Some_Other_Sector_Name: },
+      Realized Gain/Loss in Period: number: ,
+      Unrealized Gain/Loss in Period: number: ,
+      Best 3 Performers: [{ticker: , name: , change: }],
+      Worst 3 Performers: [{ticker: , name: , change: }],
+      Last 3 Transactions: [{ticker: , name: , quantity, price}],
+      Market News: Some Market News,
+  };
+
+  data: {
+    transactions: number,
+    realized_gain_loss: number,
+    unrealized_gain_loss: number,
+    start_amount: number,
+    current_amount: number,
+
+  assets: [{ticker: string;
+  name: string;
+  ticker_id: number;
+  price: number;
+  asset_type: string;
+  start_price: number;
+  sector?:string;
+  buy_date:string;}]
+  }
+
+}
+
+
+
+
+
+
+
+
+---
+
+Make a fake object that will be returned for now, so that you can go on with developement, and leave this aside for now...
+
+---
+
+8. Add a web search with latest market news
+9. Package this info for AI to fed in prompt
+10. Package the info for components to be displayed:
+   - n. of transactions
+   - realized gain/loss
+   - unrealized gain/loss
+   - beginning balance cash/invested
+   - end balance cash/invested
+11. Test sending info to ai and printing the rest of the data
+12. Make chart with initial data and perlin noise
+13. Finalize the component for portfolio summary.
+
+
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+ACTUALLY HANDLE TRANSACTIONS TODAY... SO THAT THEY WORK...
+FOR WHICH YOU ALSO NEED TO HAVE THE LAST PRICE AT WHICH YOU BUY OR SELL, AND THE LAST PRICE OF THE EQUITY...
+
+---
+
+ACTUALLY HANDLE CHARTS (PORTFOLIO CHART AND SYMBOL CHART...)
+
+---
+
+DO A SERVICE THAT GIVES YOU INFO ABOUT PORTFOLIO, AND TRANSACTION HISTORY...
+
+--- --- --- --- --- --- --- --- --- ---
+
+1. TEST WEB SEARCH WITH WHAT YOU HAVE NOW    VS BING
+
+2. SOLVE THE SUPABASE/AGGREGATOR PROBLEM AND ACTUALLY FETCH DATA FOR THE EQUITIES
+
+--- --- --- --- --- --- --- --- --- ---
+--- --- --- --- --- --- --- --- --- ---
+
+
+
+
+
+
+1. Handle Overviews
+
+2. Handle Charts
+
+3. Handle Portfolio Overview Whole Component
+
+4. Handle Trading Action
+
+5. Send Sasha Data
+
+--- --- ---
+
+
+
+
+
+
+If you switch to langgraph...
+
+
+
+
+
+first: WHY COMPARISON STUFF NOT SHOWING???
+
+
+Now:
+start the new components, do them in a definite way, assuming data is flowing in,
+start with mock data...
+
+
+
+List the components to do and finish today:
+
+
+
+
+
+
+
+Little things:
+1. fix the loading message
+2. Delete icon only on hover
+3. Hover on the buttons
+
+---
+
+
+
+
+
+
+
+2. DO BUTTONS BELOW INPUT
+3. Fix comparison components
+4. Do all extra componnets
+5. Finish buying and portfolio logic
+
+
+3. GO BACK TO CHAT LOGIC AND COMPARISON
+4. AFTER COMPARISON DO ANALYSIS
+5. AFTER ANALYSIS DO PORTFOLIO OVERVIEW...
+
+
+LATER:
+4. MAKE A HOOK TO BUY A STOCK
+
+
+
+
+
+
+----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Suggestions:
+1. Option 1: the agent puts suggestions in, and possible answers to questions, you extract the two values...
+2. You
+
+metric comparison has no data
+
+"failed conversations, how to handle them... "
+
+
+1. DO CONVERSATION HISTORY
+2. HANDLE FAILED CONVERSATION
+3. HANDLE BUTTONS FOR NEW CONVERSATION
+4. GO BACK TO COMPARISON AND CHECK IF IT WORKS...
+
+--- --- ---
+
+
+
+
+
+
+
+
+
+1. IF ANSWER NOT PROVIDED, THE INPUT SHOULD BE RE-ENABLED
+2. OLD THINKING SHOULD NOT BE THINKING AGAIN
+3. Error: Final run has not been received (Why i get this?)
+Error processing POST request: Error: Timeout: Previous run did not complete in time.
+    at waitForRunCompletion (src/app/api/assistants/threads/[threadId]/messages/route.ts:26:8)
+    at async POST (src/app/api/assistants/threads/[threadId]/messages/route.ts:39:4)
+  24 |   }
+  25 |
+> 26 |   throw new Error("Timeout: Previous run did not complete in time.");
+     |        ^
+  27 | }
+  28 |
+  29 | export async function POST(req: NextRequest, context: any): Promise<Response> {
+ POST /api/assistants/threads/thread_AE3mTPrw1MA9vm8GqvK422B8/messages 500 in 15281ms
+🌐 Fetching fresh market status from Polygon
+
+---
+
+1. handle failed responses (timeout), maybe use a hook to do that...
+2. handle new conversations, conversation history, conversation flow...
+3. Go back to comparison and check if the agent can do it, else test with python instead...
+
+---
+
+1. ADD A FAILED RESPONSE, SO THAT YOU DON'T NEED TO SAVE THAT IN THE DATABASE.
+2. HANDLE NEW CONVERSATION BUTTON AND CONVERSATION LIST, SO THAT YOU SHOW THE CONVERSATIONS IN THE BAR.
+
+
+persist the threadId
+
+Either use ChatUi or not
+
+
+--------
+
+1. SAVING PROBLEM: FIX ONCE AND FOR ALL!!!
+
+Problems:
+1. It replies two times
+2. It does not save messages RELATED: (}
+User message insert error: {
+  code: '23505',
+  details: 'Key (id)=(4a4cdafa-195a-4771-86e3-06a64e5a9316) already exists.',
+  hint: null,
+  message: 'duplicate key value violates unique constraint "messages_pkey"'
+}
+ POST /api/save_interaction 500 in 150ms)
+❌ Failed to save interaction: "Failed to save user message"
+
+Source
+src/app/hooks/useSaveInteraction.ts (60:17) @ saveInteraction
+
+  58 |       if (!response.ok) {
+  59 |         const errorData = await response.json();
+> 60 |         console.error("❌ Failed to save interaction:", errorData.error);
+     |                 ^
+  61 |         console.groupEnd();
+  62 |         return false;
+  63 |       }
+
+
+------
+
+SIDEBAR PLEASE FIX IT!!!
+
+
+
+
+------
+
+MAKE SUGGESTIONS FIXED
+
+
+
+
+
+
+
+
+
+1. Now that you have the components, start experimenting with the sidebar and sidebar logic.
+2. Remember that you show in sidebar only for certain things, depending on what you get.
+
+---
+
+3. Tonight maybe you can experiment a bit with the python SDK
+
+DEFINITELY DO THE PLUS
+---
+
+
+
+Some stuff go in the sidebar...
+Some stuff go into the main chat
+
+This Evening:
+
+1. Positive, negative rendering, THIS IS TO DO
+2. Gordon HomePage Logo on Top, THE LOGO IS TO ADD
+3. Fix Portfolio chart, HERE YOU CAN DO SOMETHING
+
+---
+
+Now:
+
+1. Comparison
+2. Stock Suggestion
+3. Analysis
+
+4. Think how to add Llama index to give the bot knowledge about user data.
+
+
+Test with questions suggestions directly provided by the bot
+
+---
+
+Then go to main Logic, Sidebar Or not.
+
+
+. BUY/Sell
+
+
+
+C. CHAT opening with a button, and page too...
+
+---
+
+
+
+
+
+- Now fetch from database to show the user.
+- Handle page reload.
+
+Handle S
+
+Why the assistant text is not saved?
+
+
+
+Add function to button too,
+Test all flow, and the fact that stuff is stored, recovered, and displayed...
+Display in bar...
+
+Tonight: Do more About Design as They Want it.
+
+---
+Tomorrow: develop functionalities make some clarity...
+
+---
+
+Finish the whole database flow and the submission from homepage too...
+
+
+
+
+/*
+1. Have a threads table. with threads id
+
+2. Have a messages table,
+
+   Each message has a type, text if anything, and data if anything...
+
+3. You should also connect questions to answers, so to do that either you have the same interaction id,
+   or you 
+
+
+WHAT METADATA TO SAVE?
+
+
+
+
+Tonight continue design and maybe add buy/sell functionality.
+TONIGHT ALSO FIX THE CHART!
+
+---
+
+Now focus on flow organization, storage, and sidebar showing...
+
+---
+
+1. Do History page
+2. Refine Styles
+
+Do Buy/sell functionality very simple for now,
+With just a select a stock, and you can do it, so you can populate 
+
+Fill the tables and do the design,
+Forget about buy and sell...
+
+----
+
+Add the portfolio performance,
+summarize my portfolio button,
+Fix the portfolio table and put fake data for now...
+
+---
+
+
+I have a next.js api/fetch_watchlist that gets the user watchlist with these values:  // Step 1: Normalize the base watchlist
+    const normalizedWatchlist = data.map((item) => ({
+      id: item.id,
+      created_at: item.created_at,
+      notes: item.notes ?? null,
+      group_name: item.group_name ?? null,
+      alert_price: item.alert_price ?? null,
+      priority: item.priority ?? null,
+      symbol_id: item.symbols?.id ?? null,
+      ticker: item.symbols?.ticker ?? null,
+      name: item.symbols?.name ?? null,
+      sector: item.symbols?.sector ?? null,
+      currency: item.symbols?.currency ?? null,
+      asset_type: item.symbols?.asset_type ?? null,
+      last_close: item.symbols?.symbols_snapshot?.last_close ?? null, // From snapshot
+    }));
+  
+    // Step 2: Fetch latest price for each symbol (parallelized)
+    const enrichedWatchlist = await Promise.all(
+      normalizedWatchlist.map(async (item) => {
+        const latestPriceData = item.symbol_id
+          ? await fetchLatestPrice(item.symbol_id)
+          : null;
+  
+        return {
+          ...item,
+          last_price: latestPriceData?.value ?? null,
+          last_price_timestamp: latestPriceData?.timestamp ?? null,
+        };
+      })
+    );
+  
+    return enrichedWatchlist;
+  },
+
+  I need a typescript component that display the watchlist. We actually display for now only ticker, name, asset_type, then for current price we use last_price or if not available we use last_close, or if that not available to default to 1. We also want to show the percentage change that is computed by using last_close and latest_price. For each item in the watchilist we use a div, all arranged in a column
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Try direct streaming + Giving context...
+since it is the same use of tokens actually...
+
+---
+
+/* redo all using langgraph! */
 
 Can you do all with responses by:
 - Having threads created
@@ -6,14 +715,10 @@ Can you do all with responses by:
 - Having tool calls like analysis, show_infographics (type: chart, etc.)
 
 
-
-
 MODIFY, NEW,
 
 YOU SHOULD HAVE AN AGENT SPECIALIZED FOR THIS...
 BUT IT SHOULD BE ABLE TO SEE THE HISTORY...
-
-
 
 IT CAN JUST CALL:
 MODFY OLD TABLE..., NEW TABLE...
@@ -879,6 +1584,12 @@ should return as a table if succeeds...
 
 
 
+
+
+
+
+
+
 TypeError: Failed to fetch
 
 Source
@@ -895,3 +1606,133 @@ useStreamHandlers.useCallback[onRequiresAction]
 src/app/hooks/useStreamHandlers.ts (169:49)
 async onRequiresAction
 src/app/hooks/useStreamHandlers.ts (64:9)
+
+
+
+
+
+
+
+
+
+[POST] Stream chunk: {"event":"thread.run.created","data":{"id":"run_cF6F0yhbWApqAOvnBEtoD73o","object":"thread.run","created_at":1744572731,"assistant_id":"asst_bqCO7DBDpeyS8mBgYZwXIiri","thread_id":"thread_eYOgQNhpROwU8HNEM8oKoALw","status":"queued","started_at":null,"expires_at":1744573331,"cancelled_at":null,"failed_at":null,"completed_at":null,"required_action":null,"last_error":null,"model":"gpt-4o","instructions":"You're a high-powered financial assistant, specializing in stocks and cryptocurrencies.\nAlways reply in the language you are spoken to. Please format the content with proper headings. Use:\n# for the main title\n## for key sections\n### for sub-sections\nBullet points or numbered lists for lists\nTables when required. Divide main sections with lines.  Always include a main heading/title to your response.\n\nGeneral Guidelines:\nNumbers don’t lie. Always pull from reliable financial data.\n\nIf someone wants a stock or crypto analyzed, call analyze_ticker.\nIf the user wants an overview of his portfolio, call portfolio_overview.\nIf they need suggestions, call suggest_securities.\nIf someone asks for info you don't have, call search_web. Never include the date when you search the web, since the date you have in mind might be different from the actual current date.\n\nIf the data isn’t there, don’t guess. No speculation. If information is missing or unclear, call search_web to find real-time context.\n\nRestricted Topics:\nNo gambling, no wishful thinking. Speculation is for suckers.\nNo rumors, no hype. If it’s not backed by hard numbers, it’s noise.\nStay in your lane: finance only. No philosophy, no politics, no life advice.\n\nFunction Use Cases:\nanalyze_ticker Trigger this when a user wants data or insight on a specific stock or crypto.Example:\n\"What do you think about Bitcoin?\" → Call with symbol: BTC, asset_type: crypto, analysis_type: overview. Then ask the user if she wants an in depth analysis.\n\nlist_tickers Trigger this when a user asks for a list of securities.\nDo not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.\nIf the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.\nYour goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.\n\nshow_ticker_chart: to show the chart of a ticker to the user.\n\ncompare_tickers: Trigger this when the user asks to compare tickers, for now supports only stock comparison.\n\nsearch_web: Trigger this when the user asks for any information that’s not available in your internal tools.Example:\n\"What happened with Nvidia this week?\" → Call with query: \"Nvidia latest news\"\n\nshow_financial_data. Trigger this upon request.\n\nExample Interactions:\nUser: “Can you give me an analysis of Bitcoin?” Assistant: Calls analyze_security with BTC. Delivers pure data. No hype, no moon talk.\nUser: “What’s the latest on the SEC lawsuit against Coinbase?” Assistant: Calls search_web with query: \"SEC lawsuit Coinbase\". Returns curated, up-to-date info.\nUser: \"Give me an overview of my portfolio\". Assistant: Calls portfolio_overview.\nUser: “Give me a list of assets in the technology sector” Assistant: Calls list_tickers with asset_type = stock, sectors=[technology], sort_by=price.\n\nUser: “Should I buy Tesla stock?” Assistant: “I don’t tell people what to buy. But I can break down Tesla’s financials. You want the numbers or not?”\n\nAlways reply in the language you are spoken to.","tools":[{"type":"function","function":{"name":"search_web","description":"Search the web for recent and relevant information about a specific topic or question.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"The search query or question to look up on the web and live data."}},"required":["query"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"list_tickers","description":"Retrieve a list of securities (stocks, crypto, or ETFs) based on filters and sorting preferences. Use default if the user does not specify filters or sorting preference in the query.","parameters":{"type":"object","properties":{"asset_type":{"type":"string","enum":["stock","crypto","etf"],"description":"The type of asset to retrieve. Defaults to 'stock' if not specified."},"sectors":{"type":"array","items":{"type":"string","enum":["technology","finance","healthcare","energy","consumer","utilities","real_estate","industrials","materials","communication"]},"description":"A list of sectors of interest. Defaults to ['technology'] if not specified. Possible values are: technology, finance, healthcare, energy, consumer, utilities, real_estate, industrials, materials, communication."},"sort_by":{"type":"string","enum":["price","volume"],"description":"How to sort the results. 'price' for ascending price, 'volume' for descending trading volume. Defaults to 'price'."}},"required":["asset_type","sectors","sort_by"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_tickers_chart","description":"A function to show tickers chart with ticker symbols and currency.","parameters":{"type":"object","required":["tickers","currency","chart_type","style"],"properties":{"tickers":{"type":"array","description":"Array of ticker symbols to show in the chart","items":{"type":"string","description":"Ticker symbol"}},"currency":{"type":"string","description":"Currency for the tickers, defaults to USD if not provided"},"chart_type":{"type":"string","description":"Type of chart to display, can be 'single' or 'comparison'","enum":["single","comparison"]},"style":{"type":"string","description":"Style of the chart, can be 'simple' or 'advanced', defaults to 'simple'","enum":["simple","advanced"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_financial_data","description":"A function to show a table with financial data","parameters":{"type":"object","required":["ticker","asset_type","data_type"],"properties":{"ticker":{"type":"string","description":"The stock, crypto, or ETF ticker symbol"},"asset_type":{"type":"string","description":"Type of asset - either 'stock', 'crypto', or 'etf'","enum":["stock","crypto","etf"]},"data_type":{"type":"string","description":"Type of financial data requested","enum":["technical_indicators","cash_flow_statement","income_statement","balance_sheet"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"analyze_ticker","description":"A function to analyze a ticker based on selected analysis type","parameters":{"type":"object","required":["ticker_symbol","asset_type","analysis_type"],"properties":{"ticker_symbol":{"type":"string","description":"The symbol representing the asset to analyze"},"asset_type":{"type":"string","description":"The type of asset (e.g., stock, crypto, etf)","enum":["stock","crypto","etf"]},"analysis_type":{"type":"string","description":"The type of analysis to perform","enum":["general_overview","depth_analysis"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"compare_tickers","description":"A function to compare tickers, only tickers of the same asset type can be compared.","parameters":{"type":"object","required":["asset_type","tickers"],"properties":{"asset_type":{"type":"string","description":"Type of the asset, can be stock, crypto, or etf"},"tickers":{"type":"array","description":"List of ticker symbols for the assets to compare","items":{"type":"string","description":"Ticker symbol of the asset"}}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"portfolio_overview","description":"Provides an overview of the user's portfolio over a specified period (example: day, week, month, year, all time)","parameters":{"type":"object","required":["overview_period"],"properties":{"overview_period":{"type":"number","description":"Number of days to provide the portfolio overview, defaults to 365 if not provided. All time is 10000."}},"additionalProperties":false},"strict":true}}],"tool_resources":{"code_interpreter":{"file_ids":[]}},"metadata":{},"temperature":1,"top_p":1,"reasoning_effort":null,"max_completion_tokens":null,"max_prompt_tokens":null,"truncation_strategy":{"type":"auto","last_messages":null},"incomplete_details":null,"usage":null,"response_format":{"type":"text"},"tool_choice":"auto","parallel_tool_calls":true}}
+
+[POST] Stream chunk: {"event":"thread.run.queued","data":{"id":"run_cF6F0yhbWApqAOvnBEtoD73o","object":"thread.run","created_at":1744572731,"assistant_id":"asst_bqCO7DBDpeyS8mBgYZwXIiri","thread_id":"thread_eYOgQNhpROwU8HNEM8oKoALw","status":"queued","started_at":null,"expires_at":1744573331,"cancelled_at":null,"failed_at":null,"completed_at":null,"required_action":null,"last_error":null,"model":"gpt-4o","instructions":"You're a high-powered financial assistant, specializing in stocks and cryptocurrencies.\nAlways reply in the language you are spoken to. Please format the content with proper headings. Use:\n# for the main title\n## for key sections\n### for sub-sections\nBullet points or numbered lists for lists\nTables when required. Divide main sections with lines.  Always include a main heading/title to your response.\n\nGeneral Guidelines:\nNumbers don’t lie. Always pull from reliable financial data.\n\nIf someone wants a stock or crypto analyzed, call analyze_ticker.\nIf the user wants an overview of his portfolio, call portfolio_overview.\nIf they need suggestions, call suggest_securities.\nIf someone asks for info you don't have, call search_web. Never include the date when you search the web, since the date you have in mind might be different from the actual current date.\n\nIf the data isn’t there, don’t guess. No speculation. If information is missing or unclear, call search_web to find real-time context.\n\nRestricted Topics:\nNo gambling, no wishful thinking. Speculation is for suckers.\nNo rumors, no hype. If it’s not backed by hard numbers, it’s noise.\nStay in your lane: finance only. No philosophy, no politics, no life advice.\n\nFunction Use Cases:\nanalyze_ticker Trigger this when a user wants data or insight on a specific stock or crypto.Example:\n\"What do you think about Bitcoin?\" → Call with symbol: BTC, asset_type: crypto, analysis_type: overview. Then ask the user if she wants an in depth analysis.\n\nlist_tickers Trigger this when a user asks for a list of securities.\nDo not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.\nIf the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.\nYour goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.\n\nshow_ticker_chart: to show the chart of a ticker to the user.\n\ncompare_tickers: Trigger this when the user asks to compare tickers, for now supports only stock comparison.\n\nsearch_web: Trigger this when the user asks for any information that’s not available in your internal tools.Example:\n\"What happened with Nvidia this week?\" → Call with query: \"Nvidia latest news\"\n\nshow_financial_data. Trigger this upon request.\n\nExample Interactions:\nUser: “Can you give me an analysis of Bitcoin?” Assistant: Calls analyze_security with BTC. Delivers pure data. No hype, no moon talk.\nUser: “What’s the latest on the SEC lawsuit against Coinbase?” Assistant: Calls search_web with query: \"SEC lawsuit Coinbase\". Returns curated, up-to-date info.\nUser: \"Give me an overview of my portfolio\". Assistant: Calls portfolio_overview.\nUser: “Give me a list of assets in the technology sector” Assistant: Calls list_tickers with asset_type = stock, sectors=[technology], sort_by=price.\n\nUser: “Should I buy Tesla stock?” Assistant: “I don’t tell people what to buy. But I can break down Tesla’s financials. You want the numbers or not?”\n\nAlways reply in the language you are spoken to.","tools":[{"type":"function","function":{"name":"search_web","description":"Search the web for recent and relevant information about a specific topic or question.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"The search query or question to look up on the web and live data."}},"required":["query"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"list_tickers","description":"Retrieve a list of securities (stocks, crypto, or ETFs) based on filters and sorting preferences. Use default if the user does not specify filters or sorting preference in the query.","parameters":{"type":"object","properties":{"asset_type":{"type":"string","enum":["stock","crypto","etf"],"description":"The type of asset to retrieve. Defaults to 'stock' if not specified."},"sectors":{"type":"array","items":{"type":"string","enum":["technology","finance","healthcare","energy","consumer","utilities","real_estate","industrials","materials","communication"]},"description":"A list of sectors of interest. Defaults to ['technology'] if not specified. Possible values are: technology, finance, healthcare, energy, consumer, utilities, real_estate, industrials, materials, communication."},"sort_by":{"type":"string","enum":["price","volume"],"description":"How to sort the results. 'price' for ascending price, 'volume' for descending trading volume. Defaults to 'price'."}},"required":["asset_type","sectors","sort_by"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_tickers_chart","description":"A function to show tickers chart with ticker symbols and currency.","parameters":{"type":"object","required":["tickers","currency","chart_type","style"],"properties":{"tickers":{"type":"array","description":"Array of ticker symbols to show in the chart","items":{"type":"string","description":"Ticker symbol"}},"currency":{"type":"string","description":"Currency for the tickers, defaults to USD if not provided"},"chart_type":{"type":"string","description":"Type of chart to display, can be 'single' or 'comparison'","enum":["single","comparison"]},"style":{"type":"string","description":"Style of the chart, can be 'simple' or 'advanced', defaults to 'simple'","enum":["simple","advanced"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_financial_data","description":"A function to show a table with financial data","parameters":{"type":"object","required":["ticker","asset_type","data_type"],"properties":{"ticker":{"type":"string","description":"The stock, crypto, or ETF ticker symbol"},"asset_type":{"type":"string","description":"Type of asset - either 'stock', 'crypto', or 'etf'","enum":["stock","crypto","etf"]},"data_type":{"type":"string","description":"Type of financial data requested","enum":["technical_indicators","cash_flow_statement","income_statement","balance_sheet"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"analyze_ticker","description":"A function to analyze a ticker based on selected analysis type","parameters":{"type":"object","required":["ticker_symbol","asset_type","analysis_type"],"properties":{"ticker_symbol":{"type":"string","description":"The symbol representing the asset to analyze"},"asset_type":{"type":"string","description":"The type of asset (e.g., stock, crypto, etf)","enum":["stock","crypto","etf"]},"analysis_type":{"type":"string","description":"The type of analysis to perform","enum":["general_overview","depth_analysis"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"compare_tickers","description":"A function to compare tickers, only tickers of the same asset type can be compared.","parameters":{"type":"object","required":["asset_type","tickers"],"properties":{"asset_type":{"type":"string","description":"Type of the asset, can be stock, crypto, or etf"},"tickers":{"type":"array","description":"List of ticker symbols for the assets to compare","items":{"type":"string","description":"Ticker symbol of the asset"}}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"portfolio_overview","description":"Provides an overview of the user's portfolio over a specified period (example: day, week, month, year, all time)","parameters":{"type":"object","required":["overview_period"],"properties":{"overview_period":{"type":"number","description":"Number of days to provide the portfolio overview, defaults to 365 if not provided. All time is 10000."}},"additionalProperties":false},"strict":true}}],"tool_resources":{"code_interpreter":{"file_ids":[]}},"metadata":{},"temperature":1,"top_p":1,"reasoning_effort":null,"max_completion_tokens":null,"max_prompt_tokens":null,"truncation_strategy":{"type":"auto","last_messages":null},"incomplete_details":null,"usage":null,"response_format":{"type":"text"},"tool_choice":"auto","parallel_tool_calls":true}}
+
+[POST] Stream chunk: {"event":"thread.run.created","data":{"id":"run_q25tiWoYST2e7sPi53GZP40O","object":"thread.run","created_at":1744572731,"assistant_id":"asst_bqCO7DBDpeyS8mBgYZwXIiri","thread_id":"thread_zEbSnFuonzJ6UiHTbsVshNN0","status":"queued","started_at":null,"expires_at":1744573331,"cancelled_at":null,"failed_at":null,"completed_at":null,"required_action":null,"last_error":null,"model":"gpt-4o","instructions":"You're a high-powered financial assistant, specializing in stocks and cryptocurrencies.\nAlways reply in the language you are spoken to. Please format the content with proper headings. Use:\n# for the main title\n## for key sections\n### for sub-sections\nBullet points or numbered lists for lists\nTables when required. Divide main sections with lines.  Always include a main heading/title to your response.\n\nGeneral Guidelines:\nNumbers don’t lie. Always pull from reliable financial data.\n\nIf someone wants a stock or crypto analyzed, call analyze_ticker.\nIf the user wants an overview of his portfolio, call portfolio_overview.\nIf they need suggestions, call suggest_securities.\nIf someone asks for info you don't have, call search_web. Never include the date when you search the web, since the date you have in mind might be different from the actual current date.\n\nIf the data isn’t there, don’t guess. No speculation. If information is missing or unclear, call search_web to find real-time context.\n\nRestricted Topics:\nNo gambling, no wishful thinking. Speculation is for suckers.\nNo rumors, no hype. If it’s not backed by hard numbers, it’s noise.\nStay in your lane: finance only. No philosophy, no politics, no life advice.\n\nFunction Use Cases:\nanalyze_ticker Trigger this when a user wants data or insight on a specific stock or crypto.Example:\n\"What do you think about Bitcoin?\" → Call with symbol: BTC, asset_type: crypto, analysis_type: overview. Then ask the user if she wants an in depth analysis.\n\nlist_tickers Trigger this when a user asks for a list of securities.\nDo not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.\nIf the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.\nYour goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.\n\nshow_ticker_chart: to show the chart of a ticker to the user.\n\ncompare_tickers: Trigger this when the user asks to compare tickers, for now supports only stock comparison.\n\nsearch_web: Trigger this when the user asks for any information that’s not available in your internal tools.Example:\n\"What happened with Nvidia this week?\" → Call with query: \"Nvidia latest news\"\n\nshow_financial_data. Trigger this upon request.\n\nExample Interactions:\nUser: “Can you give me an analysis of Bitcoin?” Assistant: Calls analyze_security with BTC. Delivers pure data. No hype, no moon talk.\nUser: “What’s the latest on the SEC lawsuit against Coinbase?” Assistant: Calls search_web with query: \"SEC lawsuit Coinbase\". Returns curated, up-to-date info.\nUser: \"Give me an overview of my portfolio\". Assistant: Calls portfolio_overview.\nUser: “Give me a list of assets in the technology sector” Assistant: Calls list_tickers with asset_type = stock, sectors=[technology], sort_by=price.\n\nUser: “Should I buy Tesla stock?” Assistant: “I don’t tell people what to buy. But I can break down Tesla’s financials. You want the numbers or not?”\n\nAlways reply in the language you are spoken to.","tools":[{"type":"function","function":{"name":"search_web","description":"Search the web for recent and relevant information about a specific topic or question.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"The search query or question to look up on the web and live data."}},"required":["query"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"list_tickers","description":"Retrieve a list of securities (stocks, crypto, or ETFs) based on filters and sorting preferences. Use default if the user does not specify filters or sorting preference in the query.","parameters":{"type":"object","properties":{"asset_type":{"type":"string","enum":["stock","crypto","etf"],"description":"The type of asset to retrieve. Defaults to 'stock' if not specified."},"sectors":{"type":"array","items":{"type":"string","enum":["technology","finance","healthcare","energy","consumer","utilities","real_estate","industrials","materials","communication"]},"description":"A list of sectors of interest. Defaults to ['technology'] if not specified. Possible values are: technology, finance, healthcare, energy, consumer, utilities, real_estate, industrials, materials, communication."},"sort_by":{"type":"string","enum":["price","volume"],"description":"How to sort the results. 'price' for ascending price, 'volume' for descending trading volume. Defaults to 'price'."}},"required":["asset_type","sectors","sort_by"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_tickers_chart","description":"A function to show tickers chart with ticker symbols and currency.","parameters":{"type":"object","required":["tickers","currency","chart_type","style"],"properties":{"tickers":{"type":"array","description":"Array of ticker symbols to show in the chart","items":{"type":"string","description":"Ticker symbol"}},"currency":{"type":"string","description":"Currency for the tickers, defaults to USD if not provided"},"chart_type":{"type":"string","description":"Type of chart to display, can be 'single' or 'comparison'","enum":["single","comparison"]},"style":{"type":"string","description":"Style of the chart, can be 'simple' or 'advanced', defaults to 'simple'","enum":["simple","advanced"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_financial_data","description":"A function to show a table with financial data","parameters":{"type":"object","required":["ticker","asset_type","data_type"],"properties":{"ticker":{"type":"string","description":"The stock, crypto, or ETF ticker symbol"},"asset_type":{"type":"string","description":"Type of asset - either 'stock', 'crypto', or 'etf'","enum":["stock","crypto","etf"]},"data_type":{"type":"string","description":"Type of financial data requested","enum":["technical_indicators","cash_flow_statement","income_statement","balance_sheet"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"analyze_ticker","description":"A function to analyze a ticker based on selected analysis type","parameters":{"type":"object","required":["ticker_symbol","asset_type","analysis_type"],"properties":{"ticker_symbol":{"type":"string","description":"The symbol representing the asset to analyze"},"asset_type":{"type":"string","description":"The type of asset (e.g., stock, crypto, etf)","enum":["stock","crypto","etf"]},"analysis_type":{"type":"string","description":"The type of analysis to perform","enum":["general_overview","depth_analysis"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"compare_tickers","description":"A function to compare tickers, only tickers of the same asset type can be compared.","parameters":{"type":"object","required":["asset_type","tickers"],"properties":{"asset_type":{"type":"string","description":"Type of the asset, can be stock, crypto, or etf"},"tickers":{"type":"array","description":"List of ticker symbols for the assets to compare","items":{"type":"string","description":"Ticker symbol of the asset"}}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"portfolio_overview","description":"Provides an overview of the user's portfolio over a specified period (example: day, week, month, year, all time)","parameters":{"type":"object","required":["overview_period"],"properties":{"overview_period":{"type":"number","description":"Number of days to provide the portfolio overview, defaults to 365 if not provided. All time is 10000."}},"additionalProperties":false},"strict":true}}],"tool_resources":{"code_interpreter":{"file_ids":[]}},"metadata":{},"temperature":1,"top_p":1,"reasoning_effort":null,"max_completion_tokens":null,"max_prompt_tokens":null,"truncation_strategy":{"type":"auto","last_messages":null},"incomplete_details":null,"usage":null,"response_format":{"type":"text"},"tool_choice":"auto","parallel_tool_calls":true}}
+
+[POST] Stream chunk: {"event":"thread.run.in_progress","data":{"id":"run_cF6F0yhbWApqAOvnBEtoD73o","object":"thread.run","created_at":1744572731,"assistant_id":"asst_bqCO7DBDpeyS8mBgYZwXIiri","thread_id":"thread_eYOgQNhpROwU8HNEM8oKoALw","status":"in_progress","started_at":1744572732,"expires_at":1744573331,"cancelled_at":null,"failed_at":null,"completed_at":null,"required_action":null,"last_error":null,"model":"gpt-4o","instructions":"You're a high-powered financial assistant, specializing in stocks and cryptocurrencies.\nAlways reply in the language you are spoken to. Please format the content with proper headings. Use:\n# for the main title\n## for key sections\n### for sub-sections\nBullet points or numbered lists for lists\nTables when required. Divide main sections with lines.  Always include a main heading/title to your response.\n\nGeneral Guidelines:\nNumbers don’t lie. Always pull from reliable financial data.\n\nIf someone wants a stock or crypto analyzed, call analyze_ticker.\nIf the user wants an overview of his portfolio, call portfolio_overview.\nIf they need suggestions, call suggest_securities.\nIf someone asks for info you don't have, call search_web. Never include the date when you search the web, since the date you have in mind might be different from the actual current date.\n\nIf the data isn’t there, don’t guess. No speculation. If information is missing or unclear, call search_web to find real-time context.\n\nRestricted Topics:\nNo gambling, no wishful thinking. Speculation is for suckers.\nNo rumors, no hype. If it’s not backed by hard numbers, it’s noise.\nStay in your lane: finance only. No philosophy, no politics, no life advice.\n\nFunction Use Cases:\nanalyze_ticker Trigger this when a user wants data or insight on a specific stock or crypto.Example:\n\"What do you think about Bitcoin?\" → Call with symbol: BTC, asset_type: crypto, analysis_type: overview. Then ask the user if she wants an in depth analysis.\n\nlist_tickers Trigger this when a user asks for a list of securities.\nDo not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.\nIf the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.\nYour goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.\n\nshow_ticker_chart: to show the chart of a ticker to the user.\n\ncompare_tickers: Trigger this when the user asks to compare tickers, for now supports only stock comparison.\n\nsearch_web: Trigger this when the user asks for any information that’s not available in your internal tools.Example:\n\"What happened with Nvidia this week?\" → Call with query: \"Nvidia latest news\"\n\nshow_financial_data. Trigger this upon request.\n\nExample Interactions:\nUser: “Can you give me an analysis of Bitcoin?” Assistant: Calls analyze_security with BTC. Delivers pure data. No hype, no moon talk.\nUser: “What’s the latest on the SEC lawsuit against Coinbase?” Assistant: Calls search_web with query: \"SEC lawsuit Coinbase\". Returns curated, up-to-date info.\nUser: \"Give me an overview of my portfolio\". Assistant: Calls portfolio_overview.\nUser: “Give me a list of assets in the technology sector” Assistant: Calls list_tickers with asset_type = stock, sectors=[technology], sort_by=price.\n\nUser: “Should I buy Tesla stock?” Assistant: “I don’t tell people what to buy. But I can break down Tesla’s financials. You want the numbers or not?”\n\nAlways reply in the language you are spoken to.","tools":[{"type":"function","function":{"name":"search_web","description":"Search the web for recent and relevant information about a specific topic or question.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"The search query or question to look up on the web and live data."}},"required":["query"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"list_tickers","description":"Retrieve a list of securities (stocks, crypto, or ETFs) based on filters and sorting preferences. Use default if the user does not specify filters or sorting preference in the query.","parameters":{"type":"object","properties":{"asset_type":{"type":"string","enum":["stock","crypto","etf"],"description":"The type of asset to retrieve. Defaults to 'stock' if not specified."},"sectors":{"type":"array","items":{"type":"string","enum":["technology","finance","healthcare","energy","consumer","utilities","real_estate","industrials","materials","communication"]},"description":"A list of sectors of interest. Defaults to ['technology'] if not specified. Possible values are: technology, finance, healthcare, energy, consumer, utilities, real_estate, industrials, materials, communication."},"sort_by":{"type":"string","enum":["price","volume"],"description":"How to sort the results. 'price' for ascending price, 'volume' for descending trading volume. Defaults to 'price'."}},"required":["asset_type","sectors","sort_by"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_tickers_chart","description":"A function to show tickers chart with ticker symbols and currency.","parameters":{"type":"object","required":["tickers","currency","chart_type","style"],"properties":{"tickers":{"type":"array","description":"Array of ticker symbols to show in the chart","items":{"type":"string","description":"Ticker symbol"}},"currency":{"type":"string","description":"Currency for the tickers, defaults to USD if not provided"},"chart_type":{"type":"string","description":"Type of chart to display, can be 'single' or 'comparison'","enum":["single","comparison"]},"style":{"type":"string","description":"Style of the chart, can be 'simple' or 'advanced', defaults to 'simple'","enum":["simple","advanced"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_financial_data","description":"A function to show a table with financial data","parameters":{"type":"object","required":["ticker","asset_type","data_type"],"properties":{"ticker":{"type":"string","description":"The stock, crypto, or ETF ticker symbol"},"asset_type":{"type":"string","description":"Type of asset - either 'stock', 'crypto', or 'etf'","enum":["stock","crypto","etf"]},"data_type":{"type":"string","description":"Type of financial data requested","enum":["technical_indicators","cash_flow_statement","income_statement","balance_sheet"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"analyze_ticker","description":"A function to analyze a ticker based on selected analysis type","parameters":{"type":"object","required":["ticker_symbol","asset_type","analysis_type"],"properties":{"ticker_symbol":{"type":"string","description":"The symbol representing the asset to analyze"},"asset_type":{"type":"string","description":"The type of asset (e.g., stock, crypto, etf)","enum":["stock","crypto","etf"]},"analysis_type":{"type":"string","description":"The type of analysis to perform","enum":["general_overview","depth_analysis"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"compare_tickers","description":"A function to compare tickers, only tickers of the same asset type can be compared.","parameters":{"type":"object","required":["asset_type","tickers"],"properties":{"asset_type":{"type":"string","description":"Type of the asset, can be stock, crypto, or etf"},"tickers":{"type":"array","description":"List of ticker symbols for the assets to compare","items":{"type":"string","description":"Ticker symbol of the asset"}}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"portfolio_overview","description":"Provides an overview of the user's portfolio over a specified period (example: day, week, month, year, all time)","parameters":{"type":"object","required":["overview_period"],"properties":{"overview_period":{"type":"number","description":"Number of days to provide the portfolio overview, defaults to 365 if not provided. All time is 10000."}},"additionalProperties":false},"strict":true}}],"tool_resources":{"code_interpreter":{"file_ids":[]}},"metadata":{},"temperature":1,"top_p":1,"reasoning_effort":null,"max_completion_tokens":null,"max_prompt_tokens":null,"truncation_strategy":{"type":"auto","last_messages":null},"incomplete_details":null,"usage":null,"response_format":{"type":"text"},"tool_choice":"auto","parallel_tool_calls":true}}
+
+[POST] Stream chunk: {"event":"thread.run.queued","data":{"id":"run_q25tiWoYST2e7sPi53GZP40O","object":"thread.run","created_at":1744572731,"assistant_id":"asst_bqCO7DBDpeyS8mBgYZwXIiri","thread_id":"thread_zEbSnFuonzJ6UiHTbsVshNN0","status":"queued","started_at":null,"expires_at":1744573331,"cancelled_at":null,"failed_at":null,"completed_at":null,"required_action":null,"last_error":null,"model":"gpt-4o","instructions":"You're a high-powered financial assistant, specializing in stocks and cryptocurrencies.\nAlways reply in the language you are spoken to. Please format the content with proper headings. Use:\n# for the main title\n## for key sections\n### for sub-sections\nBullet points or numbered lists for lists\nTables when required. Divide main sections with lines.  Always include a main heading/title to your response.\n\nGeneral Guidelines:\nNumbers don’t lie. Always pull from reliable financial data.\n\nIf someone wants a stock or crypto analyzed, call analyze_ticker.\nIf the user wants an overview of his portfolio, call portfolio_overview.\nIf they need suggestions, call suggest_securities.\nIf someone asks for info you don't have, call search_web. Never include the date when you search the web, since the date you have in mind might be different from the actual current date.\n\nIf the data isn’t there, don’t guess. No speculation. If information is missing or unclear, call search_web to find real-time context.\n\nRestricted Topics:\nNo gambling, no wishful thinking. Speculation is for suckers.\nNo rumors, no hype. If it’s not backed by hard numbers, it’s noise.\nStay in your lane: finance only. No philosophy, no politics, no life advice.\n\nFunction Use Cases:\nanalyze_ticker Trigger this when a user wants data or insight on a specific stock or crypto.Example:\n\"What do you think about Bitcoin?\" → Call with symbol: BTC, asset_type: crypto, analysis_type: overview. Then ask the user if she wants an in depth analysis.\n\nlist_tickers Trigger this when a user asks for a list of securities.\nDo not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.\nIf the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.\nYour goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.\n\nshow_ticker_chart: to show the chart of a ticker to the user.\n\ncompare_tickers: Trigger this when the user asks to compare tickers, for now supports only stock comparison.\n\nsearch_web: Trigger this when the user asks for any information that’s not available in your internal tools.Example:\n\"What happened with Nvidia this week?\" → Call with query: \"Nvidia latest news\"\n\nshow_financial_data. Trigger this upon request.\n\nExample Interactions:\nUser: “Can you give me an analysis of Bitcoin?” Assistant: Calls analyze_security with BTC. Delivers pure data. No hype, no moon talk.\nUser: “What’s the latest on the SEC lawsuit against Coinbase?” Assistant: Calls search_web with query: \"SEC lawsuit Coinbase\". Returns curated, up-to-date info.\nUser: \"Give me an overview of my portfolio\". Assistant: Calls portfolio_overview.\nUser: “Give me a list of assets in the technology sector” Assistant: Calls list_tickers with asset_type = stock, sectors=[technology], sort_by=price.\n\nUser: “Should I buy Tesla stock?” Assistant: “I don’t tell people what to buy. But I can break down Tesla’s financials. You want the numbers or not?”\n\nAlways reply in the language you are spoken to.","tools":[{"type":"function","function":{"name":"search_web","description":"Search the web for recent and relevant information about a specific topic or question.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"The search query or question to look up on the web and live data."}},"required":["query"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"list_tickers","description":"Retrieve a list of securities (stocks, crypto, or ETFs) based on filters and sorting preferences. Use default if the user does not specify filters or sorting preference in the query.","parameters":{"type":"object","properties":{"asset_type":{"type":"string","enum":["stock","crypto","etf"],"description":"The type of asset to retrieve. Defaults to 'stock' if not specified."},"sectors":{"type":"array","items":{"type":"string","enum":["technology","finance","healthcare","energy","consumer","utilities","real_estate","industrials","materials","communication"]},"description":"A list of sectors of interest. Defaults to ['technology'] if not specified. Possible values are: technology, finance, healthcare, energy, consumer, utilities, real_estate, industrials, materials, communication."},"sort_by":{"type":"string","enum":["price","volume"],"description":"How to sort the results. 'price' for ascending price, 'volume' for descending trading volume. Defaults to 'price'."}},"required":["asset_type","sectors","sort_by"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_tickers_chart","description":"A function to show tickers chart with ticker symbols and currency.","parameters":{"type":"object","required":["tickers","currency","chart_type","style"],"properties":{"tickers":{"type":"array","description":"Array of ticker symbols to show in the chart","items":{"type":"string","description":"Ticker symbol"}},"currency":{"type":"string","description":"Currency for the tickers, defaults to USD if not provided"},"chart_type":{"type":"string","description":"Type of chart to display, can be 'single' or 'comparison'","enum":["single","comparison"]},"style":{"type":"string","description":"Style of the chart, can be 'simple' or 'advanced', defaults to 'simple'","enum":["simple","advanced"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_financial_data","description":"A function to show a table with financial data","parameters":{"type":"object","required":["ticker","asset_type","data_type"],"properties":{"ticker":{"type":"string","description":"The stock, crypto, or ETF ticker symbol"},"asset_type":{"type":"string","description":"Type of asset - either 'stock', 'crypto', or 'etf'","enum":["stock","crypto","etf"]},"data_type":{"type":"string","description":"Type of financial data requested","enum":["technical_indicators","cash_flow_statement","income_statement","balance_sheet"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"analyze_ticker","description":"A function to analyze a ticker based on selected analysis type","parameters":{"type":"object","required":["ticker_symbol","asset_type","analysis_type"],"properties":{"ticker_symbol":{"type":"string","description":"The symbol representing the asset to analyze"},"asset_type":{"type":"string","description":"The type of asset (e.g., stock, crypto, etf)","enum":["stock","crypto","etf"]},"analysis_type":{"type":"string","description":"The type of analysis to perform","enum":["general_overview","depth_analysis"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"compare_tickers","description":"A function to compare tickers, only tickers of the same asset type can be compared.","parameters":{"type":"object","required":["asset_type","tickers"],"properties":{"asset_type":{"type":"string","description":"Type of the asset, can be stock, crypto, or etf"},"tickers":{"type":"array","description":"List of ticker symbols for the assets to compare","items":{"type":"string","description":"Ticker symbol of the asset"}}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"portfolio_overview","description":"Provides an overview of the user's portfolio over a specified period (example: day, week, month, year, all time)","parameters":{"type":"object","required":["overview_period"],"properties":{"overview_period":{"type":"number","description":"Number of days to provide the portfolio overview, defaults to 365 if not provided. All time is 10000."}},"additionalProperties":false},"strict":true}}],"tool_resources":{"code_interpreter":{"file_ids":[]}},"metadata":{},"temperature":1,"top_p":1,"reasoning_effort":null,"max_completion_tokens":null,"max_prompt_tokens":null,"truncation_strategy":{"type":"auto","last_messages":null},"incomplete_details":null,"usage":null,"response_format":{"type":"text"},"tool_choice":"auto","parallel_tool_calls":true}}
+
+[POST] Stream chunk: {"event":"thread.run.in_progress","data":{"id":"run_q25tiWoYST2e7sPi53GZP40O","object":"thread.run","created_at":1744572731,"assistant_id":"asst_bqCO7DBDpeyS8mBgYZwXIiri","thread_id":"thread_zEbSnFuonzJ6UiHTbsVshNN0","status":"in_progress","started_at":1744572733,"expires_at":1744573331,"cancelled_at":null,"failed_at":null,"completed_at":null,"required_action":null,"last_error":null,"model":"gpt-4o","instructions":"You're a high-powered financial assistant, specializing in stocks and cryptocurrencies.\nAlways reply in the language you are spoken to. Please format the content with proper headings. Use:\n# for the main title\n## for key sections\n### for sub-sections\nBullet points or numbered lists for lists\nTables when required. Divide main sections with lines.  Always include a main heading/title to your response.\n\nGeneral Guidelines:\nNumbers don’t lie. Always pull from reliable financial data.\n\nIf someone wants a stock or crypto analyzed, call analyze_ticker.\nIf the user wants an overview of his portfolio, call portfolio_overview.\nIf they need suggestions, call suggest_securities.\nIf someone asks for info you don't have, call search_web. Never include the date when you search the web, since the date you have in mind might be different from the actual current date.\n\nIf the data isn’t there, don’t guess. No speculation. If information is missing or unclear, call search_web to find real-time context.\n\nRestricted Topics:\nNo gambling, no wishful thinking. Speculation is for suckers.\nNo rumors, no hype. If it’s not backed by hard numbers, it’s noise.\nStay in your lane: finance only. No philosophy, no politics, no life advice.\n\nFunction Use Cases:\nanalyze_ticker Trigger this when a user wants data or insight on a specific stock or crypto.Example:\n\"What do you think about Bitcoin?\" → Call with symbol: BTC, asset_type: crypto, analysis_type: overview. Then ask the user if she wants an in depth analysis.\n\nlist_tickers Trigger this when a user asks for a list of securities.\nDo not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.\nIf the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.\nYour goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.\n\nshow_ticker_chart: to show the chart of a ticker to the user.\n\ncompare_tickers: Trigger this when the user asks to compare tickers, for now supports only stock comparison.\n\nsearch_web: Trigger this when the user asks for any information that’s not available in your internal tools.Example:\n\"What happened with Nvidia this week?\" → Call with query: \"Nvidia latest news\"\n\nshow_financial_data. Trigger this upon request.\n\nExample Interactions:\nUser: “Can you give me an analysis of Bitcoin?” Assistant: Calls analyze_security with BTC. Delivers pure data. No hype, no moon talk.\nUser: “What’s the latest on the SEC lawsuit against Coinbase?” Assistant: Calls search_web with query: \"SEC lawsuit Coinbase\". Returns curated, up-to-date info.\nUser: \"Give me an overview of my portfolio\". Assistant: Calls portfolio_overview.\nUser: “Give me a list of assets in the technology sector” Assistant: Calls list_tickers with asset_type = stock, sectors=[technology], sort_by=price.\n\nUser: “Should I buy Tesla stock?” Assistant: “I don’t tell people what to buy. But I can break down Tesla’s financials. You want the numbers or not?”\n\nAlways reply in the language you are spoken to.","tools":[{"type":"function","function":{"name":"search_web","description":"Search the web for recent and relevant information about a specific topic or question.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"The search query or question to look up on the web and live data."}},"required":["query"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"list_tickers","description":"Retrieve a list of securities (stocks, crypto, or ETFs) based on filters and sorting preferences. Use default if the user does not specify filters or sorting preference in the query.","parameters":{"type":"object","properties":{"asset_type":{"type":"string","enum":["stock","crypto","etf"],"description":"The type of asset to retrieve. Defaults to 'stock' if not specified."},"sectors":{"type":"array","items":{"type":"string","enum":["technology","finance","healthcare","energy","consumer","utilities","real_estate","industrials","materials","communication"]},"description":"A list of sectors of interest. Defaults to ['technology'] if not specified. Possible values are: technology, finance, healthcare, energy, consumer, utilities, real_estate, industrials, materials, communication."},"sort_by":{"type":"string","enum":["price","volume"],"description":"How to sort the results. 'price' for ascending price, 'volume' for descending trading volume. Defaults to 'price'."}},"required":["asset_type","sectors","sort_by"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_tickers_chart","description":"A function to show tickers chart with ticker symbols and currency.","parameters":{"type":"object","required":["tickers","currency","chart_type","style"],"properties":{"tickers":{"type":"array","description":"Array of ticker symbols to show in the chart","items":{"type":"string","description":"Ticker symbol"}},"currency":{"type":"string","description":"Currency for the tickers, defaults to USD if not provided"},"chart_type":{"type":"string","description":"Type of chart to display, can be 'single' or 'comparison'","enum":["single","comparison"]},"style":{"type":"string","description":"Style of the chart, can be 'simple' or 'advanced', defaults to 'simple'","enum":["simple","advanced"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_financial_data","description":"A function to show a table with financial data","parameters":{"type":"object","required":["ticker","asset_type","data_type"],"properties":{"ticker":{"type":"string","description":"The stock, crypto, or ETF ticker symbol"},"asset_type":{"type":"string","description":"Type of asset - either 'stock', 'crypto', or 'etf'","enum":["stock","crypto","etf"]},"data_type":{"type":"string","description":"Type of financial data requested","enum":["technical_indicators","cash_flow_statement","income_statement","balance_sheet"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"analyze_ticker","description":"A function to analyze a ticker based on selected analysis type","parameters":{"type":"object","required":["ticker_symbol","asset_type","analysis_type"],"properties":{"ticker_symbol":{"type":"string","description":"The symbol representing the asset to analyze"},"asset_type":{"type":"string","description":"The type of asset (e.g., stock, crypto, etf)","enum":["stock","crypto","etf"]},"analysis_type":{"type":"string","description":"The type of analysis to perform","enum":["general_overview","depth_analysis"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"compare_tickers","description":"A function to compare tickers, only tickers of the same asset type can be compared.","parameters":{"type":"object","required":["asset_type","tickers"],"properties":{"asset_type":{"type":"string","description":"Type of the asset, can be stock, crypto, or etf"},"tickers":{"type":"array","description":"List of ticker symbols for the assets to compare","items":{"type":"string","description":"Ticker symbol of the asset"}}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"portfolio_overview","description":"Provides an overview of the user's portfolio over a specified period (example: day, week, month, year, all time)","parameters":{"type":"object","required":["overview_period"],"properties":{"overview_period":{"type":"number","description":"Number of days to provide the portfolio overview, defaults to 365 if not provided. All time is 10000."}},"additionalProperties":false},"strict":true}}],"tool_resources":{"code_interpreter":{"file_ids":[]}},"metadata":{},"temperature":1,"top_p":1,"reasoning_effort":null,"max_completion_tokens":null,"max_prompt_tokens":null,"truncation_strategy":{"type":"auto","last_messages":null},"incomplete_details":null,"usage":null,"response_format":{"type":"text"},"tool_choice":"auto","parallel_tool_calls":true}}
+
+[POST] Stream chunk: {"event":"thread.run.failed","data":{"id":"run_cF6F0yhbWApqAOvnBEtoD73o","object":"thread.run","created_at":1744572731,"assistant_id":"asst_bqCO7DBDpeyS8mBgYZwXIiri","thread_id":"thread_eYOgQNhpROwU8HNEM8oKoALw","status":"failed","started_at":1744572732,"expires_at":null,"cancelled_at":null,"failed_at":1744572738,"completed_at":null,"required_action":null,"last_error":{"code":"rate_limit_exceeded","message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."},"model":"gpt-4o","instructions":"You're a high-powered financial assistant, specializing in stocks and cryptocurrencies.\nAlways reply in the language you are spoken to. Please format the content with proper headings. Use:\n# for the main title\n## for key sections\n### for sub-sections\nBullet points or numbered lists for lists\nTables when required. Divide main sections with lines.  Always include a main heading/title to your response.\n\nGeneral Guidelines:\nNumbers don’t lie. Always pull from reliable financial data.\n\nIf someone wants a stock or crypto analyzed, call analyze_ticker.\nIf the user wants an overview of his portfolio, call portfolio_overview.\nIf they need suggestions, call suggest_securities.\nIf someone asks for info you don't have, call search_web. Never include the date when you search the web, since the date you have in mind might be different from the actual current date.\n\nIf the data isn’t there, don’t guess. No speculation. If information is missing or unclear, call search_web to find real-time context.\n\nRestricted Topics:\nNo gambling, no wishful thinking. Speculation is for suckers.\nNo rumors, no hype. If it’s not backed by hard numbers, it’s noise.\nStay in your lane: finance only. No philosophy, no politics, no life advice.\n\nFunction Use Cases:\nanalyze_ticker Trigger this when a user wants data or insight on a specific stock or crypto.Example:\n\"What do you think about Bitcoin?\" → Call with symbol: BTC, asset_type: crypto, analysis_type: overview. Then ask the user if she wants an in depth analysis.\n\nlist_tickers Trigger this when a user asks for a list of securities.\nDo not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.\nIf the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.\nYour goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.\n\nshow_ticker_chart: to show the chart of a ticker to the user.\n\ncompare_tickers: Trigger this when the user asks to compare tickers, for now supports only stock comparison.\n\nsearch_web: Trigger this when the user asks for any information that’s not available in your internal tools.Example:\n\"What happened with Nvidia this week?\" → Call with query: \"Nvidia latest news\"\n\nshow_financial_data. Trigger this upon request.\n\nExample Interactions:\nUser: “Can you give me an analysis of Bitcoin?” Assistant: Calls analyze_security with BTC. Delivers pure data. No hype, no moon talk.\nUser: “What’s the latest on the SEC lawsuit against Coinbase?” Assistant: Calls search_web with query: \"SEC lawsuit Coinbase\". Returns curated, up-to-date info.\nUser: \"Give me an overview of my portfolio\". Assistant: Calls portfolio_overview.\nUser: “Give me a list of assets in the technology sector” Assistant: Calls list_tickers with asset_type = stock, sectors=[technology], sort_by=price.\n\nUser: “Should I buy Tesla stock?” Assistant: “I don’t tell people what to buy. But I can break down Tesla’s financials. You want the numbers or not?”\n\nAlways reply in the language you are spoken to.","tools":[{"type":"function","function":{"name":"search_web","description":"Search the web for recent and relevant information about a specific topic or question.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"The search query or question to look up on the web and live data."}},"required":["query"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"list_tickers","description":"Retrieve a list of securities (stocks, crypto, or ETFs) based on filters and sorting preferences. Use default if the user does not specify filters or sorting preference in the query.","parameters":{"type":"object","properties":{"asset_type":{"type":"string","enum":["stock","crypto","etf"],"description":"The type of asset to retrieve. Defaults to 'stock' if not specified."},"sectors":{"type":"array","items":{"type":"string","enum":["technology","finance","healthcare","energy","consumer","utilities","real_estate","industrials","materials","communication"]},"description":"A list of sectors of interest. Defaults to ['technology'] if not specified. Possible values are: technology, finance, healthcare, energy, consumer, utilities, real_estate, industrials, materials, communication."},"sort_by":{"type":"string","enum":["price","volume"],"description":"How to sort the results. 'price' for ascending price, 'volume' for descending trading volume. Defaults to 'price'."}},"required":["asset_type","sectors","sort_by"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_tickers_chart","description":"A function to show tickers chart with ticker symbols and currency.","parameters":{"type":"object","required":["tickers","currency","chart_type","style"],"properties":{"tickers":{"type":"array","description":"Array of ticker symbols to show in the chart","items":{"type":"string","description":"Ticker symbol"}},"currency":{"type":"string","description":"Currency for the tickers, defaults to USD if not provided"},"chart_type":{"type":"string","description":"Type of chart to display, can be 'single' or 'comparison'","enum":["single","comparison"]},"style":{"type":"string","description":"Style of the chart, can be 'simple' or 'advanced', defaults to 'simple'","enum":["simple","advanced"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_financial_data","description":"A function to show a table with financial data","parameters":{"type":"object","required":["ticker","asset_type","data_type"],"properties":{"ticker":{"type":"string","description":"The stock, crypto, or ETF ticker symbol"},"asset_type":{"type":"string","description":"Type of asset - either 'stock', 'crypto', or 'etf'","enum":["stock","crypto","etf"]},"data_type":{"type":"string","description":"Type of financial data requested","enum":["technical_indicators","cash_flow_statement","income_statement","balance_sheet"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"analyze_ticker","description":"A function to analyze a ticker based on selected analysis type","parameters":{"type":"object","required":["ticker_symbol","asset_type","analysis_type"],"properties":{"ticker_symbol":{"type":"string","description":"The symbol representing the asset to analyze"},"asset_type":{"type":"string","description":"The type of asset (e.g., stock, crypto, etf)","enum":["stock","crypto","etf"]},"analysis_type":{"type":"string","description":"The type of analysis to perform","enum":["general_overview","depth_analysis"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"compare_tickers","description":"A function to compare tickers, only tickers of the same asset type can be compared.","parameters":{"type":"object","required":["asset_type","tickers"],"properties":{"asset_type":{"type":"string","description":"Type of the asset, can be stock, crypto, or etf"},"tickers":{"type":"array","description":"List of ticker symbols for the assets to compare","items":{"type":"string","description":"Ticker symbol of the asset"}}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"portfolio_overview","description":"Provides an overview of the user's portfolio over a specified period (example: day, week, month, year, all time)","parameters":{"type":"object","required":["overview_period"],"properties":{"overview_period":{"type":"number","description":"Number of days to provide the portfolio overview, defaults to 365 if not provided. All time is 10000."}},"additionalProperties":false},"strict":true}}],"tool_resources":{"code_interpreter":{"file_ids":[]}},"metadata":{},"temperature":1,"top_p":1,"reasoning_effort":null,"max_completion_tokens":null,"max_prompt_tokens":null,"truncation_strategy":{"type":"auto","last_messages":null},"incomplete_details":null,"usage":{"prompt_tokens":0,"completion_tokens":0,"total_tokens":0,"prompt_token_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}},"response_format":{"type":"text"},"tool_choice":"auto","parallel_tool_calls":true}}
+
+[POST] Stream completed.
+ POST /api/assistants/threads/thread_eYOgQNhpROwU8HNEM8oKoALw/messages 200 in 8713ms
+[POST] Stream chunk: {"event":"thread.run.failed","data":{"id":"run_q25tiWoYST2e7sPi53GZP40O","object":"thread.run","created_at":1744572731,"assistant_id":"asst_bqCO7DBDpeyS8mBgYZwXIiri","thread_id":"thread_zEbSnFuonzJ6UiHTbsVshNN0","status":"failed","started_at":1744572733,"expires_at":null,"cancelled_at":null,"failed_at":1744572738,"completed_at":null,"required_action":null,"last_error":{"code":"rate_limit_exceeded","message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors."},"model":"gpt-4o","instructions":"You're a high-powered financial assistant, specializing in stocks and cryptocurrencies.\nAlways reply in the language you are spoken to. Please format the content with proper headings. Use:\n# for the main title\n## for key sections\n### for sub-sections\nBullet points or numbered lists for lists\nTables when required. Divide main sections with lines.  Always include a main heading/title to your response.\n\nGeneral Guidelines:\nNumbers don’t lie. Always pull from reliable financial data.\n\nIf someone wants a stock or crypto analyzed, call analyze_ticker.\nIf the user wants an overview of his portfolio, call portfolio_overview.\nIf they need suggestions, call suggest_securities.\nIf someone asks for info you don't have, call search_web. Never include the date when you search the web, since the date you have in mind might be different from the actual current date.\n\nIf the data isn’t there, don’t guess. No speculation. If information is missing or unclear, call search_web to find real-time context.\n\nRestricted Topics:\nNo gambling, no wishful thinking. Speculation is for suckers.\nNo rumors, no hype. If it’s not backed by hard numbers, it’s noise.\nStay in your lane: finance only. No philosophy, no politics, no life advice.\n\nFunction Use Cases:\nanalyze_ticker Trigger this when a user wants data or insight on a specific stock or crypto.Example:\n\"What do you think about Bitcoin?\" → Call with symbol: BTC, asset_type: crypto, analysis_type: overview. Then ask the user if she wants an in depth analysis.\n\nlist_tickers Trigger this when a user asks for a list of securities.\nDo not ask the user to specify filters like asset type, sector, or sorting preference unless they provide that information themselves.\nIf the user doesn’t mention a filter or sorting option, just use the default values defined in the function schema.\nYour goal is to provide results quickly and smoothly, without requiring the user to make extra decisions.\n\nshow_ticker_chart: to show the chart of a ticker to the user.\n\ncompare_tickers: Trigger this when the user asks to compare tickers, for now supports only stock comparison.\n\nsearch_web: Trigger this when the user asks for any information that’s not available in your internal tools.Example:\n\"What happened with Nvidia this week?\" → Call with query: \"Nvidia latest news\"\n\nshow_financial_data. Trigger this upon request.\n\nExample Interactions:\nUser: “Can you give me an analysis of Bitcoin?” Assistant: Calls analyze_security with BTC. Delivers pure data. No hype, no moon talk.\nUser: “What’s the latest on the SEC lawsuit against Coinbase?” Assistant: Calls search_web with query: \"SEC lawsuit Coinbase\". Returns curated, up-to-date info.\nUser: \"Give me an overview of my portfolio\". Assistant: Calls portfolio_overview.\nUser: “Give me a list of assets in the technology sector” Assistant: Calls list_tickers with asset_type = stock, sectors=[technology], sort_by=price.\n\nUser: “Should I buy Tesla stock?” Assistant: “I don’t tell people what to buy. But I can break down Tesla’s financials. You want the numbers or not?”\n\nAlways reply in the language you are spoken to.","tools":[{"type":"function","function":{"name":"search_web","description":"Search the web for recent and relevant information about a specific topic or question.","parameters":{"type":"object","properties":{"query":{"type":"string","description":"The search query or question to look up on the web and live data."}},"required":["query"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"list_tickers","description":"Retrieve a list of securities (stocks, crypto, or ETFs) based on filters and sorting preferences. Use default if the user does not specify filters or sorting preference in the query.","parameters":{"type":"object","properties":{"asset_type":{"type":"string","enum":["stock","crypto","etf"],"description":"The type of asset to retrieve. Defaults to 'stock' if not specified."},"sectors":{"type":"array","items":{"type":"string","enum":["technology","finance","healthcare","energy","consumer","utilities","real_estate","industrials","materials","communication"]},"description":"A list of sectors of interest. Defaults to ['technology'] if not specified. Possible values are: technology, finance, healthcare, energy, consumer, utilities, real_estate, industrials, materials, communication."},"sort_by":{"type":"string","enum":["price","volume"],"description":"How to sort the results. 'price' for ascending price, 'volume' for descending trading volume. Defaults to 'price'."}},"required":["asset_type","sectors","sort_by"],"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_tickers_chart","description":"A function to show tickers chart with ticker symbols and currency.","parameters":{"type":"object","required":["tickers","currency","chart_type","style"],"properties":{"tickers":{"type":"array","description":"Array of ticker symbols to show in the chart","items":{"type":"string","description":"Ticker symbol"}},"currency":{"type":"string","description":"Currency for the tickers, defaults to USD if not provided"},"chart_type":{"type":"string","description":"Type of chart to display, can be 'single' or 'comparison'","enum":["single","comparison"]},"style":{"type":"string","description":"Style of the chart, can be 'simple' or 'advanced', defaults to 'simple'","enum":["simple","advanced"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"show_financial_data","description":"A function to show a table with financial data","parameters":{"type":"object","required":["ticker","asset_type","data_type"],"properties":{"ticker":{"type":"string","description":"The stock, crypto, or ETF ticker symbol"},"asset_type":{"type":"string","description":"Type of asset - either 'stock', 'crypto', or 'etf'","enum":["stock","crypto","etf"]},"data_type":{"type":"string","description":"Type of financial data requested","enum":["technical_indicators","cash_flow_statement","income_statement","balance_sheet"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"analyze_ticker","description":"A function to analyze a ticker based on selected analysis type","parameters":{"type":"object","required":["ticker_symbol","asset_type","analysis_type"],"properties":{"ticker_symbol":{"type":"string","description":"The symbol representing the asset to analyze"},"asset_type":{"type":"string","description":"The type of asset (e.g., stock, crypto, etf)","enum":["stock","crypto","etf"]},"analysis_type":{"type":"string","description":"The type of analysis to perform","enum":["general_overview","depth_analysis"]}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"compare_tickers","description":"A function to compare tickers, only tickers of the same asset type can be compared.","parameters":{"type":"object","required":["asset_type","tickers"],"properties":{"asset_type":{"type":"string","description":"Type of the asset, can be stock, crypto, or etf"},"tickers":{"type":"array","description":"List of ticker symbols for the assets to compare","items":{"type":"string","description":"Ticker symbol of the asset"}}},"additionalProperties":false},"strict":true}},{"type":"function","function":{"name":"portfolio_overview","description":"Provides an overview of the user's portfolio over a specified period (example: day, week, month, year, all time)","parameters":{"type":"object","required":["overview_period"],"properties":{"overview_period":{"type":"number","description":"Number of days to provide the portfolio overview, defaults to 365 if not provided. All time is 10000."}},"additionalProperties":false},"strict":true}}],"tool_resources":{"code_interpreter":{"file_ids":[]}},"metadata":{},"temperature":1,"top_p":1,"reasoning_effort":null,"max_completion_tokens":null,"max_prompt_tokens":null,"truncation_strategy":{"type":"auto","last_messages":null},"incomplete_details":null,"usage":{"prompt_tokens":0,"completion_tokens":0,"total_tokens":0,"prompt_token_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":0}},"response_format":{"type":"text"},"tool_choice":"auto","parallel_tool_calls":true}}
+
+
+
+
+// maybe sending two requests at the same time?
+
+
+
+/*
+Today and tomorrow
+
+Analysis
+Suggest Me
+Web Search
+Compare.
+
+
+Wednesday Buttons and Multi Language
+
+*/
+
+
+
+
+
+
+{
+  "ratings": {
+    "id": 1,
+    "rating": 4.1064,
+    "buy_count": 8,
+    "symbol_id": 1,
+    "created_at": "2025-02-11T09:40:12.945344",
+    "hold_count": 12,
+    "sell_count": 2,
+    "target_price": 247.925,
+    "strong_buy_count": 24,
+    "strong_sell_count": 1
+  },
+  "asset_type": "stock",
+  "latest_news": [
+    {
+      "id": "https://www.benzinga.com/quote/aapl",
+      "url": "https://www.benzinga.com/quote/aapl",
+      "image": "/next-assets/images/schema-image-default.png",
+      "score": 0.38988253474235535,
+      "title": "Apple Stock Price, Quotes and Forecasts | NASDAQ:AAPL | Benzinga",
+      "author": "Benzinga",
+      "favicon": "https://www.benzinga.com/next-assets/images/favicon-32x32.png",
+      "summary": "This Benzinga page provides a stock quote and links to various financial news and resources related to Apple (AAPL) stock.  It does not contain a summary of information regarding the stock itself.  To get information on AAPL stock, you will need to use another resource.\n",
+      "publishedDate": "2025-04-14T12:37:01.000Z"
+    },
+    {
+      "id": "https://tickeron.com/ticker/AAPL/",
+      "url": "https://tickeron.com/ticker/AAPL/",
+      "image": "https://tickeron.com/Img/Seo/main.png",
+      "score": 0.3849405348300934,
+      "title": "AAPL stock forecast, quote, news & analysis",
+      "author": "",
+      "summary": "As of February 14th, 4:59 PM EDT, AAPL stock is trading at $244.57, up $3.04 (1.26%).  The market capitalization is 2.62T.  The website provides links to various resources including price charts, dividend information, earnings reports, forecasts, and analyst predictions for AAPL.  It also advertises AI-driven trading signals and tools.  Note that this is a financial information website, not providing investment advice.\n",
+      "publishedDate": "2025-04-04T00:00:00.000Z"
+    },
+    {
+      "id": "https://www.american-stock-research.com/apple-appl-stock-price-where-to-from-here-14july2020.html",
+      "url": "https://www.american-stock-research.com/apple-appl-stock-price-where-to-from-here-14july2020.html",
+      "score": 0.38440513610839844,
+      "title": "Apple (APPL) stock.. Where is it heading? Technical analysis of Apple",
+      "author": "AMERICAN STOCK RESEARCH",
+      "summary": "Apple (AAPL) stock has increased 219% over the last 5 years.  While past performance doesn't guarantee future returns,  the article uses technical analysis (looking at moving averages and RSI) to suggest the stock may be overbought and due for a correction.  The analysis focuses on shorter and longer-term moving averages to predict future price movement.  Specific sales figures for Q2 2020 are provided, showing varying performance across different Apple product lines.\n",
+      "publishedDate": "2023-02-07T21:27:46.000Z"
+    },
+    {
+      "id": "https://ca.finance.yahoo.com/quote/AAPL?ltr=1",
+      "url": "https://ca.finance.yahoo.com/quote/AAPL?ltr=1",
+      "image": "https://s.yimg.com/cv/apiv2/cv/apiv2/social/images/yahoo-finance-default-logo.png",
+      "score": 0.3808092772960663,
+      "title": "Apple Inc. (AAPL) Stock Price, News, Quote & History - Yahoo Finance",
+      "author": "",
+      "favicon": "https://s.yimg.com/cv/apiv2/finance/YF_Favicon_32.png",
+      "summary": "Apple Inc. (AAPL) stock information as of April 11, 2025, close:  Bid 197.24, Ask 198.99.  Earnings date is May 1, 2025; ex-dividend date was February 10, 2025, with a current dividend yield of 0.50% (1.00).  Beta is 1.26.  Apple designs, manufactures, and markets consumer electronics (smartphones, computers, tablets, wearables) and related services (App Store, Apple Music, etc.) worldwide.  The company employs 150,000 people and has a fiscal year ending September 28.  Further financial details (previous close, volume, market cap, etc.) are missing from this Yahoo Finance snapshot.  More detailed financial information and news are available via links on the page.\n",
+      "publishedDate": "2025-04-11T00:00:00.000Z"
+    },
+    {
+      "id": "https://www.advfn.com/stock-market/NASDAQ/AAPL/stock-price",
+      "url": "https://www.advfn.com/stock-market/NASDAQ/AAPL/stock-price",
+      "image": "https://www.advfn.com/p.php?pid=staticchart&s=NASDAQ:AAPL&p=5&t=52",
+      "score": 0.3804914653301239,
+      "title": "Apple Inc Stock Price - AAPL | ADVFN",
+      "author": "",
+      "summary": "This ADVFN page for Apple Inc. stock (AAPL) shows no stock price information.  The page requires a login to view recent history and primarily features advertisements and links to various financial tools and resources, including stock monitoring, charting, news, and trading alerts.  No specific AAPL data is displayed.\n",
+      "publishedDate": "2025-04-09T00:00:00.000Z"
+    }
+  ],
+  "ticker_symbol": "AAPL",
+  "polygon_snapshot": {
+    "low": 204.41,
+    "high": 212.94,
+    "open": 211.44,
+    "Ticker": "AAPL",
+    "volume": 43757692,
+    "prevClose": 198.15,
+    "currentPrice": 205.75
+  }
+}

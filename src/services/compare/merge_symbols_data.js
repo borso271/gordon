@@ -1,6 +1,6 @@
 /*
 
-Use this to merge two arrays of data from two different symbols
+Use this to merge two arrays of data from two or more different symbols...
 
 
 

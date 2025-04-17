@@ -1,0 +1,52 @@
+
+/* This is the root div inside ChatThread */
+.slideContainer {
+ position: relative;
+    flex: 1 1 auto;    /* <<<< MAKE THIS FLEXIBLE */
+    overflow-y: auto;  /* <<<< THIS HANDLES SCROLLING */
+    min-height: 0;     /* <<<< Crucial flexbox fix */
+    position: relative; /* <<<< Add for positioning scroll button */
+    height: 100%;
+    /* Scrollbar Hiding */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .slideContainer::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* This is INSIDE .slideContainer - it should NOT be flexible or scrollable */
+  .conversationList {
+   
+    padding-bottom: 8px; /* Keep padding */
+  
+  }
+  /* Remove scrollbar hiding from .conversationList if it was applied here */
+  
+
+  .speechOverlayContainer {
+    position:absolute;
+    top: 5px;
+    width:100%;
+    display:flex;
+    justify-content: center;
+  }
+
+
+  .outerWrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .scrollDownButton {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  
+  

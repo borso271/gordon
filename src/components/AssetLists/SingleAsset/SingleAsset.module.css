@@ -1,0 +1,23 @@
+.row {
+    display: flex;
+padding: 12px;
+align-items: center;
+gap: 8px;
+align-self: stretch;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .row:hover {
+    border-radius: 16px;
+background: var(--card-background-light);
+  }
+  
+  .nameBox {
+  width:150px;
+  }
+  .priceBox {
+    display: flex;
+    flex-direction:column;
+    gap:4px;
+  }

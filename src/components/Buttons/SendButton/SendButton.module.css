@@ -1,7 +1,7 @@
 .sendButton {
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 27px;
+    height: 27px;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -11,20 +11,26 @@
     border-color: var(--additional-white-3);
 }
 
+
+.iconWrapper {
+    display:flex;
+    color: var(--background)
+}
+
 .sendButton:disabled {
-    background: var(--black-800, #1A1A1A);
+    background: var(--black-500);
     cursor: not-allowed; /* Prevent clicks */
 }
 
 .isDesktop {
-    width: 46px;
-    height: 46px;
+    width: 27px;
+    height: 27px;
 }
 
 @media (max-width: 400px) {
     .sendButton {
-        width: 38px;
-  height: 38px;
+        width: 27px;
+  height: 27px;
   
     }
   

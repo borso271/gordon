@@ -1,0 +1,31 @@
+.wrapper {
+  display: flex;
+padding: 16px 12px;
+flex-direction: column;
+align-items: flex-start;
+
+align-self: stretch;
+border-radius: 16px;
+background: var(--card-background);
+  }
+  
+
+
+  .title {
+    color: var(--black-50, #F8F8F8);
+/* Text M/Regular */
+
+font-size: 16px;
+padding-bottom:16px;
+padding-left:4px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 22.4px */
+  }
+
+  .items {
+    padding-top:8px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }

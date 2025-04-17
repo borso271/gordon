@@ -1,0 +1,75 @@
+.primaryButton {
+    display: inline-flex;
+    height: 40px;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 100px;
+    background: var(--black-50, #F8F8F8);
+
+
+    width:100%;
+    
+      }
+      
+      .primaryButton:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      
+      .text {
+      color: var(--black-950, #020202);
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 140%; /* 22.4px */
+      }
+      
+      .primaryButton:hover {
+    background: var(--lime-300, #C5FF4A);
+      }
+    
+      .primaryButton:active {
+        background: var(--lime-500, #91DD05);
+      }
+      
+      .icon {
+        display: flex;
+        align-items: center;
+      }
+      
+    /* Medium (Tablets) */
+    
+    
+    @media (max-width: 768px) {
+        .primaryButton {
+    height: 50px;
+        }
+    
+        .text {
+    font-size: 14px;
+        }
+      
+    }
+    
+    /* Small (Mobile) */
+    @media (max-width: 480px) {
+        .primaryButton {
+    height: 44px;
+        }
+    
+        .text {
+    font-size: 12px;
+        }
+    
+      
+    }
+    
+    

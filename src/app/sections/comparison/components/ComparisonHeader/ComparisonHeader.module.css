@@ -1,0 +1,43 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    padding:16px;
+    padding-top: 16px;
+    padding-bottom:0px;
+    background: var(--card-background);
+    border-radius:16px;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  
+  .cell {
+    flex: 1;
+   
+    border-radius: 8px;
+  }
+  
+  
+  .borderedContainer {
+    width:100%;
+    border-bottom:1px solid var(--card-background-light)
+  }
+
+
+
+  .firstRow {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom:12px;
+  }
+
+
+  .tradeRow {
+    display: flex;
+    justify-content: space-between;
+    padding:20px 0px;
+  }

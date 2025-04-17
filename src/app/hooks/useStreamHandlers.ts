@@ -8,43 +8,49 @@ import { useFunctionCallHandler } from "./useFunctionCallHandler";
 import { useLanguage } from "./useLanguage";
 import { languageMap } from "../../constants";
 import { BotMessagePart } from "../../interfaces";
+import { useSaveInteraction } from "./useSaveInteraction";
+// import { useFlowRunner } from "./useFlow";
 
 type ToolCall = {
   type: "code_interpreter" | string;
   [key: string]: any;
 };
 
+// function prepareToolOutput(output: unknown, fallback = "No output provided."): string {
+//   if (output === null || output === undefined) {
+//     return fallback;
+//   }
 
-function prepareToolOutput(output: unknown, fallback = "No output provided."): string {
-  if (output === null || output === undefined) {
-    return fallback;
-  }
+//   if (typeof output === "string") {
+//     return output;
+//   }
 
-  if (typeof output === "string") {
-    return output;
-  }
-
-  try {
-    return JSON.stringify(output);
-  } catch (err) {
-    console.warn("Could not stringify tool output:", err);
-    return fallback;
-  }
-}
-
+//   try {
+//     return JSON.stringify(output);
+//   } catch (err) {
+//     console.warn("Could not stringify tool output:", err);
+//     return fallback;
+//   }
+// }
 
 export function useStreamHandlers() {
 
-  const { updateLastInteractionBotPart, appendAssistantText, setConversationPairs, setInputDisabled, threadId, setIsRunning } = useConversation(); // ✅ Use context
-  const threadIdRef = useRef(threadId);
-
+  const { updateLastInteractionBotParts, appendAssistantText, setConversationPairs, setInputDisabled, setIsRunning} = useConversation(); // ✅ Use context
+  // const threadIdRef = useRef(threadId);
+  const {saveInteraction} = useSaveInteraction();
   const {currentLang} = useLanguage();
   const currentLangRef = useRef(currentLang);
+
 // Update the ref whenever threadId changes
-useEffect(() => {
-  threadIdRef.current = threadId;
-}, [threadId]);
-  
+
+
+
+// useEffect(() => {
+//   threadIdRef.current = threadId;
+//   console.log("thread now is: ", threadIdRef.current)
+// }, [threadId]);
+
+
 useEffect(() => {
   currentLangRef.current = currentLang;
 }, [currentLang]);
@@ -55,20 +61,15 @@ useEffect(() => {
     console.log("📝 onTextCreated")
   }, []);
 
-
   const onTextDelta = useCallback((delta: any) => {
-  
     if (delta.value) {
-      // console.log("🔄 onTextDelta", {
-      //   delta: delta.delta,
-      //   timestamp: new Date().toISOString()
-      // });
+      //console.log("arriving value: ", delta.value)
       appendAssistantText(delta.value);
     }
   }, [appendAssistantText]);
 
- 
   
+
   const onToolCallCreated = useCallback((toolCall: ToolCall) => {
     console.log("🛠️ onToolCallCreated", {
       toolCall: toolCall,
@@ -76,15 +77,15 @@ useEffect(() => {
       args: toolCall.args,
       timestamp: new Date().toISOString()
     });
-    if (toolCall.type === "code_interpreter") {
-      updateLastInteractionBotPart({
-        type: "tool_output",
-        toolName: "code_interpreter",
-        input: "",
-      });
-    }
-  }, [updateLastInteractionBotPart]);
-  
+    // if (toolCall.type === "code_interpreter") {
+    //   updateLastInteractionBotParts({
+    //     type: "tool_output",
+    //     toolName: "code_interpreter",
+    //     input: "",
+    //   });
+    // }
+  }, [updateLastInteractionBotParts]);
+
 
   const onToolCallDelta = useCallback((delta: any) => {
     if (delta.type === "code_interpreter" && delta.code_interpreter?.input) {
@@ -98,14 +99,15 @@ useEffect(() => {
   }, [setConversationPairs]);
 
 
-  const attachHandlers = (stream: AssistantStream) => {
+
+  const attachHandlers = (stream: AssistantStream, threadId:string) => {
     attachStreamHandlers(stream, {
       onTextCreated: () => {
         console.log("🟢 onTextCreated:", event);
         onTextCreated();
       },
       onTextDelta: (event) => {
-       // console.log("🔄 onTextDelta:", event);
+        console.log("🔄 onTextDelta:", event);
         onTextDelta(event);
       },
       onToolCallCreated: (event) => {
@@ -116,23 +118,29 @@ useEffect(() => {
         console.log("🧩 onToolCallDelta:", event);
         onToolCallDelta(event);
       },
+
       onRequiresAction: async (event: any) => {
         console.log("🚧 onRequiresAction:", event);
-        await onRequiresAction(event, functionCallHandler);
+        await onRequiresAction(event, threadId,functionCallHandler);
         setInputDisabled(false);
       },
-      onRunCompleted: () => {
+
+      onRunCompleted: async () => {
+
         console.log("✅ onRunCompleted");
         setInputDisabled(false);
         setIsRunning(false);
-      },
+  await saveInteraction();
+      }
     });
   };
 
+  // const {startFlow} = useFlowRunner("stock_analysis", attachHandlers);
 
   const onRequiresAction = useCallback(
       async (
         event: any,
+        threadId:string,
         functionCallHandler: (toolCall: any) => Promise<string>
       ) => {
     
@@ -147,28 +155,31 @@ useEffect(() => {
 
       for (const toolCall of toolCalls) {
         const functionName = toolCall.function?.name;
-       // console.log("action required, and function name is: ", functionName)
+
+      //  console.log("action required, and TOOL CALL is: ", toolCall)
      
         const parsedArgs = JSON.parse(toolCall.function.arguments || "{}");
 
-        // 1) Evaluate the function call via your external handler
-
         const result = await functionCallHandler(toolCall);
-
+      
         const parsedResult = JSON.parse(result); // result string → JSON object
-       // console.log("PARSED RESULTS ARE: ", parsedResult)
+
+        console.log("PARSED RESULTS ARE: ", parsedResult)
+
         // 2) Create the BotMessagePart and handle the logic for each functionName
         //    (Here we store everything in a "data" object, or use specialized types.)
-        let newPart: BotMessagePart | null = null;
+        let newParts: BotMessagePart[] | null = null;
 
         switch (functionName) {
 
           case "show_tickers_chart":
             console.log("show chart called and arguments are: ", parsedArgs)
-            newPart = {
+            newParts = [{
               type: "tickers_chart",
               data: parsedArgs,
-            };
+              sidebar: true,
+            }];
+
           //  Add to toolCallOutputs if needed
             toolCallOutputs.push({
               tool_call_id: toolCall.id,
@@ -177,71 +188,116 @@ useEffect(() => {
 
             break;
 
-            case "analyze_ticker":
-              console.log("analyze_ticker called and arguments are: ", parsedArgs)
-              const toolCallOutput = prepareToolOutput(parsedResult.data.response);
-              console.log("tool call output is: ", toolCallOutput)
-              // Add to toolCallOutputs if needed
+            case "portfolio_overview":
+              // console.log("portfolio_overview called and arguments are: ", parsedArgs)
+              newParts = [{
+                type: "portfolio_overview",
+                data: parsedResult.data_for_component,
+                sidebar: true,
+              }];
+  
+            //  Add to toolCallOutputs if needed
               toolCallOutputs.push({
                 tool_call_id: toolCall.id,
-                output: toolCallOutput,
+                output: parsedResult.prompt_for_ai,
               });
+  
               break;
 
+
+              case "analyze_ticker":
+                if (parsedResult.success) {
+                  newParts = [{
+                    type: "analyze_ticker",
+                    data: parsedResult.data.data_for_component,
+                    sidebar: true,
+                  },
+
+                {
+                    type: "latest_news",
+                    data: parsedResult.data.data_for_component.latest_news,
+                    sidebar: false,
+                  }];
+                  // Also push to OpenAI
+                  toolCallOutputs.push({
+                    tool_call_id: toolCall.id,
+                    output: JSON.stringify(parsedResult.data.prompt_for_ai),
+                  });
+                } else {
+                  // Fallback: partial success or fail → instruct the assistant to do something else
+                  // newParts = [{
+                  //   type: "assistantText",
+                  //   text: `For some reason, no data found. Searching the web... (User speaks ${userLanguage}).`,
+                  //   data: parsedResult,
+                  // }];
+                  toolCallOutputs.push({
+                    tool_call_id: toolCall.id,
+                    output: `the custom function failed, so call search_web instead. The user speaks ${userLanguage}, so reply in this language.`
+                  });
+                }
+                break;
+
               case "show_financial_data":
-                // console.log("show_financial_data called and arguments are: ", parsedArgs)
-                // console.log("data in part is: ", parsedResult.data.response)
-                newPart = {
+                console.log("show_financial_data called and arguments are: ", parsedArgs)
+                console.log("data in part is: ", parsedResult.data.response)
+                newParts = [{
                   type: "financials_table", 
                   data: parsedResult.data.response,
-                };
+                }];
               //  No need to add to toolCallOutputs for this function
                 toolCallOutputs.push({
                   tool_call_id: toolCall.id,
-                  output: "success, table shown to user",
+                  output: `This data has been shown to the user: ${parsedResult.data.response}.`,
                 });
 
                 break;
 
-          case "analyze_security":
-            newPart = {
-              type: "ticker_analysis",
-              data: parsedResult,
-            };
+
+          case "compare_tickers":
+             
+         // ComparisonChart: React.FC<ComparisonChartProps> = ({ tickers })
+            newParts = [{
+              type: "comparison_sidebar",
+              data: parsedResult.data,
+              sidebar: true,
+            }];
+
             // Add to toolCallOutputs if needed
             toolCallOutputs.push({
               tool_call_id: toolCall.id,
-              output: JSON.stringify(parsedResult),
+              output: parsedResult.prompt_for_ai,
             });
             break;
 
+      
           case "suggest_securities":
-            newPart = {
+            newParts = [{
               type: "assistantText",
-              content: "Here are some suggestions", // or a multi-language object
+              text: "Here are some suggestions", // or a multi-language object
               data: parsedResult,
-            };
+            }];
             // Maybe we do not push to toolCallOutputs for this function
             break;
 
           case "list_tickers":
             if (parsedResult.success) {
-              newPart = {
-                type: "tickers_list",
-                data: parsedResult.response,
-              };
+              newParts = [{
+                type: "assets_list",
+                data: parsedResult.response.data_for_component,
+                sidebar:true
+              }];
               // Also push to OpenAI
               toolCallOutputs.push({
                 tool_call_id: toolCall.id,
-                output: JSON.stringify(parsedResult.response),
+                output: JSON.stringify(parsedResult.response.prompt_for_ai),
               });
             } else {
               // Fallback: partial success or fail → instruct the assistant to do something else
-              newPart = {
+              newParts = [{
                 type: "assistantText",
-                content: `For some reason, no data found. Searching the web... (User speaks ${userLanguage}).`,
+                text: `For some reason, no data found. Searching the web... (User speaks ${userLanguage}).`,
                 data: parsedResult,
-              };
+              }];
               toolCallOutputs.push({
                 tool_call_id: toolCall.id,
                 output: `the custom search failed, so call search_web instead for a list of tickers. The user speaks ${userLanguage}, so reply in this language.`
@@ -250,56 +306,65 @@ useEffect(() => {
             break;
 
           case "search_web":
-            // newPart = {
-            //   type: "assistantText",
-            //   content: "Got these search results:",
-            //   data: parsedResult,
-            // };
-            // Return the results to the model so it can proceed
+            newParts = [{
+              type: "annotations",
+              data: parsedResult.data_for_component,
+              sidebar: true,
+            }];
+            
             toolCallOutputs.push({
               tool_call_id: toolCall.id,
-              output: `The user speaks ${userLanguage}. These are the search results: ${result}`,
+              output: `The user speaks ${userLanguage}. These are the search results: ${JSON.stringify(parsedResult.data_for_ai)}. Include links in your response.`,
             });
             break;
 
           default:
             // If no specialized logic, just store result in a general text/data part
-            newPart = {
+            newParts = [{
               type: "assistantText",
-              content: `Function ${functionName} not explicitly handled. Data: ${JSON.stringify(parsedResult)}`,
+              text: `Function ${functionName} not explicitly handled. Data: ${JSON.stringify(parsedResult)}`,
               data: parsedResult,
-            };
+            }];
             break;
         }
 
         // 3) Update the last interaction's bot message, if we have a part
-        if (newPart) {
-          updateLastInteractionBotPart(newPart);
+        if (newParts) {
+          updateLastInteractionBotParts(newParts);
         }
       }
 
       // 4) If we have toolCallOutputs, we must submit them back to OpenAI
+
       if (toolCallOutputs.length > 0) {
-        const response = await submitActionResult(threadIdRef.current, runId, toolCallOutputs);
+        console.log('NOW calling SUBMIT ACTION RESULT AND THREAD ID IS: ', "while thread id is: ", threadId)
+        const response = await submitActionResult(threadId, runId, toolCallOutputs);
         const stream = AssistantStream.fromReadableStream(response.body);
-        attachHandlers(stream);
+        attachHandlers(stream, threadId);
       } else {
-        // If nothing to submit, re-enable user input
+       
         setInputDisabled(false);
       }
     },
     [
       currentLangRef,
-      threadIdRef,
+      // threadIdRef,
       setInputDisabled,
       attachHandlers,
       functionCallHandler,
     ]
   );
 
-
   return { onTextCreated, onTextDelta, onToolCallCreated, onToolCallDelta, onRequiresAction, attachHandlers };
 }
 
 /* here check the stock openai is asking analysis for, and if not in database, return to openai the data,
 and set */
+
+/*
+EventStream.ts:159 Uncaught (in promise) OpenAIError: Final run has not been received
+at AssistantStream._EventStream_handleError (EventStream.ts:159:40)
+Caused by: Error: Final run has not been received
+at AssistantStream._AssistantStream_endRequest (AssistantStream.ts:414:32)
+at AssistantStream._fromReadableStream (AssistantStream.ts:181:41)
+*/

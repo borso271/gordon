@@ -1,7 +1,7 @@
 async function fetchFinancials(tickerSymbol, symbol_id, supabase_client) {
     try {
         // 1️⃣ Fetch symbol_id for the given ticker
-        console.log("Inputs to fetch financials are: ", tickerSymbol, symbol_id)
+        // console.log("Inputs to fetch financials are: ", tickerSymbol, symbol_id)
        
         // 2️⃣ Get the three most relevant quarterly reports
         const { data: reports, error: reportError } = await supabase_client
@@ -90,6 +90,9 @@ async function fetchFinancials(tickerSymbol, symbol_id, supabase_client) {
 }
 
 export default fetchFinancials;
+
+
+
 
 // fetchDataForAi("AAPL", supabase_client)
 

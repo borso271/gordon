@@ -1,0 +1,126 @@
+
+   .layout {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  /* Sidebar: fixed width when visible */
+  .sidebar {
+    flex-shrink: 0;
+    transition: width 0.3s ease;
+    /* overflow: hidden; */
+    z-index:1000;
+    background:var(--background)
+  }
+  
+  /* Expanded sidebar */
+  .sidebar.visible {
+    width: 280px;
+  }
+  
+  /* Collapsed sidebar */
+  .sidebar.hidden {
+    width: 0;
+  }
+  
+  /* Right panel takes remaining space */
+  .rightPanel {
+    flex: 1; /* Take all remaining space */
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Avoid overflow from children with long content */
+  }
+  
+  .navbar {
+    position: sticky;
+    top: 0;
+    height: 65px;
+    z-index: 10;
+  }
+  
+  .mainContent {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Small Screen Overrides (e.g., max-width 768px) --- */
+
+@media (max-width: 768px) {
+  .sidebar {
+    /* Take sidebar out of flow */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* Full height */
+    width: 280px; /* Fixed width when open */
+    /* Use transform for showing/hiding */
+    transform: translateX(0);
+    transition: transform 0.3s ease; /* Animate transform instead of width */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional: add shadow for separation */
+  }
+
+  .sidebar.hidden {
+    /* Hide by moving off-screen */
+    display:none;
+    transform: translateX(-100%);
+    width: 280px; 
+  }
+
+  /* Right panel always takes full width on small screens */
+  .rightPanel {
+     /* No flex: 1 needed as sidebar is absolute */
+     width: 100%;
+     /* Optional: Slight dimming when sidebar is open */
+     filter: brightness(1); /* Default brightness */
+  }
+
+  /* Optional: Dim the right panel when sidebar is visible */
+  .layout.sidebarVisible .rightPanel {
+       filter: brightness(0.7);  /* Example dimming */
+      /* pointer-events: none; */ /* Prevent interaction with content below overlay */
+  }
+}
+
+
+
+/* --- Overlay (for small screens) --- */
+.overlay {
+  position: fixed; /* Cover entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black */
+  z-index: 15; /* Below sidebar, above content */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Delay hiding visibility */
+  cursor: pointer;
+}
+
+.overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0s;
+}

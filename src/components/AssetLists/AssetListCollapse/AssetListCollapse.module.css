@@ -1,0 +1,73 @@
+.wrapper {
+    width:100%;
+    display: flex;
+padding: 16px 12px;
+flex-direction: column;
+align-items: center;
+border-radius: 16px;
+background: var(--card-background);
+}
+
+.topPart {
+    padding:0 4px;
+    
+    width:100%;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.title {
+    color: var(--neutral-text-title-title, #F5F5F5);
+/* Text M/Regular */
+
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 22.4px */
+}
+.items {
+    width:100%;
+  
+}
+
+.divider {
+    width:100%;
+    padding-bottom:8px;
+
+}
+
+
+  .iconWrapper {
+    display:flex;
+    align-items:center;
+    cursor: pointer;
+  }
+
+
+
+
+  /* Keep existing .wrapper, .topPart, .title, .iconWrapper styles */
+
+.gridContainer {
+  display: grid;
+  /* Animate the grid track size */
+  grid-template-rows: 0fr; /* Collapsed state */
+  transition: grid-template-rows 0.3s ease-in-out; /* Smooth transition */
+  overflow: hidden; /* Ensure content clipping */
+  width: 100%;
+}
+
+.gridContainer.expanded {
+  grid-template-rows: 1fr; /* Expanded state - takes up needed space */
+}
+
+.itemsWrapper {
+  /* This element needs min-height: 0 to allow collapsing fully in grid */
+  min-height: 0;
+  /* Prevent content visibility until fully expanded (optional, helps with smoothness) */
+  /* opacity: 0; */
+  /* transition: opacity 0.3s ease-in-out; */
+  /* You might want a slight delay on opacity if used */
+}

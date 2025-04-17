@@ -11,8 +11,7 @@ export function useThread() {
       createThread(); // fire and forget
     }
   }, []); // Only on mount
-
-  // Manual trigger to create a new thread and update state
+  
   const createThread = useCallback(async () => {
     const data = await createThreadAPI();
     setThreadId(data.threadId);

@@ -1,6 +1,0 @@
-/*
-Use polygon if one asks for the top movers
-
-Fetch more and check the ones you actually have...
-
-*/

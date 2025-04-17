@@ -22,18 +22,14 @@ const response = await client.responses.create({
 });
 
     const messageBlock = response.output.find((block: any) => block.type === 'message');
-    const contentItem = messageBlock?.content?.find((c: any) => c.type === 'output_text');
-    const messageText = contentItem?.text ?? "No result.";
+    //const contentItem = messageBlock?.content?.find((c: any) => c.type === 'output_text');
+   // const messageText = contentItem?.text ?? "No result.";
     
     // To get citations (annotations):
-    const annotations = contentItem?.annotations ?? [];
-    
-    // To get tool calls (like web search events):
-    const toolCalls = response.output.filter((block: any) => block.type === 'web_search_call');
-    
+ 
     return NextResponse.json({
       instructions: "Give the user these web results as they are, keep citations.",
-        result: messageText,
+        result: "hello",
 
       });
       

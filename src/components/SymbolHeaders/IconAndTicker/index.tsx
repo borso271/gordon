@@ -5,7 +5,7 @@ import SymbolIcon from "../../Icons/SymbolIcon";
 type Props = {
   ticker: string;
   name: string;
-  asset_type?: string;
+  asset_type?: "stock" | "crypto" | "etf";
   symbol?: string;
   icon?: boolean;
   iconSize?: number;

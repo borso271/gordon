@@ -25,7 +25,7 @@ interface Props {
   selectedStock: {
     symbol_id: number;
     ticker: string;
-    asset_type: string;
+    asset_type: "stock" | "crypto" | "etf";
   } | null;
 }
 

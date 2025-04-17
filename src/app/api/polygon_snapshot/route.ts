@@ -3,48 +3,48 @@ import { NextRequest, NextResponse } from "next/server";
 const POLYGON_API_KEY = process.env.POLYGON_API_KEY;
 
 import supabase_client from "../../../lib/supabaseClient";
+import { TickerInput } from "../../../interfaces";
 
+// type PolygonSnapshotData = {
+//   symbol: string;
+//   asset_type: "stock" | "crypto" | "etf";
+//   polygon_data: {
+//     ticker: {
+//       ticker: string;
+//       todaysChangePerc: number;
+//       todaysChange: number;
+//       updated: number;
+//       day: {
+//         o: number;
+//         h: number;
+//         l: number;
+//         c: number;
+//         v: number;
+//         vw: number;
+//       };
+//       prevDay: {
+//         o: number;
+//         h: number;
+//         l: number;
+//         c: number;
+//         v: number;
+//         vw: number;
+//       };
+//     };
+//     status: string;
+//     request_id: string;
+//   };
+// };
 
-type PolygonSnapshotData = {
-  symbol: string;
-  asset_type: string;
-  polygon_data: {
-    ticker: {
-      ticker: string;
-      todaysChangePerc: number;
-      todaysChange: number;
-      updated: number;
-      day: {
-        o: number;
-        h: number;
-        l: number;
-        c: number;
-        v: number;
-        vw: number;
-      };
-      prevDay: {
-        o: number;
-        h: number;
-        l: number;
-        c: number;
-        v: number;
-        vw: number;
-      };
-    };
-    status: string;
-    request_id: string;
-  };
-};
-
-type TransformedData = {
-  current_price: number;
-  percentage_change: number;
-  last_close: number;
-  day_high: number;
-  day_low: number;
-  updated: number;
-  ticker: string;
-};
+// type TransformedData = {
+//   current_price: number;
+//   percentage_change: number;
+//   last_close: number;
+//   day_high: number;
+//   day_low: number;
+//   updated: number;
+//   ticker: string;
+// };
 
 function transformPolygonData(data: any) {
   const t = data?.ticker;
@@ -60,11 +60,6 @@ function transformPolygonData(data: any) {
   };
 }
 
-type TickerInput = {
-  symbol: string;
-  asset_type: "stock" | "crypto" | "etf";
-  ticker_id: number;
-};
 
 async function fetchPolygonData(ticker: TickerInput) {
   try {

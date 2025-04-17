@@ -16,7 +16,7 @@ import fetchFormatData from "../analysis/fetch_and_format_data/fetch_and_format_
 import { extractImportantFinancials } from "./filter_financials";
 import { fetchTickerSnapshot } from "../analyze_ticker/polygon_ticker";
 type TickerInput = {
-  asset_type: string;
+  asset_type: "stock" | "crypto" | "etf";
   symbol: string;
 };
 
@@ -25,7 +25,7 @@ export async function return_comparison_data(tickers: TickerInput[]) {
     id: number;
     name: string;
     ticker_symbol: string;
-    asset_type: string,
+    asset_type: "stock" | "crypto" | "etf";
     data_for_ai: any;
     ratings: any;
     ticker_snapshot: any;

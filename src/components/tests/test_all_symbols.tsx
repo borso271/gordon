@@ -9,7 +9,7 @@ interface SymbolData {
   sector?: string;
   industry?: string;
   currency?: string;
-  asset_type: string;
+  asset_type: "stock" | "crypto" | "etf";
   // price?: number;
   // last_close?: number;
   // price_timestamp?: number;

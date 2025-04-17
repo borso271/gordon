@@ -2,7 +2,7 @@ type Transaction = {
     id: number;
     ticker: string;
     name: string;
-    asset_type: string;
+    asset_type: "stock" | "crypto" | "etf";
     date: number;
     type: "Buy" | "Sell";
     quantity: number;

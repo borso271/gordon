@@ -46,7 +46,7 @@ type ComparisonEntry = {
     sma: string;
     ema: string;
     action: string;
-    asset_type: string;
+    asset_type: "stock" | "crypto" | "etf";
   };
   
   export function extractDataForComparisonTable(rawData: any[]): ComparisonEntry[] {

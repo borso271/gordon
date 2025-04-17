@@ -6,7 +6,7 @@ import TradingViewSingleQuote from "../../../TradingView/Snapshot"
 
 interface SuggestedSymbolItem {
   symbol: string;
-  asset_type: string;
+  asset_type: "stock" | "crypto" | "etf";
   exchange_mic: string;
 }
 

@@ -43,6 +43,7 @@ export type TickerInput = {
 };
 
 
+
 export interface SingleAsset {
   ticker: string;
   name: string;

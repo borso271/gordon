@@ -4,7 +4,7 @@
 import { fetchSymbolSnapshots } from "../database/fetch_symbols_for_list";
 import { fetchTickerDataWithInsightAndPolygon } from "../ticker_insight";
 export async function list_tickers(args: {
-  asset_type: string;
+  asset_type: "stock" | "crypto" | "etf";
   sectors?: string[];
   sort_by?: "price" | "volume";
   language?: string

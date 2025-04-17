@@ -5,7 +5,7 @@ type PortfolioItem = {
     currency: string | null;
     quantity: number;
     avg_price: number;
-    asset_type: string;
+    asset_type: "stock" | "crypto" | "etf";
     last_close: number | null;
     first_acquired: string | null;
     last_updated: string;

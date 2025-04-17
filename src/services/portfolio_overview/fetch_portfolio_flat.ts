@@ -4,7 +4,7 @@ export interface SymbolDetails {
   id: number;
   ticker: string;
   name: string;
-  asset_type: string;
+  asset_type: "stock" | "crypto" | "etf";
   sector: string;
   exchange_mic: string;
 }
@@ -28,7 +28,7 @@ export interface FlatPortfolio {
   created_at: string | null;
   ticker: string;
   name: string;
-  asset_type: string;
+  asset_type:string;
   sector: string;
   exchange_mic: string;
 }

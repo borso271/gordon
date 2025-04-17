@@ -9,7 +9,6 @@ import ComparisonProgressBars from "./ComparisonProgressBars";
 import TickersLegend from "./TickersLegend";
 
 
-
 interface RatingEntry {
   ticker: string;
   ratings: any;

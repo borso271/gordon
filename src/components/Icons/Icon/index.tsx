@@ -264,6 +264,15 @@ share: (<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="
     
   ),
 
+
+  arrow_up:(<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+    <path fillRule="evenodd" clipRule="evenodd" d="M13.9376 7.13872C13.6772 7.39907 13.2551 7.39907 12.9947 7.13872L9.46615 3.61013V14.0007C9.46615 14.3688 9.16767 14.6673 8.79948 14.6673C8.43129 14.6673 8.13281 14.3688 8.13281 14.0007V3.61013L4.60422 7.13872C4.34387 7.39907 3.92176 7.39907 3.66141 7.13872C3.40106 6.87837 3.40106 6.45626 3.66141 6.19591L8.32807 1.52925C8.58842 1.2689 9.01053 1.2689 9.27088 1.52925L13.9376 6.19591C14.1979 6.45626 14.1979 6.87837 13.9376 7.13872Z" fill="currentColor"/>
+    </svg>),
+
+    arrow_down:(<svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+      <path fillRule="evenodd" clipRule="evenodd" d="M3.66206 8.86128C3.92241 8.60093 4.34452 8.60093 4.60487 8.86128L8.13346 12.3899V1.99935C8.13346 1.63116 8.43194 1.33268 8.80013 1.33268C9.16832 1.33268 9.4668 1.63116 9.4668 1.99935V12.3899L12.9954 8.86128C13.2557 8.60093 13.6779 8.60093 13.9382 8.86128C14.1986 9.12163 14.1986 9.54374 13.9382 9.80409L9.27153 14.4708C9.01119 14.7311 8.58908 14.7311 8.32873 14.4708L3.66206 9.80409C3.40171 9.54374 3.40171 9.12163 3.66206 8.86128Z" fill="currentColor"/>
+      </svg>),
+
   minus: (<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M4.09961 9H13.8996" stroke="#F8F8F8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>),
@@ -271,6 +280,10 @@ share: (<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="
     <path d="M8.99961 4.09961V13.8996M4.09961 8.99961H13.8996" stroke="#F8F8F8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>),
 
+
+big_minus: (<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+  <path d="M13 9L5 9" stroke="#929292" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>),
 
   green_magic_stick: (
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -459,12 +472,13 @@ send: (<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http:/
 
 
   ),
-  arrow_down: (<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g id="Icons">
-    <path id="Vector 9" d="M5 11.6666L10 16.6666M10 16.6666L15 11.6666M10 16.6666L10 4.16663" stroke="#D7D7D7" strokeWidth="2" strokeLinecap="round"/>
-    </g>
-    </svg>
-    ),
+
+  // arrow_down: (<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  //   <g id="Icons">
+  //   <path id="Vector 9" d="M5 11.6666L10 16.6666M10 16.6666L15 11.6666M10 16.6666L10 4.16663" stroke="#D7D7D7" strokeWidth="2" strokeLinecap="round"/>
+  //   </g>
+  //   </svg>
+  //   ),
 
 
   arabic: (

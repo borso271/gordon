@@ -168,6 +168,26 @@
 },
   
 
+"transaction": {
+  "statuses": {
+    "confirmed": "تم التأكيد",
+    "pending": "قيد الانتظار",
+    "canceled": "ألغيت"
+  },
+  "title": "سجل المعاملات",
+    "name": "الاسم",
+    "datetime": "التاريخ / الوقت",
+    "type": "النوع",
+    "price": "السعر",
+    "amount": "الكمية",
+    "status": "الحالة",
+    "status_confirmed": "تم التأكيد",
+    "types": {
+      "Buy": "شراء",
+      "Sell": "بيع"
+    }
+  },
+
 
 "history": {
   "today": "اليوم",

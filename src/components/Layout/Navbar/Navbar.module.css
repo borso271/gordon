@@ -132,14 +132,5 @@ align-items: center;
     }
   }
   
-/* Medium (Tablets) */
-@media (min-width: 1336px) {
-  
-  .historyButton {
-      display:none
-  }
-
-}
-
 
 

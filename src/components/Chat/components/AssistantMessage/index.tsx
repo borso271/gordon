@@ -14,41 +14,50 @@ interface AssistantMessageProps {
   heading: string;
   text: string;
 }
-const formatLinks = (text: string): string => {
-  let count = 1;
-
-  // Step 1: Replace all [text](url) with numbered links
-  const numberedText = text.replace(
-    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-    (_, __, url) => `[${count++}](${url})`
-  );
-
-  // Step 2: Replace list items like "- [1](url)" or "- **Read more**: [1](url)" with just the link + newline
-  const cleanedText = numberedText.replace(
-    /^[\s\t]*[-*+]\s+(?:\*\*Read[^\n]*\*\*:)?\s*(\[\d+\]\([^)]+\))\s*$/gmi,
-    (_, link) => `${link}\n` // ✅ force line break after
-  );
-
-  return cleanedText;
-};
-
-// const formatLinks = (text) => {
+// const formatLinks = (text: string): string => {
 //   let count = 1;
 
-//   // Replace all links with numbered links
+//   // Step 1: Replace all [text](url) with numbered links
 //   const numberedText = text.replace(
 //     /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
 //     (_, __, url) => `[${count++}](${url})`
 //   );
 
-//   // Remove "- [n](link)" or "* [n](link)" from list format
+//   // Step 2: Replace list items like "- [1](url)" or "- **Read more**: [1](url)" with just the link + newline
 //   const cleanedText = numberedText.replace(
-//     /^[\s\t]*[-*+]\s+(\[\d+\]\([^)]+\))\s*$/gm,
-//     (_, link) => link
+//     /^[\s\t]*[-*+]\s+(?:\*\*Read[^\n]*\*\*:)?\s*(\[\d+\]\([^)]+\))\s*$/gmi,
+//     (_, link) => `${link}\n` // ✅ force line break after
 //   );
 
 //   return cleanedText;
 // };
+const formatLinks = (text: string): string => {
+  let count = 1;
+
+  /* 1️⃣ Replace every [text](url) with numbered links */
+  const numbered = text.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+    (_, __, url) => `[${count++}](${url})`
+  );
+
+  /* 2️⃣ Strip bullet characters like  "- [1](…)"  or
+         "- **Read more**: [1](…)" and keep only the link */
+  const noBullets = numbered.replace(
+    /^[\s\t]*[-*+]\s+(?:\*\*Read[^\n]*\*\*:)?\s*(\[\d+\]\([^)]+\))\s*$/gim,
+    (_, link) => `${link}\n`
+  );
+
+  /* 3️⃣ Remove any single line‑break **immediately** before a link.
+         This prevents ReactMarkdown from turning it into a <br> */
+  const noBreakBeforeLink = noBullets
+    //  \n[1](url)   →  [1](url)
+    .replace(/\n(\s*\[\d+\]\([^)]+\))/g, " $1")
+    //  <br>[1](url) →  [1](url)   (for safety if <br> is in the source)
+    .replace(/<br\s*\/?>\s*(\[\d+\]\([^)]+\))/gi, " $1");
+
+  return noBreakBeforeLink;
+};
+
 
 
 const AssistantMessage: React.FC<AssistantMessageProps> = ({ heading, text }) => {

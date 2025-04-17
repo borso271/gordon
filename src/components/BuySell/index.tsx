@@ -15,7 +15,7 @@ import { SimpleTicker } from "../../interfaces";
 
 const DEFAULT_USER_ID = "abc";
 
-const BuySell: React.FC<{ tickerToBuy: SimpleTicker | null; onPlaceOrder: any }> = ({ tickerToBuy, onPlaceOrder }) => {
+const BuySell: React.FC<{ tickerToBuy?: SimpleTicker | null; onPlaceOrder: any }> = ({ tickerToBuy=null, onPlaceOrder }) => {
   const [transactionType, setTransactionType] = useState<"buy" | "sell">("buy");
 
   const [selectedStock, setSelectedStock] = useState<SimpleTicker | null>(tickerToBuy);

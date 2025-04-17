@@ -193,7 +193,7 @@ className={styles.balanceOverviewItem}
          onClick={() => setOverlay(null)}
          className={styles.circledButton} 
           >
-            <Icon name="cross" size={16}></Icon>
+            <Icon name="cross" size={14}></Icon>
           </div>
         
         </div>

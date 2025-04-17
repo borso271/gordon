@@ -60,7 +60,8 @@ const Navbar: React.FC = () => {
 
 
       <div className={styles.buyWrapper}>
-      <Button3 text={t("trade")} onClick={showModal} />
+      <Button3 text={t("trade")} onClick={() => showModal()} />
+
 
 </div>
 

@@ -33,9 +33,11 @@ align-self: stretch;
 height: 36px;
 padding: 8px 16px;
 align-items: center;
-gap: 24px;
-border-radius: 8px;
-border: 1px solid var(--Black-800, #1A1A1A);
+gap: 4px;
+
+border-radius: 100px;
+border: 1px solid var(--Black-700, #232323);
+
 background: transparent;
 
   }
@@ -43,12 +45,16 @@ background: transparent;
   .dateInput {
     color: var(--black-300, #929292);
     /* Text S/Regular */
-   
+   width: 80px;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 140%; /* 19.6px */
     background: transparent;
+  }
+
+  .divider {
+    color: var(--black-300, #929292);
   }
 /*   
   .dateInput label {

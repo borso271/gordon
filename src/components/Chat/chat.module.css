@@ -66,17 +66,17 @@
   flex-grow: 1; /* Allow content to take space */
   overflow-y: auto; /* Scroll content */
   min-height: 0; /* Flexbox fix */
-  border-left:1.5px solid var(--additional-white-8, rgba(255, 255, 255, 0.07));
+  /* border-left:1.5px solid var(--additional-white-8, rgba(255, 255, 255, 0.07)); */
 
 }
 
-
+/* 
 
 [dir="rtl"]   .sidebarContentWrapper  {
   border-left: none;
   border-right:1.5px solid var(--additional-white-8, rgba(255, 255, 255, 0.07));
 
-}
+} */
 
 
 

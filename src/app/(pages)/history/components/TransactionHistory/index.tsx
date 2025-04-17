@@ -9,14 +9,15 @@ import { useUser } from "../../../../hooks/useUser";
 import { MyDarkDatePicker } from "../DarkDayPicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { fake_transaction_history } from "../../../../fake_data/history";
-
-
+import Icon from "../../../../../components/Icons/Icon";
+import TerziaryH2 from "../../../../../components/Headings/TerziaryH2";
+import { useTranslation } from "react-i18next";
 export default function TransactionHistory() {
 
   function formatDate(date: Date): string {
     return date.toISOString().split("T")[0]; // "YYYY-MM-DD"
   }
-  
+  const {t} = useTranslation()
   const today = new Date();
   const tenYearsAgo = new Date();
   tenYearsAgo.setFullYear(today.getFullYear() - 10);
@@ -52,7 +53,7 @@ export default function TransactionHistory() {
     <div className={styles.container}>
 
       <div className={styles.header}>
-      <h2 className={styles.title}>Transaction History</h2>
+      <TerziaryH2>{t('transaction.title')}</TerziaryH2>
 <div className={styles.dateFilter}>
   <div className={styles.dateInput}>
 
@@ -64,7 +65,7 @@ export default function TransactionHistory() {
 />
 
   </div>
-
+<Icon name={"big_minus"}/>
   <div className={styles.dateInput}>
 
 <MyDarkDatePicker

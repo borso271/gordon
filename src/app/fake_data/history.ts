@@ -8,7 +8,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "etf", // Added
       "quantity": 50,
-      "price": 450.00
+      "price": 450.00,
+      "status": "confirmed"
     },
     {
       "id": 3,
@@ -18,7 +19,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "etf", // Added
       "quantity": 30,
-      "price": 480.00
+      "price": 480.00,
+         "status": "confirmed"
     },
     {
       "id": 4,
@@ -28,7 +30,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 15,
-      "price": 130.00
+      "price": 130.00,
+         "status": "confirmed"
     },
     {
       "id": 5,
@@ -38,7 +41,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "etf", // Added
       "quantity": 40,
-      "price": 390.00
+      "price": 390.00,
+         "status": "canceled"
     },
     {
       "id": 6,
@@ -48,7 +52,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 75,
-      "price": 150.00
+      "price": 150.00,
+       "status": "confirmed"
     },
     {
       "id": 7,
@@ -58,7 +63,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 10,
-      "price": 142.90
+      "price": 142.90,
+       "status": "confirmed"
     },
     {
       "id": 8,
@@ -68,7 +74,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 30,
-      "price": 150.00
+      "price": 150.00,
+      "status": "canceled"
     },
     {
       "id": 9,
@@ -78,7 +85,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 30,
-      "price": 380.50
+      "price": 380.50,
+       "status": "confirmed"
     },
     {
       "id": 11,
@@ -88,7 +96,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 20,
-      "price": 164.375
+      "price": 164.375,
+       "status": "confirmed"
     },
     {
       "id": 12,
@@ -98,7 +107,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 60,
-      "price": 170.10
+      "price": 170.10,
+       "status": "confirmed"
     },
     {
       "id": 13,
@@ -108,7 +118,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 55,
-      "price": 250.25
+      "price": 250.25,
+       "status": "confirmed"
     },
     {
       "id": 14,
@@ -118,7 +129,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 80,
-      "price": 160.00
+      "price": 160.00,
+       "status": "confirmed"
     },
     {
       "id": 15,
@@ -128,7 +140,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 20,
-      "price": 205.00
+      "price": 205.00,
+       "status": "confirmed"
     },
     {
       "id": 16,
@@ -138,7 +151,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 100,
-      "price": 55.00
+      "price": 55.00,
+       "status": "confirmed"
     },
     {
       "id": 17,
@@ -148,18 +162,10 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 15,
-      "price": 216.67
+      "price": 216.67,
+       "status": "confirmed"
     },
-    {
-      "id": 18,
-      "ticker": "AAPL", // Example Dividend
-      "name": "Apple Inc.",
-      "date": 1692230400000, // Changed to string
-      "type": "Dividend",
-      "asset_type": "stock", // Added (Type of the underlying asset)
-      "quantity": 24.50, // Represents the cash amount received
-      "price": null
-    },
+    
     {
       "id": 19,
       "ticker": "AMZN",
@@ -168,7 +174,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 40,
-      "price": 140.00
+      "price": 140.00,
+       "status": "confirmed"
     },
     {
       "id": 20,
@@ -178,7 +185,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 15,
-      "price": 510.00
+      "price": 510.00,
+       "status": "canceled"
     },
     {
       "id": 21,
@@ -188,7 +196,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 20,
-      "price": 350.80
+      "price": 350.80,
+       "status": "confirmed"
     },
     {
       "id": 22,
@@ -198,7 +207,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "crypto", // Added
       "quantity": 0.05,
-      "price": 45000.00
+      "price": 45000.00,
+       "status": "confirmed"
     },
     {
       "id": 23,
@@ -208,7 +218,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "crypto", // Added
       "quantity": 1.0,
-      "price": 2700.00
+      "price": 2700.00,
+       "status": "confirmed"
     },
     {
       "id": 24,
@@ -218,7 +229,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 15,
-      "price": 750.00
+      "price": 750.00,
+       "status": "confirmed"
     },
     {
       "id": 26,
@@ -228,7 +240,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "crypto", // Added
       "quantity": 0.5,
-      "price": 3000.00
+      "price": 3000.00,
+       "status": "confirmed"
     },
     {
       "id": 27,
@@ -238,7 +251,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "stock", // Added
       "quantity": 25,
-      "price": 385.50
+      "price": 385.50,
+       "status": "confirmed"
     },
     {
       "id": 28,
@@ -248,7 +262,8 @@ export const fake_transaction_history = [
       "type": "Buy",
       "asset_type": "crypto", // Added
       "quantity": 25,
-      "price": 100.00
+      "price": 100.00,
+       "status": "confirmed"
     }
   ]
 

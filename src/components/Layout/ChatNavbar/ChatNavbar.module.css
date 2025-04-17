@@ -154,14 +154,6 @@ line-height: 140%; /* 16.8px */
     }
     }
     
-  /* Medium (Tablets) */
-  @media (min-width: 1336px) {
-    
-    .historyButton {
-        display:none
-    }
-  
-  }
   
   
   

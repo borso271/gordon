@@ -283,6 +283,27 @@
         ,
 
 
+
+        "transaction": {
+          "statuses": {
+            "confirmed": "Confirmed",
+            "pending": "Pending",
+            "canceled": "Canceled"
+          },
+          "title": "Transaction History",
+    "name": "Name",
+    "datetime": "Date/Time",
+    "type": "Type",
+    "price": "Price",
+    "amount": "Amount",
+    "status": "Status",
+    "status_confirmed": "Confirmed",
+    "types": {
+      "Buy": "Buy",
+      "Sell": "Sell"
+    }
+  },
+
         "history": {
           "today": "Today",
           "lastWeek": "Last Week",

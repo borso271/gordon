@@ -24,8 +24,33 @@
     border-collapse: collapse;
     font-size: 0.95rem;
     background-color: transparent;
+
+    table-layout: fixed; /* ⚠️ Important */
+  }
+
+  .tableHeadCell, .tableCell{
+    width: 15%
   }
   
+
+  .tableHeadCell:nth-child(2),
+.tableCell:nth-child(2) {
+  width: 20%; /* Name */
+}
+
+
+  .tableHeadCell:nth-child(1),
+.tableCell:nth-child(1) {
+  width: 25%; /* Name */
+}
+
+
+.tableHeadCell:last-child,
+.tableCell:last-child{
+  width: 10%; /* Name */
+}
+
+
   .tableHead {
     background: var(--additional-white-2, rgba(255, 255, 255, 0.02));
     margin: 12px 0;
@@ -142,3 +167,35 @@
   .tableHeadCell .tableCell {
     max-width:200px
   }
+
+
+  .transactionType {
+    display: flex
+    ;
+        flex-direction: row;
+        gap: 4px;
+        align-items: center;
+  }
+
+  .buy {
+color:  var(--spring-Green-500, #1AED87);
+
+  }
+
+  .sell {
+    color:  var(--pomegranate-500, #ED441A);
+  }
+
+
+.status.confirmed {
+  color:  var(--spring-Green-500, #1AED87);
+}
+
+.status.pending {
+  
+  color:#FAEB1B;
+}
+
+.status.canceled {
+  color:  var(--pomegranate-500, #ED441A);
+}

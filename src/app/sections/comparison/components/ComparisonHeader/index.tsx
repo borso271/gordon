@@ -5,7 +5,6 @@ import TradeButton from "../../../../../components/Buttons/TradeButton";
 import SymbolTitle from "../../../../(pages)/(dashboard)/components/Watchlist/SymbolTitle";
 
 import { useTranslation } from "react-i18next";
-import Snapshot from "../../../../../components/TradingView/Snapshot";
 
 interface SnapshotData {
 
@@ -31,12 +30,13 @@ interface ComparisonHeaderProps {
 }
 
 const ComparisonHeader: React.FC<ComparisonHeaderProps> = ({ snapshots }) => {
+
+  const { t } = useTranslation();
   if (snapshots.length !== 2) return null;
 
   const [left, right] = snapshots;
   const currencySymbol = "$";
 
-  const { t } = useTranslation();
 
 
   const getChangePct = (snap: SnapshotData) => {

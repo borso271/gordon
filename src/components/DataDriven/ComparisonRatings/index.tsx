@@ -20,27 +20,31 @@ interface CompareRatingsProps {
 }
 
 const CompareRatings: React.FC<CompareRatingsProps> = ({ ratings }) => {
-  const { t } = useTranslation();
+  
+    const { t } = useTranslation();
 
-  if (!Array.isArray(ratings) || ratings.length !== 2) return null;
-
-  const [leftEntry, rightEntry] = ratings;
-  const leftRatings = leftEntry.ratings;
-  const rightRatings = rightEntry.ratings;
-  const leftTicker = leftEntry.ticker;
-  const rightTicker = rightEntry.ticker;
-
-  const {
-    getPercentage: getLeftPct,
-    totalRatings: totalLeft,
-    error: leftError,
-  } = useAnalystRatings(leftRatings);
-
-  const {
-    getPercentage: getRightPct,
-    totalRatings: totalRight,
-    error: rightError,
-  } = useAnalystRatings(rightRatings);
+    // Fallback values if ratings is invalid
+    const [leftEntry, rightEntry] = ratings || [];
+  
+    const leftRatings = leftEntry?.ratings || [];
+    const rightRatings = rightEntry?.ratings || [];
+    const leftTicker = leftEntry?.ticker || "";
+    const rightTicker = rightEntry?.ticker || "";
+  
+    const {
+      getPercentage: getLeftPct,
+      totalRatings: totalLeft,
+      error: leftError,
+    } = useAnalystRatings(leftRatings);
+  
+    const {
+      getPercentage: getRightPct,
+      totalRatings: totalRight,
+      error: rightError,
+    } = useAnalystRatings(rightRatings);
+  
+    // Conditional rendering AFTER hooks
+    if (!Array.isArray(ratings) || ratings.length !== 2) return null;
 
   const buyScore = (r: any) => (r?.buy_count || 0) + (r?.strong_buy_count || 0);
 

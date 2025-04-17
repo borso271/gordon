@@ -16,9 +16,9 @@ export function useFunctionCallHandler() {
     // ✅ Add language from context
     args.language = currentLang;
 
-     if (name == "show_ticker_chart"){
-      return JSON.stringify(arguments)
-     }
+    if (name == "show_ticker_chart") {
+      return JSON.stringify(args); // ✅ Correct
+    }
 
     const endpointMap = {
       analyze_security: "api/analysis",

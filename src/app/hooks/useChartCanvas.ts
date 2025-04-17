@@ -25,7 +25,6 @@ export function useChartCanvas({
   data = [],
   minPrice,
   isPositiveChange,
-
   area = true,
   marketOpen = true,
   curvy = false,
@@ -45,9 +44,6 @@ export function useChartCanvas({
   // (Original code: "const sortedData = data;")
   const sortedData = data;
 
-
-
-  
   // 2) Generate line path
   const generateLinePath = (sortedData: any[], curvy: boolean) => {
     if (!sortedData.length) return "";
@@ -123,18 +119,6 @@ export function useChartCanvas({
     [sortedData]
   );
   
-  // const linePath = useMemo(() => generateLinePath(sortedData, curvy), [sortedData, curvy]);
-  // const areaPath = useMemo(() => generateAreaPath(sortedData, minPrice, curvy, area), [
-  //   sortedData,
-  //   minPrice,
-  //   curvy,
-  //   area,
-  // ]);
-  // const { lastX, lastY } = useMemo(() => computeLastPoint(sortedData), [sortedData]);
-
-
-
-
 
   // 6) Mouse move & nearest point
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
@@ -179,7 +163,6 @@ export function useChartCanvas({
 
   const handlePointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
 
-    console.log("handle pointer move detected")
     if (!svgRef.current || !containerRef.current) return;
   
     // 1) pointer position relative to container
@@ -218,6 +201,9 @@ export function useChartCanvas({
   };
 
   // 7) Colors & styles
+
+  console.log("POSITIVE CHANGE IS: ", isPositiveChange);
+
   const lineColor = isPositiveChange ? "#1AED87" : "#ED441A";
   const stopColor1 = isPositiveChange
     ? "rgba(26, 237, 135, 0.1)"
@@ -225,6 +211,9 @@ export function useChartCanvas({
   const stopColor2 = isPositiveChange
     ? "rgba(26, 237, 135, 0.2)"
     : "rgba(237, 68, 26, 0.2)";
+
+
+    console.log("stopcolors are: ", stopColor1, stopColor2)
 
   const strokeWidth = isMobile ? 1 : 1.5;
   const dashArray = isMobile ? "5,3" : "6,4";

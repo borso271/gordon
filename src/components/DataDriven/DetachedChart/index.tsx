@@ -42,19 +42,7 @@ const DetachedChart = ({ symbol,language }: { symbol: string, language: string})
     lastPrices,
     adjustedLow,
   } = useSymbolChart(symbol,width, height);
-   
-  // const asOf = language == "en" ? "As of " : "اعتبارًا من ";
-
-  // const localLastUpdated =
-  // language === "ar"
-  //   ? (() => {
-  //       const [engMonth, day] = lastUpdated.split(" ");
-  //       const arabicMonth = arabicMonthMap[engMonth] || engMonth;
-  //       return `${arabicMonth} ${day}`;
-  //     })()
-  //   : lastUpdated;
-
-  // Same fallback logic to show loader
+ 
   if (!currentPrice || !periodData) {
     return <ChartLoader />;
   }

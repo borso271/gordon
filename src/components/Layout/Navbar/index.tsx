@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
   // const [showBuySellModal, setShowBuySellModal] = useState(false);
 
   const { showModal } = useBuySellModal();
-  // console.log("SHOW BUY SELL MODAL IS: ", showBuySellModal)
+  
   const {
     openDropdown,
     selectedIndex,

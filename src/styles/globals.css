@@ -307,6 +307,14 @@ html[dir="rtl"] .toBeSwitched {
   text-align: right !important;
 }
 
+
+hr {
+  background:transparent;
+  width:100%;
+  border:none;
+  border-bottom: 1.5px solid var(--additional-white-8, #ffffff12)
+}
+
 /* Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {

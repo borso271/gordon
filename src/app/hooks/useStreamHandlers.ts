@@ -99,11 +99,10 @@ useEffect(() => {
   }, [setConversationPairs]);
 
 
-
-  const attachHandlers = (stream: AssistantStream, threadId:string) => {
+  const attachHandlers = useCallback((stream: AssistantStream, threadId: string) => {
     attachStreamHandlers(stream, {
       onTextCreated: () => {
-        console.log("🟢 onTextCreated:", event);
+        console.log("🟢 onTextCreated");
         onTextCreated();
       },
       onTextDelta: (event) => {
@@ -118,22 +117,63 @@ useEffect(() => {
         console.log("🧩 onToolCallDelta:", event);
         onToolCallDelta(event);
       },
-
       onRequiresAction: async (event: any) => {
         console.log("🚧 onRequiresAction:", event);
-        await onRequiresAction(event, threadId,functionCallHandler);
+        await onRequiresAction(event, threadId, functionCallHandler);
         setInputDisabled(false);
       },
-
       onRunCompleted: async () => {
-
         console.log("✅ onRunCompleted");
         setInputDisabled(false);
         setIsRunning(false);
-  await saveInteraction();
-      }
+        await saveInteraction();
+      },
     });
-  };
+  }, [
+    onTextCreated,
+    onTextDelta,
+    onToolCallCreated,
+    onToolCallDelta,
+    // onRequiresAction,
+    functionCallHandler,
+    setInputDisabled,
+    setIsRunning,
+    saveInteraction
+  ]);
+  // const attachHandlers = (stream: AssistantStream, threadId:string) => {
+  //   attachStreamHandlers(stream, {
+  //     onTextCreated: () => {
+  //       console.log("🟢 onTextCreated:", event);
+  //       onTextCreated();
+  //     },
+  //     onTextDelta: (event) => {
+  //       console.log("🔄 onTextDelta:", event);
+  //       onTextDelta(event);
+  //     },
+  //     onToolCallCreated: (event) => {
+  //       console.log("🛠️ onToolCallCreated:", event);
+  //       onToolCallCreated(event);
+  //     },
+  //     onToolCallDelta: (event) => {
+  //       console.log("🧩 onToolCallDelta:", event);
+  //       onToolCallDelta(event);
+  //     },
+
+  //     onRequiresAction: async (event: any) => {
+  //       console.log("🚧 onRequiresAction:", event);
+  //       await onRequiresAction(event, threadId,functionCallHandler);
+  //       setInputDisabled(false);
+  //     },
+
+  //     onRunCompleted: async () => {
+
+  //       console.log("✅ onRunCompleted");
+  //       setInputDisabled(false);
+  //       setIsRunning(false);
+  // await saveInteraction();
+  //     }
+  //   });
+  // };
 
   // const {startFlow} = useFlowRunner("stock_analysis", attachHandlers);
 

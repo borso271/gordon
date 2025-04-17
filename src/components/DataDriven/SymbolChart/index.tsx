@@ -14,16 +14,11 @@ import { useSymbolChart } from "../../../app/hooks/useSymbolChart";
 import { arabicMonthMap } from "../../../interfaces";
 
 const SymbolChart = ({ symbol,language }: { symbol: string, language: string}) => {
-  // ✅ Destructure all values from the hook
-
-  // just get the data here as prop rather than fetchig it...
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useChartSizeObserver(containerRef);
 
   const {
-    // chartRef,
-    // chartDimensions,
-
     selectedPeriod,
     setSelectedPeriod,
     periodData,

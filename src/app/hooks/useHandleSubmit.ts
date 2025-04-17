@@ -6,6 +6,7 @@ import { sendMessage } from "../utils/apiActions";
 import { useRef } from "react";
 
 export function useHandleSubmit() {
+  
   const {
     addUserMessage,
     userInput,
@@ -55,50 +56,3 @@ export function useHandleSubmit() {
 
   return { handleSubmit };
 }
-
-
-// export function useHandleSubmit() {
-//     // const router = useRouter();
-//     const {
-//       addUserMessage,
-//       userInput,
-//       setUserInput,
-//       setInputDisabled,
-//       setIsRunning,
-//       threadId,
-      
-//     } = useConversation();
-  
-//     const { attachHandlers } = useStreamHandlers();
-  
-//     const handleSubmit = async (
-//       e?: FormEvent | MouseEvent | null,
-//       customQuery?: string,
-//       overrideThreadId?: string
-//     ) => {
-//       if (e && "preventDefault" in e) e.preventDefault();
-    
-//       const inputToSend = customQuery ?? userInput;
-//       const finalThreadId = overrideThreadId ?? threadId;
-
-//       // console.log("INPUT TO SEND IS and thread id is: ", inputToSend, finalThreadId)
-//       if (!inputToSend.trim() || !finalThreadId) return;
-    
-//       setInputDisabled(true);
-//       setIsRunning(true);
-//       addUserMessage(inputToSend);
-//       setUserInput("");
-    
-//       try {
-      
-//         const response = await sendMessage(finalThreadId, inputToSend);
-//         const stream = AssistantStream.fromReadableStream(response.body);
-//         attachHandlers(stream, finalThreadId);
-//       } finally {
-//         // Optional cleanup
-//       }
-//     };
-  
-//     return { handleSubmit };
-//   }
-  

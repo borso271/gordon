@@ -1,6 +1,7 @@
 FIX SEARCHES AND SEARCHS BUTTON COMMANDS ANYWHERE
 FIX STOCK BUY/SELL EVERYWHERE (LIKE IN SINGLE ASSET)
 
+cannot start new conversation while old still running, or stops old
 
 
 

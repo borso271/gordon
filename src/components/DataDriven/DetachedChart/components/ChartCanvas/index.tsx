@@ -7,164 +7,6 @@ import ChartTooltip from "../ChartTooltip";
 
 
 
-// import {useRef} from "react";
-// import styles from "./ChartCanvas.module.css";
-// import { useChartCanvas } from "../../../../../app/hooks/useChartCanvas";
-// import ChartTooltip from "../ChartTooltip";
-// import { useChartSizeObserver } from "../../../../../app/hooks/useChartSizeObserver";
-// interface ChartCanvasProps {
-//   data?: any[];
-
-//   minPrice: number;
-//   isPositiveChange: boolean;
-//   language: string;
-
-//   area?: boolean;
-//   marketOpen?: boolean;
-//   curvy?: boolean;
-// }
-
-// const ChartCanvas: React.FC<ChartCanvasProps> = ({
-//   data = [],
-//   minPrice,
-//   isPositiveChange,
-//   language,
-//   area = true,
-//   marketOpen = true,
-//   curvy = true,
-// }) => {
-
-//   const {
-//     svgRef,
-//     containerRef,
-//     hoveredPoint,
-//     hoverPos,
-//     linePath,
-//     areaPath,
-//     lastX,
-//     lastY,
-//     handlePointerMove,  // renamed from handleMouseMove
-//     handlePointerLeave, // renamed from handleMouseLeave
-//     lineColor,
-//     stopColor1,
-//     stopColor2,
-//     strokeWidth,
-//     dashArray,
-//     circleRadius,
-//     circleStrokeWidth,
-//   } = useChartCanvas({
-//     data,
-//     minPrice,
-//     isPositiveChange,
-//     area,
-//     marketOpen,
-//     curvy,
-//   });
-
-//   // If the data has fewer than 2 points, just return the empty chart.
-//   if (data.length < 2) {
-//     return (
-//       <div className={styles.chartWrapper} ref={containerRef}>
-//         <svg
-//           ref={svgRef}
-//           className={styles.canvas}
-         
-//         />
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className={styles.chartWrapper} ref={containerRef}>
-//       <svg
-//         ref={svgRef}
-//         className={styles.canvas}
-//         width="100%"
-//         height="100%"
-//         onPointerMove={handlePointerMove}
-//         onPointerLeave={handlePointerLeave}
-//        style={{ overflowY: "auto", touchAction: "none" }}
-       
-//       >
-//         <g>
-//           <defs>
-//             <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
-//               <stop offset="0%" stopColor={stopColor1} stopOpacity="0.4" />
-//               <stop offset="100%" stopColor={stopColor2} stopOpacity="0" />
-//             </linearGradient>
-//           </defs>
-
-//           {/* Line path */}
-//           <path
-//             d={linePath}
-//             fill="none"
-//             stroke={lineColor}
-//             strokeWidth={2}
-//             vectorEffect="non-scaling-stroke"
-//           />
-
-//           {/* Area fill */}
-//           {area && <path d={areaPath} fill="url(#lineGradient)" stroke="none" />}
-
-//           {/* Pulsing circle if marketOpen */}
-//           {marketOpen && (
-//             <circle
-//               cx={lastX}
-//               cy={lastY}
-//               r={8}
-//               className={styles.pulsatingCircle}
-//               fill={lineColor}
-//             />
-//           )}
-
-//           {/* Static circle at last data point */}
-//           <circle cx={lastX} cy={lastY} r={3} fill={lineColor} />
-
-//           {/* Hover crosshair & circle */}
-//           {hoveredPoint && (
-//             <>
-//               <line
-//                 x1={hoveredPoint.x}
-//                 x2={hoveredPoint.x}
-//                 y1={hoveredPoint.y}
-//                 y2={2000}
-//                 stroke={lineColor}
-//                 strokeWidth={strokeWidth}
-//                 strokeDasharray={dashArray}
-//                 // Keep pointerEvents off so the line itself doesn't block pointer
-//                 pointerEvents="none"
-//               />
-//               <circle
-//                 cx={hoveredPoint.x}
-//                 cy={hoveredPoint.y}
-//                 r={circleRadius}
-//                 fill="#0F0F0F"
-//                 stroke={lineColor}
-//                 strokeWidth={circleStrokeWidth}
-//                 pointerEvents="none"
-//               />
-//             </>
-//           )}
-//         </g>
-//       </svg>
-
-//       {/* Tooltip */}
-//       {hoveredPoint && (
-//         <ChartTooltip
-//           hoveredPoint={hoveredPoint}
-//           mousePos={hoverPos}
-//           containerRef={containerRef}
-//           language={language}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default ChartCanvas;
-
-
-
 
 interface ChartCanvasProps {
   data?: any[];
@@ -181,7 +23,6 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
   minPrice,
   isPositiveChange,
   language,
-
   area = true,
   marketOpen = true,
   curvy = true,
@@ -198,8 +39,8 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
     handlePointerMove,  // renamed from handleMouseMove
     handlePointerLeave, // renamed from handleMouseLeave
     lineColor,
-    stopColor1,
-    stopColor2,
+  stopColor1,
+  stopColor2,
     strokeWidth,
     dashArray,
     circleRadius,
@@ -212,6 +53,19 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
     marketOpen,
     curvy,
   });
+
+  // console.log("IS POSITIVE CHANGE IN DETACHED CHART IS: ", isPositiveChange)
+
+//   const stopColor1 = isPositiveChange
+//   ? "rgba(26, 237, 135, 0.1)"
+//   : "rgba(237, 68, 26, 0.1)";
+// const stopColor2 = isPositiveChange
+//   ? "rgba(26, 237, 135, 0.2)"
+//   : "rgba(237, 68, 26, 0.2)";
+
+
+
+
 
   // If the data has fewer than 2 points, just return the empty chart.
   if (data.length < 2) {
@@ -246,7 +100,7 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
       >
         <g>
           <defs>
-            <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="lineGradient2" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor={stopColor1} stopOpacity="0.4" />
               <stop offset="100%" stopColor={stopColor2} stopOpacity="0" />
             </linearGradient>
@@ -261,8 +115,9 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
             vectorEffect="non-scaling-stroke"
           />
 
-          {/* Area fill */}
-          {area && <path d={areaPath} fill="url(#lineGradient)" stroke="none" />}
+          {/* Area fill */} 
+          {/*  */}
+          {area && <path d={areaPath} fill="url(#lineGradient2)" stroke="none" />}
 
           {/* Pulsing circle if marketOpen */}
           {marketOpen && (

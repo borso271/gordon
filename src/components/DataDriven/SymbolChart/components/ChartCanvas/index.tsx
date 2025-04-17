@@ -54,7 +54,6 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
     curvy,
   });
 
-  // If the data has fewer than 2 points, just return the empty chart.
   if (data.length < 2) {
     return (
       <div className={styles.chartWrapper} ref={containerRef}>

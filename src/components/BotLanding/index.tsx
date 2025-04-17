@@ -37,12 +37,10 @@ const BotLanding = () => {
 const handleLandingSubmit = async (e?: FormEvent) => {
   e?.preventDefault();
   
-  console.log("handleLandingSubmit called");
 
   const newSession = await startNewChatSession();
-  console.log("New Chat Session Created and id is: ", newSession.id);
 
-   router.push(`/landing?threadId=${newSession.id}`);
+  //  router.push(`/landing?threadId=${newSession.id}`);
 
   setTimeout(() => {
     console.log("WE ARE ABOUT TO CALL HANDLESUBMIT")

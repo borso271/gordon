@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./TopSuggestionButton.module.css";
 import Icon from "../../Icons/Icon";
 
-interface SecondaryButtonProps {
+interface TopSuggestionProps {
   text: string;
   onClick: () => void;
   disabled?: boolean;
@@ -10,7 +10,7 @@ interface SecondaryButtonProps {
   icon?: string | null;
 }
 
-const TopSuggestionButton: React.FC<SecondaryButtonProps> = ({
+const TopSuggestionButton: React.FC<TopSuggestionProps> = ({
   text,
   onClick,
   disabled = false,

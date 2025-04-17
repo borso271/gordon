@@ -148,6 +148,16 @@ export function useSymbolChart(symbol: string, width: number, height: number) {
   const [selectedPeriod, setSelectedPeriod] = useState<Period>("1D");
 
   const periodData: PricePoint[] = seriesesData.get(selectedPeriod) || [];
+
+  let isPositiveChange = false;
+
+  if (periodData.length >= 2) {
+    const first = periodData[0].price;                   // start of period
+    const last = periodData[periodData.length - 1].price; // end of period
+  
+    isPositiveChange = last > first;
+  }
+
   const prices = periodData.map((d: any) => d.price);
   const dayMin = prices.length > 0 ? Math.min(...prices) : 0;
   const dayMax = prices.length > 0 ? Math.max(...prices) : 0;
@@ -174,8 +184,6 @@ export function useSymbolChart(symbol: string, width: number, height: number) {
   const adjustedLow = Math.floor(dayMin - padding);
 
 
-
-
   const priceLegendSegments = useMemo(() => {
     return dayMin !== undefined && dayMax !== undefined
       ? returnPriceLegendSegments(adjustedLow, adjustedHigh)
@@ -195,7 +203,8 @@ const timeLegendPercentage = computeHistoricalPercentage(dataPoints, selectedPer
     }
   }, [periodData, selectedPeriod]);
 
-  const isPositiveChange = currentPrice > relevant_close;
+
+
 
   // 7) Combine final chart data
   const firstpartwidth = useMemo(() => {

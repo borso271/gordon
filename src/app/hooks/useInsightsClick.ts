@@ -21,7 +21,7 @@ export function useInsightsClick() {
     const customQuery = `Explain to the user what you know about the security "${name}" with symbol "${ticker}". You may also search the web to give the latest news or info you might not have on this company. Reply in the user language which is: ${userLanguage}`;
 
     setUserInput(friendlyPrompt);
-    handleSubmit(null, false, customQuery);
+    handleSubmit(null, customQuery);
   }
 
   return { onInsightsClick };

@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 
 interface OverviewContentProps {
+  dataForHeader: any;
   filteredAssets: PortfolioItem[];
   filteredHistory:any;
   selectedAssetType: string;
@@ -22,6 +23,7 @@ interface OverviewContentProps {
 }
 
 const OverviewContent: React.FC<OverviewContentProps> = ({
+  dataForHeader,
   filteredAssets,
   filteredHistory,
   selectedAssetType,
@@ -36,7 +38,7 @@ const OverviewContent: React.FC<OverviewContentProps> = ({
     
 <div className={styles.content}>
 
-<OverviewHeader start_amount={10000} end_amount={12000}/>
+<OverviewHeader dataForHeader={dataForHeader}/>
 
 <SimpleChart data={testchartdata} language={'en'}/>
 {selectedAssetType === "stock" && (

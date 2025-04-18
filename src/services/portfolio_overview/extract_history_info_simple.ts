@@ -4,7 +4,8 @@ export interface TransactionItem {
     name: string;
     date: number;     // in ms from epoch
     type: string;
-    asset_type: string;
+
+    asset_type: "stock" | "crypto" | "etf";
     quantity: number;   // quantity
     price: number;    // price per share
 

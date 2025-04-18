@@ -10,7 +10,7 @@ type AssetsWithInsightProps = {
 
 const AssetsWithInsight: React.FC<AssetsWithInsightProps> = ({ data }) => {
   const { t } = useTranslation();
-console.log("data is: ", data)
+// console.log("data is: ", data)
   return (
     <div className={styles.container}>
  <h2 className={styles.title}>{t("asset.suggested_assets", "Suggested Assets")}</h2>

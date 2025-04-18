@@ -1,25 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import supabase_client from "../../../lib/supabaseClient";
+import { fetchBuyingPower } from "../../../services/get_buying_power";
+
 export async function POST(req: NextRequest) {
   try {
     const { user_id } = await req.json();
+    const result = await fetchBuyingPower(user_id);
 
-    if (!user_id) {
-      return NextResponse.json({ error: "Missing user_id" }, { status: 400 });
+    if (result.status === "failure") {
+      return NextResponse.json({ error: result.error }, { status: 400 });
     }
 
-    const { data, error } = await supabase_client
-      .from("users")
-      .select("cash")
-      .eq("id", user_id)
-      .single();
-
-    if (error) {
-      console.error("❌ Error fetching cash for user:", error);
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
-    }
-
-    return NextResponse.json({ cash: data.cash });
+    return NextResponse.json({ cash: result.cash });
   } catch (err) {
     console.error("❌ Server error in fetch_buying_power:", err);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

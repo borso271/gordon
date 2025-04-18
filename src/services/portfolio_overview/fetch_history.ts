@@ -27,8 +27,11 @@ interface UserTransaction {
   comment: string | null;
   name: string;
   ticker: string;
-  asset_type: string;
+//   asset_type: string;
+  asset_type: "stock" | "crypto" | "etf";
 }
+
+
 
 export async function fetchUserTransactionsSince(
   userId: string,

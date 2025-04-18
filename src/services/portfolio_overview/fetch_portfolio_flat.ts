@@ -28,7 +28,7 @@ export interface FlatPortfolio {
   created_at: string | null;
   ticker: string;
   name: string;
-  asset_type:string;
+  asset_type: "stock" | "crypto" |"etf";
   sector: string;
   exchange_mic: string;
 }
@@ -72,7 +72,7 @@ export async function fetchUserPortfolioFlat(user_id: string): Promise<FlatPortf
     created_at: entry.created_at,
     ticker: entry.symbols?.ticker ?? "",
     name: entry.symbols?.name ?? "",
-    asset_type: entry.symbols?.asset_type ?? "",
+    asset_type: entry.symbols?.asset_type ?? "stock",
     sector: entry.symbols?.sector ?? "",
     exchange_mic: entry.symbols?.exchange_mic ?? "",
   }));

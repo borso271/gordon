@@ -50,13 +50,19 @@
 
 
 
-
-
-
+"stock": "سهم",
 "stocks": "الأسهم",
-  "crypto": "العملات الرقمية",
-  "etf": "الصناديق المتداولة",
+"crypto": "العملات الرقمية",
+"etf": "الصناديق المتداولة",
 
+
+"Technology": "التكنولوجيا",
+"Communication Services": "خدمات الاتصالات",
+"Consumer Cyclical": "السلع الاستهلاكية الدورية",
+"Financial Services": "الخدمات المالية",
+"Health Care": "الرعاية الصحية",
+"Consumer Defensive": "السلع الاستهلاكية الأساسية"
+,
 
   "analyst_ratings": {
      "subheading": "بناءً على {{count}} من تقييمات المحللين",
@@ -167,6 +173,7 @@
   "view_all": "عرض الكل"
 },
   
+"sector_allotment": "توزيع القطاعات",
 
 "transaction": {
   "statuses": {
@@ -260,7 +267,8 @@
 
 
 "portfolio_summary": {
-  "title": "ملخص المحفظة"
+  "title": "ملخص المحفظة",
+  "to": "إلى"
 },
 
 "asset_type": {

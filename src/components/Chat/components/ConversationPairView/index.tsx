@@ -80,20 +80,11 @@ const ConversationPairView: React.FC<ConversationPairViewProps> = ({
 const { t } = useTranslation();
 const { currentLang } = useLanguage();
 const {appendAssistantText, setInputDisabled, updateLastInteractionBotParts} = useConversation();
-
 const [assistantText, setAssistantText] = useState("");
-
 const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
-
-
-
 const [followUpSuggestions, setFollowUpSuggestions] = useState<Array<string>>([]);
-
 const userText = interaction.userMessage.text || "";
 const botParts = interaction.botMessage.parts || [];
-
-
-console.log("BOT PARTS ARE: ", botParts)
 
 const filteredParts = botParts.filter(
   (part) => part.sidebar !== true
@@ -150,7 +141,6 @@ useEffect(() => {
             // setFollowUpSuggestions(data.result);
             handleNewSuggestions(data.result, interaction,setFollowUpSuggestions,updateLastInteractionBotParts);
 
-           
           } else {
             setFollowUpSuggestions([]);
           }
@@ -165,17 +155,16 @@ useEffect(() => {
   prevIsRunning.current = isRunning;
 }, [isRunning, filteredParts]);
 
-
-  // Check if we have *no* content from the bot yet (use your own logic)
-  // e.g., if only one text part with empty content, or array is empty => "nothingYet"
-
   const nothingYet =
     filteredParts.length === 0 ||
     (filteredParts.length === 1 &&
       filteredParts[0].type === "assistantText" &&
       filteredParts[0].text.trim() === "");
 
+  // const nothingYet = true;
+  // const [nothingYet, setNothingYet] = useState(true);
   // Timeout logic (similar to your old approach)
+
   useEffect(() => {
     if (nothingYet) {
       const timeout = setTimeout(() => {
@@ -183,7 +172,7 @@ useEffect(() => {
         appendAssistantText(messages[lang].text);
         interaction.status = "failure";
         setInputDisabled(false)
-      }, 120000); // 40s or whatever you need
+      }, 30000); // 40s or whatever you need
       return () => clearTimeout(timeout);
     }
   }, [nothingYet]);
@@ -200,51 +189,6 @@ useEffect(() => {
     },
   };
   const lang = currentLang === "ar" ? "ar" : "en"; // fallback to 'en'
-
-  // // Render logic for each part
-  // const renderBotPart = (part: BotMessagePart, index: number) => {
-  //   console.log("we are calling this with PART type IS: ", part);
-  //   switch (part.type) {
-  //     case "assistantText":
-  //       // If you used to do "pair.assistant" → text, you can parse heading vs text if you want
-  //       return (
-  //         <AssistantMessage
-  //           key={index}
-  //           heading={""} // or parse a heading from content if you want
-  //           text={part.text}
-  //         />
-  //       );
-
-  //       case "tickers_chart":
-  //         return (
-  //         <TradingViewSingleChart
-  //         language = {interaction.language}
-  //           symbol = {part.data.tickers[0]}
-  //            currency = {part.data.currency}
-  //               /> )
-
-
-  //     case "latest_news":
-  //       console.log("case latest new ")
-  //       return (
-  //       <NewsList 
-  //       // title = {part.data.title}
-  //       data = {part.data}
-  //       />)
-      
-  //     case "tool_output":
-  //       // Could be code interpreter or something else
-  //       if (part.toolName === "code_interpreter") {
-  //         // render the result of code interpreter, or some
-  //         // specialized <CodeInterpreterOutput> component
-  //         return <div key={index}>Code interpreter output goes here</div>;
-  //       }
-  //       return null;
-
-  //     default:
-  //       return null;
-  //   }
-  // };
 
   const renderBotPart = (part: BotMessagePart, index: number) => {
     /* ⛔  Skip any non‑text part while the assistant is still “speaking” */
@@ -295,7 +239,6 @@ useEffect(() => {
     }
   };
   
-
   // Determine language direction for this conversation
   const languageClass =
     interaction.userMessage.language === "ar" ? "rightToLeft" : "leftToRight";
@@ -324,9 +267,6 @@ useEffect(() => {
               <Loading />
             )
           ) : (
-
-          //  We have some bot parts, so render them all
-          //  botParts.map(renderBotPart)
 
           filteredParts.map((part, index) => (
               <React.Fragment key={part.type + "-" + index}>

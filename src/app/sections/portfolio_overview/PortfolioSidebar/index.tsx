@@ -1,21 +1,58 @@
 import React, { useState } from 'react';
 import styles from './PortfolioSummary.module.css';
 import OverviewContent from './components/OverviewContent';
-import { PortfolioItem } from '../../../../interfaces';
+import { PortfolioItem, Transaction } from '../../../../interfaces';
 import { filterTransactionsByAssetType } from './utils/filterTransactionsByAssetType';
 import { useTranslation } from 'react-i18next';
+import SidebarHeading from '../../../../components/Headings/SidebarHeading';
+
+
+
+interface Allocation {
+  label: string;
+  value: number;
+}
+
 interface PortfolioData {
   start_date: string;
+  user_cash:number;
+  user_balance: number;
+  totalInvested: number;
+  unrealizedGainLoss: number;
+  number_of_transactions: number;
+  realized_gains: number;
   assets: PortfolioItem[];
-  history: any;
+  history: Transaction[];
+  assetTypeAllocation: Allocation[];
+  stockSectorAllocation: Allocation[];
 }
+
 
 interface PortfolioSummaryProps {
   data: PortfolioData;
 }
+
+function formatDate(date: string | Date) {
+  const d = new Date(date);
+  return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
+}
+
+
 const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ data }) => {
   const { t } = useTranslation();
   const [selectedAssetType, setSelectedAssetType] = useState<'all' | 'stock' | 'crypto' | 'etf'>('all');
+
+
+
+  const dataForHeader = {
+    number_of_transactions: data.number_of_transactions,
+    realized_gains: data.realized_gains,
+    user_balance: data.user_balance,
+    user_cash: data.user_cash,
+    start_date: data.start_date,
+    unrealizedGainLoss: data.unrealizedGainLoss,
+    totalInvested: data.totalInvested,
+  };
 
   const filteredAssets =
     selectedAssetType === 'all'
@@ -33,7 +70,17 @@ const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ data }) => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <h2 className={styles.title}>{t('portfolio_summary.title')}</h2>
+
+      <h2 className={styles.title}>
+  {t('portfolio_summary.title')}{": "}
+  <span className={styles.dateRange}>
+    <span className={styles.date}>{formatDate(data.start_date)}</span>
+    {" "}
+    {t('portfolio_summary.to')}
+    {" "}
+    <span className={styles.date}>{formatDate(new Date())}</span>
+  </span>
+</h2>
 
         <div className={styles.buttonGroup}>
           {assetTypes.map(type => (
@@ -50,6 +97,7 @@ const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ data }) => {
 
       <div className={styles.content}>
         <OverviewContent
+        dataForHeader={dataForHeader}
           filteredAssets={filteredAssets}
           filteredHistory={filteredHistory}
           selectedAssetType={selectedAssetType}

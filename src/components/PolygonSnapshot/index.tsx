@@ -30,12 +30,14 @@ const PolygonSnapshot: React.FC<PolygonSnapshotProps> = ({ data }) => {
           label={t("ticker_snapshot.current_price")}
           value={data.currentPrice}
           currencySymbol={currency}
+          isPercentage={false}
           applyColor={false}
         />
         <SnapshotCell
           label={t("ticker_snapshot.low")}
           value={data.low}
           currencySymbol={currency}
+          isPercentage={false}
           applyColor={false}
         />
       </div>
@@ -45,12 +47,14 @@ const PolygonSnapshot: React.FC<PolygonSnapshotProps> = ({ data }) => {
           label={t("ticker_snapshot.high")}
           value={data.high}
           currencySymbol={currency}
+          isPercentage={false}
           applyColor={false}
         />
         <SnapshotCell
           label={t("ticker_snapshot.open")}
           value={data.open}
           currencySymbol={currency}
+          isPercentage={false}
           applyColor={false}
         />
       </div>
@@ -60,12 +64,14 @@ const PolygonSnapshot: React.FC<PolygonSnapshotProps> = ({ data }) => {
           label={t("ticker_snapshot.volume")}
           value={data.volume}
           withCurrency={false}
+          isPercentage={false}
           applyColor={false}
         />
         <SnapshotCell
           label={t("ticker_snapshot.prev_close")}
           value={data.prevClose}
           currencySymbol={currency}
+          isPercentage={false}
           applyColor={false}
         />
       </div>

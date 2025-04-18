@@ -14,23 +14,7 @@ interface AssistantMessageProps {
   heading: string;
   text: string;
 }
-// const formatLinks = (text: string): string => {
-//   let count = 1;
 
-//   // Step 1: Replace all [text](url) with numbered links
-//   const numberedText = text.replace(
-//     /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-//     (_, __, url) => `[${count++}](${url})`
-//   );
-
-//   // Step 2: Replace list items like "- [1](url)" or "- **Read more**: [1](url)" with just the link + newline
-//   const cleanedText = numberedText.replace(
-//     /^[\s\t]*[-*+]\s+(?:\*\*Read[^\n]*\*\*:)?\s*(\[\d+\]\([^)]+\))\s*$/gmi,
-//     (_, link) => `${link}\n` // ✅ force line break after
-//   );
-
-//   return cleanedText;
-// };
 const formatLinks = (text: string): string => {
   let count = 1;
 
@@ -58,12 +42,10 @@ const formatLinks = (text: string): string => {
   return noBreakBeforeLink;
 };
 
-
-
 const AssistantMessage: React.FC<AssistantMessageProps> = ({ heading, text }) => {
   const formattedText1 = text.replace(/\\n/g, "\n");
   const formattedText = formatLinks(formattedText1)
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
 
   return (
@@ -73,17 +55,25 @@ const AssistantMessage: React.FC<AssistantMessageProps> = ({ heading, text }) =>
           <ReactMarkdown
   remarkPlugins={[remarkGfm]}
   components={{
-    a: ({ href, children, ...props }) => (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="circularLink"
-        {...props}
-      >
-        {children}
-      </a>
-    ),
+
+    a: ({ href, children, ...props }) => {
+      // If it's an email, don't render as link
+      if (href?.startsWith("mailto:")) {
+        return <span {...props}>{children}</span>;
+      }
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="circularLink"
+          {...props}
+        >
+          {children}
+        </a>
+      );},
+
+  
     table: ({ node, ...props }) => (
       <table className="myStyledTable" {...props} />
       
@@ -101,3 +91,16 @@ const AssistantMessage: React.FC<AssistantMessageProps> = ({ heading, text }) =>
 };
 
 export default AssistantMessage;
+
+
+  // a: ({ href, children, ...props }) => (
+    //   <a
+    //     href={href}
+    //     target="_blank"
+    //     rel="noopener noreferrer"
+    //     className="circularLink"
+    //     {...props}
+    //   >
+    //     {children}
+    //   </a>
+    // ),

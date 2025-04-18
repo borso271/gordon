@@ -6,7 +6,7 @@ interface PortfolioItem {
     change: number | null; // % change
     ticker: string;
     name: string;
-    asset_type: string;
+    asset_type: "stock" | "crypto" |"etf";
     sector: string;
     exchange_mic: string;
     // other fields: first_acquired, last_close, day_high, day_low, updated, etc.

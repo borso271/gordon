@@ -1,4 +1,5 @@
-export const fake_portfolio = [
+import { PortfolioItem } from "../../interfaces"
+export const fake_portfolio: PortfolioItem[] = [
   {
     "symbol_id": 101,
     "ticker": "AAPL",
@@ -16,7 +17,7 @@ export const fake_portfolio = [
     "last_price_timestamp": "1718086400000",
     "pnl": 1817.50
   },
-  
+
   {
     "symbol_id": 102,
     "ticker": "MSFT",

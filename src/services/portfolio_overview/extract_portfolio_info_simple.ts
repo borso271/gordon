@@ -1,21 +1,4 @@
-type PortfolioItem = {
-    symbol_id: number | null;
-    ticker: string | null;
-    name: string | null;
-    currency: string | null;
-    quantity: number;
-    avg_price: number;
-    asset_type: string;
-    last_close: number | null;
-    first_acquired: string | null;
-    last_updated: string;
-    created_at: string;
-    last_price: number | null;
-    last_price_timestamp?: string | null;
-    pnl: number | null;
-    sector?: string; // optional if you track a sector for each stock
-  };
-  
+import { PortfolioItem } from "../../interfaces";
 
   type PercentageOverviewItem = {
     labelKey: string;

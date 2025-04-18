@@ -6,6 +6,21 @@ export type ChatSession = {
   updatedAt: string;
 };
 
+
+export type Transaction = {
+  id: number;
+  ticker: string;
+  name: string;
+  asset_type: "stock" | "crypto" | "etf";
+  date: number;
+  type: "Buy" | "Sell";
+  quantity: number;
+  price: number;
+  status?: string;
+};
+
+
+
 export type Interaction = {
   id: string;
   userMessage: UserMessage;
@@ -73,10 +88,29 @@ export type PortfolioItem = {
   last_price: number | null;
   last_price_timestamp?: string | null;
   pnl: number | null;
-
+  sector?: string;
   /** share of portfolio market value, 0 – 100 % */
   allocation?: number | null;
 };
+
+
+// type PortfolioItem = {
+//   symbol_id: number | null;
+//   ticker: string | null;
+//   name: string | null;
+//   currency: string | null;
+//   quantity: number;
+//   avg_price: number;
+//   asset_type: "stock" | "crypto" |"etf";
+//   last_close: number | null;
+//   first_acquired: string | null;
+//   last_updated: string;
+//   created_at: string;
+//   last_price: number | null;
+//   last_price_timestamp?: string | null;
+//   pnl: number | null;
+//   sector?: string; // optional if you track a sector for each stock
+// };
 
 
 

@@ -7,7 +7,6 @@ import LayoutWithNavbar from '../../../components/Layout/MainLayout';
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-
 const HistoryPage = () => {
   const { t } = useTranslation();
 

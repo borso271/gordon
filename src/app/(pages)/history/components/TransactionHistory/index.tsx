@@ -1,7 +1,5 @@
 "use client";
 
-"use client";
-
 import { useEffect, useState } from "react";
 import styles from "./TradingHistory.module.css";
 import TradingHistoryTable from "../TransactionHistoryTable";
@@ -74,7 +72,6 @@ export default function TransactionHistory() {
   isOpen={openPicker === "end"}
   setOpen={(open) => setOpenPicker(open ? "end" : null)}
 />
-
   </div>
 </div>
 </div>
@@ -84,6 +81,20 @@ export default function TransactionHistory() {
     </div>
   );
 }
+
+
+
+// const filtered: {
+//   id: number;
+//   ticker: string;
+//   name: string;
+//   date: number;
+//   type: string;
+//   asset_type: string;
+//   quantity: number;
+//   price: number;
+//   status: string;
+// }[]
 
 
 

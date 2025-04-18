@@ -4,32 +4,57 @@ import PrimaryDivider from '../../../../../../components/Layout/PrimaryDivider';
 import ValueChangeDisplay from '../../../../../../components/Layout/ChatNavbar/ValueChangeDisplay';
 import { useTranslation } from 'react-i18next';
 
-interface OverviewHeaderProps {
-  start_amount: number;
-  end_amount: number;
-}
 
-const OverviewHeader: React.FC<OverviewHeaderProps> = ({
-  start_amount,
-  end_amount,
+
+
+// const dataForHeader = {
+//   number_of_transactions: data.number_of_transactions,
+//   realized_gains: data.realized_gains,
+//   user_balance: data.user_balance,
+//   start_date: data.start_date,
+//   unrealizedGainLoss: data.unrealizedGainLoss,
+//   totalInvested: data.totalInvested,
+// };
+
+const OverviewHeader = ({
+  dataForHeader
 }) => {
-  const change = end_amount - start_amount;
 
-const percentChange =
-start_amount !== 0
-  ? (change / start_amount) * 100
-  : 0;
+
+
+  console.log("dataForHeader is: ", dataForHeader)
+// Starting balance = totalInvested - unrealized gains + realized gains
+
+// Current market value = total value of assets + cash
+const current_market_value = dataForHeader.user_balance - dataForHeader.user_cash;
+const start_market_value = current_market_value - dataForHeader.realized_gains - dataForHeader.unrealizedGainLoss;
+const net_profit_loss = dataForHeader.realized_gains + dataForHeader.unrealizedGainLoss;
   const currency="$";
   const format = (v: number) => `${currency}${v.toFixed(2)}`;
   const { t } = useTranslation();
-  const total_transactions = 12;
-  const realizedChange = 10;
-  const unrealizedChange = 5000;
-  const unrealizedPercentChange = 12;
-  const realizedPercentChange = 5;
+  const total_transactions =dataForHeader.number_of_transactions;
+  const realizedChange = dataForHeader.realized_gains;
+  const unrealizedChange =dataForHeader.unrealizedGainLoss;
+ 
 
-  const netChange = end_amount - start_amount;
-  const netPercentChange = netChange/start_amount;
+
+
+  const realizedPercentChange = start_market_value > 0
+  ? (realizedChange / start_market_value) * 100
+  : 0;
+
+const unrealizedPercentChange = start_market_value > 0
+  ? (unrealizedChange / start_market_value) * 100
+  : 0;
+
+const netPercentChange = start_market_value > 0
+  ? (net_profit_loss / start_market_value) * 100
+  : 0;
+
+
+
+  //const netPercentChange = (net_profit_loss / start_market_value) * 100;
+
   
   return (
 
@@ -37,11 +62,11 @@ start_amount !== 0
     <div className={styles.row}>
       <div className={styles.metricWrapper}>
         <div className={styles.label}>{t('total_transactions')}</div>
-        <div className={styles.value}>{format(total_transactions)}</div>
+        <div className={styles.value}>{total_transactions}</div>
       </div>
       <div className={styles.metricWrapper}>
         <div className={styles.label}>{t('start_market_value')}</div>
-        <div className={styles.value}>{format(start_amount)}</div>
+        <div className={styles.value}>{format(start_market_value)}</div>
       </div>
     </div>
     <PrimaryDivider marginTop={14} marginBottom={14} />
@@ -49,7 +74,7 @@ start_amount !== 0
     <div className={styles.row}>
       <div className={styles.metricWrapper}>
         <div className={styles.label}>{t('end_market_value')}</div>
-        <div className={styles.value}>{format(end_amount)}</div>
+        <div className={styles.value}>{format(current_market_value)}</div>
       </div>
       <div className={styles.metricWrapper}>
         <div className={styles.label}>{t('realized_gain_loss')}</div>
@@ -70,7 +95,7 @@ start_amount !== 0
       <div className={styles.metricWrapper}>
         <div className={styles.label}>{t('net_profit_loss')}</div>
         <div className={styles.value}>
-          <ValueChangeDisplay change={netChange} percentChange={netPercentChange} />
+          <ValueChangeDisplay change={net_profit_loss} percentChange={netPercentChange} />
         </div>
       </div>
     </div>

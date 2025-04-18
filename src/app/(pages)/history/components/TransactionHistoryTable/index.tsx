@@ -3,19 +3,10 @@ import styles from "./TransactionHistoryTable.module.css";
 import SymbolTitle from "../../../(dashboard)/components/Watchlist/SymbolTitle";
 import { useTranslation } from "react-i18next";
 import Icon from "../../../../../components/Icons/Icon";
-type TransactionItem = {
-  id: number | null;
-  ticker: string | null;
-  name: string | null;
-  date: number | null;
-  type: string | null;
-  price: number;
-  quantity: number;
-  status?: string;
-};
+import { Transaction } from "../../../../../interfaces";
 
 type Props = {
-    transactions: TransactionItem[];
+    transactions: Transaction[];
 };
 
 
@@ -34,10 +25,6 @@ export function formatUnixTimestamp(timestamp: number): string {
 
   return `${year}/${month}/${day} · ${hours}.${minutes}.${seconds}`;
 }
-
-
-
-
 
 
 const TransactionHistoryTable: React.FC<Props> = ({ transactions }) => {

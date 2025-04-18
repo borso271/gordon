@@ -70,6 +70,13 @@
 
 
 
+"stock": "Stock",
+"Technology": "Technology",
+"Communication Services": "Communication Services",
+"Consumer Cyclical": "Consumer Cyclical",
+"Financial Services": "Financial Services",
+"Health Care": "Health Care",
+"Consumer Defensive": "Consumer Defensive",
 
 
 
@@ -105,7 +112,8 @@
   },
 
 "portfolio_summary": {
-  "title": "Portfolio Summary"
+  "title": "Portfolio Summary",
+   "to": "to"
 },
 
 
@@ -206,7 +214,7 @@
   
   
 },
-
+"sector_allotment": "Sector Allocation",
 
 "price_chart": "Price Chart",
 "chart": {

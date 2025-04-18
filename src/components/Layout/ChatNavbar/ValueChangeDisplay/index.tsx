@@ -11,18 +11,23 @@ const ValueChangeDisplay: React.FC<ValueChangeDisplayProps> = ({
   change,
   percentChange,
 }) => {
-  const isPositive = change >= 0;
-  const iconName = isPositive ? 'positive_trend' : 'negative_trend';
+  const isPositive = change > 0;
+  const isNegative = change < 0;
+  const isNeutral = change === 0;
 
+  const iconName = isPositive ? 'positive_trend' : isNegative ? 'negative_trend' : '';
 
-const changeClass = `${styles.changeValue} ${isPositive ? styles.positive : styles.negative}`;
-
+  const changeClass = `${styles.changeValue} ${
+    isPositive ? styles.positive : isNegative ? styles.negative : styles.neutral
+  }`;
 
   return (
     <div className={changeClass}>
-      <div>
-        <Icon name={iconName} size={14} />
-      </div>
+      {!isNeutral && (
+        <div>
+          <Icon name={iconName} size={14} />
+        </div>
+      )}
 
       <div className={styles.currencyAndAmount}>
         <div className={styles.currency}>$</div>

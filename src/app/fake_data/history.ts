@@ -1,4 +1,5 @@
-export const fake_transaction_history = [
+import { Transaction } from "../../interfaces"
+export const fake_transaction_history: Transaction[] = [
     
     {
       "id": 2,

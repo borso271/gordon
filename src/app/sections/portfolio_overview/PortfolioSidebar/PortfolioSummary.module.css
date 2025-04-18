@@ -7,10 +7,22 @@
   }
   
   .title {
-    font-size: 20px;
-    font-weight: 600;
- 
-    color: #fff;
+    color: var(--black-50, #F8F8F8);
+/* Text L/Medium */
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: 130%; /* 23.4px */
+  }
+
+
+  .dateRange {
+    color: var(--black-400, #757575);
+/* Text M/Medium */
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%;
   }
   
 

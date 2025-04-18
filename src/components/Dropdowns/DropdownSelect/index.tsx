@@ -1,13 +1,23 @@
 // DropdownSelect.tsx
 import React, { useState, useRef, useEffect } from "react";
-import DropdownButton from "../../Buttons/DropdownButton";
-import DropdownMenu   from "../DropdownMenu";
+import SymbolDropdownButton from "../../Buttons/SymbolDropdownButton";
 import styles from "./DropdownSelect.module.css";
+import SymbolDropdownMenu from "../SymbolDropdownMenu";
+import { SimpleTicker } from "../../../interfaces";
 
-export interface DropdownItem { icon?: string; label: string; onClick: () => void }
 
+
+// export type SimpleTicker = {
+//     symbol_id: number,
+//     ticker: string,
+//     name: string,
+//     asset_type: 'stock' | 'crypto' | 'etf';
+//     polygon_snapshot?: PolygonSnapshot
+//   };
+
+  
 interface DropdownSelectProps {
-  items: DropdownItem[];
+  items: SimpleTicker[];
   placeholder?: string;
   buttonWidth?: number;
   rtl?: boolean;
@@ -18,67 +28,61 @@ interface DropdownSelectProps {
 }
 
 const DropdownSelect: React.FC<DropdownSelectProps> = ({
-  items,
-  placeholder,
-  buttonWidth,
-  rtl = false,
-
-  selectedIndex: controlledIndex,
-  onSelect,
-}) => {
-  /* internal index when component is uncontrolled */
-  const [internalIndex, setInternalIndex] = useState<number>(-1);
-  const isControlled = controlledIndex !== undefined;
-  const currentIndex = isControlled ? controlledIndex : internalIndex;
-
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  /* close on outside click */
-  useEffect(() => {
-    const handler = (e: MouseEvent) =>
-      !ref.current?.contains(e.target as Node) && setOpen(false);
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
-  const label = currentIndex >= 0 ? items[currentIndex].label : undefined;
-  const leftIcon = currentIndex >= 0 ? items[currentIndex].icon : null;
-
-  const handleSelect = (idx: number) => {
-    if (!isControlled) setInternalIndex(idx);
-    onSelect?.(idx);            // let parent know
-    items[idx].onClick();       // run item action
-    setOpen(false);
-  };
-
-  return (
-    <div ref={ref} className={styles.dropdownContainer}>
-      <DropdownButton
-        text={label}
-        placeholder={placeholder}
-
-        leftIcon={leftIcon}
-
-        rightIcon={open ? "chevron_up" : "chevron_down"}
-        onClick={() => setOpen(o => !o)}
-        width={buttonWidth}
-        className={open ? styles.activeButton : undefined}
-      />
-
-      {open && (
-        <DropdownMenu
-          items={items}
-          selectedIndex={currentIndex}
-          setSelectedIndex={handleSelect}
-          isOpen
-          {...(rtl ? { left: "0" } : { right: "0" })}
+    items,
+    placeholder,
+    buttonWidth,
+    rtl = false,
+    selectedIndex: controlledIndex,
+    onSelect,
+  }) => {
+    /* internal index when component is uncontrolled */
+    const [internalIndex, setInternalIndex] = useState<number>(-1);
+    const isControlled = controlledIndex !== undefined;
+    const currentIndex = isControlled ? controlledIndex : internalIndex;
+    const [open, setOpen] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+  
+    /* close on outside click */
+    useEffect(() => {
+      const handler = (e: MouseEvent) =>
+        !ref.current?.contains(e.target as Node) && setOpen(false);
+      document.addEventListener("mousedown", handler);
+      return () => document.removeEventListener("mousedown", handler);
+    }, []);
+  
+    const selectedItem = currentIndex >= 0 ? items[currentIndex] : null;
+  
+    const handleSelect = (idx: number) => {
+      if (!isControlled) setInternalIndex(idx);
+      onSelect?.(idx);
+      
+      setOpen(false);
+    };
+  
+    return (
+      <div ref={ref} className={styles.dropdownContainer}>
+        <SymbolDropdownButton
+          text={selectedItem?.name}
+          placeholder={placeholder}
+          ticker_symbol={selectedItem?.ticker || ""}
+          asset_type={selectedItem?.asset_type || "stock"} // fallback asset_type
+          onClick={() => setOpen((o) => !o)}
+          width={buttonWidth}
+          className={open ? styles.activeButton : undefined}
         />
-      )}
-    </div>
-  );
-};
-
-export default DropdownSelect;
-
-
+  
+        {open && (
+          <SymbolDropdownMenu
+            items={items}
+            selectedIndex={currentIndex}
+            setSelectedIndex={handleSelect}
+            isOpen
+            {...(rtl ? { left: "0" } : { right: "0" })}
+          />
+        )}
+      </div>
+    );
+  };
+  
+  export default DropdownSelect;
+  

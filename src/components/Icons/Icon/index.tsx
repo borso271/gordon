@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { useMediaQuery } from "react-responsive";
 
@@ -669,6 +669,11 @@ related_icon: (<svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns
                       )
 };
 
+// import React, { useState } from "react";
+
+// import icons from "./iconsMap";                // your React‑SVG map
+
+const FALLBACK_REACT_ICON = "news_favicon";     // built‑in default
 
 interface IconProps {
   name: string;
@@ -676,7 +681,7 @@ interface IconProps {
   variant?: "primary" | "secondary" | "tertiary";
   strokeColor?: string;
   className?: string;
-  style?: React.CSSProperties; // ✅ Optional style prop
+  style?: React.CSSProperties;
 }
 
 const Icon: React.FC<IconProps> = ({
@@ -685,47 +690,120 @@ const Icon: React.FC<IconProps> = ({
   variant = "primary",
   strokeColor = "none",
   className,
-  style, // ✅ Receive style prop
+  style,
 }) => {
-  const isSmall = useMediaQuery({ maxWidth: 480 });
+  /* ───── responsive size (unchanged) ───── */
+  const isSmall  = useMediaQuery({ maxWidth: 480 });
   const isMedium = useMediaQuery({ maxWidth: 768 });
+  const v = { primary:{lg:20,md:18,sm:16}, secondary:{lg:18,md:18,sm:18},
+              tertiary:{lg:16,md:14,sm:12} } as const;
+  const chosen   = v[variant] ?? v.primary;
+  const finalSz  = size ?? (isSmall ? chosen.sm : isMedium ? chosen.md : chosen.lg);
 
-  // Define responsive size sets for different icon variants
-  const sizeVariants = {
-    secondary: { lg: 18, md: 18, sm: 18 },
-    primary: { lg: 20, md: 18, sm: 16 },
-    tertiary: { lg: 16, md: 14, sm: 12 },
+  /* ───── decide source ───── */
+  const isFile   = name.startsWith("_");               // use /public/symbol_icons
+  const reactSvg = icons[name] ?? icons[FALLBACK_REACT_ICON];
+  const [imgSrc, setImgSrc] = useState(
+    isFile ? `/symbol_icons/${name}.svg` : "/symbol_icons/default_icon.svg"
+  );
+
+  const handleImgErr = () => {
+    // If the specific file fails, switch to the generic default SVG.
+    if (imgSrc !== "/symbol_icons/default_icon.svg") {
+      setImgSrc("/symbol_icons/default_icon.svg");
+    }
   };
-
-  // Get the appropriate size set based on variant
-  const selectedSizes = sizeVariants[variant] || sizeVariants.primary;
-
-  // Determine the responsive size based on media queries
-  let responsiveSize = selectedSizes.lg; // Large by default
-  if (isSmall) responsiveSize = selectedSizes.sm;
-  else if (isMedium) responsiveSize = selectedSizes.md;
-
-  // Final size (manual override takes priority)
-  const finalSize = size ?? responsiveSize;
 
   return (
     <div
       className={className}
       style={{
-        width: finalSize,
-        height: finalSize,
+        width: finalSz,
+        height: finalSz,
         display: "inline-flex",
         alignItems: "center",
-        ...style, // ✅ Merge custom styles
+        justifyContent: "center",
+        ...style,
       }}
     >
-      {React.cloneElement(icons[name], {
-        width: finalSize,
-        height: finalSize,
-        stroke: strokeColor,
-      })}
+      {/* Prefer React icon map unless user explicitly requested a file */}
+      {!isFile ? (
+        React.cloneElement(reactSvg, {
+          width: finalSz,
+          height: finalSz,
+          stroke: strokeColor,
+        })
+      ) : (
+        <img
+          src={imgSrc}
+          width={finalSz}
+          height={finalSz}
+          onError={handleImgErr}
+          alt={name.replace(/^_/, "")}
+        />
+      )}
     </div>
   );
 };
 
 export default Icon;
+
+// interface IconProps {
+//   name: string;
+//   size?: number;
+//   variant?: "primary" | "secondary" | "tertiary";
+//   strokeColor?: string;
+//   className?: string;
+//   style?: React.CSSProperties; // ✅ Optional style prop
+// }
+
+// const Icon: React.FC<IconProps> = ({
+//   name,
+//   size,
+//   variant = "primary",
+//   strokeColor = "none",
+//   className,
+//   style, // ✅ Receive style prop
+// }) => {
+//   const isSmall = useMediaQuery({ maxWidth: 480 });
+//   const isMedium = useMediaQuery({ maxWidth: 768 });
+
+//   // Define responsive size sets for different icon variants
+//   const sizeVariants = {
+//     secondary: { lg: 18, md: 18, sm: 18 },
+//     primary: { lg: 20, md: 18, sm: 16 },
+//     tertiary: { lg: 16, md: 14, sm: 12 },
+//   };
+
+//   // Get the appropriate size set based on variant
+//   const selectedSizes = sizeVariants[variant] || sizeVariants.primary;
+
+//   // Determine the responsive size based on media queries
+//   let responsiveSize = selectedSizes.lg; // Large by default
+//   if (isSmall) responsiveSize = selectedSizes.sm;
+//   else if (isMedium) responsiveSize = selectedSizes.md;
+
+//   // Final size (manual override takes priority)
+//   const finalSize = size ?? responsiveSize;
+
+//   return (
+//     <div
+//       className={className}
+//       style={{
+//         width: finalSize,
+//         height: finalSize,
+//         display: "inline-flex",
+//         alignItems: "center",
+//         ...style, // ✅ Merge custom styles
+//       }}
+//     >
+//       {React.cloneElement(icons[name], {
+//         width: finalSize,
+//         height: finalSize,
+//         stroke: strokeColor,
+//       })}
+//     </div>
+//   );
+// };
+
+// export default Icon;

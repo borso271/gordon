@@ -13,7 +13,7 @@ background: var(--additional-white-6, rgba(255, 255, 255, 0.06));
 
 
 
-.title     { margin:0 0 .5rem; font-size:1.1rem; font-weight:600; }
+
 .row       { display:flex; width:100%; flex-direction: row; gap:12px;}
 
 .row :global(.dropdownContainer) {
@@ -29,8 +29,8 @@ background: var(--additional-white-6, rgba(255, 255, 255, 0.06));
     align-self: stretch;
     border-radius: var(--radius---Button, 100px);
 border: 1px solid var(--additional-white-6, rgba(255, 255, 255, 0.06));
-background: var(--Black-700, #232323);
-color: var(--Black-50, #F8F8F8);
+background: var(--black-700, #232323);
+color: var(--black-50, #F8F8F8);
 text-align: center;
 /* Text S/Medium */
 

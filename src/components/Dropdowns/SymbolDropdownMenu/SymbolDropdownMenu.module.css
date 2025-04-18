@@ -1,0 +1,70 @@
+
+.dropdownMenu {
+    position: absolute;
+    top: 120%; /* Positions the menu below the button */
+    z-index: 100; /* Makes sure it appears above other elements */
+    background: var(--black-800);
+    border: 1px solid var(--black-700);
+    border-radius: 12px;
+    opacity: 0;
+    pointer-events: none; /* Ensures it's not clickable when hidden */
+    overflow:hidden;
+    right: 0;
+    width:100%;
+  }
+
+
+  
+  /* When dropdown is open, make it visible */
+  .dropdownMenu.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+  
+  .menuItem {
+display: flex;
+flex-direction:row;
+align-items:center;
+height: 42px;
+padding: 12px;
+width:100%;
+align-self: stretch;
+gap:6px;
+cursor: pointer;
+  }
+  
+  .menuItem:hover {
+    background: var(--black-600, #323232); /* Light hover effect */
+  }
+
+
+  .menuItem.active {
+    background: var(--black-600, #323232); /* Light hover effect */
+  }
+
+  
+  .label {
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Optional: adds ... if it's too long */
+    color: var(--black-50, #F8F8F8);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 19.6px */
+  }
+  
+
+  .scrollContainer {
+    max-height: calc(2.5rem * 10);
+    overflow-y: auto;
+  
+    /* Hide scrollbar for Webkit (Chrome, Safari) */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  }
+  
+  .scrollContainer::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }

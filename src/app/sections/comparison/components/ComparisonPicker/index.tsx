@@ -1,10 +1,10 @@
 // ComparisonPicker.tsx
 import React, { useState } from "react";
 import DropdownSelect from "../../../../../components/Dropdowns/DropdownSelect";
-import { DropdownItem } from "../../../../../components/Dropdowns/DropdownSelect";
+import { SimpleTicker } from "../../../../../interfaces";
 import SecondaryButton from "../../../../../components/Buttons/SecondaryButton";
 import styles from "./ComparisonPicker.module.css";
-import { SimpleTicker } from "../../../../../interfaces";
+import SidebarHeading from "../../../../../components/Headings/SidebarHeading";
 
 interface ComparisonPickerProps {
   tickers: SimpleTicker[];
@@ -22,9 +22,8 @@ const ComparisonPicker: React.FC<ComparisonPickerProps> = ({
   const [leftIdx,  setLeftIdx]  = useState(-1);
   const [rightIdx, setRightIdx] = useState(-1);
 
-  const dropdownItems: DropdownItem[] = tickers.map(t => ({
-    icon: t.asset_type, label: t.ticker, onClick: () => {}
-  }));
+
+  
 
   const leftTicker  = leftIdx  >= 0 ? tickers[leftIdx]  : undefined;
   const rightTicker = rightIdx >= 0 ? tickers[rightIdx] : undefined;
@@ -33,18 +32,18 @@ const ComparisonPicker: React.FC<ComparisonPickerProps> = ({
 
   return (
     <div className={styles.container}>
-      <h3 className={styles.title}>{title}</h3>
-
+     
+<SidebarHeading text={title}></SidebarHeading>
       <div className={styles.row}>
         <DropdownSelect
-          items={dropdownItems}
+          items={tickers}
           placeholder="Ticker 1"
           selectedIndex={leftIdx}
           onSelect={setLeftIdx}
           rtl={rtl}
         />
         <DropdownSelect
-          items={dropdownItems}
+          items={tickers}
           placeholder="Ticker 2"
           selectedIndex={rightIdx}
           onSelect={setRightIdx}

@@ -33,6 +33,7 @@
 }
 
 .chatInput {
+  width:100%;
   flex-shrink: 0;
   background: var(--background);
   z-index: 1;

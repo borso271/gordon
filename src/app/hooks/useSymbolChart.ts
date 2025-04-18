@@ -145,7 +145,7 @@ export function useSymbolChart(symbol: string, width: number, height: number) {
 //   }, [liveData, seriesesData]);
 
   // 6) Period + computed values
-  const [selectedPeriod, setSelectedPeriod] = useState<Period>("1D");
+  const [selectedPeriod, setSelectedPeriod] = useState<Period>("1Y");
 
   const periodData: PricePoint[] = seriesesData.get(selectedPeriod) || [];
 

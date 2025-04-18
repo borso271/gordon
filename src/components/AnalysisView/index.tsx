@@ -13,12 +13,18 @@ const AnalysisView: React.FC<AnalysisViewProps> = ({ data }) => {
  const ratings = data.ratings || null;
  const ticker_symbol = data.ticker_symbol;
  const polygon_data = data.polygon_snapshot;
+ const isPolygonDataOk = typeof polygon_data.currentPrice === 'number' && polygon_data.currentPrice > 0;
+
+ console.log("polygon data here is: ", polygon_data, polygon_data.currentPrice);
+
 const news=data.latest_news;
   return (
 <div className={styles.container}>
  <DetachedChart symbol={ticker_symbol} language={"en"}/>
- <PolygonSnapshot data={polygon_data} />
-    {ratings.status && <AnalystRatings ratings={ratings.ratings}/>}
+
+ {isPolygonDataOk && <PolygonSnapshot data={polygon_data} />}
+ {ratings?.status === "success" && <AnalystRatings ratings={ratings.ratings} />}
+
 {news &&  <NewsToggleList news={news} titleKey={"latest_news"}/>}
    
     </div>

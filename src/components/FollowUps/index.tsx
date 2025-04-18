@@ -10,7 +10,7 @@ type SuggestionListProps = {
 };
 
 export default function FollowUps({ suggestions, newSearch }: SuggestionListProps) {
-  console.log("SUGGESTIONS ARE ",  suggestions)
+  // console.log("SUGGESTIONS ARE ",  suggestions)
   return (
 
     <div className={styles.container}>

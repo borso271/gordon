@@ -21,7 +21,7 @@ interface Props {
 
 const BotMessagePartRenderer: React.FC<Props> = ({ part, language="en" }) => {
 
-    console.log("in renderer, data is: ", part)
+    //console.log("in renderer, data is: ", part)
   switch (part.type) {
     case "assistantText":
       return  <AssistantMessage

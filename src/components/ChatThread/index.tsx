@@ -88,7 +88,7 @@ const ChatThread: React.FC<ChatThreadProps> = ({
           if (id) {
             // Use entry.intersectionRatio which reflects the *current* visibility
             ratioMap.set(id, entry.intersectionRatio);
-            console.log("Ratio Map:", Object.fromEntries(ratioMap)); // <-- Log the calculated ratios
+            // console.log("Ratio Map:", Object.fromEntries(ratioMap)); // <-- Log the calculated ratios
           }
         }
 
@@ -181,7 +181,7 @@ const ChatThread: React.FC<ChatThreadProps> = ({
 
   return (
     <div className={styles.outerWrapper}>
-      
+
       <div className={styles.speechOverlayContainer}>
       <SpeechOverlay/>
       </div>

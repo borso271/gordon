@@ -6,7 +6,7 @@ import formatHistoricalData from "../utils/format_historical_data";
 
 
 export async function getChartData(symbol, symbol_id, isMarketOpen): Promise<Map<any, any>> {
-  console.log("GET CHART DATA CALLED, INPUTS ARE: ", symbol, symbol_id, isMarketOpen);
+  //console.log("GET CHART DATA CALLED, INPUTS ARE: ", symbol, symbol_id, isMarketOpen);
 
   try {
     const [intradayResponse, historicalResponse] = await Promise.all([

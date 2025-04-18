@@ -264,12 +264,7 @@ useEffect(() => {
                     output: JSON.stringify(parsedResult.data.prompt_for_ai),
                   });
                 } else {
-                  // Fallback: partial success or fail → instruct the assistant to do something else
-                  // newParts = [{
-                  //   type: "assistantText",
-                  //   text: `For some reason, no data found. Searching the web... (User speaks ${userLanguage}).`,
-                  //   data: parsedResult,
-                  // }];
+                 
                   toolCallOutputs.push({
                     tool_call_id: toolCall.id,
                     output: `the custom function failed, so call search_web instead. The user speaks ${userLanguage}, so reply in this language.`
@@ -292,23 +287,30 @@ useEffect(() => {
 
                 break;
 
-
-          case "compare_tickers":
-             
-         // ComparisonChart: React.FC<ComparisonChartProps> = ({ tickers })
-            newParts = [{
-              type: "comparison_sidebar",
-              data: parsedResult.data,
-              sidebar: true,
-            }];
-
-            // Add to toolCallOutputs if needed
-            toolCallOutputs.push({
-              tool_call_id: toolCall.id,
-              output: parsedResult.prompt_for_ai,
-            });
-            break;
-
+                case "compare_tickers": {
+                  if (parsedResult.status === "success") {
+                    /* normal happy‑path */
+                    newParts = [
+                      {
+                        type: "comparison_sidebar",
+                        data: parsedResult.data,   // table / metrics / chart payload
+                        sidebar: true,
+                      },
+                    ];
+                
+                    toolCallOutputs.push({
+                      tool_call_id: toolCall.id,
+                      output: parsedResult.prompt_for_ai, // analyst prompt string
+                    });
+                  } else {
+                    /* failure‑path: tell assistant to try web search instead */
+                    toolCallOutputs.push({
+                      tool_call_id: toolCall.id,
+                      output: `The custom comparison function returned failure, so use information you have or call search_web instead. The user speaks ${userLanguage}; reply in that language.`,
+                    });
+                  }
+                  break;
+                }
       
           case "suggest_securities":
             newParts = [{

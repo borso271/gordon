@@ -5,7 +5,8 @@
     gap: 20px;
     align-self: stretch;
     border-radius: 16px;
-    color: var(--black-300, #929292);
+   
+    color: var(--black-50, #F8F8F8);
     font-family: var(--font-faimily-inter);
     font-size: 14px;
     font-style: normal;

@@ -10,39 +10,49 @@ OK
 */
 
 import { getAnalystRatings } from "../database/fetch_analyst_ratings";
-
 import fetchFormatData from "../analysis/fetch_and_format_data/fetch_and_format_data";
-
 import { extractImportantFinancials } from "./filter_financials";
 import { fetchTickerSnapshot } from "../analyze_ticker/polygon_ticker";
+
 type TickerInput = {
   asset_type: "stock" | "crypto" | "etf";
   symbol: string;
 };
 
-export async function return_comparison_data(tickers: TickerInput[]) {
-  const results: {
-    id: number;
-    name: string;
-    ticker_symbol: string;
-    asset_type: "stock" | "crypto" | "etf";
-    data_for_ai: any;
-    ratings: any;
-    ticker_snapshot: any;
-  }[] = [];
+type ResultItem = {
+  id: number;
+  name: string;
+  ticker_symbol: string;
+  asset_type: "stock" | "crypto" | "etf";
+  data_for_ai: any;
+  ratings: any;
+  ticker_snapshot: any;
+};
+
+type ComparisonReturn = {
+  status: "success" | "failure";
+  data: ResultItem[];
+};
+
+export async function return_comparison_data(
+  tickers: TickerInput[]
+): Promise<ComparisonReturn> {
+  const results: ResultItem[] = [];
+  let hadFailure = false;
 
   for (const { symbol, asset_type } of tickers) {
     try {
-      const { id, name,data_for_ai } = await fetchFormatData(symbol, asset_type);
-      
+      /* fetchFormatData will throw if symbol_id is missing */
+      const { id, name, data_for_ai } = await fetchFormatData(symbol, asset_type);
+
       if (!data_for_ai) {
         console.warn(`⚠️ No data_for_ai returned for ${symbol}`);
+        hadFailure = true;
         continue;
       }
 
-      const ratings = await getAnalystRatings(symbol);
-      const ticker_snapshot = await fetchTickerSnapshot(symbol, asset_type);
-
+      const ratings        = await getAnalystRatings(symbol);
+      const tickerSnapshot = await fetchTickerSnapshot(symbol, asset_type);
 
       const updatedData = {
         ...data_for_ai,
@@ -50,22 +60,86 @@ export async function return_comparison_data(tickers: TickerInput[]) {
       };
 
       results.push({
-        id: id,
-        name: name,
+        id,
+        name,
         ticker_symbol: symbol,
-        asset_type: asset_type,
+        asset_type,
         data_for_ai: updatedData,
-        ratings: ratings,
-        ticker_snapshot: ticker_snapshot,
+        ratings,
+        ticker_snapshot: tickerSnapshot,
       });
+    } catch (err: any) {
+      hadFailure = true;
 
-    } catch (error) {
-      console.error(`❌ Failed to process ${symbol}:`, error);
+      // Optional: log specific reason (symbol not found vs. network etc.)
+      console.error(`❌ Unable to process ${symbol}:`, err?.message ?? err);
     }
   }
 
-  return results;
+  return {
+    status: hadFailure ? "failure" : "success",
+    data: results,
+  };
 }
+
+
+// import { getAnalystRatings } from "../database/fetch_analyst_ratings";
+
+// import fetchFormatData from "../analysis/fetch_and_format_data/fetch_and_format_data";
+
+// import { extractImportantFinancials } from "./filter_financials";
+// import { fetchTickerSnapshot } from "../analyze_ticker/polygon_ticker";
+// type TickerInput = {
+//   asset_type: "stock" | "crypto" | "etf";
+//   symbol: string;
+// };
+
+// export async function return_comparison_data(tickers: TickerInput[]) {
+//   const results: {
+//     id: number;
+//     name: string;
+//     ticker_symbol: string;
+//     asset_type: "stock" | "crypto" | "etf";
+//     data_for_ai: any;
+//     ratings: any;
+//     ticker_snapshot: any;
+//   }[] = [];
+
+//   for (const { symbol, asset_type } of tickers) {
+//     try {
+//       const { id, name,data_for_ai } = await fetchFormatData(symbol, asset_type);
+      
+//       if (!data_for_ai) {
+//         console.warn(`⚠️ No data_for_ai returned for ${symbol}`);
+//         continue;
+//       }
+
+//       const ratings = await getAnalystRatings(symbol);
+//       const ticker_snapshot = await fetchTickerSnapshot(symbol, asset_type);
+
+
+//       const updatedData = {
+//         ...data_for_ai,
+//         Financials: extractImportantFinancials(data_for_ai.Financials),
+//       };
+
+//       results.push({
+//         id: id,
+//         name: name,
+//         ticker_symbol: symbol,
+//         asset_type: asset_type,
+//         data_for_ai: updatedData,
+//         ratings: ratings,
+//         ticker_snapshot: ticker_snapshot,
+//       });
+
+//     } catch (error) {
+//       console.error(`❌ Failed to process ${symbol}:`, error);
+//     }
+//   }
+
+//   return results;
+// }
 
 
 

@@ -13,7 +13,10 @@ interface DropdownMenuProps {
   selectedIndex: number;
   setSelectedIndex: (index: number) => void;
   isOpen: boolean;
-  top?: string; // <-- New optional prop
+  top?: string;
+  left?: string;
+  right?: string; // ✅ New
+  width?: string;
 }
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({
@@ -21,34 +24,39 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({
   selectedIndex,
   setSelectedIndex,
   isOpen,
-  top = "105%", // default to appear right below the trigger
+  top = "105%",
+  left,
+  right, // ✅ Accept it
+  width,
 }) => {
   return (
-  
-
-<div
-  className={`${styles.dropdownMenu} ${isOpen ? styles.show : ""}`}
-  style={{ top }}
->
-  <div className={styles.scrollContainer}>
-    {items.map((item, index) => (
-      <div
-        key={index}
-        className={`${styles.menuItem} ${
-          selectedIndex === index ? styles.active : ""
-        }`}
-        onClick={() => {
-          setSelectedIndex(index);
-          item.onClick();
-        }}
-      >
-        {item.icon && <CircledIcon name={item.icon} size={18} />}
-        <span className={styles.label}>{item.label}</span>
+    <div
+      className={`${styles.dropdownMenu} ${isOpen ? styles.show : ""}`}
+      style={{
+        top,
+        ...(left && { left }),
+        ...(right && { right }),
+        ...(width && { width }),
+      }}
+    >
+      <div className={styles.scrollContainer}>
+        {items.map((item, index) => (
+          <div
+            key={index}
+            className={`${styles.menuItem} ${
+              selectedIndex === index ? styles.active : ""
+            }`}
+            onClick={() => {
+              setSelectedIndex(index);
+              item.onClick();
+            }}
+          >
+            {item.icon && <CircledIcon name={item.icon} size={18} />}
+            <span className={styles.label}>{item.label}</span>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-</div>
-
+    </div>
   );
 };
 

@@ -3,110 +3,161 @@
 
 import { fetchSymbolSnapshots } from "../database/fetch_symbols_for_list";
 import { fetchTickerDataWithInsightAndPolygon } from "../ticker_insight";
+
+/* ─── 1. Sort field type ─── */
+type SortField = "price" | "volume" | "revenue" | "popularity" | "market_cap";
+
 export async function list_tickers(args: {
   asset_type: "stock" | "crypto" | "etf";
   sectors?: string[];
-  sort_by?: "price" | "volume";
-  language?: string
+  sort_by?: SortField;
+  language?: string;
 }) {
-  const { asset_type, sectors = [], sort_by, language} = args;
+  const {
+    asset_type,
+    sectors = [],
+    sort_by = "price",
+    language = "en",
+  } = args;
 
-  let userLanguage = "English";
-  if (language == 'ar') {
-    userLanguage = "Arabic (Saudi Arabia)"
-  }
+  const userLanguage =
+    language === "ar" ? "Arabic (Saudi Arabia)" : "English";
+
   try {
-    // 1) Fetch snapshots
+    /* 2️⃣ Fetch snapshots (make sure snapshot includes price, volume, and market_cap if available) */
     const snapshots = await fetchSymbolSnapshots(asset_type, sectors);
 
-    console.log("WE ARRIVE AT SNAPSHOTS AND THEY ARE: ", snapshots)
-    if (!snapshots || snapshots.length === 0) {
+    if (!snapshots?.length) {
       return {
-        success: false,
+        status: "failure",
         response: { prompt_for_ai: "", data_for_component: [] },
       };
     }
 
-    // 2) Filter out incomplete data, then sort
-
+    /* 3️⃣ Sorting logic */
     const sorted = snapshots
       .filter((s) => s.price != null && s.volume != null)
       .sort((a, b) => {
-        if (sort_by === "volume") return Number(b.volume) - Number(a.volume);
-        return Number(b.price) - Number(a.price);
+        switch (sort_by) {
+          case "volume":
+            return Number(b.volume) - Number(a.volume);
+
+          case "market_cap":
+            // Prefer true market_cap if exists, otherwise fallback to price × volume
+            const capA = a.market_cap ?? Number(a.price) * Number(a.volume);
+            const capB = b.market_cap ?? Number(b.price) * Number(b.volume);
+            return capB - capA;
+
+          case "revenue":
+          case "popularity":
+            return Number(b.price) * Number(b.volume) -
+                   Number(a.price) * Number(a.volume);
+
+          case "price":
+          default:
+            return Number(b.price) - Number(a.price);
+        }
       })
-      // 3) Slice top 5
       .slice(0, 5);
 
-const promptForAi = `We have identified the top 5 tickers by ${
-  sort_by === "volume" ? "volume" : "price"
-}:
-${sorted
-  .map((s) => `- ${s.ticker}`)
-  .join("\n")}
+    /* 4️⃣ Prompt label */
+    const sortLabel =
+      sort_by === "volume"     ? "volume"
+    : sort_by === "market_cap" ? "market capitalization"
+    : sort_by === "revenue"    ? "revenue" // incorrect
+    : sort_by === "popularity" ? "popularity" // incorrect
+    : "price";
 
-These tickers are already displayed to the user to the sidebar, ask him if he needs more information or wants to refine his search. The user language is ${userLanguage}, respond in this language.`;
+    /* 5️⃣ Prompt for AI */
+    const promptForAi = `
+We identified the top 5 tickers by ${sortLabel}:
+${sorted.map((s) => `- ${s.ticker}`).join("\n")}
 
+These tickers are already displayed in the sidebar. Ask the user if they would like more details or to refine their search.
+Respond in ${userLanguage}.`.trim();
+
+    /* 6️⃣ Fetch richer data for UI */
     const dataForComponent = await fetchTickerDataWithInsightAndPolygon(
-      sorted.map((s) => s.symbol_id) // or adapt to your real field
+      sorted.map((s) => s.symbol_id)
     );
 
-    console.log("we fetch data for component and it is: ", dataForComponent)
-
     return {
-      success: true,
+      status: "success",
       response: {
         prompt_for_ai: promptForAi,
         data_for_component: dataForComponent,
       },
     };
   } catch (error: any) {
-    console.error("❌ Error in list_tickers:", error.message);
+    console.error("❌ list_tickers error:", error.message);
     return {
-      success: false,
+      status: "failure",
       response: { prompt_for_ai: "", data_for_component: [] },
     };
   }
 }
 
+// export async function list_tickers(args: {
+//   asset_type: "stock" | "crypto" | "etf";
+//   sectors?: string[];
+//   sort_by?: "price" | "volume";
+//   language?: string
+// }) {
+//   const { asset_type, sectors = [], sort_by, language} = args;
 
-// export async function list_tickers(args) {
-
-//   const { asset_type, sectors = [], sort_by, language } = args;
-
+//   let userLanguage = "English";
+//   if (language == 'ar') {
+//     userLanguage = "Arabic (Saudi Arabia)"
+//   }
 //   try {
+//     // 1) Fetch snapshots
 //     const snapshots = await fetchSymbolSnapshots(asset_type, sectors);
 
 //     if (!snapshots || snapshots.length === 0) {
 //       return {
 //         success: false,
-//         response: []
+//         response: { prompt_for_ai: "", data_for_component: [] },
 //       };
 //     }
 
 //     const sorted = snapshots
-//       .filter(s => s.price != null && s.volume != null)
+//       .filter((s) => s.price != null && s.volume != null)
 //       .sort((a, b) => {
-//         if (sort_by === 'volume') return Number(b.volume) - Number(a.volume);
+//         if (sort_by === "volume") return Number(b.volume) - Number(a.volume);
 //         return Number(b.price) - Number(a.price);
 //       })
+//       // 3) Slice top 5
 //       .slice(0, 5);
-       
+
+
+
+// const promptForAi = `We have identified the top 5 tickers by ${
+//   sort_by === "volume" ? "volume" : "price"
+// }:
+// ${sorted
+//   .map((s) => `- ${s.ticker}`)
+//   .join("\n")}
+
+// These tickers are already displayed to the user to the sidebar, ask him if he needs more information or wants to refine his search. The user language is ${userLanguage}, respond in this language.`;
+
+//     const dataForComponent = await fetchTickerDataWithInsightAndPolygon(
+//       sorted.map((s) => s.symbol_id) // or adapt to your real field
+//     );
+
+//     console.log("we fetch data for component and it is: ", dataForComponent)
+
 //     return {
 //       success: true,
-//       response: sorted.map(s => ({
-//         name: s.name,
-//         ticker: s.ticker,
-//         ytd_return: s.ytd_return != null ? `${s.ytd_return.toFixed(2)}%` : null,
-//         ytd_range: s.ytd_range,
-//         price: s.price != null ? `$${s.price.toFixed(2)}` : null
-//       }))
+//       response: {
+//         prompt_for_ai: promptForAi,
+//         data_for_component: dataForComponent,
+//       },
 //     };
-//   } catch (error) {
+//   } catch (error: any) {
 //     console.error("❌ Error in list_tickers:", error.message);
 //     return {
 //       success: false,
-//       response: []
+//       response: { prompt_for_ai: "", data_for_component: [] },
 //     };
 //   }
 // }

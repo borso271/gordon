@@ -1,0 +1,21 @@
+
+
+.dropdownContainer {
+    position: relative;
+  }
+  
+  .dropdownContainer > div {
+    position: absolute;
+    top: 120%; 
+    /* right: 0; */
+    z-index: 100; 
+  }
+
+
+:dir(ltr) .dropdownContainer > div {
+  right: 0;
+}
+
+:dir(rtl) .dropdownContainer > div {
+  left: 0;
+}

@@ -13,6 +13,9 @@ import ReadingIndicator from '../../../components/SpeakingAnimation';
 import { generatePriceSeriesPerlin } from '../../../utils/generate_chart_points';
 import { generatePriceSeriesPivots } from '../../../utils/generate_chart_points_pivots';
 import Loading from '../../../components/Loading';
+import ComparisonList from '../../sections/comparison/components/ComparisonList';
+import DropdownSelect from '../../../components/Dropdowns/DropdownSelect';
+import CompareTest from '../../../components/tests/compare_picker';
 interface RawDataEntry {
   ticker: string;
   data: {
@@ -474,8 +477,24 @@ console.log(JSON.stringify(series))
 return (
 
     <div>
+<CompareTest></CompareTest>
 
-<Loading/>
+<ComparisonList
+  comparisonPairs={[
+    [
+      { symbol_id: 1, ticker: 'AAPL', name: 'Apple Inc.', asset_type: 'stock' },
+      { symbol_id: 2, ticker: 'GOOGL', name: 'Alphabet Inc.', asset_type: 'stock' },
+    ],
+    [
+      { symbol_id: 3, ticker: 'MSFT', name: 'Microsoft', asset_type: 'stock' },
+      { symbol_id: 4, ticker: 'AMZN', name: 'Amazon', asset_type: 'stock' },
+    ],
+  ]}
+/>
+
+
+
+{/* <Loading/> */}
    {/* <AssetsWithInsight data={staticTestResults}/> */}
       {/* <MetricComparison rawData={dataForComparisonTable}/> */}
 

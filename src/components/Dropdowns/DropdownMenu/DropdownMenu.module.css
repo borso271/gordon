@@ -7,12 +7,12 @@
     border: 1px solid var(--black-700);
     border-radius: 12px;
     opacity: 0;
-    transform: translateY(-10px); /* Smooth opening animation */
     pointer-events: none; /* Ensures it's not clickable when hidden */
     overflow:hidden;
-
-    right: -10px;
+    right: 0;
   }
+
+
   
   /* When dropdown is open, make it visible */
   .dropdownMenu.show {
@@ -54,7 +54,15 @@ cursor: pointer;
   
 
   .scrollContainer {
-    max-height: calc(2.5rem * 10); /* Each item ~2.5rem tall → 10 items */
+    max-height: calc(2.5rem * 10);
     overflow-y: auto;
+  
+    /* Hide scrollbar for Webkit (Chrome, Safari) */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  }
+  
+  .scrollContainer::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
   }
   

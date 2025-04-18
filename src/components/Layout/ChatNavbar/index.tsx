@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import styles from "./ChatNavbar.module.css";
-import DropdownMenu from "../../Dropdowns/DropdownMenu"; // Import the dropdown menu component
-
+import LanguageSelectorDropdown from "../../Dropdowns/LanguageSelector";
 import { useNavbarLogic } from "../../../app/hooks/useNavbarLogic";
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from "../../../app/hooks/useLanguage";
@@ -155,7 +154,16 @@ className={styles.balanceOverviewItem}
 
 
         {/* Language Dropdown */}
-        <div className={styles.dropdownContainer}>
+        <LanguageSelectorDropdown
+  openDropdown={openDropdown}
+  selectedIndex={selectedIndex}
+  setSelectedIndex={setSelectedIndex}
+  handleLanguageChange={handleLanguageChange}
+  handleToggleDropdown={handleToggleDropdown}
+/>
+
+
+        {/* <div className={styles.dropdownContainer}>
           <DropdownButton
             text={currentLang.toUpperCase()}
             leftIcon={currentLang === "ar" ? "arabic" : "usa"}
@@ -184,7 +192,7 @@ className={styles.balanceOverviewItem}
               isOpen={openDropdown === "language"}
             />
           )}
-        </div>
+        </div> */}
 
         {/* Options Dropdown */}
       

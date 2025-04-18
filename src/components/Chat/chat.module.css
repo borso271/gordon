@@ -15,9 +15,12 @@
   padding: 20px; /* Default padding */
    /* Add transition for smooth padding change */
   transition: padding-bottom 0.3s ease-in-out;
+   align-items:center;
+
 }
 
 .chatThreadWrapper {
+  max-width: 796px;
   flex: 1 1 auto;
   overflow-y: auto;
   min-height: 0;
@@ -99,10 +102,6 @@ MEDIA QUERIES
 */
 @media (max-width: 768px) { /* Adjust breakpoint */
 
-  .chatColumn {
-
-      /* Padding will be adjusted via inline style based on drawer state */
-  }
 
   .sidebarColumn.drawer { /* Renamed class for clarity */
     /* --- Drawer Positioning & Base Style --- */

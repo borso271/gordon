@@ -223,6 +223,8 @@ const MetricComparison: React.FC<MetricComparisonProps> = ({
                 setSelectedIndex={setSelectedIndex}
                 isOpen={dropdownOpen}
                 top="10px"
+                left="0"
+                width={"160px"}
               />
             </div>
           </div>

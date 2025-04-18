@@ -41,6 +41,7 @@ const OverviewContent: React.FC<OverviewContentProps> = ({
 <OverviewHeader dataForHeader={dataForHeader}/>
 
 <SimpleChart data={testchartdata} language={'en'}/>
+
 {selectedAssetType === "stock" && (
   <PercentageOverviewBox
     titleKey="sector_allotment"

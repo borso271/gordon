@@ -33,25 +33,53 @@ function transformPolygonData(data: any) {
       return null;
   };
 
-  const day = t.day || {};
-  const prevDay = t.prevDay || {};
+//   const day = t.day || {};
+//   const prevDay = t.prevDay || {};
+//   const getValidValue = (
+//     dayVal: number | null | undefined,
+//     prevVal: number | null | undefined
+//   ): number | null => {
+//     return (dayVal && dayVal > 0) ? dayVal : (prevVal ?? null);
+//   };
 
-  const getValidValue = (dayVal: number | null | undefined, prevVal: number | null | undefined): number | null => {
-    // Check specifically for null/undefined, allow 0 as a valid value
-    if (dayVal !== null && dayVal !== undefined) return dayVal;
-    return prevVal ?? null;
-  };
+//   const transformed = {
+//       current_price: getValidValue(day.c, prevDay.c),
+//       last_close: prevDay.c ?? null,
+//       day_high: getValidValue(day.h, prevDay.h),
+//       day_low: getValidValue(day.l, prevDay.l),
+//       open: getValidValue(day.o, prevDay.o),
+//       volume: getValidValue(day.v, prevDay.v),
+//       updated: t.updated ? Math.floor(t.updated / 1_000_000) : null, // Return null if missing
+//       ticker: t.ticker,
+//   };
+const day     = t.day     ?? {};
+const prevDay = t.prevDay ?? {};
 
-  const transformed = {
-      current_price: getValidValue(day.c, prevDay.c),
-      last_close: prevDay.c ?? null,
-      day_high: getValidValue(day.h, prevDay.h),
-      day_low: getValidValue(day.l, prevDay.l),
-      open: getValidValue(day.o, prevDay.o),
-      volume: getValidValue(day.v, prevDay.v),
-      updated: t.updated ? Math.floor(t.updated / 1_000_000) : null, // Return null if missing
-      ticker: t.ticker,
-  };
+/* Helper: use dayVal if > 0, otherwise prevVal (may still be null) */
+const pickValid = (dayVal: number | null | undefined,
+                   prevVal: number | null | undefined) =>
+  dayVal && dayVal > 0 ? dayVal : prevVal ?? null;
+
+/* ─── Current price & last‑close logic ─── */
+const dayClose = day.c && day.c > 0 ? day.c : null;
+const current_price =
+  dayClose ?? (prevDay.c ?? null);              // fallback to prev close
+
+const last_close =
+  dayClose ? prevDay.c ?? null                  // market open → use prev close
+           : prevDay.o ?? null;                 // market closed → use prev open
+
+/* ─── Final transformed object ─── */
+const transformed = {
+  current_price,
+  last_close,
+  day_high:   pickValid(day.h, prevDay.h),
+  day_low:    pickValid(day.l, prevDay.l),
+  open:       pickValid(day.o, prevDay.o),
+  volume:     pickValid(day.v, prevDay.v),
+  updated:    t.updated ? Math.floor(t.updated / 1_000_000) : null,
+  ticker:     t.ticker,
+};
 
   // Check if essential price data is missing after transform
   if (transformed.current_price === null || transformed.last_close === null) {
@@ -136,6 +164,7 @@ export async function savePolygonSnapshots(tickers: TickerInput[]) {
 
       try {
         polygon_data = await fetchPolygonData(ticker);
+
 
         // Check if fetchPolygonData returned an error structure
         if (polygon_data?.error) {

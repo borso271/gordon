@@ -27,7 +27,6 @@ interface PortfolioData {
   stockSectorAllocation: Allocation[];
 }
 
-
 interface PortfolioSummaryProps {
   data: PortfolioData;
 }
@@ -37,12 +36,9 @@ function formatDate(date: string | Date) {
   return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
 }
 
-
 const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ data }) => {
   const { t } = useTranslation();
   const [selectedAssetType, setSelectedAssetType] = useState<'all' | 'stock' | 'crypto' | 'etf'>('all');
-
-
 
   const dataForHeader = {
     number_of_transactions: data.number_of_transactions,

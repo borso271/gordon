@@ -5,7 +5,6 @@ import supabase_client from "../../lib/supabaseClient";
 // write the sectorsMap so that it is effective...
 //
 
-
 const sectorsMap = {
     technology: "Information Technology",
     finance: "Financials",

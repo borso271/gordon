@@ -1,0 +1,7 @@
+/* The element that wraps both button and menu  */
+.dropdownContainer {
+    position: relative;        /* ⬅️ establishes containing block */
+    display: inline-block;     /* keeps width snug to the button */
+    width:100%;
+  }
+  

@@ -312,15 +312,7 @@ useEffect(() => {
                   break;
                 }
       
-          case "suggest_securities":
-            newParts = [{
-              type: "assistantText",
-              text: "Here are some suggestions", // or a multi-language object
-              data: parsedResult,
-            }];
-            // Maybe we do not push to toolCallOutputs for this function
-            break;
-
+         
           case "list_tickers":
             if (parsedResult.success) {
               newParts = [{
@@ -334,12 +326,7 @@ useEffect(() => {
                 output: JSON.stringify(parsedResult.response.prompt_for_ai),
               });
             } else {
-              // Fallback: partial success or fail → instruct the assistant to do something else
-              newParts = [{
-                type: "assistantText",
-                text: `For some reason, no data found. Searching the web... (User speaks ${userLanguage}).`,
-                data: parsedResult,
-              }];
+             
               toolCallOutputs.push({
                 tool_call_id: toolCall.id,
                 output: `the custom search failed, so call search_web instead for a list of tickers. The user speaks ${userLanguage}, so reply in this language.`

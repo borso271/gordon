@@ -118,6 +118,13 @@ align-items: center;
   right: 50px;
 }
 
+
+[dir="rtl"] .languageDropdownWrapper {
+  right: 110px;
+}
+
+
+
 /* Responsive adjustments for small screens */
 @media (max-width: 480px) {
   .dropdownContainer > div {

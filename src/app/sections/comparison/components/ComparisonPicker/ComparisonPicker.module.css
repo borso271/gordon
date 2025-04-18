@@ -1,0 +1,43 @@
+/* ComparisonPicker.module.css */
+.container { 
+    display: flex;
+    width: 408px;
+    padding: 20px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    border-radius: 16px;
+background: var(--additional-white-6, rgba(255, 255, 255, 0.06));
+ }
+
+
+
+
+.title     { margin:0 0 .5rem; font-size:1.1rem; font-weight:600; }
+.row       { display:flex; width:100%; flex-direction: row; gap:12px;}
+
+.row :global(.dropdownContainer) {
+    flex: 1;
+  }
+
+.compareBtn{ display: flex;
+    height: 46px;
+    padding: 0px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    align-self: stretch;
+    border-radius: var(--radius---Button, 100px);
+border: 1px solid var(--additional-white-6, rgba(255, 255, 255, 0.06));
+background: var(--Black-700, #232323);
+color: var(--Black-50, #F8F8F8);
+text-align: center;
+/* Text S/Medium */
+
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 140%; /* 19.6px */
+width:100%;
+
+ }

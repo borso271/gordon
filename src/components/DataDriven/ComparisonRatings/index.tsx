@@ -4,7 +4,8 @@ import React from "react";
 import styles from "./CompareRatings.module.css";
 import { useTranslation } from "react-i18next";
 import { useAnalystRatings } from "../../../app/hooks/useAnalystRatings";
-import SectionHeader from "../../Headings/SectionHeader";
+
+import SidebarHeading from "../../Headings/SidebarHeading";
 import ComparisonProgressBars from "./ComparisonProgressBars";
 import TickersLegend from "./TickersLegend";
 
@@ -58,7 +59,7 @@ const CompareRatings: React.FC<CompareRatingsProps> = ({ ratings }) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <SectionHeader icon="ratings_icon" title={title} size={24} />
+        <SidebarHeading text={title} />
         <p className={styles.subheading}>
           {t("comparison_ratings.subheading", {
             leftCount: totalLeft,

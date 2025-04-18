@@ -8,6 +8,7 @@ import styles from "./ChatThread.module.css";
 import { useFunctionExecution } from "../../app/context/functionExecutionContext";
 import { useScrollToBottomButton } from "../../app/hooks/useScrollToBottomButton";
 import SpeechOverlay from "../SpeechOverlay";
+import CircledIconButton from "../Buttons/CircleActionButton";
 // import React, { useRef, useEffect } from "react";
 // import { useConversation } from "../hooks/useConversation";
 // import { useFunctionExecution } from "../hooks/useFunctionExecution";
@@ -19,7 +20,7 @@ import SpeechOverlay from "../SpeechOverlay";
 
 interface ChatThreadProps {
   currentIndex: number;
-  containerRef: React.RefObject<HTMLDivElement>;
+ 
   responseRef: React.RefObject<HTMLDivElement>;
  }
 // import React, { useEffect, useRef } from 'react';
@@ -38,7 +39,7 @@ interface ChatThreadProps {
 
 const ChatThread: React.FC<ChatThreadProps> = ({
   currentIndex,
-  containerRef,
+  
   responseRef,
 }) => {
   const { chatSession, activeInteraction, setActiveInteraction } = useConversation();
@@ -46,10 +47,12 @@ const ChatThread: React.FC<ChatThreadProps> = ({
 
   // Each interaction block is stored in a ref
   const interactionRefs = useRef<Record<string, HTMLDivElement | null>>({});
-
+  const containerRef = useRef<HTMLDivElement | null>(null);
   // For showing "Scroll to bottom" button
   const { isVisible, scrollToBottom } = useScrollToBottomButton(containerRef);
+  
 
+  console.log("is visible is: ", isVisible)
   // Track the previously activated ID to prevent redundant updates
   const prevActivatedId = useRef<string | null>(null);
 
@@ -186,22 +189,16 @@ const ChatThread: React.FC<ChatThreadProps> = ({
       <SpeechOverlay/>
       </div>
 
-      {isVisible && (
+      {isVisible && ( 
         <div className={styles.scrollDownButton}>
-          <DropdownButton
-            text=""
-            rightIcon="arrow_down"
-            rightIconSize={20}
-            leftIcon={null}
-            className="scrollDownButton" // Consider using CSS Modules: styles.scrollDownButtonInner
-            width={40}
-            onClick={scrollToBottom}
-            aria-label="Scroll to bottom" // Accessibility
+
+
+          <CircledIconButton onClick={scrollToBottom} iconName={"arrow_down"}           
           />
         </div>
-      )}
+     )}
 
-      <div className={styles.slideContainer} ref={containerRef}>
+      <div className={styles.slideContainer} ref={containerRef} >   
         <div className={styles.conversationList}>
           {chatSession.interactions.map((interaction, index) => (
             <div

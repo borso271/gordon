@@ -10,6 +10,7 @@
     pointer-events: none; /* Ensures it's not clickable when hidden */
     overflow:hidden;
     right: 0;
+    width:100%;
   }
 
 

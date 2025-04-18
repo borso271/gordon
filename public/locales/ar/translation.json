@@ -48,7 +48,33 @@
   }
 ,
 
-
+"ticker_search": {
+  "placeholder": "ابحث عن رمز…",
+  "filter": {
+    "all": "الكل",
+    "stock": "الأسهم",
+    "crypto": "العملات الرقمية",
+    "etf": "الصناديق المتداولة"
+  }
+},
+"buy_sell": {
+    "quick_tx": "عملية سريعة",
+    "buy": "شراء",
+    "sell": "بيع",
+    "select_ticker": "اختر رمزًا"
+  },
+"transaction_preview": {
+  "buying_power": "قوة الشراء",
+  "mode": {
+    "shares": "عدد الأسهم",
+    "amount": "المبلغ (دولار)"
+  },
+  "est_value": "القيمة التقديرية: ${{value}}",
+  "est_shares": "الأسهم التقديرية: {{shares}}",
+  "limit_price": "سعر الحد",
+  "set_price_hint": "حدد سعر الأمر لكل سهم",
+  "place_order": "تنفيذ الأمر"
+},
 
 "stock": "سهم",
 "stocks": "الأسهم",

@@ -49,6 +49,16 @@ cursor: pointer;
 }
 
 
+.buyWrapper {
+  margin-right:10px;
+}
+[dir="rtl"] .buyWrapper {
+  margin-right:0px;
+  margin-left:10px;
+
+}
+
+
 
   
   .left {

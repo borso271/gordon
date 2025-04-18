@@ -1,9 +1,63 @@
+1. Knowledge Center...
 
-"the icon component should tak an optional prop that is
-url_icon, in which case it loads from there i supposed..."
+90 minutes
+
+When clicking on the knowledge center,
+You Need:
+
+- An automatic message speaker, that is saying:
+  Welcome to the knowledge center, select a topic from the right panel, or ask me anything in here.
+  You need a component with internal navigation, no rerender sidebar or yes?
+  Finally on click is simply sending a query.
+
+You have to ask for a component that when you click on a folder, it renders, with a nice effect, another component with the list for that one, and a button to go back to the previous menu.
+
+------
+
+90 minutes
+
+2. Presuggestions.
+For the presuggestions, you need to:
+- Display the component, and tell the bot to wait for an user selection.
+- Have a function that directly send to the bot the user request, without however adding it to the user message, since there is no need for that. SO HAVE A WAY TO AVOID HAVING THE USER MESSAGE PRINTED.
+
+------
+
+30 minutes
+
+OTHERS:
+- Top suggestion's hover on change language.
+- Scroll down button not working.
+- Portfolio chart labels going new line on resizing.
+- Update chart data with more points.
+- Add actions where missing.
+
+
+--------------------------------------------------------------
+By Lunch this is done.
+
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
 
 
 
+
+Do first presuggestions,
+and second knowledge center...
 
 
 Change the chart in portfolio overview...

@@ -8,10 +8,10 @@ align-items: center;
 border-radius: 100px;
 border: 1px solid var(--card-border);
 background:transparent;
-width:100%
-
-
+width:100%;
+padding-left:12px;
   }
+  
   
   .text {
     color: var(--black-50, #F8F8F8);

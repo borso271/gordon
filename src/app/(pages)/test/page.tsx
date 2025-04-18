@@ -13,9 +13,12 @@ import ReadingIndicator from '../../../components/SpeakingAnimation';
 import { generatePriceSeriesPerlin } from '../../../utils/generate_chart_points';
 import { generatePriceSeriesPivots } from '../../../utils/generate_chart_points_pivots';
 import Loading from '../../../components/Loading';
-import ComparisonList from '../../sections/comparison/components/ComparisonList';
+
 import DropdownSelect from '../../../components/Dropdowns/DropdownSelect';
 import CompareTest from '../../../components/tests/compare_picker';
+import PickPair from '../../sections/comparison/PickPair';
+import KnowledgeFolderList from '../../sections/knowledge_center/KnowledgeCenter/components/KnowledgeFolderList';
+import KnowledgeItemList from '../../sections/knowledge_center/KnowledgeCenter/components/KnowledgeItemList';
 interface RawDataEntry {
   ticker: string;
   data: {
@@ -458,7 +461,20 @@ const ratings = [
 // // Map into your periodDataMap
 // console.log(JSON.stringify(oneDayData))
 
-
+const folders = [
+  {
+    iconName: "book",
+    title: "Investing 101",
+    subtext: "Learn the basics of investing",
+    onClick: () => console.log("Clicked Investing 101"),
+  },
+  {
+    iconName: "book",
+    title: "Saving Strategies",
+    subtext: "How to grow your savings efficiently",
+    onClick: () => console.log("Clicked Saving Strategies"),
+  },
+];
 
 
 const now         = Date.now();
@@ -479,18 +495,20 @@ return (
     <div>
 <CompareTest></CompareTest>
 
-<ComparisonList
-  comparisonPairs={[
-    [
-      { symbol_id: 1, ticker: 'AAPL', name: 'Apple Inc.', asset_type: 'stock' },
-      { symbol_id: 2, ticker: 'GOOGL', name: 'Alphabet Inc.', asset_type: 'stock' },
-    ],
-    [
-      { symbol_id: 3, ticker: 'MSFT', name: 'Microsoft', asset_type: 'stock' },
-      { symbol_id: 4, ticker: 'AMZN', name: 'Amazon', asset_type: 'stock' },
-    ],
+
+<KnowledgeFolderList items={folders} />;
+
+<KnowledgeItemList
+  items={[
+    { iconName: "lamp", text: "What is compound interest?" },
+    { iconName: "lamp", text: "How to analyze stock trends?" },
+    { iconName: "lamp", text: "Basics of ETFs" }
   ]}
+  title={"Learn about this"}
+  onItemClick={(text) => console.log("User clicked:", text)}
 />
+
+{/* <PickPair/> */}
 
 
 

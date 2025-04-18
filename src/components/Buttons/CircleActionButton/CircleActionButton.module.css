@@ -1,6 +1,6 @@
 
 .circledButton {
-    background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
+    background: #0F0F0F;
     display: flex;
     border-radius:100px;
 width: 40px;
@@ -11,4 +11,5 @@ align-items: center;
 gap: 7.2px;
 flex-shrink: 0;
 cursor: pointer;
+border: 1px solid rgba(255, 255, 255, 0.06);
   }

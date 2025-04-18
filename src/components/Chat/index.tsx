@@ -61,7 +61,7 @@ export default function BotChat() {
 
   // --- Existing Hooks & Refs ---
   const showSidebar = true; // Keep this logic if you sometimes hide the sidebar entirely
-  const containerRef = useRef<HTMLDivElement | null>(null);
+
   const { responseRef, isAwayFromBottom } = useSlideshowNavigation(
     currentIndex,
     setCurrentIndex,
@@ -81,16 +81,7 @@ export default function BotChat() {
   };
 
   // --- Scroll Down Handler ---
-  const handleManualScrollDown = () => {
-    // This might need adjustment depending on whether the drawer is open
-    // For now, it scrolls the thread, which is likely correct
-    setCurrentIndex(chatSession.interactions.length - 1);
-    if(responseRef.current) { // Check if ref is valid before scrolling
-       scrollDownManually(responseRef);
-    } else if (containerRef.current) { // Fallback scroll container to bottom
-        containerRef.current.scrollTop = containerRef.current.scrollHeight;
-    }
-  };
+
 
   // console.log("chat session is: ", chatSession)
   // --- New Search Handler ---
@@ -127,10 +118,11 @@ export default function BotChat() {
       {/* Column 1: Conversation area */}
       {/* Apply dynamic style for padding */}
       <div className={styles.chatColumn} style={chatColumnStyles}>
-        <div className={styles.chatThreadWrapper} ref={containerRef}>
+        <div className={styles.chatThreadWrapper}> 
+        {/* ref={containerRef} */}
           <ChatThread
             currentIndex={currentIndex}
-            containerRef={containerRef}
+            // containerRef={containerRef}
             responseRef={responseRef}
           />
         </div>

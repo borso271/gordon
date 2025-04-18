@@ -5,12 +5,14 @@ interface CircledIconButtonProps {
   onClick: () => void;
   iconName: string;
   iconSize?: number;
+  size?: number;
 }
 
 const CircledIconButton: React.FC<CircledIconButtonProps> = ({
   onClick,
   iconName,
   iconSize = 20,
+  size
 }) => {
   return (
     <div className={styles.circledButton} onClick={onClick}>

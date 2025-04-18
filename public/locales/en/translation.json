@@ -67,7 +67,35 @@
   
 },
 "vs": "vs",
+"buy_sell": {
+  "quick_tx": "Quick Transaction",
+  "buy": "Buy",
+  "sell": "Sell",
+  "select_ticker": "Select a Ticker"
+},
+"transaction_preview": {
+    "buying_power": "Buying Power",
+    "mode": {
+      "shares": "Number of Shares",
+      "amount": "Amount ($)"
+    },
+    "est_value": "Est. Value: ${{value}}",
+    "est_shares": "Est. Shares: {{shares}}",
+    "limit_price": "Limit Price",
+    "set_price_hint": "Set an order price per share",
+    "place_order": "Place Order"
+  }
+  ,
 
+"ticker_search": {
+    "placeholder": "Search ticker…",
+    "filter": {
+      "all": "All",
+      "stock": "Stock",
+      "crypto": "Crypto",
+      "etf": "ETF"
+    }
+  },
 
 
 "stock": "Stock",

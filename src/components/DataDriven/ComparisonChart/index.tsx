@@ -42,7 +42,7 @@ const CustomComparisonChart = ({ symbols,language }: { symbols: string[], langua
        <div className={styles.chartTitle}>
        {t("price_chart")}</div>
 
-        <PrimaryDivider />
+        {/* <PrimaryDivider /> */}
 
         <div className={styles.chartMain}>
         

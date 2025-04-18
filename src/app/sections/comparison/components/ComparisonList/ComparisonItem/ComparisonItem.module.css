@@ -17,9 +17,10 @@ background: linear-gradient(0deg, var(--additional-white-5, rgba(255, 255, 255, 
   }
   
   .tickerBox {
-    flex: 1;
+  
+    width:140px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
   
   .vsCircle {

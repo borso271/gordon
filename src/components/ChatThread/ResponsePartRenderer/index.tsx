@@ -4,7 +4,7 @@ import { BotMessagePart } from "../../../interfaces";
 import AssistantMessage from "../../Chat/components/AssistantMessage";
 import TradingViewSingleChart from '../../TradingView/SingleChart'
 import DataTable from "../../DataTable";
-import TickerList from "../../TickerList";
+
 // import ComparisonChart from "../../../app/sections/comparison/components/ComparisonChart";
 import MetricComparison from "../../../app/sections/comparison/components/MetricComparison";
 import PortfolioSummary from "../../../app/sections/portfolio_overview/PortfolioSidebar";

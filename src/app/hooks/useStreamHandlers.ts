@@ -246,22 +246,22 @@ useEffect(() => {
 
 
               case "analyze_ticker":
-                if (parsedResult.success) {
+                if (parsedResult.status == "success") {
                   newParts = [{
                     type: "analyze_ticker",
-                    data: parsedResult.data.data_for_component,
+                    data: parsedResult.data_for_component,
                     sidebar: true,
                   },
 
                 {
                     type: "latest_news",
-                    data: parsedResult.data.data_for_component.latest_news,
+                    data: parsedResult.data_for_component.latest_news,
                     sidebar: false,
                   }];
                   // Also push to OpenAI
                   toolCallOutputs.push({
                     tool_call_id: toolCall.id,
-                    output: JSON.stringify(parsedResult.data.prompt_for_ai),
+                    output: JSON.stringify(parsedResult.prompt_for_ai),
                   });
                 } else {
                  

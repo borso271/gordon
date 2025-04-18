@@ -29,8 +29,10 @@ const ChartSnapshot: React.FC<ChartSnapshotProps> = ({
   const { percentageChange, changeClass, trendIcon, iconSize } = useChartSnapshot(latestPrice, lastClose);
 
   const snapshotPrice =
-    latestPrice !== null ? `${currency} ${formatNumberWithCommas(latestPrice)}` : "";
+    latestPrice !== null ? `${currency?? "USD"} ${formatNumberWithCommas(latestPrice)}` : "";
 
+
+    // console.log("symbol just before symbol icon is: ", symbol)
   return (
     <div className={styles.snapshot}>
       <div className={styles.iconWrapper}>

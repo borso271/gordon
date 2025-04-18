@@ -212,7 +212,7 @@ const timeLegendPercentage = computeHistoricalPercentage(dataPoints, selectedPer
   }, [width, timeLegendPercentage]);
 
 
-  console.log("series data in context is: ", seriesesData)
+  // console.log("series data in context is: ", seriesesData)
   
   const lastPrices: LastPriceResult[] = computeLastPrices(seriesesData);
 

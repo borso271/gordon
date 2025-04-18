@@ -2,22 +2,18 @@ import React, {useState, useEffect, useRef} from "react";
 import { motion } from "framer-motion";
 import UserMessage from "../UserMessage";
 import AssistantMessage from "../AssistantMessage";
-import CodeMessage from "../CodeMessage";
-import Analysis from "../../../Analysis";
-import Suggestion from "../../../Suggestion";
+
 import Loading from "../../../Loading";
 import styles from "./ConversationPairView.module.css";
-import { extractTwoValues } from "../../../../app/utils/extractTwoValues";
+
 import { Interaction, BotMessagePart} from "../../../../interfaces";
-import TickerList from "../../../TickerList";
+
 import { useLanguage } from "../../../../app/hooks/useLanguage";
 // import TradingViewChart from '../../../TradingView/Chart'
 import TradingViewSingleChart from '../../../TradingView/SingleChart'
-import ActionsGroup from "../../../ActionsGroup";
-import shareContent from "../../../../app/utils/shareContent";
-import copyToClipboard from "../../../../app/utils/copyToClipboard";
+
 import { useTranslation } from 'react-i18next';
-import DataTable from "../../../DataTable";
+
 import FollowUps from "../../../FollowUps";
 import { useConversation } from "../../../../app/context/conversationContext";
 import { createQueryFromBotParts } from "../../../../app/utils/createQueryFromBotParts";
@@ -170,12 +166,9 @@ useEffect(() => {
 }, [isRunning, filteredParts]);
 
 
-useEffect(() => {
-  //console.log("RE-RENDER: isRunning is now", isRunning);
-}, [isRunning]);
-
   // Check if we have *no* content from the bot yet (use your own logic)
   // e.g., if only one text part with empty content, or array is empty => "nothingYet"
+
   const nothingYet =
     filteredParts.length === 0 ||
     (filteredParts.length === 1 &&
@@ -208,55 +201,101 @@ useEffect(() => {
   };
   const lang = currentLang === "ar" ? "ar" : "en"; // fallback to 'en'
 
-  // Render logic for each part
+  // // Render logic for each part
+  // const renderBotPart = (part: BotMessagePart, index: number) => {
+  //   console.log("we are calling this with PART type IS: ", part);
+  //   switch (part.type) {
+  //     case "assistantText":
+  //       // If you used to do "pair.assistant" → text, you can parse heading vs text if you want
+  //       return (
+  //         <AssistantMessage
+  //           key={index}
+  //           heading={""} // or parse a heading from content if you want
+  //           text={part.text}
+  //         />
+  //       );
+
+  //       case "tickers_chart":
+  //         return (
+  //         <TradingViewSingleChart
+  //         language = {interaction.language}
+  //           symbol = {part.data.tickers[0]}
+  //            currency = {part.data.currency}
+  //               /> )
+
+
+  //     case "latest_news":
+  //       console.log("case latest new ")
+  //       return (
+  //       <NewsList 
+  //       // title = {part.data.title}
+  //       data = {part.data}
+  //       />)
+      
+  //     case "tool_output":
+  //       // Could be code interpreter or something else
+  //       if (part.toolName === "code_interpreter") {
+  //         // render the result of code interpreter, or some
+  //         // specialized <CodeInterpreterOutput> component
+  //         return <div key={index}>Code interpreter output goes here</div>;
+  //       }
+  //       return null;
+
+  //     default:
+  //       return null;
+  //   }
+  // };
+
   const renderBotPart = (part: BotMessagePart, index: number) => {
-    console.log("we are calling this with PART type IS: ", part);
+    /* ⛔  Skip any non‑text part while the assistant is still “speaking” */
+    if (isRunning && part.type !== "assistantText") return null;
+  
     switch (part.type) {
+      /* ───────── Assistant plain text (always allowed) ───────── */
       case "assistantText":
-        // If you used to do "pair.assistant" → text, you can parse heading vs text if you want
         return (
           <AssistantMessage
             key={index}
-            heading={""} // or parse a heading from content if you want
+            heading=""
             text={part.text}
           />
         );
-
-        case "tickers_chart":
-          return (
-          <TradingViewSingleChart
-          language = {interaction.language}
-            symbol = {part.data.tickers[0]}
-             currency = {part.data.currency}
-                /> )
-
-
-      case "latest_news":
-        console.log("case latest new ")
+  
+      /* ───────── Chart rendered after voice is done ───────── */
+      case "tickers_chart":
         return (
-        <NewsList 
-        // title = {part.data.title}
-        data = {part.data}
-        />)
-      
+          <TradingViewSingleChart
+            key={index}
+            language={interaction.language}
+            symbol={part.data.tickers[0]}
+            currency={part.data.currency}
+          />
+        );
+  
+      /* ───────── Latest news list ───────── */
+      case "latest_news":
+        return (
+          <NewsList
+            key={index}
+            data={part.data}
+          />
+        );
+  
+      /* ───────── Generic tool output ───────── */
       case "tool_output":
-        // Could be code interpreter or something else
         if (part.toolName === "code_interpreter") {
-          // render the result of code interpreter, or some
-          // specialized <CodeInterpreterOutput> component
-          return <div key={index}>Code interpreter output goes here</div>;
+          return (
+            <div key={index}>Code interpreter output goes here</div>
+          );
         }
         return null;
-
+  
       default:
         return null;
     }
   };
+  
 
-
-  "e27e3a8d-5c21-489a-8ae7-d7d5c9a39c1a"
-
-  console.log("INTERACTION IS: ", interaction);
   // Determine language direction for this conversation
   const languageClass =
     interaction.userMessage.language === "ar" ? "rightToLeft" : "leftToRight";

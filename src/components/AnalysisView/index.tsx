@@ -18,7 +18,7 @@ const news=data.latest_news;
 <div className={styles.container}>
  <DetachedChart symbol={ticker_symbol} language={"en"}/>
  <PolygonSnapshot data={polygon_data} />
-    {ratings && <AnalystRatings ratings={ratings}/>}
+    {ratings.status && <AnalystRatings ratings={ratings.ratings}/>}
 {news &&  <NewsToggleList news={news} titleKey={"latest_news"}/>}
    
     </div>

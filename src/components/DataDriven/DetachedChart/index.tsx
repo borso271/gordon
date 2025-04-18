@@ -20,8 +20,8 @@ const DetachedChart = ({ symbol,language }: { symbol: string, language: string})
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useChartSizeObserver(containerRef);
 
+  console.log("symbol is: ", symbol)
    
-
   const {
     // chartRef,
     // chartDimensions,

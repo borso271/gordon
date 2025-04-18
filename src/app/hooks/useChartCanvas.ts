@@ -202,7 +202,7 @@ export function useChartCanvas({
 
   // 7) Colors & styles
 
-  console.log("POSITIVE CHANGE IS: ", isPositiveChange);
+  // console.log("POSITIVE CHANGE IS: ", isPositiveChange);
 
   
   
@@ -216,7 +216,7 @@ export function useChartCanvas({
   : "rgba(237, 68, 26, 0.1)";
 
 
-    console.log("stopcolors are: ", stopColor1, stopColor2)
+    // console.log("stopcolors are: ", stopColor1, stopColor2)
 
   const strokeWidth = isMobile ? 1 : 1.5;
   const dashArray = isMobile ? "5,3" : "6,4";

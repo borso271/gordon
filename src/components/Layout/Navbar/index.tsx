@@ -65,8 +65,6 @@ const isRTL = i18n.dir() === "rtl";
 
       <div className={styles.buyWrapper}>
       <Button3 text={t("trade")} onClick={() => showModal()} />
-
-
 </div>
 
 
@@ -88,13 +86,14 @@ const isRTL = i18n.dir() === "rtl";
 <Icon name="notifications"></Icon>
 </div>
 
+<div className={styles.languageWrapper}>
 <LanguageSelectorDropdown
   openDropdown={openDropdown}
   selectedIndex={selectedIndex}
   setSelectedIndex={setSelectedIndex}
   handleLanguageChange={handleLanguageChange}
   handleToggleDropdown={handleToggleDropdown}
-/>
+/></div>
 
 
 {/* 

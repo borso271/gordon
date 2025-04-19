@@ -1,23 +1,60 @@
 
 /* This is the root div inside ChatThread */
-.slideContainer {
+/* .slideContainer {
  position: relative;
-    flex: 1 1 auto;    /* <<<< MAKE THIS FLEXIBLE */
-    overflow-y: auto;  /* <<<< THIS HANDLES SCROLLING */
-    min-height: 0;     /* <<<< Crucial flexbox fix */
-    position: relative; /* <<<< Add for positioning scroll button */
+    flex: 1 1 auto;   
+    overflow-y: auto;  
+    min-height: 0;    
+    position: relative; 
     height: 100%;
-    /* Scrollbar Hiding */
+    
     -ms-overflow-style: none;
     scrollbar-width: none;
+
+
+  } */
+
+  .slideContainer {
+    /* Keep */
+    position: relative;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  
+    /* From .outerWrapper context */
+    flex: 1 1 auto;    /* Let flexbox control the height */
+    min-height: 0;     /* Crucial flexbox fix for scrollable content */
+
+    /* --- FIX: ADD THESE --- */
+    display: flex;
+    flex-direction: column;
+    /* --- END FIX --- */
+  
+    /* REMOVE or comment out height: 100% */
+    /* height: 100%; */ /* Usually redundant/less safe with flex: 1 1 auto */
   }
+  
+  .slideContainer::-webkit-scrollbar {
+    display: none; /* Keep */
+  }
+  
+
+
+.filler {
+  flex-grow: 1; /* Takes up all remaining vertical space */
+  min-height: 1px; /* Ensures it occupies space */
+
+  visibility: hidden; /* Keep in layout, but visually hidden */
+}
+
+
   .slideContainer::-webkit-scrollbar {
     display: none;
   }
   
   /* This is INSIDE .slideContainer - it should NOT be flexible or scrollable */
   .conversationList {
-   
+
     padding-bottom: 8px; /* Keep padding */
   
   }

@@ -67,6 +67,16 @@
   
 },
 
+"analyze": {
+  "introMessage": "# Ready to analyze a stock?\nYou can select one of the suggested options below or ask about any stock you're curious about.",
+  "followUps": {
+    "apple": "Can you analyze Apple stock?",
+    "tesla": "Give me an analysis of Tesla stock.",
+    "google": "I'd like an analysis of Google stock."
+  }
+}
+  ,
+
 "suggest": {
     "prompt": "Can you suggest me stocks in the technology sector?"
   },

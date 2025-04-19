@@ -7,15 +7,23 @@ export function useScrollToBottomButton(containerRef: React.RefObject<HTMLElemen
   const checkOverflow = useCallback(() => {
     const el = containerRef.current;
     if (!el) return;
-    const shouldShow = el.scrollHeight > el.clientHeight && el.scrollTop < el.scrollHeight - el.clientHeight - 20;
+    const threshold = 20;
+    const shouldShow =
+      el.scrollHeight > el.clientHeight &&
+      el.scrollTop < el.scrollHeight - el.clientHeight - threshold;
+
     setIsVisible(shouldShow);
   }, [containerRef]);
 
-  // Scroll to bottom
+  // Scroll to bottom (safely after DOM updates)
   const scrollToBottom = useCallback(() => {
     const el = containerRef.current;
     if (el) {
-      el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+        });
+      });
     }
   }, [containerRef]);
 
@@ -28,9 +36,12 @@ export function useScrollToBottomButton(containerRef: React.RefObject<HTMLElemen
     const handleScroll = () => checkOverflow();
     el.addEventListener("scroll", handleScroll);
 
-    // Cleanup
+    const resizeObserver = new ResizeObserver(() => checkOverflow());
+    resizeObserver.observe(el);
+
     return () => {
       el.removeEventListener("scroll", handleScroll);
+      resizeObserver.disconnect();
     };
   }, [checkOverflow, containerRef]);
 

@@ -136,7 +136,7 @@ useEffect(() => {
       fetch("/api/follow_ups", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({ query, currentLang }),
       })
         .then((res) => res.json())
         .then((data) => {

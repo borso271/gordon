@@ -13,8 +13,9 @@ export function useManualActionRequests() {
   const handleLearn = (threadId?: string) => {
     sendSimulatedRequest(
       "I want to learn about finance.",
-      "knowledge_browser",
       t("knowledge.introMessage"),
+      [{type:"knowledge_browser",data:[],sidebar:true}],
+      
       false,
     //   threadId
     );
@@ -28,8 +29,8 @@ export function useManualActionRequests() {
   const handleCompare = (threadId?: string) => {
     sendSimulatedRequest(
       "I want to compare two stocks.",
-      "comparison_pair_picker",
       t("compare.introMessage"),
+      [{ type: "comparison_pair_picker",data:[], sidebar:true}],
       false,
     //   threadId
     );
@@ -41,7 +42,25 @@ export function useManualActionRequests() {
   };
   
   const handleAnalyze = (threadId?: string) => {
-    submitQuery(t('landing.suggestions.analyze.prompt'), false, threadId);
+
+
+   
+sendSimulatedRequest(
+  "I want to analyze a stock.",
+  t("analyze.introMessage"),
+  [
+    {
+      type: "follow_ups",
+      data: [
+        t("analyze.followUps.apple"),
+        t("analyze.followUps.tesla"),
+        t("analyze.followUps.google"),
+      ],
+      sidebar: false,
+    },
+  ],
+  false
+);
   };
   
 

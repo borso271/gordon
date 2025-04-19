@@ -4,7 +4,6 @@ import { useSimulatedChat } from "./useSimulateChat";
 import { BotMessagePart } from "../../interfaces";
 import { BotMessagePartType } from "../../interfaces";
 import { useSaveInteraction } from "./useSaveInteraction";
-
 export function useSimulatedRequest() {
   const {
     setInputDisabled,
@@ -18,32 +17,29 @@ export function useSimulatedRequest() {
   const sendSimulatedRequest = useCallback(
     async (
       userText: string,
-      type: BotMessagePartType,
       assistantResponse: string,
+      parts: BotMessagePart[] = [],
       showUser: boolean = true
     ) => {
       if (!userText.trim() || !assistantResponse.trim()) return;
 
-      // 1️⃣ UI: disable input + show loading
+      // 1️⃣ Disable UI
       setInputDisabled(true);
       setIsRunning(true);
 
-      // 2️⃣ Simulate stream
+      // 2️⃣ Simulate assistant stream
       const interactionId = await sendSimulatedMessage(userText, assistantResponse, showUser);
 
       // 3️⃣ Re-enable UI
       setInputDisabled(false);
       setIsRunning(false);
 
-      // 4️⃣ Add extra part
-      const extraPart: BotMessagePart = {
-        type,
-        data: [],
-        sidebar: true,
-      };
-      updateLastInteractionBotParts([extraPart], interactionId);
+      // 4️⃣ Append extra parts if any
+      if (parts.length > 0) {
+        updateLastInteractionBotParts(parts, interactionId);
+      }
 
-      // 5️⃣ Wait 100ms before saving
+      // 5️⃣ Save interaction a bit later
       setTimeout(() => {
         saveInteraction();
       }, 100);

@@ -4,7 +4,7 @@ import { fetchAndSavePolygonSnapshots } from "../polygon_snapshot";
 
 import { TickerInput } from "../../interfaces";
 
-const TEN_MINUTES = 1 * 60 * 1000;
+const TEN_MINUTES = 10000 * 60 * 1000;
 
 export async function getOrUpdateSnapshot({
     symbol,

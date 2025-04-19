@@ -57,7 +57,7 @@
 
 /* Sidebar Styles (Large Screen - Default) */
 .sidebarColumn {
-  width: 440px; /* Default width */
+  width: 424px; /* Default width */
   flex-shrink: 0;
   overflow: hidden; /* Hide overflow initially */
   background-color: var(--background); /* Example background */

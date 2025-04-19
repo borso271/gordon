@@ -4,7 +4,7 @@ import styles from "./KnowledgeItemList.module.css";
 import CircledIconButton from "../../../../../../components/Buttons/CircleActionButton";
 import MainSidebarHeading from "../../../../../../components/Headings/MainSidebarHeading";
 import { useManualSubmit } from "../../../../../hooks/useManualSubmit";
-
+import { useConversation } from "../../../../../context/conversationContext";
 interface KnowledgeItemListProps {
   title: string;
   items: { iconName?: string; text: string }[];
@@ -18,8 +18,9 @@ const KnowledgeItemList: React.FC<KnowledgeItemListProps> = ({
 }) => {
   const { submitQuery } = useManualSubmit();
 
+  const {threadId} = useConversation();
   const handleItemClick = (text: string) => {
-    submitQuery(text, false); // 🔁 reuse the shared handler
+    submitQuery(text, false, threadId); // 🔁 reuse the shared handler
   };
 
   return (

@@ -14,6 +14,7 @@ import Annotations from "../../Annotations";
 import AssetsWithInsight from "../../AssetsWithInsight";
 import NewsList from "../../NewNews/NewsList";
 import PickPair from "../../../app/sections/comparison/PickPair";
+import KnowledgeBrowser from "../../../app/sections/knowledge_center/KnowledgeCenter";
 interface Props {
   part: BotMessagePart;
   language: string;
@@ -38,6 +39,12 @@ const BotMessagePartRenderer: React.FC<Props> = ({ part, language="en" }) => {
           symbol = {part.data.tickers[0]}
            currency = {part.data.currency}
               />;
+
+
+              case "knowledge_browser":
+
+              return <KnowledgeBrowser/>;
+                     
 
 
 

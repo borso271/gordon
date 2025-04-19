@@ -9,33 +9,12 @@ import { useFunctionExecution } from "../../app/context/functionExecutionContext
 import { useScrollToBottomButton } from "../../app/hooks/useScrollToBottomButton";
 import SpeechOverlay from "../SpeechOverlay";
 import CircledIconButton from "../Buttons/CircleActionButton";
-// import React, { useRef, useEffect } from "react";
-// import { useConversation } from "../hooks/useConversation";
-// import { useFunctionExecution } from "../hooks/useFunctionExecution";
-// import { useScrollToBottomButton } from "../hooks/useScrollToBottomButton";
-
-// import DropdownButton from "../components/DropdownButton";
-// import ConversationPairView from "../components/ConversationPairView";
-// import styles from "./ChatThread.module.css";
 
 interface ChatThreadProps {
   currentIndex: number;
  
   responseRef: React.RefObject<HTMLDivElement>;
  }
-// import React, { useEffect, useRef } from 'react';
-// import { useConversation } from '../hooks/useConversation'; // Adjust path if needed
-// import { useFunctionExecution } from '../hooks/useFunctionExecution'; // Adjust path if needed
-// import { useScrollToBottomButton } from '../hooks/useScrollToBottomButton'; // Adjust path if needed
-// import ConversationPairView from './ConversationPairView'; // Adjust path if needed
-// import DropdownButton from '../components/DropdownButton'; // Adjust path if needed
-// import styles from './ChatThread.module.css'; // Adjust path if needed
-
-// interface ChatThreadProps {
-//   currentIndex: number; // Assuming this is used somewhere, maybe indirectly
-//   containerRef: React.RefObject<HTMLDivElement>; // The scrollable container
-//   responseRef: React.RefObject<HTMLDivElement>; // Ref for the latest response area (optional)
-// }
 
 const ChatThread: React.FC<ChatThreadProps> = ({
   currentIndex,
@@ -45,14 +24,34 @@ const ChatThread: React.FC<ChatThreadProps> = ({
   const { chatSession, activeInteraction, setActiveInteraction } = useConversation();
   const { onManualFunctionCall } = useFunctionExecution();
 
+  console.log("chat session is: ", chatSession)
+
+  useEffect(() => {
+   
+      scrollToBottom();
+   
+  }, []); // ✅ Track only the length
+
+
   // Each interaction block is stored in a ref
+  const prevInteractionCount = useRef<number>(chatSession.interactions.length);
+  useEffect(() => {
+    const currentCount = chatSession.interactions.length;
+  
+    if (currentCount > prevInteractionCount.current) {
+      // New interaction added
+      scrollToBottom();
+    }
+  
+    prevInteractionCount.current = currentCount;
+  }, [chatSession.interactions.length]); // ✅ Track only the length
+
   const interactionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const containerRef = useRef<HTMLDivElement | null>(null);
   // For showing "Scroll to bottom" button
   const { isVisible, scrollToBottom } = useScrollToBottomButton(containerRef);
   
-
-  console.log("is visible is: ", isVisible)
+  // console.log("is visible is: ", isVisible)
   // Track the previously activated ID to prevent redundant updates
   const prevActivatedId = useRef<string | null>(null);
 
@@ -60,9 +59,6 @@ const ChatThread: React.FC<ChatThreadProps> = ({
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Ensure stable reference for setActiveInteraction if needed.
-    // If useConversation doesn't guarantee stability, wrap setActiveInteraction
-    // in useCallback within that hook. Assuming it's stable for now.
 
     if (!containerRef.current) {
         console.warn("ChatThread: containerRef is not available for IntersectionObserver.");
@@ -209,8 +205,6 @@ const ChatThread: React.FC<ChatThreadProps> = ({
             >
               <ConversationPairView
                 interaction={interaction}
-                // Pass the specific responseRef if it's for the latest interaction
-                // Note: Ensure `responseRef` prop logic aligns with its purpose
                 responseRef={index === chatSession.interactions.length - 1 ? responseRef : null}
                 handleManualFunctionCall={onManualFunctionCall}
               />

@@ -70,6 +70,9 @@
 
 
 "knowledge": {
+  "library_title": "Our Library:",
+  "introMessage": 
+   "Welcome to the Knowledge Center! 📚 You can pick a topic from our library or type any topic you’d like to learn about.",
   "understandingStocks": {
     "title": "Understanding Stocks",
     "subtext": "Learn what stocks are and how they work in the market.",

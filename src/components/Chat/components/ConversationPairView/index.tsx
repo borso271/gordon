@@ -84,7 +84,9 @@ const [assistantText, setAssistantText] = useState("");
 const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
 const [followUpSuggestions, setFollowUpSuggestions] = useState<Array<string>>([]);
 const userText = interaction.userMessage.text || "";
-const showUserMessage = interaction.userMessage.show || true;
+
+const showUserMessage = interaction.userMessage.show ?? true;
+
 const botParts = interaction.botMessage.parts || [];
 
 const filteredParts = botParts.filter(

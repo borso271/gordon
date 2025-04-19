@@ -21,8 +21,8 @@ interface ConversationContextType {
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 
   updateLastInteractionBotParts: (newParts: BotMessagePart[], interactionId?: string) => void;
+  addUserMessage: (message: string, show?: boolean) => string;
 
-  addUserMessage: (message: string, show?: boolean) => void;
   appendAssistantText: (text: string) => void;
 
   areNavigationItemsVisible: boolean;
@@ -198,7 +198,9 @@ useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sessionToSave));
   }, [chatSession]); // Dependency array ensures this runs when chatSession changes
 
-  const addUserMessage = useCallback((message: string, show=true) => {
+
+
+  const addUserMessage = useCallback((message: string, show = true): string => {
     const newInteraction: Interaction = {
       id: uuidv4(),
       timestamp: new Date().toISOString(),
@@ -225,8 +227,8 @@ useEffect(() => {
       },
     };
   
-interactionRef.current = newInteraction;
-
+    interactionRef.current = newInteraction;
+  
     setChatSession((prevSession) => {
       const updatedInteractions = [...prevSession.interactions, newInteraction];
       return {
@@ -236,9 +238,52 @@ interactionRef.current = newInteraction;
       };
     });
   
-    // If you track the current interaction index or similar:
     setCurrentIndex((prev) => prev + 1);
+  
+    return newInteraction.id;
   }, [currentLang]);
+  
+//   const addUserMessage = useCallback((message: string, show=true) => {
+//     const newInteraction: Interaction = {
+//       id: uuidv4(),
+//       timestamp: new Date().toISOString(),
+//       language: currentLang,
+//       status: "success",
+//       userMessage: {
+//         id: uuidv4(),
+//         role: "user",
+//         text: message,
+//         language: currentLang,
+//         metadata: {},
+//         createdAt: new Date().toISOString(),
+//         show: show
+//       },
+//       botMessage: {
+//         id: uuidv4(),
+//         role: "assistant",
+//         language: currentLang,
+//         parts: [
+//           { type: "assistantText", text: "" } // For streaming updates
+//         ],
+//         metadata: {},
+//         createdAt: new Date().toISOString(),
+//       },
+//     };
+  
+// interactionRef.current = newInteraction;
+
+//     setChatSession((prevSession) => {
+//       const updatedInteractions = [...prevSession.interactions, newInteraction];
+//       return {
+//         ...prevSession,
+//         interactions: updatedInteractions,
+//         updatedAt: new Date().toISOString(),
+//       };
+//     });
+  
+//     // If you track the current interaction index or similar:
+//     setCurrentIndex((prev) => prev + 1);
+//   }, [currentLang]);
   
   const appendAssistantText = useCallback((text: string) => {
    
@@ -277,10 +322,6 @@ interactionRef.current = newInteraction;
     });
   }, []);
   
-
- 
-
-
   const updateLastInteractionBotParts = useCallback((
     newParts: BotMessagePart[],
     interactionId?: string

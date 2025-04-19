@@ -13,7 +13,7 @@ const ChatUI = () => {
     const { chatSession, setChatSession,threadId, setThreadId } = useConversation();
     const searchParams = useSearchParams();
     const threadIdFromUrl = searchParams.get('threadId') ?? '';
-console.log("THREAD IS FROM URL IS: ", threadIdFromUrl, threadId);
+// console.log("THREAD IS FROM URL IS: ", threadIdFromUrl, threadId);
 
     useEffect(() => {
       if (threadId) {

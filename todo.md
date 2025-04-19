@@ -1,31 +1,19 @@
-1. Knowledge Center...
 
-90 minutes
 
-When clicking on the knowledge center,
-You Need:
 
-- An automatic message speaker, that is saying:
-  Welcome to the knowledge center, select a topic from the right panel, or ask me anything in here.
-  You need a component with internal navigation, no rerender sidebar or yes?
-  Finally on click is simply sending a query.
 
-You have to ask for a component that when you click on a folder, it renders, with a nice effect, another component with the list for that one, and a button to go back to the previous menu.
-
-------
-
-90 minutes
-
-2. Presuggestions.
-For the presuggestions, you need to:
-- Display the component, and tell the bot to wait for an user selection.
-- Have a function that directly send to the bot the user request, without however adding it to the user message, since there is no need for that. SO HAVE A WAY TO AVOID HAVING THE USER MESSAGE PRINTED.
 
 ------
 
 30 minutes
 
+- add actions to landing page and input buttons
+- add actions to dashboard buttons
+- check actions for buy/sell in different components
+- check other actions sending queries
+
 OTHERS:
+- Sidebar always scrolling to last when new interaction added
 - Top suggestion's hover on change language.
 - Portfolio chart labels going new line on resizing.
 - Update chart data with more points.

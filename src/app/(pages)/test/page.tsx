@@ -490,8 +490,6 @@ return (
 
 {/* <PickPair/> */}
 
-
-
 {/* <Loading/> */}
    {/* <AssetsWithInsight data={staticTestResults}/> */}
       {/* <MetricComparison rawData={dataForComparisonTable}/> */}

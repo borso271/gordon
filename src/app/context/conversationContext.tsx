@@ -245,8 +245,6 @@ useEffect(() => {
   }, [currentLang]);
   
 
-
-
   const appendAssistantText = useCallback((text: string, threadId?: string) => {
     if (!text || typeof text !== 'string') return; // 🔒 Guard clause
   

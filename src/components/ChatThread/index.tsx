@@ -74,7 +74,6 @@ const ChatThread: React.FC<ChatThreadProps> = ({
   }, [chatSession.interactions, fillerHeight,isRunning]);
   
 
-
   // --- Ref Assignment ---
   const assignRef = (el: HTMLDivElement | null, id: string | undefined) => {
     if (typeof id === "string") {
@@ -163,6 +162,7 @@ const ChatThread: React.FC<ChatThreadProps> = ({
               key={interaction.id || index}
               data-id={interaction.id}
               ref={(el) => assignRef(el, interaction.id)}
+              className={styles.interactionWrapper} // 👈 add this
             >
               <ConversationPairView
                 interaction={interaction}

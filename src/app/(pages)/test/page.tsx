@@ -4,24 +4,13 @@ import React from 'react';
 // import LlamaQuery from '../../../components/LlamaQuery/LlamaQuery';
 
 import styles from './test.module.css'
-import CustomComparisonChart from '../../../components/DataDriven/ComparisonChart';
-import TestCompareAPI from '../../../components/tests/test_compare_api';
 
-import AssetsWithInsight from '../../../components/AssetsWithInsight';
-import TestExaSearch from '../../../components/tests/test_exa_seach';
-import ReadingIndicator from '../../../components/SpeakingAnimation';
-import { generatePriceSeriesPerlin } from '../../../utils/generate_chart_points';
 import { generatePriceSeriesPivots } from '../../../utils/generate_chart_points_pivots';
 import Loading from '../../../components/Loading';
 
 
 import KnowledgeBrowser from '../../sections/knowledge_center/KnowledgeCenter';
-import DropdownSelect from '../../../components/Dropdowns/DropdownSelect';
-import CompareTest from '../../../components/tests/compare_picker';
-import { knowledgeTopics } from '../../sections/knowledge_center/knowledge_data';
-import PickPair from '../../sections/comparison/PickPair';
-import KnowledgeFolderList from '../../sections/knowledge_center/KnowledgeCenter/components/KnowledgeFolderList';
-import KnowledgeItemList from '../../sections/knowledge_center/KnowledgeCenter/components/KnowledgeItemList';
+
 interface RawDataEntry {
   ticker: string;
   data: {
@@ -464,21 +453,118 @@ const ratings = [
 // // Map into your periodDataMap
 // console.log(JSON.stringify(oneDayData))
 
+function generateFakeStockData({
+  startPrice,
+  endPrice,
+  startDate,
+  endDate,
+  numPoints,
+  volatility = 0.02, // default: 2% volatility
+}) {
+  const data = [];
+  const start = new Date(startDate).getTime();
+  const end = new Date(endDate).getTime();
+  const timeStep = (end - start) / (numPoints - 1);
+
+  let currentPrice = startPrice;
+
+  for (let i = 0; i < numPoints; i++) {
+    const time = Math.floor(start + i * timeStep);
+
+    // Random change between -volatility and +volatility
+    const rnd = Math.random();
+    let changePercent = 2 * volatility * rnd;
+    if (changePercent > volatility) {
+      changePercent -= 2 * volatility;
+    }
+    const changeAmount = currentPrice * changePercent;
+
+    if (i < numPoints - 1) {
+      currentPrice += changeAmount;
+    } else {
+      currentPrice = endPrice;
+    }
+
+    // Round price to integer (or use Math.round(currentPrice * 100) / 100 for cents)
+    const roundedPrice = Math.round(currentPrice);
+
+    data.push({
+      price: roundedPrice,
+      time: time,
+    });
+  }
+
+  return data;
+}
 
 
-const now         = Date.now();
-const eightHours  = 8 * 60 * 60 * 1000;
+function generateStockTrendData({
+  startPrice,
+  startDate,
+  endDate,
+  numPoints,
+  cycles = [],
+  min,
+  max,
+}) {
+  const result = [];
+  const start = new Date(startDate).getTime();
+  const end = new Date(endDate).getTime();
+  const timeStep = (end - start) / (numPoints - 1);
 
-const series = generatePriceSeriesPivots(
-  150,         // start price
-  152,         // end   price
-  0.9,         // max deviation ±
-  now - eightHours,
-  now,
-  60           // 60 points
-);
+  let y = startPrice;
 
-console.log(JSON.stringify(series))
+  function randomPlusMinus() {
+    return Math.random() * 2 - 1;
+  }
+
+  // Pre-calculate phase and increment per cycle
+  const processedCycles = cycles.map((cycle) => ({
+    ...cycle,
+    phase: Math.random() * Math.PI,
+    increment: Math.PI / cycle.length,
+  }));
+
+  for (let i = 0; i < numPoints; i++) {
+    let yDelta = 0;
+
+    for (const cycle of processedCycles) {
+      cycle.phase += cycle.increment * randomPlusMinus();
+      const cycleNoise = cycle.variance / cycle.length * (randomPlusMinus() * cycle.noise);
+      const cycleTrend = cycle.trend / cycle.length;
+      yDelta += Math.sin(cycle.phase) * cycleNoise + cycleTrend;
+    }
+
+    y += yDelta;
+
+    if (typeof min === "number") y = Math.max(y, min);
+    if (typeof max === "number") y = Math.min(y, max);
+
+    result.push({
+      price: Math.round(y),
+      time: Math.floor(start + i * timeStep),
+    });
+  }
+
+  return result;
+}
+
+const fakeTrendData = generateStockTrendData({
+  startPrice: 180000,
+  startDate: "2025-04-19",
+  endDate: "2025-04-20",
+  numPoints: 100,
+  min: 179000,
+  max: 183000,
+  cycles: [
+    { length: 7, variance: 5000, noise: 1, trend: 0 },      // weekly swings
+    { length: 30, variance: 8000, noise: 1, trend: 0 },    // monthly patterns
+    { length: 100, variance: 5000, noise: 0.2, trend: 1200 } // slow upward trend
+  ]
+});
+
+console.log(JSON.stringify(fakeTrendData));
+
 return (
 
     <div>

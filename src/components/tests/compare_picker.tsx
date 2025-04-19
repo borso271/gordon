@@ -41,7 +41,7 @@ export default function CompareTest() {
       <ComparisonPicker
         tickers={sampleTickers}
         title="Compare two symbols"
-        onCompare={handleCompare}
+    
         rtl={false /* or i18n.dir() === 'rtl' */}
       />
     </div>

@@ -11,18 +11,21 @@ First: SAVE THE KNOWLEDGE CENTER.
 
 120 minutes: actions.
 
+- already put default icon in the ticker selctor on comparison
+
 - add actions to landing page and input buttons
 - add actions to dashboard buttons
 - check actions for buy/sell in different components
 - check other actions sending queries
 
-OTHERS:
-
-
-
+- little buttons on suggestion prompts
 
 - Update chart data with more points.
 
+
+- ARABIC
+- STYLES
+- update polygon AND SUPABASE
 
 --------------------------------------------------------------
 By Lunch this is done.

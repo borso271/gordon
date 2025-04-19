@@ -5,44 +5,155 @@ This should be in a json, but for simplicity, js object is also ok.
 
 */
 
-export const knowledgeTopics = [
+// types/knowledge.ts
+export interface KnowledgeItem {
+    iconName?: string;
+    textKey: string;      // translation key
+    onClick?: () => void;
+  }
+// src/data/knowledgeTopics.ts
+export interface KnowledgeTopic {
+    id: string;               
+    iconName: string;
+    titleKey: string;        
+    subtextKey: string;       
+    onClick: () => void;
+    items: KnowledgeItem[];
+  }
+
+  export const knowledgeTopics: KnowledgeTopic[] = [
     {
+      id: "understanding_stocks",
       iconName: "book",
-      title: "Understanding Stocks",
-      subtext: "Learn what stocks are and how they work in the market.",
-      onClick: () => console.log("Opened: Understanding Stocks"),
+      titleKey: "knowledge.understandingStocks.title",
+      subtextKey: "knowledge.understandingStocks.subtext",
+      onClick: () => console.log("Opened: understanding_stocks"),
+      items: [
+        {  textKey: "knowledge.understandingStocks.item1" },
+        {  textKey: "knowledge.understandingStocks.item2" },
+        {  textKey: "knowledge.understandingStocks.item3" },
+        {  textKey: "knowledge.understandingStocks.item4" },
+        {  textKey: "knowledge.understandingStocks.item5" },
+        {  textKey: "knowledge.understandingStocks.item6" },
+        {  textKey: "knowledge.understandingStocks.item7" },
+        {  textKey: "knowledge.understandingStocks.item8" },
+        { textKey: "knowledge.understandingStocks.item9" },
+        { textKey: "knowledge.understandingStocks.item10" }
+      ]
     },
+
     {
-      iconName: "book",
-      title: "Risk vs Reward",
-      subtext: "Explore how to balance risk and return in investing.",
-      onClick: () => console.log("Opened: Risk vs Reward"),
-    },
-    {
-      iconName: "book",
-      title: "Diversification",
-      subtext: "Why spreading your investments is key to stability.",
-      onClick: () => console.log("Opened: Diversification"),
-    },
-    {
-      iconName: "book",
-      title: "Compound Interest",
-      subtext: "Understand the power of compounding over time.",
-      onClick: () => console.log("Opened: Compound Interest"),
-    },
-    {
-      iconName: "book",
-      title: "ETFs & Mutual Funds",
-      subtext: "Intro to pooled investment options and their benefits.",
-      onClick: () => console.log("Opened: ETFs & Mutual Funds"),
-    },
-    {
-      iconName: "book",
-      title: "Financial Goals & Planning",
-      subtext: "Setting and achieving short and long-term financial goals.",
-      onClick: () => console.log("Opened: Financial Goals & Planning"),
-    },
+        id: "risk_vs_reward",
+        iconName: "book",
+        titleKey: "knowledge.riskVsReward.title",
+        subtextKey: "knowledge.riskVsReward.subtext",
+        onClick: () => console.log("Opened: risk_vs_reward"),
+        items: [
+          { iconName: "lamp", textKey: "knowledge.riskVsReward.item1" },
+          { iconName: "lamp", textKey: "knowledge.riskVsReward.item2" },
+          { iconName: "lamp", textKey: "knowledge.riskVsReward.item3" },
+          { iconName: "lamp", textKey: "knowledge.riskVsReward.item4" },
+          { iconName: "lamp", textKey: "knowledge.riskVsReward.item5" },
+          { iconName: "lamp", textKey: "knowledge.riskVsReward.item6" },
+        ],
+      },
+      {
+        id: "diversification",
+        iconName: "book",
+        titleKey: "knowledge.diversification.title",
+        subtextKey: "knowledge.diversification.subtext",
+        onClick: () => console.log("Opened: diversification"),
+        items: [
+          { iconName: "lamp", textKey: "knowledge.diversification.item1" },
+          { iconName: "lamp", textKey: "knowledge.diversification.item2" },
+          { iconName: "lamp", textKey: "knowledge.diversification.item3" },
+          { iconName: "lamp", textKey: "knowledge.diversification.item4" },
+          { iconName: "lamp", textKey: "knowledge.diversification.item5" },
+          { iconName: "lamp", textKey: "knowledge.diversification.item6" },
+          { iconName: "lamp", textKey: "knowledge.diversification.item7" },
+          { iconName: "lamp", textKey: "knowledge.diversification.item8" },
+          { iconName: "lamp", textKey: "knowledge.diversification.item9" },
+          { iconName: "lamp", textKey: "knowledge.diversification.item10" },
+        ],
+      },
+      {
+        id: "etfs_mutual_funds",
+        iconName: "book",
+        titleKey: "knowledge.etfsMutualFunds.title",
+        subtextKey: "knowledge.etfsMutualFunds.subtext",
+        onClick: () => console.log("Opened: etfs_mutual_funds"),
+        items: [
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item1" },
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item2" },
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item3" },
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item4" },
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item5" },
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item6" },
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item7" },
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item8" },
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item9" },
+          { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item10" },
+        ],
+      },
+      {
+        id: "financial_goals_planning",
+        iconName: "book",
+        titleKey: "knowledge.financialGoalsPlanning.title",
+        subtextKey: "knowledge.financialGoalsPlanning.subtext",
+        onClick: () => console.log("Opened: financial_goals_planning"),
+        items: [
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item1" },
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item2" },
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item3" },
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item4" },
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item5" },
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item6" },
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item7" },
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item8" },
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item9" },
+          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item10" },
+        ],
+      }
   ];
+  
+
+
+
+//   {
+//     id: "risk_vs_reward",
+//     iconName: "book",
+//     titleKey: "knowledge.riskReward.title",
+//     subtextKey: "knowledge.riskReward.subtext",
+//     onClick: () => console.log("Opened: risk_vs_reward"),
+//   },
+//   {
+//     id: "diversification",
+//     iconName: "book",
+//     titleKey: "knowledge.diversification.title",
+//     subtextKey: "knowledge.diversification.subtext",
+//     onClick: () => console.log("Opened: diversification"),
+//   },
+//   {
+//     id: "compound_interest",
+//     iconName: "book",
+//     titleKey: "knowledge.compoundInterest.title",
+//     subtextKey: "knowledge.compoundInterest.subtext",
+//     onClick: () => console.log("Opened: compound_interest"),
+//   },
+//   {
+//     id: "etfs_mutual_funds",
+//     iconName: "book",
+//     titleKey: "knowledge.etfsMutualFunds.title",
+//     subtextKey: "knowledge.etfsMutualFunds.subtext",
+//     onClick: () => console.log("Opened: etfs_mutual_funds"),
+//   },
+//   {
+//     id: "financial_goals_planning",
+//     iconName: "book",
+//     titleKey: "knowledge.finGoalsPlanning.title",
+//     subtextKey: "knowledge.finGoalsPlanning.subtext",
+//     onClick: () => console.log("Opened: financial_goals_planning"),
+//   },
   
   export const knowledgeSubtopics = {
     "Understanding Stocks": [
@@ -57,6 +168,7 @@ export const knowledgeTopics = [
       { iconName: "lamp", query: "Explain IPO (Initial Public Offering)." },
       { iconName: "lamp", query: "What are stock market indices?" },
     ],
+
     "Risk vs Reward": [
       { iconName: "lamp", query: "What is investment risk?" },
       { iconName: "lamp", query: "How is investment risk measured?" },

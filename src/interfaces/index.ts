@@ -38,6 +38,7 @@ export type UserMessage = {
   language?: string;
   metadata?: Record<string, any>;
   createdAt?: string;
+  show?: boolean;
 };
 
 
@@ -143,6 +144,7 @@ export type SimpleTicker = {
 
 export type BotMessagePart =
 | { type: 'assistantText'; text: string, data?: any | null,sidebar?: boolean, both?: boolean }
+| { type: 'knowledge_browser'; data: any,sidebar?: boolean,both?: boolean   }
 | { type: 'comparison_pair_picker'; data: any,sidebar?: boolean,both?: boolean   }
 | { type: 'follow_ups'; data: any,sidebar?: boolean,both?: boolean   }
 | { type: 'analyze_ticker'; data?: any | null,sidebar?: boolean,both?: boolean  }

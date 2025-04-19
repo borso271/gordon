@@ -5,7 +5,7 @@ import ComparisonList from "../components/ComparisonList";
 import { SimpleTicker } from "../../../../interfaces";
 import ComparisonPicker from "../components/ComparisonPicker";
 import styles from './PickerPair.module.css'
-
+import { useConversation } from "../../../context/conversationContext";
 
 const sampleTickers: SimpleTicker[] = [
     {
@@ -50,21 +50,16 @@ const sampleTickers: SimpleTicker[] = [
   
 
 const PickPair = () => {
-  const [selectedPair, setSelectedPair] = useState<[SimpleTicker, SimpleTicker] | null>(null);
-
-  const handleCompare = (left: SimpleTicker, right: SimpleTicker) => {
-    setSelectedPair([left, right]);
-   // onCompare(left, right); // Optional callback to external logic
-  };
-
+  
+    const {threadId} = useConversation()
   return (
     <div className={styles.container}>
       <MainSidebarHeading text="Compare Tickers" />
 
-      <ComparisonPicker tickers={sampleTickers} title={"Pick Your Own"}  />
+      <ComparisonPicker threadId={threadId}tickers={sampleTickers} title={"Pick Your Own"}  />
 
      <div className={styles.listWrapper}>
-        <ComparisonList comparisonPairs={comparisonPairs} />
+        <ComparisonList   comparisonPairs={comparisonPairs} threadId={threadId} />
         </div>
     </div>
   

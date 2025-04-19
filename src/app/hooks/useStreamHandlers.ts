@@ -257,12 +257,10 @@ useEffect(() => {
               //  Add to toolCallOutputs if needed
                 toolCallOutputs.push({
                   tool_call_id: toolCall.id,
-                  output:"The user has been shown some options, just wait for its choice." // parsedResult.prompt_for_ai,
+                  output:"The user has been shown some options in the sidebar, tell him to select his choice from the sidebar, or to write to you with another choice if he has any." // parsedResult.prompt_for_ai,
                 });
     
                 break;
-
-
 
               case "analyze_ticker":
                 if (parsedResult.status == "success") {

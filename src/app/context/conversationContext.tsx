@@ -17,12 +17,12 @@ interface ConversationContextType {
   setConversationPairs: React.Dispatch<React.SetStateAction<ConversationPair[]>>;
   
   interactionRef: React.MutableRefObject<Interaction | null>;
-
-
   setActiveConversationPair: React.Dispatch<React.SetStateAction<ConversationPair | null>>;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
-  updateLastInteractionBotParts: (newParts: BotMessagePart[]) => void;
-  addUserMessage: (message: string) => void;
+
+  updateLastInteractionBotParts: (newParts: BotMessagePart[], interactionId?: string) => void;
+
+  addUserMessage: (message: string, show?: boolean) => void;
   appendAssistantText: (text: string) => void;
 
   areNavigationItemsVisible: boolean;
@@ -198,7 +198,7 @@ useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(sessionToSave));
   }, [chatSession]); // Dependency array ensures this runs when chatSession changes
 
-  const addUserMessage = useCallback((message: string) => {
+  const addUserMessage = useCallback((message: string, show=true) => {
     const newInteraction: Interaction = {
       id: uuidv4(),
       timestamp: new Date().toISOString(),
@@ -211,6 +211,7 @@ useEffect(() => {
         language: currentLang,
         metadata: {},
         createdAt: new Date().toISOString(),
+        show: show
       },
       botMessage: {
         id: uuidv4(),

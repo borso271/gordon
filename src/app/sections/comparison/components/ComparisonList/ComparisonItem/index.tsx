@@ -8,14 +8,15 @@ import { useManualSubmit } from '../../../../../hooks/useManualSubmit';
 interface ComparisonItemProps {
   left: SimpleTicker;
   right: SimpleTicker;
+  threadId?: string;
 }
 
-const ComparisonItem: React.FC<ComparisonItemProps> = ({ left, right }) => {
+const ComparisonItem: React.FC<ComparisonItemProps> = ({ left, right, threadId }) => {
   const { submitQuery } = useManualSubmit();
 
   const handleClick = () => {
     const query = `Compare these stocks: ${left.name} (ticker: ${left.ticker}) and ${right.name} (ticker: ${right.ticker})`;
-    submitQuery(query, false); // 👈 suppress user message
+    submitQuery(query, false, threadId); // 👈 suppress user message
   };
 
   return (

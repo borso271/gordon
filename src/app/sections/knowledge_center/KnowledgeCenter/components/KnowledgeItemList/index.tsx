@@ -3,41 +3,75 @@ import KnowledgeItem from "../KnowledgeItem";
 import styles from "./KnowledgeItemList.module.css";
 import CircledIconButton from "../../../../../../components/Buttons/CircleActionButton";
 import MainSidebarHeading from "../../../../../../components/Headings/MainSidebarHeading";
+import { useManualSubmit } from "../../../../../hooks/useManualSubmit";
+
 interface KnowledgeItemListProps {
-  items: {
-    iconName: string;
-    text: string;
-  }[];
   title: string;
-  onItemClick: (text: string) => void;
+  items: { iconName?: string; text: string }[];
+  onBack: () => void;
 }
 
-const KnowledgeItemList: React.FC<KnowledgeItemListProps> = ({ items,title, onItemClick }) => {
+const KnowledgeItemList: React.FC<KnowledgeItemListProps> = ({
+  title,
+  items,
+  onBack,
+}) => {
+  const { submitQuery } = useManualSubmit();
+
+  const handleItemClick = (text: string) => {
+    submitQuery(text, false); // 🔁 reuse the shared handler
+  };
+
   return (
     <div className={styles.container}>
-        <div className={styles.listHeader}>
-            
-        <CircledIconButton onClick={function (): void {
-                  throw new Error("Function not implemented.");
-              } } iconName={"chevron_left"}            
+      <div className={styles.header}>
+        <CircledIconButton iconName="chevron_left" onClick={onBack} />
+        <MainSidebarHeading text={title} />
+      </div>
+
+      <div className={styles.list}>
+        {items.map((item, idx) => (
+          <KnowledgeItem
+            key={idx}
+            iconName={item.iconName}
+            text={item.text}
+            onClick={() => handleItemClick(item.text)}
           />
-
-          <MainSidebarHeading text={title}/>
-          
-
-        </div>
-    <div className={styles.list}>
-      {items.map((item, index) => (
-        <KnowledgeItem
-          key={index}
-          iconName={item.iconName}
-          text={item.text}
-          onClick={onItemClick}
-        />
-      ))}
-    </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 export default KnowledgeItemList;
+
+
+// const KnowledgeItemList: React.FC<KnowledgeItemListProps> = ({ items,title, onItemClick }) => {
+//   return (
+//     <div className={styles.container}>
+//         <div className={styles.listHeader}>
+
+//         <CircledIconButton onClick={function (): void {
+//                   throw new Error("Function not implemented.");
+//               } } iconName={"chevron_left"}            
+//           />
+
+//           <MainSidebarHeading text={title}/>
+          
+
+//         </div>
+//     <div className={styles.list}>
+//       {items.map((item, index) => (
+//         <KnowledgeItem
+//           key={index}
+//           iconName={item.iconName}
+//           text={item.text}
+//           onClick={onItemClick}
+//         />
+//       ))}
+//     </div>
+//     </div>
+//   );
+// };
+
+// export default KnowledgeItemList;

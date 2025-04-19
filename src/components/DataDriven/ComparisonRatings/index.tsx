@@ -21,13 +21,18 @@ interface CompareRatingsProps {
 
 const CompareRatings: React.FC<CompareRatingsProps> = ({ ratings }) => {
   
+    console.log("ratings arriving to component are: ", ratings)
     const { t } = useTranslation();
 
     // Fallback values if ratings is invalid
     const [leftEntry, rightEntry] = ratings || [];
   
-    const leftRatings = leftEntry?.ratings || [];
-    const rightRatings = rightEntry?.ratings || [];
+
+
+    const leftRatings = leftEntry?.ratings?.ratings || {};
+const rightRatings = rightEntry?.ratings?.ratings || {};
+
+
     const leftTicker = leftEntry?.ticker || "";
     const rightTicker = rightEntry?.ticker || "";
   

@@ -84,6 +84,7 @@ const [assistantText, setAssistantText] = useState("");
 const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
 const [followUpSuggestions, setFollowUpSuggestions] = useState<Array<string>>([]);
 const userText = interaction.userMessage.text || "";
+const showUserMessage = interaction.userMessage.show || true;
 const botParts = interaction.botMessage.parts || [];
 
 const filteredParts = botParts.filter(
@@ -255,7 +256,7 @@ useEffect(() => {
       <div ref={responseRef} className={`${styles.pair} ${languageClass}`}>
         {/* Show user message */}
 
-        <UserMessage text={userText} />
+        <UserMessage text={userText} show={showUserMessage} />
         <div className={styles.assistantResponse}>
           {nothingYet ? (
             showTimeoutMessage ? (

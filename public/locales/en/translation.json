@@ -67,6 +67,77 @@
   
 },
 
+
+
+"knowledge": {
+  "understandingStocks": {
+    "title": "Understanding Stocks",
+    "subtext": "Learn what stocks are and how they work in the market.",
+    "item1": "What is a stock share?",
+    "item2": "How do stock prices change?",
+    "item3": "What are dividends?",
+    "item4": "Difference between common and preferred stock?",
+    "item5": "What is a stock exchange (e.g., Tadawul)?",
+    "item6": "How can I buy stocks?",
+    "item7": "What does 'market capitalization' mean?",
+    "item8": "What are stock splits and reverse splits?",
+    "item9": "Explain IPO (Initial Public Offering).",
+    "item10": "What are stock market indices?"
+  },
+  "riskVsReward": {
+    "title": "Risk vs Reward",
+    "subtext": "Explore how to balance risk and return in investing.",
+    "item1": "What is investment risk?",
+    "item2": "What is potential return?",
+    "item3": "How do risk and reward relate?",
+    "item4": "Examples of high vs low risk investments?",
+    "item5": "How to assess your risk tolerance?",
+    "item6": "Why diversification helps manage risk?"
+  },
+  "diversification": {
+    "title": "Diversification",
+    "subtext": "Why spreading your investments is key to stability.",
+    "item1": "What does diversification mean in investing?",
+    "item2": "Why is diversification important?",
+    "item3": "How does diversification reduce risk?",
+    "item4": "Diversifying across asset classes vs sectors",
+    "item5": "Common mistakes in diversification",
+    "item6": "What is over-diversification?",
+    "item7": "Examples of a well-diversified portfolio",
+    "item8": "How to diversify in a small portfolio?",
+    "item9": "Diversification vs asset correlation",
+    "item10": "Is diversification enough to avoid losses?"
+  },
+  "etfsMutualFunds": {
+    "title": "ETFs & Mutual Funds",
+    "subtext": "Intro to pooled investment options and their benefits.",
+    "item1": "What is an ETF (Exchange-Traded Fund)?",
+    "item2": "What is a Mutual Fund?",
+    "item3": "What are the main differences between ETFs and Mutual Funds?",
+    "item4": "How are ETFs bought and sold?",
+    "item5": "What is an expense ratio in funds?",
+    "item6": "What is an index fund (ETF or Mutual Fund)?",
+    "item7": "What are the advantages of using funds?",
+    "item8": "What are the disadvantages or risks of funds?",
+    "item9": "Actively managed vs passively managed funds?",
+    "item10": "How do I choose an ETF or Mutual Fund?"
+  },
+  "financialGoalsPlanning": {
+    "title": "Financial Goals & Planning",
+    "subtext": "Setting and achieving short and long-term financial goals.",
+    "item1": "Why is setting financial goals important?",
+    "item2": "Short-term vs long-term financial goals?",
+    "item3": "What makes a financial goal 'SMART'?",
+    "item4": "How do I create a personal budget?",
+    "item5": "Why do I need an emergency fund?",
+    "item6": "Basic steps for retirement planning?",
+    "item7": "What does a comprehensive financial plan include?",
+    "item8": "How often should I review my financial goals?",
+    "item9": "How can investing help achieve financial goals?",
+    "item10": "Common mistakes in financial planning?"
+  }
+}
+  ,
 "compare_symbols": "Compare Symbols",
 "ticker_1": "Ticker 1",
 "ticker_2": "Ticker 2",

@@ -3,9 +3,9 @@ import styles from "./KnowledgeItem.module.css"; // Optional styling
 import Icon from "../../../../../../components/Icons/Icon";
 
 interface KnowledgeItemProps {
-  iconName: string;
+  iconName?: string;
   text: string;
-  onClick: (text: string) => void;
+  onClick?: (text: string) => void;
 }
 
 const KnowledgeItem: React.FC<KnowledgeItemProps> = ({ iconName="lamp", text, onClick }) => {

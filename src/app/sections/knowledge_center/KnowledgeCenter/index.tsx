@@ -1,18 +1,11 @@
-import React from "react";
-import styles from "./KnowledgeCenter.module.css";
 
+/* -------- mock folder → items mapping -------- */
+import { knowledgeTopics } from "../knowledge_data";
+import KnowledgeFolderList from "./components/KnowledgeFolderList";
 
-const KnowledgeCenter = ({
-  title,
-  subtext,
-  onClick,
-}) => {
-  return (
-
-    <div className={styles.container}>
-     
-    </div>
-  );
+const KnowledgeBrowser: React.FC = () => {
+  return <KnowledgeFolderList folders={knowledgeTopics} />;
 };
 
-export default KnowledgeCenter;
+export default KnowledgeBrowser;
+

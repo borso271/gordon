@@ -42,7 +42,12 @@ export function useHandleSubmit() {
     setIsRunning(true);
 
     if (addMessage) {
-      addUserMessage(inputToSend);
+      addUserMessage(inputToSend, true);
+    }
+    else {
+
+      addUserMessage(inputToSend, false);
+    
     }
 
     setUserInput("");

@@ -163,7 +163,6 @@ useEffect(() => {
         let newParts: BotMessagePart[] | null = null;
 
         switch (functionName) {
-
           case "show_tickers_chart":
             console.log("show chart called and arguments are: ", parsedArgs)
             newParts = [{

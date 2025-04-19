@@ -253,7 +253,7 @@ useEffect(() => {
     setChatSession((prevSession) => {
       // ✅ Skip update if threadId is provided and does not match
       if (threadId && prevSession.id !== threadId) return prevSession;
-  
+      
       const lastIndex = prevSession.interactions.length - 1;
       if (lastIndex < 0) return prevSession;
   
@@ -285,44 +285,155 @@ useEffect(() => {
       };
     });
   }, []);
+  
 
-  
-  // const appendAssistantText = useCallback((text: string) => {
-  //   if (!text || typeof text !== 'string') return; // 🔒 Safe guard
-  
-  //   setChatSession((prevSession) => {
-  //     const lastIndex = prevSession.interactions.length - 1;
-  //     if (lastIndex < 0) return prevSession;
-  
-  //     const lastInteraction = prevSession.interactions[lastIndex];
-  //     const bot = lastInteraction.botMessage;
-  
-  //     const newParts = bot.parts.map((part, i) =>
-  //       i === 0 && part.type === "assistantText"
-  //         ? { ...part, text: part.text + text }
-  //         : part
-  //     );
-  
-  //     const updatedInteraction = {
-  //       ...lastInteraction,
-  //       botMessage: {
-  //         ...bot,
-  //         parts: newParts,
-  //       },
-  //     };
-  
-  //     interactionRef.current = updatedInteraction;
-  
-  //     return {
-  //       ...prevSession,
-  //       interactions: [
-  //         ...prevSession.interactions.slice(0, lastIndex),
-  //         updatedInteraction,
-  //       ],
-  //     };
-  //   });
+//   const pendingTextRef = useRef("");
+// const animationFrameRef = useRef<number | null>(null);
+// const lastThreadIdRef = useRef<string | undefined>(undefined);
+
+// const appendAssistantText = useCallback((text: string, threadId?: string) => {
+//   if (!text || typeof text !== "string") return;
+
+//   pendingTextRef.current += text;
+//   lastThreadIdRef.current = threadId;
+
+//   if (animationFrameRef.current !== null) {
+//     cancelAnimationFrame(animationFrameRef.current);
+//   }
+
+//   animationFrameRef.current = requestAnimationFrame(() => {
+//     setChatSession((prevSession) => {
+//       if (!prevSession) return prevSession;
+//       if (lastThreadIdRef.current && prevSession.id !== lastThreadIdRef.current) {
+//         return prevSession;
+//       }
+
+//       const lastIndex = prevSession.interactions.length - 1;
+//       if (lastIndex < 0) return prevSession;
+
+//       const lastInteraction = prevSession.interactions[lastIndex];
+//       const bot = lastInteraction.botMessage;
+
+//       const additionalText = pendingTextRef.current;
+//       pendingTextRef.current = ""; // Flush
+
+//       if (!additionalText) return prevSession;
+
+//       const currentText =
+//         bot.parts[0]?.type === "assistantText" ? bot.parts[0].text : "";
+
+//       const newParts = bot.parts.map((part, i) =>
+//         i === 0 && part.type === "assistantText"
+//           ? { ...part, text: currentText + additionalText }
+//           : part
+//       );
+
+//       const updatedInteraction = {
+//         ...lastInteraction,
+//         botMessage: {
+//           ...bot,
+//           parts: newParts,
+//         },
+//       };
+
+//       interactionRef.current = updatedInteraction;
+
+//       return {
+//         ...prevSession,
+//         interactions: [
+//           ...prevSession.interactions.slice(0, lastIndex),
+//           updatedInteraction,
+//         ],
+//         updatedAt: new Date().toISOString(),
+//       };
+//     });
+
+//     animationFrameRef.current = null; // clear
+//   });
+// }, []);
+
+// useEffect(() => {
+//   return () => {
+//     if (animationFrameRef.current !== null) {
+//       cancelAnimationFrame(animationFrameRef.current);
+//     }
+//   };
+// }, []);
+
+  // const pendingTextRef = useRef("");
+  // const debounceTimer = useRef<NodeJS.Timeout | null>(null);
+  // const lastThreadIdRef = useRef<string | undefined>(undefined);
+
+
+  // const appendAssistantText = useCallback((text: string, threadId?: string) => {
+  //   if (!text || typeof text !== 'string') return;
+
+  //   pendingTextRef.current += text;
+  //   lastThreadIdRef.current = threadId;
+
+  //   if (debounceTimer.current) {
+  //     clearTimeout(debounceTimer.current);
+  //   }
+
+  //   debounceTimer.current = setTimeout(() => {
+  //     setChatSession((prevSession) => {
+  //       if (!prevSession) return prevSession;
+
+  //       // Skip if threadId is provided and doesn't match
+  //       if (lastThreadIdRef.current && prevSession.id !== lastThreadIdRef.current) {
+  //         return prevSession;
+  //       }
+
+  //       const lastIndex = prevSession.interactions.length - 1;
+  //       if (lastIndex < 0) return prevSession;
+
+  //       const lastInteraction = prevSession.interactions[lastIndex];
+  //       const bot = lastInteraction.botMessage;
+
+  //       const additionalText = pendingTextRef.current;
+  //       pendingTextRef.current = ""; // Reset buffer
+
+  //       if (!additionalText) return prevSession;
+
+  //       const currentText =
+  //         bot.parts[0]?.type === "assistantText" ? bot.parts[0].text : "";
+
+  //       const newParts = bot.parts.map((part, i) =>
+  //         i === 0 && part.type === "assistantText"
+  //           ? { ...part, text: currentText + additionalText }
+  //           : part
+  //       );
+
+  //       const updatedInteraction = {
+  //         ...lastInteraction,
+  //         botMessage: {
+  //           ...bot,
+  //           parts: newParts,
+  //         },
+  //       };
+
+  //       interactionRef.current = updatedInteraction;
+
+  //       return {
+  //         ...prevSession,
+  //         interactions: [
+  //           ...prevSession.interactions.slice(0, lastIndex),
+  //           updatedInteraction,
+  //         ],
+  //         updatedAt: new Date().toISOString(),
+  //       };
+  //     });
+  //   }, 40); // Debounce delay
+  // }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     if (debounceTimer.current) clearTimeout(debounceTimer.current);
+  //   };
   // }, []);
   
+
+
+
   
   const updateLastInteractionBotParts = useCallback((
     newParts: BotMessagePart[],
@@ -359,37 +470,6 @@ useEffect(() => {
       };
     });
   }, [setChatSession]);
-  
-
-  // const updateLastInteractionBotParts = useCallback((newParts: BotMessagePart[]) => {
-  //   setChatSession((prevSession) => {
-  //     const interactions = [...prevSession.interactions];
-  //     if (interactions.length === 0) return prevSession;
-  
-  //     const lastIndex = interactions.length - 1;
-  //     const lastInteraction = interactions[lastIndex];
-  
-  //     const updatedParts = [...lastInteraction.botMessage.parts, ...newParts];
-  
-  //     const updatedInteraction: Interaction = {
-  //       ...lastInteraction,
-  //       botMessage: {
-  //         ...lastInteraction.botMessage,
-  //         parts: updatedParts,
-  //       },
-  //     };
-  
-  //     interactionRef.current = updatedInteraction;
-  //     interactions[lastIndex] = updatedInteraction;
-  
-  //     return {
-  //       ...prevSession,
-  //       interactions,
-  //       updatedAt: new Date().toISOString(),
-  //     };
-  //   });
-  // }, [setChatSession]);
-
 
  const resetConversationState = () => {
   setConversationPairs([]);
@@ -397,7 +477,6 @@ useEffect(() => {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([])); // ✅ Reset conversationPairs in localStorage
   localStorage.setItem(LOCAL_STORAGE_INDEX_KEY, JSON.stringify(-1)); // ✅ Reset currentIndex in localStorage
 };
-
 
   return (
     <ConversationContext.Provider

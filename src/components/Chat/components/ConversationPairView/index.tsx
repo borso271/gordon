@@ -292,7 +292,7 @@ filteredParts.length === 0 ||
       />
 
 {followUpSuggestions.length > 0 && (
-          <FollowUps suggestions={followUpSuggestions} newSearch={newSearch} />
+          <FollowUps suggestions={followUpSuggestions} />
          
         )}
         </div>

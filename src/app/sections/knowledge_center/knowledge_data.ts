@@ -94,26 +94,26 @@ export interface KnowledgeTopic {
           { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item9" },
           { iconName: "lamp", textKey: "knowledge.etfsMutualFunds.item10" },
         ],
-      },
-      {
-        id: "financial_goals_planning",
-        iconName: "book",
-        titleKey: "knowledge.financialGoalsPlanning.title",
-        subtextKey: "knowledge.financialGoalsPlanning.subtext",
-        onClick: () => console.log("Opened: financial_goals_planning"),
-        items: [
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item1" },
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item2" },
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item3" },
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item4" },
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item5" },
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item6" },
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item7" },
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item8" },
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item9" },
-          { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item10" },
-        ],
       }
+    //   {
+    //     id: "financial_goals_planning",
+    //     iconName: "book",
+    //     titleKey: "knowledge.financialGoalsPlanning.title",
+    //     subtextKey: "knowledge.financialGoalsPlanning.subtext",
+    //     onClick: () => console.log("Opened: financial_goals_planning"),
+    //     items: [
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item1" },
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item2" },
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item3" },
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item4" },
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item5" },
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item6" },
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item7" },
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item8" },
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item9" },
+    //       { iconName: "lamp", textKey: "knowledge.financialGoalsPlanning.item10" },
+    //     ],
+    //   }
   ];
   
 

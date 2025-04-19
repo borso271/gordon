@@ -32,7 +32,7 @@ const sampleTickers: SimpleTicker[] = [
   const comparisonPairs: [SimpleTicker, SimpleTicker][] = [
     [
       { symbol_id: 1, ticker: 'AAPL', name: 'Apple Inc.', asset_type: 'stock' },
-      { symbol_id: 2, ticker: 'GOOGL', name: 'Alphabet Inc.', asset_type: 'stock' },
+      { symbol_id: 2, ticker: 'TSLA', name: 'Tesla', asset_type: 'stock' },
     ],
     [
       { symbol_id: 3, ticker: 'MSFT', name: 'Microsoft', asset_type: 'stock' },
@@ -43,7 +43,7 @@ const sampleTickers: SimpleTicker[] = [
         { symbol_id: 4, ticker: 'AMZN', name: 'Amazon', asset_type: 'stock' },
       ],
       [
-        { symbol_id: 1, ticker: 'TSLA', name: 'Tesla', asset_type: 'stock' },
+        { symbol_id: 2, ticker: 'TSLA', name: 'Tesla', asset_type: 'stock' },
         { symbol_id: 3, ticker: 'MSFT', name: 'Microsoft', asset_type: 'stock' },
       ]
   ];

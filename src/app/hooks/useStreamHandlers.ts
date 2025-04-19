@@ -331,7 +331,7 @@ useEffect(() => {
       
          
           case "list_tickers":
-            if (parsedResult.success) {
+            if (parsedResult.status == "success") {
               newParts = [{
                 type: "assets_list",
                 data: parsedResult.response.data_for_component,

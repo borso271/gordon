@@ -10,16 +10,19 @@ import { useRouter } from 'next/navigation';
 import Icon from '../Icons/Icon';
 import LandingSuggestion from '../LandingSuggestion';
 import { useTranslation } from 'react-i18next';
-import { useLanguage } from '../../app/hooks/useLanguage';
 
+import { useSessionCallback } from '../../app/hooks/useSessionCallback';
+import { useKnowledgeCenter } from '../../app/hooks/useKnowledgeCenter';
+import { useManualActionRequests } from '../../app/hooks/useManualActionRequests';
 
 const BotLanding = () => {
   const LOCAL_STORAGE_KEY = "chatSession";
    const router = useRouter();
   const { t } = useTranslation();
-  const {currentLang} = useLanguage();
 
-   const {setAreNavigationItemsVisible, inputDisabled, setInputDisabled,userInput, setUserInput,setThreadId, resetConversationState, startNewChatSession} = useConversation();
+ 
+
+   const { inputDisabled, setInputDisabled,userInput, setUserInput, resetConversationState, startNewChatSession} = useConversation();
 
   // ✅ Reset threadId only on mount
 
@@ -27,7 +30,7 @@ const BotLanding = () => {
    resetConversationState();
    setInputDisabled(false);
    localStorage.removeItem(LOCAL_STORAGE_KEY);
-    // setThreadId(""); 
+  
   }, []);
 
   // const { threadId } = useThread();
@@ -36,17 +39,29 @@ const BotLanding = () => {
 
 const handleLandingSubmit = async (e?: FormEvent) => {
   e?.preventDefault();
-  
-
-  const newSession = await startNewChatSession();
-
-  //  router.push(`/landing?threadId=${newSession.id}`);
-
+    const newSession = await startNewChatSession();
   setTimeout(() => {
-   
     handleSubmit(null, userInput, newSession.id); // Or pass `userInput` here explicitly if needed
   }, 50);
 };
+
+
+
+
+const {sendKnowledgeMessage} = useKnowledgeCenter();
+
+
+const {
+  handleLandingSuggest,
+  handleLandingCompare,
+  handleLandingSummarize,
+  handleLandingAnalyze,
+  handleLandingLearn
+} = useManualActionRequests();
+
+
+
+
 
   return (
     <div className={styles.container}>
@@ -70,9 +85,6 @@ const handleLandingSubmit = async (e?: FormEvent) => {
         handleSubmit={handleLandingSubmit}
         inputDisabled={inputDisabled}
       />
-
-
-
 {/* search_asset,comparison,summarize,suggest,lamp */}
 <div className={styles.landingSuggestions}>
       <div className={styles.suggestionsRow}>
@@ -80,6 +92,7 @@ const handleLandingSubmit = async (e?: FormEvent) => {
           icon="search_asset"
           label={t('landing.suggestions.suggest.label')}
           prompt={t('landing.suggestions.suggest.prompt')}
+          onClick={() => handleLandingSuggest()}
         />
         <LandingSuggestion
           icon="comparison"
@@ -90,6 +103,9 @@ const handleLandingSubmit = async (e?: FormEvent) => {
           icon="lamp"
           label={t('landing.suggestions.learn.label')}
           prompt={t('landing.suggestions.learn.prompt')}
+     
+          onClick={() => handleLandingLearn()}
+
         />
       </div>
       <div className={styles.suggestionsRow}>
@@ -112,3 +128,12 @@ const handleLandingSubmit = async (e?: FormEvent) => {
 };
 
 export default BotLanding;
+
+
+
+// const handleLandingSubmit = (e?: FormEvent) => {
+//   e?.preventDefault();
+//   withNewSession((sessionId) => {
+//     handleSubmit(null, userInput, sessionId);
+//   }, 50); // optional delay
+// };

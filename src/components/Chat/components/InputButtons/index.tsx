@@ -3,69 +3,49 @@
   import Icon from '../../../Icons/Icon';
   import { useTranslation } from 'react-i18next';
 import { useConversation } from '../../../../app/context/conversationContext';
-  
-  import { useKnowledgeCenter } from '../../../../app/hooks/useKnowledgeCenter';
+import { useManualActionRequests } from '../../../../app/hooks/useManualActionRequests';
   const InputButtons = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.dir() === 'rtl';
     const scrollRef = useRef<HTMLDivElement>(null);
-  const {threadId} = useConversation();
-  const { sendKnowledgeMessage } = useKnowledgeCenter();
-    const handleSuggest = () => {
-      console.log("Suggesting:", t('landing.suggestions.suggest.prompt'));
-      // or submitQuery(t(...), false)
-    };
-  
-    const handleCompare = () => {
-      console.log("Comparing:", t('landing.suggestions.compare.prompt'));
-    };
-  
-    const handleSummarize = () => {
-      console.log("Summarizing:", t('landing.suggestions.summarize.prompt'));
-    };
-  
-    const handleAnalyze = () => {
-      console.log("Analyzing:", t('landing.suggestions.analyze.prompt'));
-    };
-  
-    const handleLearn = () => {
 
-        sendKnowledgeMessage(
-          "I want to learn about finance.",
-          t("knowledge.introMessage"),
-          false 
-        );
-      
-      
-    };
+const {threadId} = useConversation();
+  const {
+    handleSuggest,
+    handleCompare,
+    handleSummarize,
+    handleAnalyze,
+    handleLearn
+  } = useManualActionRequests();
   
-    const buttons = [
-      {
-        text: t('landing.suggestions.suggest.label'),
-        icon: "search_asset",
-        onClick: handleSuggest,
-      },
-      {
-        text: t('landing.suggestions.compare.label'),
-        icon: "comparison",
-        onClick: handleCompare,
-      },
-      {
-        text: t('landing.suggestions.summarize.label'),
-        icon: "summarize",
-        onClick: handleSummarize,
-      },
-      {
-        text: t('landing.suggestions.analyze.label'),
-        icon: "suggest",
-        onClick: handleAnalyze,
-      },
-      {
-        text: t('landing.suggestions.learn.label'),
-        icon: "lamp",
-        onClick: handleLearn,
-      },
-    ];
+  
+  const buttons = [
+    {
+      text: t('landing.suggestions.suggest.label'),
+      icon: "search_asset",
+      onClick: () => handleSuggest(threadId),
+    },
+    {
+      text: t('landing.suggestions.compare.label'),
+      icon: "comparison",
+      onClick: () => handleCompare(threadId),
+    },
+    {
+      text: t('landing.suggestions.summarize.label'),
+      icon: "summarize",
+      onClick: () => handleSummarize(threadId),
+    },
+    {
+      text: t('landing.suggestions.analyze.label'),
+      icon: "suggest",
+      onClick: () => handleAnalyze(threadId),
+    },
+    {
+      text: t('landing.suggestions.learn.label'),
+      icon: "lamp",
+      onClick: () => handleLearn(threadId),
+    },
+  ];
   
     const [showLeftFade, setShowLeftFade] = useState(false);
     const [showRightFade, setShowRightFade] = useState(false);

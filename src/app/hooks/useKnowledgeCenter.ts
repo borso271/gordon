@@ -23,8 +23,8 @@ export function useKnowledgeCenter() {
       assistantResponse: string,
       showUser: boolean = true
     ) => {
+        
       const interactionId = await sendSimulatedMessage(userText, assistantResponse, showUser);
-      
       // ⏳ Wait until stream is finished before appending the browser
       const knowledgePart: BotMessagePart = {
         type: "knowledge_browser",

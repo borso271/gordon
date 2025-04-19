@@ -24,6 +24,7 @@ export function useSimulatedChat() {
   
         // Add user message, returns the interactionId
         console.log("SHOW USER IS: ", showUser)
+        
         const interactionId = addUserMessage(userText, showUser);
   
         let idx = 0;

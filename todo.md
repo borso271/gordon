@@ -2,10 +2,14 @@
 
 
 
+First: SAVE THE KNOWLEDGE CENTER.
+- Sidebar always scrolling to last when new interaction added
+- Top suggestion's hover on change language.
+- Portfolio chart labels going new line on resizing.
 
 ------
 
-30 minutes
+120 minutes: actions.
 
 - add actions to landing page and input buttons
 - add actions to dashboard buttons
@@ -13,11 +17,11 @@
 - check other actions sending queries
 
 OTHERS:
-- Sidebar always scrolling to last when new interaction added
-- Top suggestion's hover on change language.
-- Portfolio chart labels going new line on resizing.
+
+
+
+
 - Update chart data with more points.
-- Add actions where missing.
 
 
 --------------------------------------------------------------

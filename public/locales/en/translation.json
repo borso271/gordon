@@ -67,12 +67,18 @@
   
 },
 
+"suggest": {
+    "prompt": "Can you suggest me stocks in the technology sector?"
+  },
 
+  "portfolio_overview": {
+    "prompt": "Can you give me an overview of my portfolio?"
+  },
 
 "knowledge": {
   "library_title": "Our Library:",
-  "introMessage": 
-   "Welcome to the Knowledge Center! 📚 You can pick a topic from our library or type any topic you’d like to learn about.",
+
+   "introMessage": "**Welcome to the Learning Center!** 🎓\n\nYou can pick a topic from our library below, or simply type any topic you're curious about — we'll help you learn!",
   "understandingStocks": {
     "title": "Understanding Stocks",
     "subtext": "Learn what stocks are and how they work in the market.",

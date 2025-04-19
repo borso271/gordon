@@ -4,7 +4,6 @@
     gap: 12px;
   }
   
-
   .header {
     display:flex;
     flex-direction:row;
@@ -18,4 +17,5 @@
     flex-direction:column;
     gap: 16px;
   justify-content: flex-start;
+  width:100%;
   }

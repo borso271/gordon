@@ -15,12 +15,13 @@ export function useSimulatedChat() {
       userText: string,
       assistantText: string,
       showUser = true,
+      sendSimulatedMessage = false,
       finalParts: BotMessagePart[] = []
     ): Promise<string> => {
       return new Promise((resolve) => {
         if (!userText.trim() || !assistantText.trim()) return;
 
-        const interactionId = addUserMessage(userText, showUser);
+        const interactionId = addUserMessage(userText, showUser,sendSimulatedMessage);
         let idx = 0;
         let buffer = '';
 

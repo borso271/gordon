@@ -257,7 +257,7 @@ useEffect(() => {
               //  Add to toolCallOutputs if needed
                 toolCallOutputs.push({
                   tool_call_id: toolCall.id,
-                  output:"The user has been shown some options in the sidebar, tell him to select his choice from the sidebar, or to write to you with another choice if he has any." // parsedResult.prompt_for_ai,
+                  output:`The user has been shown some options in the sidebar, tell him to select his choice from the sidebar, or to write to you with another choice if he has any. The user speaks ${userLanguage}, so reply in this language.`
                 });
     
                 break;
@@ -360,7 +360,7 @@ useEffect(() => {
             
             toolCallOutputs.push({
               tool_call_id: toolCall.id,
-              output: `The user speaks ${userLanguage}. These are the search results: ${JSON.stringify(parsedResult.data_for_ai)}. Include links in your response.`,
+              output: `The user speaks ${userLanguage}, so reply in this language. These are the search results: ${JSON.stringify(parsedResult.data_for_ai)}. Include links in your response.`,
             });
             break;
 

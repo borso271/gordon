@@ -16,7 +16,7 @@ export async function labelConversation(
           role: 'system',
           content:
             'You are an AI that generates short, and natural conversation titles for an AI chat history.' +
-            'The title should summarize the conversation topic concisely in under 100 characters.',
+            'The title should summarize the conversation topic concisely in under 100 characters, in the language of the conversation.',
         },
         {
           role: 'user',

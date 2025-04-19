@@ -29,6 +29,7 @@ export type Interaction = {
   language: string;
   status: string;
   saved?:boolean;
+ 
 };
 
 export type UserMessage = {
@@ -49,6 +50,7 @@ export type BotMessage = {
   parts: BotMessagePart[];
   createdAt?: string;
   metadata?: Record<string, any>;
+  fetchFollowUps?: boolean;
 };
 
 

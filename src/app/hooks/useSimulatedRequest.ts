@@ -19,7 +19,8 @@ export function useSimulatedRequest() {
       userText: string,
       assistantResponse: string,
       parts: BotMessagePart[] = [],
-      showUser: boolean = true
+      showUser: boolean = true,
+      fetchFollowUps: boolean = false
     ) => {
       if (!userText.trim() || !assistantResponse.trim()) return;
 
@@ -28,7 +29,7 @@ export function useSimulatedRequest() {
       setIsRunning(true);
 
       // 2️⃣ Simulate assistant stream
-      const interactionId = await sendSimulatedMessage(userText, assistantResponse, showUser);
+      const interactionId = await sendSimulatedMessage(userText, assistantResponse, showUser, fetchFollowUps);
 
       // 3️⃣ Re-enable UI
       setInputDisabled(false);

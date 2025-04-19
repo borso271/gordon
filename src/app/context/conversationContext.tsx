@@ -21,7 +21,7 @@ interface ConversationContextType {
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 
   updateLastInteractionBotParts: (newParts: BotMessagePart[], interactionId?: string) => void;
-  addUserMessage: (message: string, show?: boolean) => string;
+  addUserMessage: (message: string, show?: boolean, fetch_follow_ups?:boolean) => string;
 
   appendAssistantText: (text: string) => void;
 
@@ -200,7 +200,7 @@ useEffect(() => {
 
 
 
-  const addUserMessage = useCallback((message: string, show = true): string => {
+  const addUserMessage = useCallback((message: string, show = true, fetch_follow_ups=true): string => {
     const newInteraction: Interaction = {
       id: uuidv4(),
       timestamp: new Date().toISOString(),
@@ -224,6 +224,7 @@ useEffect(() => {
         ],
         metadata: {},
         createdAt: new Date().toISOString(),
+        fetchFollowUps: fetch_follow_ups
       },
     };
   

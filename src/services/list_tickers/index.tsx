@@ -74,7 +74,7 @@ We identified the top 5 tickers by ${sortLabel}:
 ${sorted.map((s) => `- ${s.ticker}`).join("\n")}
 
 These tickers are already displayed in the sidebar. Ask the user if they would like more details or to refine their search.
-Respond in ${userLanguage}.`.trim();
+Respond in the user language, which is: ${userLanguage}.`.trim();
 
     /* 6️⃣ Fetch richer data for UI */
     const dataForComponent = await fetchTickerDataWithInsightAndPolygon(

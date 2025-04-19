@@ -89,6 +89,8 @@ const showUserMessage = interaction.userMessage.show ?? true;
 
 const botParts = interaction.botMessage.parts || [];
 
+const should_fetch_follow_ups = interaction.botMessage.fetchFollowUps;
+
 const filteredParts = botParts.filter(
   (part) => part.sidebar !== true
 );
@@ -118,8 +120,9 @@ useEffect(() => {
 
 
 /* THIS IS RECALLED EVERY TIME AND RE-RENDERED */
+
 useEffect(() => {
-  if (prevIsRunning.current === true && isRunning === false && followUpSuggestions.length ==0) {
+  if (prevIsRunning.current === true && isRunning === false && followUpSuggestions.length ==0 && should_fetch_follow_ups == true) {
     console.log("Bot finished running (transitioned from true to false)");
 
     // ✅ Extract assistant text here
@@ -142,7 +145,8 @@ useEffect(() => {
         .then((data) => {
           if (Array.isArray(data.result) && data.result.length > 0) {
             // setFollowUpSuggestions(data.result);
-            handleNewSuggestions(data.result, interaction,setFollowUpSuggestions,updateLastInteractionBotParts);
+            handleNewSuggestions(data.result, interaction,setFollowUpSuggestions,
+              updateLastInteractionBotParts);
 
           } else {
             setFollowUpSuggestions([]);
@@ -157,6 +161,8 @@ useEffect(() => {
 
   prevIsRunning.current = isRunning;
 }, [isRunning, filteredParts]);
+
+
 
   const nothingYet =
     filteredParts.length === 0 ||
@@ -243,8 +249,8 @@ useEffect(() => {
   };
   
   // Determine language direction for this conversation
-  const languageClass =
-    interaction.userMessage.language === "ar" ? "rightToLeft" : "leftToRight";
+  // const languageClass =
+  //   interaction.userMessage.language === "ar" ? "rightToLeft" : "leftToRight";
 
   return (
     <motion.div
@@ -255,7 +261,7 @@ useEffect(() => {
       transition={{ duration: 1, ease: "easeInOut" }}
       className={styles.pairWrapper}
     >
-      <div ref={responseRef} className={`${styles.pair} ${languageClass}`}>
+      <div ref={responseRef} className={`${styles.pair}`}>
         {/* Show user message */}
 
         <UserMessage text={userText} show={showUserMessage} />

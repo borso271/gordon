@@ -15,7 +15,7 @@ export function useManualActionRequests() {
       "I want to learn about finance.",
       t("knowledge.introMessage"),
       [{type:"knowledge_browser",data:[],sidebar:true}],
-      
+      false,
       false,
     //   threadId
     );
@@ -31,6 +31,7 @@ export function useManualActionRequests() {
       "I want to compare two stocks.",
       t("compare.introMessage"),
       [{ type: "comparison_pair_picker",data:[], sidebar:true}],
+      false,
       false,
     //   threadId
     );
@@ -59,6 +60,7 @@ sendSimulatedRequest(
       sidebar: false,
     },
   ],
+  false,
   false
 );
   };

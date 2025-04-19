@@ -44,9 +44,6 @@ const handleLandingSubmit = async (e?: FormEvent) => {
 };
 
 
-
-
-
 const {
   handleLandingSuggest,
   handleLandingCompare,
@@ -54,8 +51,6 @@ const {
   handleLandingAnalyze,
   handleLandingLearn
 } = useManualActionRequests();
-
-
 
 
 
@@ -94,6 +89,7 @@ const {
           icon="comparison"
           label={t('landing.suggestions.compare.label')}
           prompt={t('landing.suggestions.compare.prompt')}
+          onClick={() => handleLandingCompare()}
         />
         <LandingSuggestion
           icon="lamp"
@@ -109,11 +105,13 @@ const {
           icon="summarize"
           label={t('landing.suggestions.summarize.label')}
           prompt={t('landing.suggestions.summarize.prompt')}
+          onClick={() => handleLandingSummarize()}
         />
         <LandingSuggestion
           icon="suggest"
           label={t('landing.suggestions.analyze.label')}
           prompt={t('landing.suggestions.analyze.prompt')}
+          onClick={() => handleLandingSuggest()}
         />
       </div>
     

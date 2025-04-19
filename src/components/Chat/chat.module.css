@@ -19,19 +19,37 @@
 
 }
 
+
 .chatThreadWrapper {
+  width:100%;
+  max-width: 700px; /* Keep max-width if needed */
+  flex: 1 1 auto;  /* Keep - Takes up vertical space */
+  min-height: 0;   /* Keep - Flexbox fix */
+  /* --- REMOVE SCROLLING --- */
+  /* overflow-y: auto; */ /* REMOVE THIS */
+  /* -ms-overflow-style: none; */ /* REMOVE THIS */
+  /* scrollbar-width: none; */ /* REMOVE THIS */
+
+  /* Add display: flex if needed to make ChatThread fill it */
+  display: flex; /* Helps ensure ChatThread's 100% height works */
+  flex-direction: column; /* If ChatThread is the only child */
+}
+
+/* .chatThreadWrapper {
   width:100%;
   max-width: 700px;
   flex: 1 1 auto;
   overflow-y: auto;
   min-height: 0;
-  /* Scrollbar hiding */
+
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+
 .chatThreadWrapper::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .chatInput {
   width:100%;

@@ -12,4 +12,12 @@ padding-left: 0;
 
   }
   
+
+  [dir="rtl"] .sidebarContainer {
+    padding-right: 0;
+    padding-left:16px;
+  }
+  
+
+
   

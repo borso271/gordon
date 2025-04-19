@@ -1,56 +1,52 @@
-
-/* This is the root div inside ChatThread */
-/* .slideContainer {
- position: relative;
-    flex: 1 1 auto;   
-    overflow-y: auto;  
-    min-height: 0;    
-    position: relative; 
-    height: 100%;
-    
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-
-
-  } */
-
-  .slideContainer {
-    /* Keep */
-    position: relative;
-    overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  
-    /* From .outerWrapper context */
-    flex: 1 1 auto;    /* Let flexbox control the height */
-    min-height: 0;     /* Crucial flexbox fix for scrollable content */
-
-    /* --- FIX: ADD THESE --- */
-    display: flex;
-    flex-direction: column;
-    /* --- END FIX --- */
-  
-    /* REMOVE or comment out height: 100% */
-    /* height: 100%; */ /* Usually redundant/less safe with flex: 1 1 auto */
-  }
-  
-  .slideContainer::-webkit-scrollbar {
-    display: none; /* Keep */
-  }
-  
-
-
-.filler {
-  flex-grow: 1; /* Takes up all remaining vertical space */
-  min-height: 1px; /* Ensures it occupies space */
-
-  visibility: hidden; /* Keep in layout, but visually hidden */
+/* In ChatThread.module.css */
+.outerWrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
+.slideContainer {
+  position: relative;
+  flex: 1 1 auto;    /* Keep - Takes space within outerWrapper */
+  min-height: 0;     /* Keep - Flexbox fix */
+  overflow-y: auto;  /* <<< Keep THIS is the scroll container */
 
-  .slideContainer::-webkit-scrollbar {
-    display: none;
-  }
+  /* --- ENSURE NO FLEX FOR FILLER --- */
+  /* display: flex; */      /* REMOVE if present */
+  /* flex-direction: column; */ /* REMOVE if present */
+
+  /* Scrollbar Hiding */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.slideContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.conversationList {
+   padding-bottom: 8px; /* Or other styles */
+   /* NO flex/overflow */
+}
+
+.filler {
+  /* --- REMOVE FLEX GROW --- */
+  /* flex-grow: 1; */ /* REMOVE if present */
+
+  /* Basic block element, height controlled by inline style */
+  display: block;
+  width: 100%; /* Ensure it takes full width */
+  height: auto; /* Default, overridden by inline style */
+  min-height: 0; /* Allow it to be 0 */
+  visibility: hidden; /* Keep hidden */
+}
+/* ... other styles */
+
+
+
+
+
   
   /* This is INSIDE .slideContainer - it should NOT be flexible or scrollable */
   .conversationList {
@@ -58,8 +54,7 @@
     padding-bottom: 8px; /* Keep padding */
   
   }
-  /* Remove scrollbar hiding from .conversationList if it was applied here */
-  
+ 
 
   .speechOverlayContainer {
     position:absolute;
@@ -70,13 +65,6 @@
   }
 
 
-  .outerWrapper {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
   
   .scrollDownButton {
     position: absolute;
@@ -87,3 +75,4 @@
   }
   
   
+

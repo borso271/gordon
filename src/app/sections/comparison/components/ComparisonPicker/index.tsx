@@ -38,7 +38,7 @@ const ComparisonPicker: React.FC<ComparisonPickerProps> = ({
     const query = `${t("compare_query")}: ${leftTicker.name} (ticker: ${leftTicker.ticker}) ${t(
       "and"
     )} ${rightTicker.name} (ticker: ${rightTicker.ticker})`;
-    submitQuery(query, false, threadId); // ⛔ don't add user message
+    submitQuery(query, false); // ⛔ don't add user message
   };
 
   return (

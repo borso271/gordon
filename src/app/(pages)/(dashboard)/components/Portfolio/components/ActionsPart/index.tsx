@@ -2,20 +2,16 @@ import React from "react";
 import styles from "./ActionsPart.module.css";
 import Icon from "../../../../../../../components/Icons/Icon";
 import TradeButton from "../../../../../../../components/Buttons/TradeButton";
-
+import { useAnalyzeStock } from "../../../../../../hooks/useManualAnalyzeStock";
 import { SimpleTicker } from "../../../../../../../interfaces";
+
 interface ActionsPartProps {
   item: SimpleTicker;
 }
 
 const ActionsPart: React.FC<ActionsPartProps> = ({ item }) => {
-  const handleTradeClick = () => {
-    console.log("Trade button clicked");
-  };
 
-  const handleIconClick = () => {
-    console.log("Icon button clicked");
-  };
+  const { analyzeStock } = useAnalyzeStock();
 
   // Convert PortfolioItem to Stock shape
   const ticker: SimpleTicker = {
@@ -29,7 +25,10 @@ const ActionsPart: React.FC<ActionsPartProps> = ({ item }) => {
     <div className={styles.actions}>
       <TradeButton ticker={ticker} />
 
-      <button className={styles.iconButton} onClick={handleIconClick}>
+      <button
+  className={styles.iconButton}
+  onClick={() => analyzeStock(ticker)}
+>
         <Icon
           name="green_magic_stick"
           size={18}

@@ -164,11 +164,12 @@ useEffect(() => {
 
 
 
-  const nothingYet =
-    filteredParts.length === 0 ||
-    (filteredParts.length === 1 &&
-      filteredParts[0].type === "assistantText" &&
-      filteredParts[0].text.trim() === "");
+const nothingYet =
+filteredParts.length === 0 ||
+(filteredParts.length === 1 &&
+  filteredParts[0].type === "assistantText" &&
+  filteredParts[0].text.trim().length < 30);
+
 
   // const nothingYet = true;
   // const [nothingYet, setNothingYet] = useState(true);
@@ -181,7 +182,7 @@ useEffect(() => {
         appendAssistantText(messages[lang].text);
         interaction.status = "failure";
         setInputDisabled(false)
-      }, 30000); // 40s or whatever you need
+      }, 40000); // 40s or whatever you need
       return () => clearTimeout(timeout);
     }
   }, [nothingYet]);
@@ -248,10 +249,6 @@ useEffect(() => {
     }
   };
   
-  // Determine language direction for this conversation
-  // const languageClass =
-  //   interaction.userMessage.language === "ar" ? "rightToLeft" : "leftToRight";
-
   return (
     <motion.div
       key={interaction.id}
@@ -293,8 +290,6 @@ useEffect(() => {
         language={interaction.language}
       
       />
-
-
 
 {followUpSuggestions.length > 0 && (
           <FollowUps suggestions={followUpSuggestions} newSearch={newSearch} />

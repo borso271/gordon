@@ -1,14 +1,13 @@
 "use client";
 import React, { useRef, useState, useEffect} from "react";
 import styles from "./chat.module.css";
-import { AssistantStream } from "openai/lib/AssistantStream";
+
 import ChatInput from './components/ChatInput';
-import { sendMessage } from "../../app/utils/apiActions";
+
 import { useSlideshowNavigation } from "../../app/hooks/useSlideShowNavigation";
 import { useConversation } from "../../app/context/conversationContext";
 import { useHandleSubmit } from "../../app/hooks/useHandleSubmit";
-import { scrollDownManually } from "../../app/utils/scrollDownManually";
-import { useStreamHandlers } from "../../app/hooks/useStreamHandlers";
+
 import ChatSidebar from "../ChatSidebar";
 import ChatThread from "../ChatThread";
 import Icon from "../Icons/Icon";

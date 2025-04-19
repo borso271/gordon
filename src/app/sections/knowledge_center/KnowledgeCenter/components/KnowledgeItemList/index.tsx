@@ -20,7 +20,7 @@ const KnowledgeItemList: React.FC<KnowledgeItemListProps> = ({
 
   const {threadId} = useConversation();
   const handleItemClick = (text: string) => {
-    submitQuery(text, false, threadId); // 🔁 reuse the shared handler
+    submitQuery(text, false); // 🔁 reuse the shared handler
   };
 
   return (

@@ -10,6 +10,7 @@ import MagicButton from "../../../../../components/Buttons/MagicButton";
 import ValueTrend from "../../../../../components/ValueTrend";
 import { useTranslation } from "react-i18next";
 import { PortfolioItem } from "../../../../../interfaces";
+import { useManualActionRequests } from "../../../../hooks/useManualActionRequests";
 type Props = {
   portfolio: any;
 };
@@ -22,7 +23,8 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
   const [sortAsc, setSortAsc] = useState(true);
   const [filter, setFilter] = useState<"all" | "stock" | "crypto" | "etf">("all");
 
-
+  
+  const {handleOuterSummarize} = useManualActionRequests()
   const handleSort = (key: keyof PortfolioItem) => { // Use keyof
     if (key === sortKey) {
       setSortAsc(!sortAsc);
@@ -58,7 +60,6 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
     }
   });
 
-
   // ——— helpers ———
   const assetTypes = ["all", "stock", "crypto", "etf"] as const;
 
@@ -87,7 +88,7 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
       <div className={styles.portfolioHeader}>
         <div className={styles.headerTop}>
           <TerziaryH2>{t('portfolio.overview.title')}</TerziaryH2>
-          <MagicButton text={t('portfolio.overview.insights')} onClick={() => {}} />
+          <MagicButton text={t('portfolio.overview.insights')} onClick={() => handleOuterSummarize()} />
         </div>
 
         <div className={styles.filterButtons}>

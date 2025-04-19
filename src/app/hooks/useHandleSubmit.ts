@@ -27,13 +27,20 @@ export function useHandleSubmit() {
   ) => {
     if (e && "preventDefault" in e) e.preventDefault();
 
-    if (isSubmittingRef.current) return;
+    if (isSubmittingRef.current) {
+      console.log("is submitting ref!!");
+      return}
     isSubmittingRef.current = true;
 
+
+    console.log("thread is is: ", threadId);
     const inputToSend = customQuery ?? userInput;
     const finalThreadId = overrideThreadId ?? threadId;
 
+    console.log("INPUT TO SEND: ", inputToSend);
+    console.log("Final Thread Id: ", finalThreadId)
     if (!inputToSend.trim() || !finalThreadId) {
+      console.log("is isSubmittingRef.current = false!");
       isSubmittingRef.current = false;
       return;
     }
@@ -42,10 +49,11 @@ export function useHandleSubmit() {
     setIsRunning(true);
 
     if (addMessage) {
+      console.log("ADD MESSAGE IS TRUE")
       addUserMessage(inputToSend, true);
     }
     else {
-
+      console.log("ADD MESSAGE IS FALSE")
       addUserMessage(inputToSend, false);
     
     }
@@ -53,6 +61,7 @@ export function useHandleSubmit() {
     setUserInput("");
 
     try {
+      console.log("SENDING MESSAGE WITH DATA: ", finalThreadId, inputToSend)
       const response = await sendMessage(finalThreadId, inputToSend);
       const stream = AssistantStream.fromReadableStream(response.body);
       attachHandlers(stream, finalThreadId);

@@ -5,9 +5,12 @@ import PortfolioChart from "../../../../../components/DataDriven/PortfolioChart"
 import MagicButton from "../../../../../components/Buttons/MagicButton";
 import { useTranslation } from 'react-i18next';
 
+import { useManualActionRequests } from "../../../../hooks/useManualActionRequests";
+// add the onclick here to the magic button
 
 const Pchart: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const {handleOuterSummarize} = useManualActionRequests()
 
   return (
     <div className={styles.container}>
@@ -15,7 +18,7 @@ const Pchart: React.FC = () => {
         <TerziaryH2>{t('portfolio_performance.title')}</TerziaryH2>
         <MagicButton
           text={t('portfolio_performance.summarize')}
-          onClick={() => {}}
+          onClick={() => handleOuterSummarize()}
         />
       </div>
 

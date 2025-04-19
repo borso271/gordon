@@ -17,7 +17,6 @@ export function useManualActionRequests() {
       [{type:"knowledge_browser",data:[],sidebar:true}],
       false,
       false,
-    //   threadId
     );
   };
   
@@ -33,19 +32,16 @@ export function useManualActionRequests() {
       [{ type: "comparison_pair_picker",data:[], sidebar:true}],
       false,
       false,
-    //   threadId
+  
     );
   };
 
-  
   const handleSummarize = (threadId?: string) => {
     submitQuery(t('portfolio_overview.prompt'), false, threadId);
   };
   
   const handleAnalyze = (threadId?: string) => {
 
-
-   
 sendSimulatedRequest(
   "I want to analyze a stock.",
   t("analyze.introMessage"),
@@ -65,13 +61,19 @@ sendSimulatedRequest(
 );
   };
   
-
   // 🌱 Landing Variants → Just wrap the base
-  const handleLandingSuggest = () => withNewSession(() => handleSuggest(), 50);
-  const handleLandingCompare = () => withNewSession(() => handleCompare(), 50);
-  const handleLandingSummarize = () => withNewSession(() => handleSummarize(), 50);
-  const handleLandingAnalyze = () => withNewSession(() => handleAnalyze(), 50);
-  const handleLandingLearn = () => withNewSession(() => handleLearn(), 50);
+  const handleLandingSuggest = () => withNewSession((sessionId) => handleSuggest(sessionId), 50);
+  const handleLandingCompare = () => withNewSession((sessionId) => handleCompare(sessionId), 50);
+  const handleLandingSummarize = () => withNewSession((sessionId) => handleSummarize(sessionId), 50);
+  const handleLandingAnalyze = () => withNewSession((sessionId) => handleAnalyze(sessionId), 50);
+  const handleLandingLearn = () => withNewSession((sessionId) => handleLearn(sessionId), 50);
+  
+  const handleOuterSuggest = () => withNewSession((sessionId) => handleSuggest(sessionId), 50, true);
+  const handleOuterCompare = () => withNewSession((sessionId) => handleCompare(sessionId), 50, true);
+  const handleOuterSummarize = () => withNewSession((sessionId) => handleSummarize(sessionId), 50, true);
+  const handleOuterAnalyze = () => withNewSession((sessionId) => handleAnalyze(sessionId), 50, true);
+  const handleOuterLearn = () => withNewSession((sessionId) => handleLearn(sessionId), 50, true);
+  
 
   return {
     // Regular usage
@@ -86,6 +88,8 @@ sendSimulatedRequest(
     handleLandingCompare,
     handleLandingSummarize,
     handleLandingAnalyze,
-    handleLandingLearn
+    handleLandingLearn,
+
+    handleOuterSummarize
   };
 }

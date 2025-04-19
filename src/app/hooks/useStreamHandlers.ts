@@ -41,16 +41,6 @@ export function useStreamHandlers() {
   const {currentLang} = useLanguage();
   const currentLangRef = useRef(currentLang);
 
-// Update the ref whenever threadId changes
-
-
-
-// useEffect(() => {
-//   threadIdRef.current = threadId;
-//   console.log("thread now is: ", threadIdRef.current)
-// }, [threadId]);
-
-
 useEffect(() => {
   currentLangRef.current = currentLang;
 }, [currentLang]);
@@ -61,12 +51,13 @@ useEffect(() => {
     console.log("📝 onTextCreated")
   }, []);
 
-  const onTextDelta = useCallback((delta: any) => {
+
+  const onTextDelta = useCallback((delta: any, threadId: string) => {
     if (delta.value) {
-      //console.log("arriving value: ", delta.value)
-      appendAssistantText(delta.value);
+      appendAssistantText(delta.value, threadId); // ✅ Provide threadId
     }
   }, [appendAssistantText]);
+
 
   
 
@@ -77,13 +68,7 @@ useEffect(() => {
       args: toolCall.args,
       timestamp: new Date().toISOString()
     });
-    // if (toolCall.type === "code_interpreter") {
-    //   updateLastInteractionBotParts({
-    //     type: "tool_output",
-    //     toolName: "code_interpreter",
-    //     input: "",
-    //   });
-    // }
+ 
   }, [updateLastInteractionBotParts]);
 
 
@@ -105,10 +90,13 @@ useEffect(() => {
         console.log("🟢 onTextCreated");
         onTextCreated();
       },
+     
+     
       onTextDelta: (event) => {
-        console.log("🔄 onTextDelta:", event);
-        onTextDelta(event);
+        onTextDelta(event, threadId); // ✅ Make sure threadId is passed correctly
       },
+     
+      
       onToolCallCreated: (event) => {
         console.log("🛠️ onToolCallCreated:", event);
         onToolCallCreated(event);
@@ -140,43 +128,7 @@ useEffect(() => {
     setIsRunning,
     saveInteraction
   ]);
-  // const attachHandlers = (stream: AssistantStream, threadId:string) => {
-  //   attachStreamHandlers(stream, {
-  //     onTextCreated: () => {
-  //       console.log("🟢 onTextCreated:", event);
-  //       onTextCreated();
-  //     },
-  //     onTextDelta: (event) => {
-  //       console.log("🔄 onTextDelta:", event);
-  //       onTextDelta(event);
-  //     },
-  //     onToolCallCreated: (event) => {
-  //       console.log("🛠️ onToolCallCreated:", event);
-  //       onToolCallCreated(event);
-  //     },
-  //     onToolCallDelta: (event) => {
-  //       console.log("🧩 onToolCallDelta:", event);
-  //       onToolCallDelta(event);
-  //     },
-
-  //     onRequiresAction: async (event: any) => {
-  //       console.log("🚧 onRequiresAction:", event);
-  //       await onRequiresAction(event, threadId,functionCallHandler);
-  //       setInputDisabled(false);
-  //     },
-
-  //     onRunCompleted: async () => {
-
-  //       console.log("✅ onRunCompleted");
-  //       setInputDisabled(false);
-  //       setIsRunning(false);
-  // await saveInteraction();
-  //     }
-  //   });
-  // };
-
-  // const {startFlow} = useFlowRunner("stock_analysis", attachHandlers);
-
+ 
   const onRequiresAction = useCallback(
       async (
         event: any,
@@ -243,8 +195,6 @@ useEffect(() => {
               });
   
               break;
-
-
 
               case "suggest_tickers_to_compare":
                 // console.log("portfolio_overview called and arguments are: ", parsedArgs)

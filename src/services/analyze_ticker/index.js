@@ -60,15 +60,10 @@ export async function analyze_ticker(parameters) {
 
     const stringified_data = JSON.stringify(data_for_ai);
 
-    const prompt = `You are a financial analyst. The user asked for an in-depth analysis of ${ticker_symbol} in ${language}.
-
-- First, call the function **show_tickers_chart** to display the stock chart.
-- Then, analyze this data: ${stringified_data}
-- Use the function **show_financial_data** to present relevant financials.
-- Your analysis should:
-  - Highlight positives and negatives
-  - Extract trends and insights
-  - Conclude with an opinion on whether it's a good investment.`
+    const prompt = `You are a financial analyst. The user asked for an in-depth analysis of ${ticker_symbol} in the user language: ${language}.
+- Analyze this data: ${stringified_data}
+Rather than simply repeating the data, provide a discursive explanation that highlights key insights, trends, and takeaways. Focus on interpreting the data for the user, not just restating it.
+Highlight positives and negatives. And conclude with a summary of your analysis.`
 
     return {
       status: "success",

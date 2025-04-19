@@ -23,7 +23,7 @@ interface ConversationContextType {
   updateLastInteractionBotParts: (newParts: BotMessagePart[], interactionId?: string) => void;
   addUserMessage: (message: string, show?: boolean, fetch_follow_ups?:boolean) => string;
 
-  appendAssistantText: (text: string) => void;
+  appendAssistantText: (text: string, threadId?:string) => void;
 
   areNavigationItemsVisible: boolean;
   setAreNavigationItemsVisible: (visible: boolean) => void;
@@ -244,89 +244,16 @@ useEffect(() => {
     return newInteraction.id;
   }, [currentLang]);
   
-//   const addUserMessage = useCallback((message: string, show=true) => {
-//     const newInteraction: Interaction = {
-//       id: uuidv4(),
-//       timestamp: new Date().toISOString(),
-//       language: currentLang,
-//       status: "success",
-//       userMessage: {
-//         id: uuidv4(),
-//         role: "user",
-//         text: message,
-//         language: currentLang,
-//         metadata: {},
-//         createdAt: new Date().toISOString(),
-//         show: show
-//       },
-//       botMessage: {
-//         id: uuidv4(),
-//         role: "assistant",
-//         language: currentLang,
-//         parts: [
-//           { type: "assistantText", text: "" } // For streaming updates
-//         ],
-//         metadata: {},
-//         createdAt: new Date().toISOString(),
-//       },
-//     };
-  
-// interactionRef.current = newInteraction;
 
-//     setChatSession((prevSession) => {
-//       const updatedInteractions = [...prevSession.interactions, newInteraction];
-//       return {
-//         ...prevSession,
-//         interactions: updatedInteractions,
-//         updatedAt: new Date().toISOString(),
-//       };
-//     });
-  
-//     // If you track the current interaction index or similar:
-//     setCurrentIndex((prev) => prev + 1);
-//   }, [currentLang]);
-  
-  // const appendAssistantText = useCallback((text: string) => {
-   
-  //   setChatSession((prevSession) => {
-  //     // console.log("chatSession is: ", JSON.stringify(prevSession));
-  //     const lastIndex = prevSession.interactions.length - 1;
 
-  //     //console.log("last index is: ", lastIndex);
-  //     if (lastIndex < 0) return prevSession;
-  
-  //     const lastInteraction = prevSession.interactions[lastIndex];
-  //     const bot = lastInteraction.botMessage;
-  
-  //     const newParts = bot.parts.map((part, i) =>
-  //       i === 0 && part.type === "assistantText"
-  //         ? { ...part, text: part.text + text }
-  //         : part
-  //     );
-  
-  //     const updatedInteraction = {
-  //       ...lastInteraction,
-  //       botMessage: {
-  //         ...bot,
-  //         parts: newParts,
-  //       },
-  //     };
-  //     interactionRef.current = updatedInteraction;
-  
-  //     return {
-  //       ...prevSession,
-  //       interactions: [
-  //         ...prevSession.interactions.slice(0, lastIndex),
-  //         updatedInteraction,
-  //       ],
-  //     };
-  //   });
-  // }, []);
 
-  const appendAssistantText = useCallback((text: string) => {
-    if (!text || typeof text !== 'string') return; // 🔒 Safe guard
+  const appendAssistantText = useCallback((text: string, threadId?: string) => {
+    if (!text || typeof text !== 'string') return; // 🔒 Guard clause
   
     setChatSession((prevSession) => {
+      // ✅ Skip update if threadId is provided and does not match
+      if (threadId && prevSession.id !== threadId) return prevSession;
+  
       const lastIndex = prevSession.interactions.length - 1;
       if (lastIndex < 0) return prevSession;
   
@@ -358,6 +285,43 @@ useEffect(() => {
       };
     });
   }, []);
+
+  
+  // const appendAssistantText = useCallback((text: string) => {
+  //   if (!text || typeof text !== 'string') return; // 🔒 Safe guard
+  
+  //   setChatSession((prevSession) => {
+  //     const lastIndex = prevSession.interactions.length - 1;
+  //     if (lastIndex < 0) return prevSession;
+  
+  //     const lastInteraction = prevSession.interactions[lastIndex];
+  //     const bot = lastInteraction.botMessage;
+  
+  //     const newParts = bot.parts.map((part, i) =>
+  //       i === 0 && part.type === "assistantText"
+  //         ? { ...part, text: part.text + text }
+  //         : part
+  //     );
+  
+  //     const updatedInteraction = {
+  //       ...lastInteraction,
+  //       botMessage: {
+  //         ...bot,
+  //         parts: newParts,
+  //       },
+  //     };
+  
+  //     interactionRef.current = updatedInteraction;
+  
+  //     return {
+  //       ...prevSession,
+  //       interactions: [
+  //         ...prevSession.interactions.slice(0, lastIndex),
+  //         updatedInteraction,
+  //       ],
+  //     };
+  //   });
+  // }, []);
   
   
   const updateLastInteractionBotParts = useCallback((
@@ -427,16 +391,9 @@ useEffect(() => {
   // }, [setChatSession]);
 
 
-
-
-  
-
-
  const resetConversationState = () => {
- 
   setConversationPairs([]);
   setCurrentIndex(-1);
-
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([])); // ✅ Reset conversationPairs in localStorage
   localStorage.setItem(LOCAL_STORAGE_INDEX_KEY, JSON.stringify(-1)); // ✅ Reset currentIndex in localStorage
 };

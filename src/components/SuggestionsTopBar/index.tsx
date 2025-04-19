@@ -37,10 +37,6 @@ const handleScroll = () => {
     return () => el.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleClick = (prompt: string) => {
-    console.log('Clicked suggestion:', prompt);
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.scrollWrapper}>

@@ -73,6 +73,7 @@ export async function POST(req: NextRequest) {
       role: user.role,
       language: user.language,
       createdAt: user.created_at,
+      show:  user.show,  // ✅ Default to true if not provided
       metadata: {},
     };
 
@@ -92,7 +93,7 @@ export async function POST(req: NextRequest) {
     });
 
     console.log("BOT MESSAGE PARTS: ", botMessageParts)
-    
+
     const botMessage = {
       id: assistant.id,
       role: assistant.role,

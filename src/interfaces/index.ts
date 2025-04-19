@@ -142,28 +142,46 @@ export type SimpleTicker = {
   polygon_snapshot?: PolygonSnapshot
 };
 
+export type BotMessagePartType =
+ 
+  | 'knowledge_browser'
+  | 'comparison_pair_picker'
+  | 'follow_ups'
+  | 'analyze_ticker'
+  | 'latest_news'
+  | 'assets_list'
+  | 'annotations'
+  | 'comparison_sidebar'
+  | 'portfolio_overview'
+  | 'tickers_list'
+  | 'comparison_table'
+  | 'comparison_chart'
+  | 'metric_comparison'
+  | 'tickers_chart'
+  | 'financials_table'
+  ;
+
 export type BotMessagePart =
 | { type: 'assistantText'; text: string, data?: any | null,sidebar?: boolean, both?: boolean }
-| { type: 'knowledge_browser'; data: any,sidebar?: boolean,both?: boolean   }
-| { type: 'comparison_pair_picker'; data: any,sidebar?: boolean,both?: boolean   }
-| { type: 'follow_ups'; data: any,sidebar?: boolean,both?: boolean   }
+| { type: 'knowledge_browser'; data?: any,sidebar?: boolean,both?: boolean   }
+| { type: 'comparison_pair_picker'; data?: any,sidebar?: boolean,both?: boolean   }
+| { type: 'follow_ups'; data?: any,sidebar?: boolean,both?: boolean   }
 | { type: 'analyze_ticker'; data?: any | null,sidebar?: boolean,both?: boolean  }
 | { type: 'latest_news'; data?: any | null,sidebar?: boolean,both?: boolean  }
 | { type: 'assets_list'; data?: any | null,sidebar?: boolean,both?: boolean  }
 | { type: 'annotations'; data?: any | null,sidebar?: boolean,both?: boolean  }
 | { type: 'comparison_sidebar'; data?: any | null,sidebar?: boolean,both?: boolean  }
-| { type: 'portfolio_overview'; data: any, sidebar?: boolean,both?: boolean  }
-| { type: 'tickers_list'; data: any, sidebar?: boolean,both?: boolean  }
-| { type: 'comparison_table'; data: any, sidebar?: boolean,both?: boolean  }
-| { type: 'comparison_chart'; data: any, sidebar?: boolean,both?: boolean  }
-| { type: 'metric_comparison'; data: any, sidebar?: boolean,both?: boolean  }
-| { type: 'tickers_chart'; data: any,sidebar?: boolean,both?: boolean   }
-| { type: 'financials_table'; data: any,sidebar?: boolean,both?: boolean   }
-
+| { type: 'portfolio_overview'; data?: any, sidebar?: boolean,both?: boolean  }
+| { type: 'tickers_list'; data?: any, sidebar?: boolean,both?: boolean  }
+| { type: 'comparison_table'; data?: any, sidebar?: boolean,both?: boolean  }
+| { type: 'comparison_chart'; data?: any, sidebar?: boolean,both?: boolean  }
+| { type: 'metric_comparison'; data?: any, sidebar?: boolean,both?: boolean  }
+| { type: 'tickers_chart'; data?: any,sidebar?: boolean,both?: boolean   }
+| { type: 'financials_table'; data?: any,sidebar?: boolean,both?: boolean   }
 | {
     type: 'tool_output';
-    toolName: 'code_interpreter';
-    input: string;
+    toolName?: 'code_interpreter';
+    input?: string;
     output?: string;
     imageUrl?: string;
     metadata?: Record<string, any>;

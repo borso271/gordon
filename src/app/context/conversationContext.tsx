@@ -285,13 +285,48 @@ useEffect(() => {
 //     setCurrentIndex((prev) => prev + 1);
 //   }, [currentLang]);
   
-  const appendAssistantText = useCallback((text: string) => {
+  // const appendAssistantText = useCallback((text: string) => {
    
-    setChatSession((prevSession) => {
-      // console.log("chatSession is: ", JSON.stringify(prevSession));
-      const lastIndex = prevSession.interactions.length - 1;
+  //   setChatSession((prevSession) => {
+  //     // console.log("chatSession is: ", JSON.stringify(prevSession));
+  //     const lastIndex = prevSession.interactions.length - 1;
 
-      //console.log("last index is: ", lastIndex);
+  //     //console.log("last index is: ", lastIndex);
+  //     if (lastIndex < 0) return prevSession;
+  
+  //     const lastInteraction = prevSession.interactions[lastIndex];
+  //     const bot = lastInteraction.botMessage;
+  
+  //     const newParts = bot.parts.map((part, i) =>
+  //       i === 0 && part.type === "assistantText"
+  //         ? { ...part, text: part.text + text }
+  //         : part
+  //     );
+  
+  //     const updatedInteraction = {
+  //       ...lastInteraction,
+  //       botMessage: {
+  //         ...bot,
+  //         parts: newParts,
+  //       },
+  //     };
+  //     interactionRef.current = updatedInteraction;
+  
+  //     return {
+  //       ...prevSession,
+  //       interactions: [
+  //         ...prevSession.interactions.slice(0, lastIndex),
+  //         updatedInteraction,
+  //       ],
+  //     };
+  //   });
+  // }, []);
+
+  const appendAssistantText = useCallback((text: string) => {
+    if (!text || typeof text !== 'string') return; // 🔒 Safe guard
+  
+    setChatSession((prevSession) => {
+      const lastIndex = prevSession.interactions.length - 1;
       if (lastIndex < 0) return prevSession;
   
       const lastInteraction = prevSession.interactions[lastIndex];
@@ -310,6 +345,7 @@ useEffect(() => {
           parts: newParts,
         },
       };
+  
       interactionRef.current = updatedInteraction;
   
       return {
@@ -321,6 +357,7 @@ useEffect(() => {
       };
     });
   }, []);
+  
   
   const updateLastInteractionBotParts = useCallback((
     newParts: BotMessagePart[],

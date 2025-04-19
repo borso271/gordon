@@ -1,18 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { useManualSubmit } from './useManualSubmit';
-import { useKnowledgeCenter } from './useKnowledgeCenter';
+import { useSimulatedRequest } from './useSimulatedRequest';
 import { useSessionCallback } from './useSessionCallback';
 
 export function useManualActionRequests() {
   const { t } = useTranslation();
   const { submitQuery } = useManualSubmit();
-  const { sendKnowledgeMessage } = useKnowledgeCenter();
+  const { sendSimulatedRequest } = useSimulatedRequest();
   const {withNewSession} = useSessionCallback();
   // 🧠 Base Handlers
 
   const handleLearn = (threadId?: string) => {
-    sendKnowledgeMessage(
+    sendSimulatedRequest(
       "I want to learn about finance.",
+      "knowledge_browser",
       t("knowledge.introMessage"),
       false,
     //   threadId
@@ -23,9 +24,17 @@ export function useManualActionRequests() {
     submitQuery(t('suggest.prompt'), false, threadId);
   };
   
+
   const handleCompare = (threadId?: string) => {
-    submitQuery(t('landing.suggestions.compare.prompt'), false, threadId);
+    sendSimulatedRequest(
+      "I want to compare two stocks.",
+      "comparison_pair_picker",
+      t("compare.introMessage"),
+      false,
+    //   threadId
+    );
   };
+
   
   const handleSummarize = (threadId?: string) => {
     submitQuery(t('portfolio_overview.prompt'), false, threadId);

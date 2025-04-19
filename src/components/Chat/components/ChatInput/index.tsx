@@ -53,6 +53,7 @@ export default function ChatInput({
       <div className={styles.innerContainer}>
         <div className={styles.form}>
           <form ref={formRef} onSubmit={(e)=>handleSubmit(e)} className={styles.inputForm}>
+
 <div className={styles.inputWrapper}>
   <textarea
     className={styles.input}
@@ -95,9 +96,12 @@ export default function ChatInput({
           </form>
         </div>
 
+{!isFirstPrompt && 
         <div className={styles.inputButtons}>
+
 <InputButtons/>
-</div>
+
+</div>}
 
       </div>
     </div>

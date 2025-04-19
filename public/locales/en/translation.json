@@ -75,6 +75,10 @@
     "prompt": "Can you give me an overview of my portfolio?"
   },
 
+  "compare": {
+    "introMessage": "### Ready to compare some stocks?\n\nYou can pick a pair from the suggested comparisons below, or just tell me which two stocks you’d like to compare!"
+  },
+
 "knowledge": {
   "library_title": "Our Library:",
 

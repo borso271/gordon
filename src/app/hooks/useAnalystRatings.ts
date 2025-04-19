@@ -14,8 +14,6 @@ export function useAnalystRatings(ratings: any) {
  
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-
   const totalRatings = useMemo(() => {
     if (!ratings) return 0;
     return (

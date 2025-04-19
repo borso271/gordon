@@ -11,8 +11,6 @@ import Icon from '../Icons/Icon';
 import LandingSuggestion from '../LandingSuggestion';
 import { useTranslation } from 'react-i18next';
 
-import { useSessionCallback } from '../../app/hooks/useSessionCallback';
-import { useKnowledgeCenter } from '../../app/hooks/useKnowledgeCenter';
 import { useManualActionRequests } from '../../app/hooks/useManualActionRequests';
 
 const BotLanding = () => {
@@ -47,8 +45,6 @@ const handleLandingSubmit = async (e?: FormEvent) => {
 
 
 
-
-const {sendKnowledgeMessage} = useKnowledgeCenter();
 
 
 const {

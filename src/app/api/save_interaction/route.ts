@@ -34,7 +34,9 @@ export async function POST(req: NextRequest) {
           role: userMessage.role,
           language: userMessage.language || language,
           created_at: userMessage.createdAt,
-          status: status
+          status: status,
+          show: userMessage.show ?? true,  // ✅ Default to true if not provided
+
         }
       ]);
 

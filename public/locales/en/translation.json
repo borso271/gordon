@@ -66,6 +66,13 @@
 
   
 },
+
+"compare_symbols": "Compare Symbols",
+"ticker_1": "Ticker 1",
+"ticker_2": "Ticker 2",
+"compare_query": "Compare these stocks",
+"and": "and"
+,
 "vs": "vs",
 "buy_sell": {
   "quick_tx": "Quick Transaction",

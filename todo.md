@@ -27,7 +27,6 @@ For the presuggestions, you need to:
 
 OTHERS:
 - Top suggestion's hover on change language.
-- Scroll down button not working.
 - Portfolio chart labels going new line on resizing.
 - Update chart data with more points.
 - Add actions where missing.

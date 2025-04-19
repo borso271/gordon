@@ -61,10 +61,7 @@ const PickPair = () => {
     <div className={styles.container}>
       <MainSidebarHeading text="Compare Tickers" />
 
-
-      <ComparisonPicker tickers={sampleTickers} title={"Pick Your Own"} onCompare={function (left: SimpleTicker, right: SimpleTicker): void {
-              throw new Error("Function not implemented.");
-          } }  />
+      <ComparisonPicker tickers={sampleTickers} title={"Pick Your Own"}  />
 
      <div className={styles.listWrapper}>
         <ComparisonList comparisonPairs={comparisonPairs} />

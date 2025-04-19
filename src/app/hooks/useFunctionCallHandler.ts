@@ -22,6 +22,7 @@ export function useFunctionCallHandler() {
 
     const endpointMap = {
       analyze_security: "api/analysis",
+      suggest_tickers_to_compare: "api/suggest_tickers_to_compare",
       suggest_securities: "api/suggest",
       portfolio_overview: "api/portfolio_overview",
       compare_tickers: "api/compare",

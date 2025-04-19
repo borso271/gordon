@@ -143,6 +143,7 @@ export type SimpleTicker = {
 
 export type BotMessagePart =
 | { type: 'assistantText'; text: string, data?: any | null,sidebar?: boolean, both?: boolean }
+| { type: 'comparison_pair_picker'; data: any,sidebar?: boolean,both?: boolean   }
 | { type: 'follow_ups'; data: any,sidebar?: boolean,both?: boolean   }
 | { type: 'analyze_ticker'; data?: any | null,sidebar?: boolean,both?: boolean  }
 | { type: 'latest_news'; data?: any | null,sidebar?: boolean,both?: boolean  }

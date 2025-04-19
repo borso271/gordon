@@ -493,8 +493,9 @@ console.log(JSON.stringify(series))
 return (
 
     <div>
-<CompareTest></CompareTest>
+{/* <CompareTest></CompareTest> */}
 
+<PickPair></PickPair>
 
 <KnowledgeFolderList items={folders} />;
 

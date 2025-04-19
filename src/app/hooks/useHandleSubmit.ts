@@ -6,7 +6,6 @@ import { sendMessage } from "../utils/apiActions";
 import { useRef } from "react";
 
 export function useHandleSubmit() {
-  
   const {
     addUserMessage,
     userInput,
@@ -18,30 +17,34 @@ export function useHandleSubmit() {
 
   const { attachHandlers } = useStreamHandlers();
 
-  // 🚫 Prevent multiple submits
   const isSubmittingRef = useRef(false);
 
   const handleSubmit = async (
     e?: FormEvent | MouseEvent | null,
     customQuery?: string,
-    overrideThreadId?: string
+    overrideThreadId?: string,
+    addMessage: boolean = true // ✅ New optional parameter
   ) => {
     if (e && "preventDefault" in e) e.preventDefault();
 
-    if (isSubmittingRef.current) return; // 🚫 Already submitting
+    if (isSubmittingRef.current) return;
     isSubmittingRef.current = true;
 
     const inputToSend = customQuery ?? userInput;
     const finalThreadId = overrideThreadId ?? threadId;
 
     if (!inputToSend.trim() || !finalThreadId) {
-      isSubmittingRef.current = false; // reset flag
+      isSubmittingRef.current = false;
       return;
     }
 
     setInputDisabled(true);
     setIsRunning(true);
-    addUserMessage(inputToSend);
+
+    if (addMessage) {
+      addUserMessage(inputToSend);
+    }
+
     setUserInput("");
 
     try {
@@ -49,10 +52,12 @@ export function useHandleSubmit() {
       const stream = AssistantStream.fromReadableStream(response.body);
       attachHandlers(stream, finalThreadId);
     } finally {
-      // ✅ Reset flag after processing
       isSubmittingRef.current = false;
     }
   };
 
   return { handleSubmit };
 }
+
+
+export default useHandleSubmit

@@ -1,7 +1,14 @@
+
+
+
 .comparisonContainer {
-    display: flex;
+    /* display: flex; */
+
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+
     padding: 16px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     align-self: stretch;
 

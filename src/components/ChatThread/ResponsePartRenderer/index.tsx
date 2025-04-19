@@ -13,7 +13,7 @@ import ComparisonSidebar from "../../../app/sections/comparison";
 import Annotations from "../../Annotations";
 import AssetsWithInsight from "../../AssetsWithInsight";
 import NewsList from "../../NewNews/NewsList";
-
+import PickPair from "../../../app/sections/comparison/PickPair";
 interface Props {
   part: BotMessagePart;
   language: string;
@@ -39,6 +39,16 @@ const BotMessagePartRenderer: React.FC<Props> = ({ part, language="en" }) => {
            currency = {part.data.currency}
               />;
 
+
+
+              case "comparison_pair_picker":
+
+              return  <PickPair
+              
+                     />;
+
+            
+              
 
     case "assets_list":
 

@@ -3,15 +3,23 @@ import styles from './ComparisonItem.module.css';
 import SymbolTitle from '../../../../../(pages)/(dashboard)/components/Watchlist/SymbolTitle';
 import { SimpleTicker } from '../../../../../../interfaces';
 
+import { useManualSubmit } from '../../../../../hooks/useManualSubmit';
+
 interface ComparisonItemProps {
   left: SimpleTicker;
   right: SimpleTicker;
 }
 
 const ComparisonItem: React.FC<ComparisonItemProps> = ({ left, right }) => {
+  const { submitQuery } = useManualSubmit();
+
+  const handleClick = () => {
+    const query = `Compare these stocks: ${left.name} (ticker: ${left.ticker}) and ${right.name} (ticker: ${right.ticker})`;
+    submitQuery(query, false); // 👈 suppress user message
+  };
+
   return (
-    <div className={styles.comparisonContainer}>
-      {/* Left side */}
+    <div className={styles.comparisonContainer} onClick={handleClick}>
       <div className={styles.tickerBox}>
         <SymbolTitle
           name={left.name}
@@ -20,10 +28,8 @@ const ComparisonItem: React.FC<ComparisonItemProps> = ({ left, right }) => {
         />
       </div>
 
-      {/* Middle circle with VS */}
       <div className={styles.vsCircle}>VS</div>
 
-      {/* Right side */}
       <div className={styles.tickerBox}>
         <SymbolTitle
           name={right.name}

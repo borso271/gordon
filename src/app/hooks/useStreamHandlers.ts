@@ -245,6 +245,25 @@ useEffect(() => {
               break;
 
 
+
+              case "suggest_tickers_to_compare":
+                // console.log("portfolio_overview called and arguments are: ", parsedArgs)
+                newParts = [{
+                  type: "comparison_pair_picker",
+                  data: [], // parsedResult.data_for_component,
+                  sidebar: true,
+                }];
+    
+              //  Add to toolCallOutputs if needed
+                toolCallOutputs.push({
+                  tool_call_id: toolCall.id,
+                  output:"The user has been shown some options, just wait for its choice." // parsedResult.prompt_for_ai,
+                });
+    
+                break;
+
+
+
               case "analyze_ticker":
                 if (parsedResult.status == "success") {
                   newParts = [{

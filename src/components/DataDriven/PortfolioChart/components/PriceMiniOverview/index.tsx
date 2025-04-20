@@ -4,6 +4,7 @@ import SecondaryH2 from "../../../../Headings/SecondaryH2";
 import { Period } from "../../../../../interfaces";
 import Icon from "../../../../Icons/Icon";
 import { current_balance, old_balance } from "../../../../../constants";
+import { formatPrice } from "../../../../../utils/format_price";
 import { useTranslation } from "react-i18next";
 interface ChangeEntry {
   period: Period;
@@ -51,8 +52,6 @@ const getLongPeriodLabel = (period: Period, language: string): string => {
 const PriceMiniOverview: React.FC<PriceMiniOverviewProps> = ({ current_price, changes, period, language }) => {
   const { t } = useTranslation();
 
-
-
 //const change = current_balance - old_balance;
 // const percentChange = (change / old_balance) * 100;
 
@@ -82,10 +81,9 @@ const currency = "$"
     
       <div className={styles.smallHeading}>{t('portfolio.total_market_value')}</div>
 
-
       <div className={styles.priceContainer}>
 
-       <div className={styles.bigPrice}>{currency}{current_price}</div>
+       <div className={styles.bigPrice}>{currency}{formatPrice(current_price)}</div>
 
       </div>
 

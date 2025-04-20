@@ -11,9 +11,9 @@ import { useRouter } from "next/navigation";
 import { useOverlay } from "../../../app/context/overlayContext";
 import { useBuySellModal } from "../../../app/context/buySellModalContext";
 import CircledIconButton from "../../Buttons/CircleActionButton";
-import { current_balance, old_balance } from "../../../constants";
 
-
+import { useFetchBalance } from "../../../app/hooks/useFetchBalance";
+import { formatPrice } from "../../../utils/format_price";
 type NavbarProps = {
     onToggle?: () => void;
     expanded:boolean;
@@ -25,7 +25,14 @@ const {setOverlay} = useOverlay();
   const english_label_text = t("english")
   const arabic_label_text = t("arabic")
 
-const change = current_balance - old_balance;
+
+  const {currentPrice,
+    snapShot,
+    isPositiveChange,
+    oneDayData } = useFetchBalance();
+
+    const old_balance = oneDayData[0].price;
+const change = currentPrice - old_balance;
 const percentChange = (change / old_balance) * 100;
 
 const isPositive = change >= 0;
@@ -49,9 +56,6 @@ const {setThreadId} = useConversation();
   const router = useRouter();
 
 
-const navigateToDashboard = () => {
-  router.push("/");
-};
 
 
   const handleLanguageChange = (lang: string) => {
@@ -109,7 +113,7 @@ const handleNewChatClick = () => {
                     $
                 </div>
                 <div className={styles.amount}>
-                {"100.000"}
+                {formatPrice(currentPrice)}
                 </div>
 
             </div>

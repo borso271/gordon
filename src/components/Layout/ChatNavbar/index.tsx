@@ -83,14 +83,15 @@ const handleNewChatClick = () => {
 {!expanded && (
          <div className={styles.sidebarActions}>
  
-      <CircledIconButton 
-       onClick={onToggle}
-        iconName={"history"}
-        iconSize={22}/>
           
       <CircledIconButton 
        onClick={handleNewChatClick}
         iconName={"new_chat"}
+        iconSize={22}/>
+
+<CircledIconButton 
+       onClick={onToggle}
+        iconName={"history"}
         iconSize={22}/>
          </div>
 )}

@@ -92,12 +92,16 @@ line-height: 140%;
     border-collapse: collapse;
   }
   
+
   /* Row wrappers using display: contents */
   .gridHeaderRow,
   .gridRow {
     display: contents;
   }
   
+  .gridHeaderCell {
+    margin-bottom:16px;
+  }
   /* --- Generic Cell Base Styles (Applied to ALL cells) --- */
   .gridHeaderCell,
   .gridCell {
@@ -140,19 +144,23 @@ line-height: 120%; /* 16.8px */
 
   .gridHeaderCell:first-child {
     padding-left: 32px;
+  
   }
 
   .gridHeaderCell:last-child {
     padding-right: 32px;
+    
   }
 
 
   .gridCell:first-child {
-    padding-left: 32px;
+    padding-left: 16px;
+    margin-left:16px;
   }
 
   .gridCell:last-child {
-    padding-right: 32px;
+    padding-right: 16px;
+    margin-right:16px;
   }
   
   /* Header Content Alignment (Label left, Icon right) */
@@ -203,7 +211,6 @@ line-height: 120%; /* 16.8px */
     text-align: right; 
   }
   
-  
   .allocationBar{
     width:100px;
   }
@@ -226,24 +233,39 @@ line-height: 120%; /* 16.8px */
   /* Ensure ProgressBar aligns correctly if it has internal alignment */
   
   
+[dir="rtl"] .gridHeaderCell:first-child {
+    padding-left: 0px;
+ 
+  padding-right: 32px;
+
+}
 
 
-  /*
- ARABIC STYLES */
 
-
-[dir="rtl"] .gridHeaderCell:first-child ,
 [dir="rtl"] .gridCell:first-child {
     padding-left: 0px;
-  padding-right: 32px;
+    margin-left: 0px;
+  padding-right: 16px;
+  margin-right:16px;
 }
 
 
-[dir="rtl"] .gridHeaderCell:last-child ,
+[dir="rtl"] .gridHeaderCell:last-child  {
+padding-right:0px;
+
+    padding-left: 32px;
+  
+}
+
+
+
 [dir="rtl"] .gridCell:last-child {
 padding-right:0px;
-    padding-left: 32px;
+margin-right:0px;
+    padding-left: 16px;
+    margin-left:16px;
 }
+
 
 
 
@@ -265,3 +287,23 @@ padding-right:0px;
   z-index: 0;
   overflow: hidden;
 } */
+
+.gridRow .gridCell {
+  cursor: pointer;
+}
+.gridRow:hover .gridCell {
+  background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
+  transition: background 0.2s ease;
+}
+
+/* Only round the left corners on the first cell */
+.gridRow:hover .gridCell:first-of-type {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+/* Only round the right corners on the last cell */
+.gridRow:hover .gridCell:last-of-type {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}

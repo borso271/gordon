@@ -10,7 +10,7 @@ import Loading from '../../../components/Loading';
 
 
 import KnowledgeBrowser from '../../sections/knowledge_center/KnowledgeCenter';
-
+import TestSymbolDropdown from '../../../components/tests/sdb';
 interface RawDataEntry {
   ticker: string;
   data: {
@@ -572,6 +572,7 @@ return (
 
 {/* <PickPair></PickPair> */}
 
+<TestSymbolDropdown/>
 <KnowledgeBrowser/>
 
 {/* <PickPair/> */}

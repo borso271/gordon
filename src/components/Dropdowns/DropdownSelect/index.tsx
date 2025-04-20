@@ -6,22 +6,11 @@ import SymbolDropdownMenu from "../SymbolDropdownMenu";
 import { SimpleTicker } from "../../../interfaces";
 
 
-
-// export type SimpleTicker = {
-//     symbol_id: number,
-//     ticker: string,
-//     name: string,
-//     asset_type: 'stock' | 'crypto' | 'etf';
-//     polygon_snapshot?: PolygonSnapshot
-//   };
-
-  
 interface DropdownSelectProps {
   items: SimpleTicker[];
   placeholder?: string;
   buttonWidth?: number;
   rtl?: boolean;
-
   /* ── NEW (controlled mode) ── */
   selectedIndex?: number;                 // supply to control externally
   onSelect?: (index: number) => void;     // callback when a choice is made

@@ -15,13 +15,13 @@ const AnalysisView: React.FC<AnalysisViewProps> = ({ data }) => {
  const polygon_data = data.polygon_snapshot;
  const isPolygonDataOk = typeof polygon_data.currentPrice === 'number' && polygon_data.currentPrice > 0;
  const news=data.latest_news;
- 
+
 return (
 <div className={styles.container}>
  <DetachedChart symbol={ticker_symbol} language={"en"}/>
  {isPolygonDataOk && <PolygonSnapshot data={polygon_data} />}
  {ratings?.status === "success" && <AnalystRatings ratings={ratings.ratings} />}
- {news &&  <NewsToggleList news={news} titleKey={"latest_news"}/>}
+ {news &&  <NewsToggleList news={news} titleKey={"latest_news"} />}
     </div>
   );
 };

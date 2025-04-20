@@ -29,7 +29,6 @@ background: var(--black-700, #232323);
 color: var(--black-50, #F8F8F8);
 text-align: center;
 /* Text S/Medium */
-
 font-size: 14px;
 font-style: normal;
 font-weight: 500;
@@ -37,3 +36,14 @@ line-height: 140%; /* 19.6px */
 width:100%;
 
  }
+
+
+
+ .compareBtn:hover{ display: flex;
+ 
+
+    background: linear-gradient(0deg, var(--additional-white-5, rgba(255, 255, 255, 0.05)) 0%, var(--additional-white-5, rgba(255, 255, 255, 0.05)) 100%), var(--additional-white-6, rgba(255, 255, 255, 0.06));
+      
+ }
+
+

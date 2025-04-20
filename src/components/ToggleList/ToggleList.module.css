@@ -71,3 +71,11 @@ line-height: 140%; /* 22.4px */
   /* transition: opacity 0.3s ease-in-out; */
   /* You might want a slight delay on opacity if used */
 }
+
+
+
+.noDivider {
+    margin-bottom: 4px;
+    /* style overrides if needed */
+  }
+  

@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./SymbolDropdownButton.module.css";
 import SymbolIcon from "../../Icons/SymbolIcon";
 
+import Icon from "../../Icons/Icon";
+
 interface SymbolDropdownButtonProps {
   text?: string;           // Selected label
   placeholder?: string;    // Fallback label when text is undefined
@@ -10,8 +12,8 @@ interface SymbolDropdownButtonProps {
   onClick?: () => void;
   className?: string;
   width?: number;
+  toggle?: boolean;        // ✅ Toggle for dropdown open/close
 }
-
 
 const SymbolDropdownButton: React.FC<SymbolDropdownButtonProps> = ({
   text,
@@ -21,6 +23,7 @@ const SymbolDropdownButton: React.FC<SymbolDropdownButtonProps> = ({
   onClick,
   className,
   width,
+  toggle = false,          // ✅ Default to closed
 }) => {
   const formattedIcon =
     asset_type === "crypto"
@@ -34,17 +37,67 @@ const SymbolDropdownButton: React.FC<SymbolDropdownButtonProps> = ({
       style={width ? { width } : undefined}
     >
 
-        <SymbolIcon asset_type={asset_type} ticker_symbol={ticker_symbol} size={28} />
-      
+      <div className={styles.left}>
+      <SymbolIcon asset_type={asset_type} ticker_symbol={ticker_symbol} size={28} />
 
       <span className={styles.text}>{text ?? placeholder}</span>
 
-     
+      </div>
+      {/* ✅ Chevron Icon on the right */}
+      <Icon
+        name={toggle ? "chevron_up" : "chevron_down"}
+        size={20}
+        className={styles.chevronIcon}
+      />
     </button>
   );
 };
 
 export default SymbolDropdownButton;
+
+
+// interface SymbolDropdownButtonProps {
+//   text?: string;           // Selected label
+//   placeholder?: string;    // Fallback label when text is undefined
+//   ticker_symbol: string;   // Symbol to determine icon name
+//   asset_type: "stock" | "crypto" | "etf"; // Needed for icon formatting
+//   onClick?: () => void;
+//   className?: string;
+//   width?: number;
+// }
+
+// const SymbolDropdownButton: React.FC<SymbolDropdownButtonProps> = ({
+//   text,
+//   placeholder = "Select…",
+//   ticker_symbol,
+//   asset_type,
+//   onClick,
+//   className,
+//   width,
+// }) => {
+//   const formattedIcon =
+//     asset_type === "crypto"
+//       ? `_c_${ticker_symbol.toUpperCase()}`
+//       : ticker_symbol.toUpperCase();
+
+//   return (
+//     <button
+//       className={`${styles.dropdownButton} ${className ?? ""}`.trim()}
+//       onClick={onClick}
+//       style={width ? { width } : undefined}
+//     >
+
+//         <SymbolIcon asset_type={asset_type} ticker_symbol={ticker_symbol} size={28} />
+      
+
+//       <span className={styles.text}>{text ?? placeholder}</span>
+
+     
+//     </button>
+//   );
+// };
+
+// export default SymbolDropdownButton;
 
 
 // interface DropdownButtonProps {

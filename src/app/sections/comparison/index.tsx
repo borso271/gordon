@@ -6,9 +6,6 @@ import MetricComparison from "./components/MetricComparison";
 import CompareRatings from "../../../components/DataDriven/ComparisonRatings";
 import { useTranslation } from "react-i18next";
 
-
-
-
 interface ComparisonSidebarProps {
   data: any;
 }

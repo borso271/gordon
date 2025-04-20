@@ -30,7 +30,7 @@ const ActionsPart: React.FC<ActionsPartProps> = ({ item }) => {
   onClick={() => analyzeStock(ticker)}
 >
         <Icon
-          name="green_magic_stick"
+          name="current_magic_stick"
           size={18}
           style={{
             fill: "white",

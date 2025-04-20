@@ -4,7 +4,8 @@
     gap: 1rem;
    
     margin: auto;
-    width:100%
+    width:100%;
+    align-items:center;
   }
 
 
@@ -72,6 +73,7 @@ letter-spacing: -0.2px;
   }
 
   .quantityInput {
+    width:200px;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -104,6 +106,13 @@ gap:6px;
     padding: 4px 12px;
     background: var(--additional-white-8, rgba(255, 255, 255, 0.08));
     border-radius: var(--Mobile-Mobile-Outer-Margin, 16px);
+
+    display: flex;
+padding: 4px 12px;
+justify-content: center;
+align-items: center;
+gap: 4px;
+
   }
   .modeSelector select {
     display: flex;

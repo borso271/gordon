@@ -152,8 +152,9 @@ export function useChartCanvas({
 
   const linePath = useMemo(() => generateLinePath(data, curvy), [data, curvy]);
 
-
+  console.log("hiegt for chart is: ", height)
   const areaPath = useMemo(
+    
     () => generateAreaPath(sortedData, curvy, area, height),
     [sortedData, minPrice, curvy, area]
   );

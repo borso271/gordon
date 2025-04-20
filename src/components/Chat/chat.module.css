@@ -85,12 +85,26 @@
 }
 
 /* Wrapper for actual sidebar content */
+
 .sidebarContentWrapper {
   flex-grow: 1; /* Allow content to take space */
-  overflow-y: auto; /* Scroll content */
+  /* overflow-y: auto;  */
   min-height: 0; /* Flexbox fix */
   /* border-left:1.5px solid var(--additional-white-8, rgba(255, 255, 255, 0.07)); */
 
+  /* --- Hide scrollbar --- */
+
+  /* For Firefox */
+  /* scrollbar-width: none; */
+
+
+  /* For Internet Explorer and Edge (legacy) */
+  -ms-overflow-style: none;
+}
+
+/* For Chrome, Safari, Edge (Chromium), Opera */
+.sidebarContentWrapper::-webkit-scrollbar {
+  display: none; /* Or width: 0; height: 0; */
 }
 
 /* 

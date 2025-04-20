@@ -1,0 +1,100 @@
+/* .sidebarContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+  }
+  
+  .stickyWrapper {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    
+  }
+  
+  .stickyTop {
+    padding: 16px;
+   
+    z-index: 2;
+  }
+  
+  .fadeBottom {
+    height: 24px;
+    margin-top: -8px; 
+    background: linear-gradient(to bottom, var(--background), transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .scrollableContent {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding: 16px;
+  
+   
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+  }
+  
+  .scrollableContent::-webkit-scrollbar {
+    display: none; 
+  }
+   */
+
+   .sidebarContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Important to contain scrolling */
+    /* Ensure the container has the base background if scrollableContent doesn't */
+    background: var(--background);
+    width:100%
+  }
+  
+  .stickyWrapper {
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Keep the whole sticky area above scrollableContent */
+    /* Add relative positioning to act as the anchor for fadeBottom */
+    position: relative;
+    /* Background is now handled by stickyTop and fadeBottom */
+  }
+  
+  .stickyTop {
+    padding: 16px;
+    background: var(--background);
+    /* Ensure stickyTop is above fadeBottom if they might overlap due to padding */
+    position: relative; /* Establish stacking context if needed */
+    z-index: 2;
+    padding-bottom:0px;
+  }
+  
+  .fadeBottom {
+    /* --- Key Changes --- */
+    position: absolute; /* Take out of normal flow */
+    bottom: -24px;        /* Position at the bottom of stickyWrapper */
+    left: 0;
+    right: 0;         /* Make it full width */
+    /* --- End Key Changes --- */
+  
+    height: 24px;
+    /* margin-top: -8px; */ /* Remove margin - no longer needed for positioning */
+    background: linear-gradient(to bottom, var(--background), transparent);
+    pointer-events: none;
+    z-index: 1; /* Position below stickyTop but above scrollableContent (implicitly via parent) */
+  }
+  
+  .scrollableContent {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding: 16px;
+    /* IMPORTANT: Ensure scrollableContent itself has NO background */
+    /* background: white; <--- REMOVE THIS if present */
+  
+    /* Hide scrollbar styles... */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .scrollableContent::-webkit-scrollbar {
+    display: none;
+  }

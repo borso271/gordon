@@ -25,7 +25,7 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
   marketOpen = true,
   curvy = true,
   height,
-  width,
+  width
  
 }) => {
 

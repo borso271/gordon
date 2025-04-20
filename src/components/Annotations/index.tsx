@@ -2,6 +2,7 @@ import React from "react";
 import NewsItem from "../NewNews/components/NewsItem";
 import styles from './Annotations.module.css'
 import { useTranslation } from "react-i18next";
+import SidebarLayout from "../Layout/SidebarLayout";
 interface NewsCompleteData {
   title: string;
   author: string;
@@ -27,6 +28,7 @@ interface AnnotationsProps {
       : t("based_on_n_sources.other", { count: sourceCount });
   
     return (
+        <SidebarLayout>
       <div className={styles.container}>
         <h3>{titleKey}</h3>
         <div className={styles.itemsContainer}>
@@ -37,6 +39,7 @@ interface AnnotationsProps {
           ))}
         </div>
       </div>
+      </SidebarLayout>
     );
   };
   

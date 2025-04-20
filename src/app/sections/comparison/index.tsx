@@ -5,7 +5,7 @@ import CustomComparisonChart from "../../../components/DataDriven/ComparisonChar
 import MetricComparison from "./components/MetricComparison";
 import CompareRatings from "../../../components/DataDriven/ComparisonRatings";
 import { useTranslation } from "react-i18next";
-
+import SidebarLayout from "../../../components/Layout/SidebarLayout";
 interface ComparisonSidebarProps {
   data: any;
 }
@@ -23,6 +23,7 @@ const ComparisonSidebar: React.FC<ComparisonSidebarProps> = ({ data }) => {
   const snapshots = data.snapshots;
 
   return (
+    <SidebarLayout>
     <div className={styles.container}>
       <h3 className={styles.title}>{headerText}</h3>
      <ComparisonHeader snapshots={snapshots}/>
@@ -30,6 +31,7 @@ const ComparisonSidebar: React.FC<ComparisonSidebarProps> = ({ data }) => {
      <MetricComparison rawData={metricComparisonData}/>
      <CompareRatings ratings={ratings}/>
     </div>
+    </SidebarLayout>
   );
 };
 

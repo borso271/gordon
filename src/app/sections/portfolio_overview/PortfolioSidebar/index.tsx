@@ -5,7 +5,7 @@ import { PortfolioItem, Transaction } from '../../../../interfaces';
 import { filterTransactionsByAssetType } from './utils/filterTransactionsByAssetType';
 import { useTranslation } from 'react-i18next';
 import SidebarHeading from '../../../../components/Headings/SidebarHeading';
-
+import SidebarLayout from '../../../../components/Layout/SidebarLayout';
 
 
 interface Allocation {
@@ -63,9 +63,13 @@ const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ data }) => {
 
   const assetTypes = ['all', 'stock', 'crypto', 'etf'] as const;
 
+
   return (
-    <div className={styles.container}>
-      <div className={styles.top}>
+    <SidebarLayout
+      stickyTop={
+
+
+        <div className={styles.top}>
 
       <h2 className={styles.title}>
   {t('portfolio_summary.title')}{": "}
@@ -90,8 +94,9 @@ const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ data }) => {
           ))}
         </div>
       </div>
-
-      <div className={styles.content}>
+      }
+    >
+     <div className={styles.content}>
         <OverviewContent
         dataForHeader={dataForHeader}
           filteredAssets={filteredAssets}
@@ -100,8 +105,52 @@ const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ data }) => {
           data={data}
         />
       </div>
-    </div>
+    </SidebarLayout>
   );
+
+
+//   return (
+//     <div className={styles.container}>
+//       <div className={styles.top}>
+
+//       <h2 className={styles.title}>
+//   {t('portfolio_summary.title')}{": "}
+//   <span className={styles.dateRange}>
+//     <span className={styles.date}>{formatDate(data.start_date)}</span>
+//     {" "}
+//     {t('portfolio_summary.to')}
+//     {" "}
+//     <span className={styles.date}>{formatDate(new Date())}</span>
+//   </span>
+// </h2>
+
+//         <div className={styles.buttonGroup}>
+//           {assetTypes.map(type => (
+//             <button
+//               key={type}
+//               className={`${styles.filterButton} ${selectedAssetType === type ? styles.active : ''}`}
+//               onClick={() => handleFilterClick(type)}
+//             >
+//               {t(`asset_type.${type}`)}
+//             </button>
+//           ))}
+//         </div>
+//       </div>
+
+
+
+
+//       <div className={styles.content}>
+//         <OverviewContent
+//         dataForHeader={dataForHeader}
+//           filteredAssets={filteredAssets}
+//           filteredHistory={filteredHistory}
+//           selectedAssetType={selectedAssetType}
+//           data={data}
+//         />
+//       </div>
+//     </div>
+//   );
 };
 
 export default PortfolioSummary;

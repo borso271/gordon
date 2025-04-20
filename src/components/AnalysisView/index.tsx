@@ -5,7 +5,7 @@ import DetachedChart from "../DataDriven/DetachedChart";
 import PolygonSnapshot from "../PolygonSnapshot";
 import NewsToggleList from "../NewNews/NewsToggleList";
 import styles from './AnalysisView.module.css'
-
+import SidebarLayout from "../Layout/SidebarLayout";
 interface AnalysisViewProps {
   data: any;}
 
@@ -17,12 +17,14 @@ const AnalysisView: React.FC<AnalysisViewProps> = ({ data }) => {
  const news=data.latest_news;
 
 return (
+    <SidebarLayout>
 <div className={styles.container}>
  <DetachedChart symbol={ticker_symbol} language={"en"}/>
  {isPolygonDataOk && <PolygonSnapshot data={polygon_data} />}
  {ratings?.status === "success" && <AnalystRatings ratings={ratings.ratings} />}
  {news &&  <NewsToggleList news={news} titleKey={"latest_news"} />}
     </div>
+    </SidebarLayout>
   );
 };
 

@@ -52,6 +52,7 @@ const ChartCanvas: React.FC<ChartCanvasProps> = ({
     area,
     marketOpen,
     curvy,
+    height
   });
 
   if (data.length < 2) {

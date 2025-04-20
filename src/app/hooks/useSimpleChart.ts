@@ -41,7 +41,6 @@ export function useSimpleChart(periodData: any, width: number, height: number) {
     // Add all relevant dependencies
   }, [
     periodData,
- 
     adjustedLow,
     adjustedHigh,
     height,
@@ -52,13 +51,10 @@ export function useSimpleChart(periodData: any, width: number, height: number) {
   const currentPrice = periodData[periodData.length-1].price;
   // ✅ Return everything needed by SymbolChart's rendering
   return {
-   
-   
     periodData,
     isPositiveChange,
     finalPeriodData,
     priceLegendSegments,
- 
     adjustedLow,
     adjustedHigh,
     currentPrice

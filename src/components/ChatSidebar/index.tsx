@@ -14,10 +14,24 @@ const ChatSidebar: React.FC = () => {
   }, [chatSession.interactions, activeInteraction]);
 
   // memoized reference to sidebar parts of current interaction
+  // const currentSidebarParts = useMemo(() => {
+  //   if (!currentInteraction) return [];
+  //   return currentInteraction.botMessage.parts.filter((part) => part.sidebar === true);
+  // }, [currentInteraction]);
+
+
   const currentSidebarParts = useMemo(() => {
     if (!currentInteraction) return [];
-    return currentInteraction.botMessage.parts.filter((part) => part.sidebar === true);
+  
+    const seen = new Set<string>();
+    return currentInteraction.botMessage.parts.filter((part) => {
+      if (!part.sidebar || seen.has(part.type)) return false;
+      seen.add(part.type);
+      return true;
+    });
   }, [currentInteraction]);
+  
+
 
   // only update ref if currentSidebarParts are not empty
   useEffect(() => {

@@ -23,6 +23,8 @@ const ChatThread: React.FC<ChatThreadProps> = ({
   const { chatSession, activeInteraction, setActiveInteraction, isRunning } = useConversation();
   const { onManualFunctionCall } = useFunctionExecution();
 
+
+  console.log("chat session is: ", chatSession)
   // --- State for calculated filler height ---
   const [fillerHeight, setFillerHeight] = useState(0);
 

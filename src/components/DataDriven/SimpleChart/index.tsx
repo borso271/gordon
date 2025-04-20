@@ -18,6 +18,9 @@ const SimpleChart = ({ data,language }: { data: any,  language: string}) => {
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const { width, height } = useChartSizeObserver(containerRef);
+
+  console.log("width and height are: ", width, height);
+
   const {
     finalPeriodData,
     priceLegendSegments,
@@ -51,6 +54,9 @@ const SimpleChart = ({ data,language }: { data: any,  language: string}) => {
             />
             <div ref={containerRef}   className={styles.chartWrapper}>
               
+
+
+
               <ChartCanvas
              
               data={finalPeriodData}
@@ -58,6 +64,7 @@ const SimpleChart = ({ data,language }: { data: any,  language: string}) => {
                 isPositiveChange={isPositiveChange}
            
                 language={language}
+                height={height}
               />
 
             </div>

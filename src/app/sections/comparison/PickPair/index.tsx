@@ -6,7 +6,7 @@ import { SimpleTicker } from "../../../../interfaces";
 import ComparisonPicker from "../components/ComparisonPicker";
 import styles from './PickerPair.module.css'
 import { useConversation } from "../../../context/conversationContext";
-
+import SidebarLayout from "../../../../components/Layout/SidebarLayout";
 const sampleTickers: SimpleTicker[] = [
     {
       symbol_id: 1,
@@ -53,6 +53,7 @@ const PickPair = () => {
   
     const {threadId} = useConversation()
   return (
+    <SidebarLayout>
     <div className={styles.container}>
       <MainSidebarHeading text="Compare Tickers" />
 
@@ -62,7 +63,7 @@ const PickPair = () => {
         <ComparisonList   comparisonPairs={comparisonPairs} threadId={threadId} />
         </div>
     </div>
-  
+    </SidebarLayout>
   );
 };
 

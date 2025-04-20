@@ -23,8 +23,7 @@ const DetachedChart = ({ symbol,language }: { symbol: string, language: string})
   // console.log("symbol is: ", symbol)
    
   const {
-    // chartRef,
-    // chartDimensions,
+   
 
     selectedPeriod,
     setSelectedPeriod,
@@ -103,7 +102,7 @@ const DetachedChart = ({ symbol,language }: { symbol: string, language: string})
                 isPositiveChange={isPositiveChange}
                 marketOpen={isMarketOpen}
                 language={language}
-               
+               height={height}
               />
             </div>
            

@@ -87,13 +87,28 @@ const userText = interaction.userMessage.text || "";
 
 const showUserMessage = interaction.userMessage.show ?? true;
 
-const botParts = interaction.botMessage.parts || [];
+//const botParts = interaction.botMessage.parts || [];
+
+
+
+const botParts = Array.from(
+  interaction.botMessage.parts.reduce((acc, part) => {
+    if (!acc.has(part.type)) {
+      acc.set(part.type, part);
+    }
+    return acc;
+  }, new Map<string, typeof interaction.botMessage.parts[number]>())
+).map(([_, part]) => part);
+
+console.log('BOT PARTS NOW ARE: ', botParts)
 
 const should_fetch_follow_ups = interaction.botMessage.fetchFollowUps;
 
 const filteredParts = botParts.filter(
   (part) => part.sidebar !== true
 );
+
+
 
 const { isRunning } = useConversation(); // from Zustand or context
 useEffect(() => {
@@ -262,6 +277,7 @@ filteredParts.length === 0 ||
         {/* Show user message */}
 
         <UserMessage text={userText} show={showUserMessage} />
+
         <div className={styles.assistantResponse}>
           {nothingYet ? (
             showTimeoutMessage ? (

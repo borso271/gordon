@@ -122,7 +122,7 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
           {/* ——— data rows ——— */}
           {sorted.map((item) => (
             <div key={item.symbol_id} className={styles.gridRow}>
-               <div className={styles.rowBackground}> {/* NEW WRAPPER FOR STYLING */}
+               
               <div className={styles.gridCell} data-label={t('portfolio_table.headers.name')}>
                 <SymbolTitle {...item} />
               </div>
@@ -162,7 +162,7 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
               <div className={styles.gridCell} data-label={t('portfolio_table.headers.actions')}>
                 <ActionsPart item={item} />
               </div>
-              </div>
+              
             </div>
           ))}
         </div>

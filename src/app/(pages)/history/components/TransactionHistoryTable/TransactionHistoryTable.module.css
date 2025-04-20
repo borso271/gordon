@@ -81,11 +81,7 @@
   }
   
   .tableCell {
-    padding-bottom: 32px;
-    
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding:16px 0;
   
     /* border-bottom: 1px solid #eee; */
   
@@ -93,7 +89,8 @@
   
   
   .tableCell:first-child, .tableHeadCell:first-child {
-    padding-left: 32px;
+    padding-left: 16px;
+    margin-left:16px;
     text-align:left;
     max-width:300px;
   }
@@ -101,14 +98,10 @@
   .tableCell:last-child,
   .tableHeadCell:last-child {
     text-align: right;
-    padding-right: 32px;
+    padding-right: 16px;
+    margin-right:16px;
   }
   
-  .tableRow:first-child .tableCell {
-    padding-top: 12px;
-  }
-  
-
 
 
 [dir="rtl"]  .tableCell:first-child,
@@ -127,12 +120,6 @@
 }
 
 
-
-
-
-
-  
-  
   
   .profit {
     /* Text M/Regular */
@@ -198,4 +185,29 @@ color:  var(--spring-Green-500, #1AED87);
 
 .status.canceled {
   color:  var(--pomegranate-500, #ED441A);
+}
+
+
+
+.tableRow:hover .tableCell {
+  background: var(--additional-white-5, rgba(255, 255, 255, 0.05));
+  transition: background 0.2s ease;
+}
+
+/* First cell: round top-left and bottom-left */
+.tableRow:hover .tableCell:first-child {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  overflow: hidden;
+}
+
+/* Last cell: round top-right and bottom-right */
+.tableRow:hover .tableCell:last-child {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  overflow: hidden;
+}
+
+.tableRow:first-child .tableCell {
+ background:red
 }

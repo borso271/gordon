@@ -12,9 +12,6 @@ import TerziaryH2 from "../../../../../components/Headings/TerziaryH2";
 import { useTranslation } from "react-i18next";
 export default function TransactionHistory() {
 
-  function formatDate(date: Date): string {
-    return date.toISOString().split("T")[0]; // "YYYY-MM-DD"
-  }
   const {t} = useTranslation()
   const today = new Date();
   const tenYearsAgo = new Date();

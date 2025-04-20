@@ -4,6 +4,7 @@ import styles from './NewsItem.module.css';
 import { formatAuthor } from './extract_author';
 import NewsFavicon from '../NewsFavicon';
 import AnnotationNumber from './AnnotationNumber';
+import PrimaryDivider from '../../../Layout/PrimaryDivider';
 interface NewsCompleteData {
   title: string;
   author: string;
@@ -56,6 +57,7 @@ const NewsItem: React.FC<NewsItemProps> = ({ item, annotationNumber }) => {
   {/* Wrap title in a span */}
 {title}
 </h3>
+<PrimaryDivider/>
           <p className={styles.description}>{summary}</p>
           <div className={styles.source}>
             <NewsFavicon url={favicon} />

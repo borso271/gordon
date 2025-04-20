@@ -20,9 +20,9 @@
   }
   
   .ticker {
-    color: var(--Black-50, #F8F8F8);
+    color: var(--black-50, #F8F8F8);
 /* Text S/Regular */
-font-family: Inter;
+
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

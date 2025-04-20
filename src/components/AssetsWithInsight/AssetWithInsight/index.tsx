@@ -4,7 +4,7 @@ import TradeButton from "../../Buttons/TradeButton";
 import SymbolTitle from "../../../app/(pages)/(dashboard)/components/Watchlist/SymbolTitle";
 import ValueTrend from "../../ValueTrend";
 import { SimpleTicker } from "../../../interfaces";
-
+import { useAnalyzeStock } from "../../../app/hooks/useManualAnalyzeStock";
 
 import { useTranslation } from "react-i18next";
 
@@ -41,11 +41,23 @@ function extractSimpleTicker(assetWithInsight: AssetWithInsightProps): SimpleTic
   };
 }
 
+
+
 const AssetWithInsight: React.FC<AssetWithInsightProps> = ({ item }) => {
   const { id, asset_type, ticker, name, insight, polygon_snapshot } = item;
   const { t } = useTranslation();
   const current = polygon_snapshot?.current_price ?? null;
   const previous = polygon_snapshot?.last_close ?? null;
+
+
+const { analyzeStock } = useAnalyzeStock();
+const tickertobuy: SimpleTicker = {
+  symbol_id: item.id!,
+  ticker: item.ticker ?? "",
+  name: item.name ?? "",
+  asset_type: item.asset_type as "stock" | "crypto" | "etf",
+};
+
 
   const changePercent =
     current !== null && previous !== null
@@ -53,7 +65,7 @@ const AssetWithInsight: React.FC<AssetWithInsightProps> = ({ item }) => {
       : null;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={() => analyzeStock(tickertobuy)}>
       <div className={styles.header}>
         <div className={styles.nameWrapper}>
         <SymbolTitle ticker={ticker} asset_type={asset_type} name={name} />

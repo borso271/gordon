@@ -107,6 +107,10 @@ const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ data }) => {
 export default PortfolioSummary;
 
 
+
+
+
+
 // const PortfolioSummary: React.FC<PortfolioSummaryProps> = ({ data }) => {
 //   const [selectedAssetType, setSelectedAssetType] = useState<'all' | 'stock' | 'crypto' | 'etf'>('all');
 

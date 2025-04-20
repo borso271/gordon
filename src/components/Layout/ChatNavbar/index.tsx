@@ -6,11 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { useLanguage } from "../../../app/hooks/useLanguage";
 import { useConversation } from "../../../app/context/conversationContext";
 import Icon from "../../Icons/Icon";
-
+import Button3 from "../../Buttons/Button3";
 import { useRouter } from "next/navigation";
 import { useOverlay } from "../../../app/context/overlayContext";
-
-import DropdownButton from "../../Buttons/DropdownButton";
+import { useBuySellModal } from "../../../app/context/buySellModalContext";
 import CircledIconButton from "../../Buttons/CircleActionButton";
 import { current_balance, old_balance } from "../../../constants";
 
@@ -32,6 +31,7 @@ const percentChange = (change / old_balance) * 100;
 const isPositive = change >= 0;
 const iconName = isPositive ? "positive_trend" : "negative_trend";
 
+const { showModal } = useBuySellModal();
 const changeClass = `${styles.changeValue} ${isPositive ? styles.positive : styles.negative}`;
 
 const {setThreadId} = useConversation();
@@ -53,7 +53,6 @@ const navigateToDashboard = () => {
   router.push("/");
 };
 
- const {currentLang} = useLanguage();
 
   const handleLanguageChange = (lang: string) => {
     changeLanguage(lang);
@@ -152,6 +151,10 @@ className={styles.balanceOverviewItem}
       
       <div className={styles.right}>
 
+
+      <div className={styles.buyWrapper}>
+      <Button3 text={t("trade")} onClick={() => showModal()} />
+</div>
 
         {/* Language Dropdown */}
         <LanguageSelectorDropdown

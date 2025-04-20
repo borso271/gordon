@@ -64,6 +64,7 @@ const handleScroll = () => {
 {showRightFade && <div className={styles.fadeRight} />}
 
       </div>
+       <div className={styles.bottom_fade}></div> 
     </div>
   );
 };

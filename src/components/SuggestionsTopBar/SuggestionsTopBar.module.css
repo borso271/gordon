@@ -1,8 +1,26 @@
 .container {
     width: 100%;
     overflow: hidden; /* hides scrollbars leaking outside */
+    overflow:visible;
+    position:relative;
   }
   
+
+ 
+/* This element fades the content behind it */
+.bottom_fade {
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--background), rgba(255, 255, 255, 0));
+  pointer-events: none;
+  z-index: 10; /* ensure it overlays properly */
+}
+
+
+
   .scrollArea {
     display: flex;
     flex-direction: row;

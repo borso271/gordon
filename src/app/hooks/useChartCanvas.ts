@@ -14,6 +14,7 @@ interface UseChartCanvasProps {
   area?: boolean;
   marketOpen?: boolean;
   curvy?: boolean;
+  height?:number;
 }
 
 
@@ -28,6 +29,7 @@ export function useChartCanvas({
   area = true,
   marketOpen = true,
   curvy = false,
+  height
 }: UseChartCanvasProps) {
   // ----------------------------
   //  Refs, states, dependencies
@@ -64,30 +66,71 @@ export function useChartCanvas({
   };
 
   // 3) Generate area path
+
+
+
+
+  // const generateAreaPath = (
+  //   data: any[],
+  //   minPrice: number,
+  //   curvy: boolean,
+  //   area: boolean
+  // ) => {
+  //   if (!area || !data.length) return "";
+  //   // Extra "bottom" so area goes off-screen
+  //   const bottomY = 400;
+  //   const lastX = data[data.length - 1].x;
+  //   const firstX = data[0].x;
+  //   const extendedData = [
+  //     ...data,
+  //     { x: lastX, y: bottomY }, // bottom-right
+  //     { x: firstX, y: bottomY }, // bottom-left
+  //   ];
+
+  //   if (curvy) {
+  //     const areaGenerator = d3
+  //       .area<any>()
+  //       .x((d) => d.x)
+  //       .y0(() => minPrice)
+  //       .y1((d) => d.y)
+  //       .curve(d3.curveMonotoneX);
+  //     return areaGenerator(extendedData) || "";
+  //   } else {
+  //     let areaPath = `M ${data[0].x},${data[0].y}`;
+  //     for (let i = 1; i < data.length; i++) {
+  //       areaPath += ` L ${data[i].x},${data[i].y}`;
+  //     }
+  //     areaPath += ` L ${lastX},${bottomY} L ${firstX},${bottomY} Z`;
+  //     return areaPath;
+  //   }
+  // };
+
+
   const generateAreaPath = (
     data: any[],
-    minPrice: number,
     curvy: boolean,
-    area: boolean
-  ) => {
+    area: boolean,
+    bottomY: number // 👈 pass in actual chart height (in pixels)
+  ): string => {
     if (!area || !data.length) return "";
-    // Extra "bottom" so area goes off-screen
-    const bottomY = 400;
+  
     const lastX = data[data.length - 1].x;
     const firstX = data[0].x;
+  
     const extendedData = [
       ...data,
       { x: lastX, y: bottomY }, // bottom-right
       { x: firstX, y: bottomY }, // bottom-left
     ];
-
+  
     if (curvy) {
       const areaGenerator = d3
         .area<any>()
         .x((d) => d.x)
-        .y0(() => minPrice)
+        .y0(() => bottomY) // ✅ use pixel value for bottom
         .y1((d) => d.y)
         .curve(d3.curveMonotoneX);
+  
       return areaGenerator(extendedData) || "";
     } else {
       let areaPath = `M ${data[0].x},${data[0].y}`;
@@ -98,6 +141,7 @@ export function useChartCanvas({
       return areaPath;
     }
   };
+  
 
   // 4) Compute last data point
   const computeLastPoint = (data: any[]) => {
@@ -110,7 +154,7 @@ export function useChartCanvas({
 
 
   const areaPath = useMemo(
-    () => generateAreaPath(sortedData, minPrice, curvy, area),
+    () => generateAreaPath(sortedData, curvy, area, height),
     [sortedData, minPrice, curvy, area]
   );
   

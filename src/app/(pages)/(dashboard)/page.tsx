@@ -15,6 +15,9 @@ const DashboardPage = () => {
     const { t } = useTranslation();
   
     /** keep prompts as raw commands – localise only the UI text */
+   
+
+
     const suggestions = useMemo(
       () => [
         {
@@ -37,9 +40,22 @@ const DashboardPage = () => {
           label: t("suggestions.bullish_market"),
           prompt: "What is a Bullish Market",
         },
+        {
+          label: t("suggestions.prompt_1"),
+          prompt: "What are the best performing ETFs this week?",
+        },
+        {
+          label: t("suggestions.prompt_2"),
+          prompt: "Show me undervalued tech stocks",
+        },
+        {
+          label: t("suggestions.prompt_3"),
+          prompt: "Compare Apple and Microsoft financials",
+        },
       ],
-      [t] // ⚠️ include `t` so list refreshes when language changes
+      [t]
     );
+    
 
 
   return (

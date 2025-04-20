@@ -295,6 +295,11 @@ big_minus: (<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewB
 </svg>
   ),
 
+
+  arrow_right: (<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M7.58594 14.8291L12.4152 9.99983L7.58594 5.17056" stroke="#F8F8F8" strokeWidth="2.10732" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>),
+
   current_magic_stick: (
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
 <path d="M3.22506 3.18365C2.42498 3.98373 2.42498 5.28093 3.22506 6.08102L4.35321 7.20916C4.36168 7.19936 4.37056 7.1898 4.37986 7.1805L7.222 4.33837C7.23127 4.32909 7.24081 4.32023 7.25057 4.31178L6.12243 3.18365C5.32235 2.38356 4.02515 2.38356 3.22506 3.18365Z" fill="currentColor"/>

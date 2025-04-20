@@ -81,6 +81,9 @@ line-height: 140%;
 .allocationChange {
   width: 50px;
 }
+
+
+
 .gridTable {
     display: grid;
    
@@ -132,12 +135,6 @@ line-height: 120%; /* 16.8px */
   .gridCell {
     font-size:16px;
   }
-
-
-/* 
-  .gridHeaderCell:hover {
-    background-color: var(--table-header-bg-hover, #383838);
-  } */
 
 
 
@@ -251,3 +248,20 @@ padding-right:0px;
 
 
 
+
+
+
+
+.rowBackground {
+  display: contents; /* default fallback for non-hover; replaced on hover */
+}
+
+.gridRow:hover .rowBackground {
+  display: grid; /* Or flex if you prefer */
+  grid-column: 1 / -1; /* span the entire row */
+  background: var(--hover-bg, rgba(255, 255, 255, 0.05));
+  border-radius: 8px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}

@@ -28,6 +28,7 @@
     gap: 8px; /* space between buttons */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
+    padding-bottom:1px;
   }
   
   .scrollArea::-webkit-scrollbar {
@@ -49,22 +50,57 @@
   }
 
   .fadeRight,
-.fadeLeft {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  width: 40px;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-}
+  .fadeLeft {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 40px;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1; /* Lower priority */
+  }
+  
 
 
 .fadeRight {
   right: 0;
   background: linear-gradient(to right, rgba(255, 255, 255, 0),var(--background));
+  width:100px;
 }
 
 .fadeLeft {
   left: 0;
   background: linear-gradient(to left, rgba(255, 255, 255, 0), var(--background));
+}
+
+
+
+
+.scrollButton {
+  position: absolute;
+  right: 0;
+  top: -1px;
+  z-index: 2; /* Higher priority to appear above */
+  pointer-events: auto; /* Important: make sure the button can receive clicks */
+}
+
+
+
+[dir="rtl"] .scrollButton {
+  left:0;
+  right:auto;
+}
+
+
+[dir="rtl"]  .fadeRight {
+ 
+  width:40px;
+}
+
+[dir="rtl"]  .fadeLeft {
+width:100px;
+}
+
+[dir="rtl"] .scrollButton svg {
+  transform: rotate(180deg);
 }

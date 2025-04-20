@@ -23,6 +23,9 @@
     "latest_market_news": "What Are the Latest News on the Market?",
     "upcoming_ipos_sa": "Upcoming IPOs in Saudi Arabia",
     "bullish_market": "What is a Bullish Market?",
+    "prompt_1": "Best Performing ETFs This Week",
+    "prompt_2": "Undervalued Tech Stocks",
+    "prompt_3": "Compare Apple and Microsoft",
 
     "portfolio_review": "How is my portfolio performing?",
     "rebalance_portfolio": "How should I rebalance my portfolio?",

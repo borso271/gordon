@@ -5,6 +5,8 @@ import styles from "./SuggestionsTopBar.module.css";
 import TopSuggestionButton from "../Buttons/TopSuggestionButton";
 import { useManualSubmit } from '../../app/hooks/useManualSubmit';
 import { useSessionCallback } from '../../app/hooks/useSessionCallback';
+import CircledIconButton from '../Buttons/CircleActionButton';
+import { useTranslation } from 'react-i18next';
 type Suggestion = {
   label: string;
   prompt: string;
@@ -17,6 +19,19 @@ const SuggestionsTopBar: React.FC<Props> = ({ suggestions }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
 const [showRightFade, setShowRightFade] = useState(true);
+
+const { i18n } = useTranslation();
+const isRTL = i18n.dir() === 'rtl';
+
+const scrollAmount = 250; // px to scroll on each click
+
+const handleScrollClick = () => {
+  if (!scrollRef.current) return;
+  scrollRef.current.scrollBy({
+    left: isRTL ? -scrollAmount : scrollAmount,
+    behavior: 'smooth',
+  });
+};
 
 const { submitQuery } = useManualSubmit();
 const {withNewSession}  =useSessionCallback();
@@ -54,14 +69,26 @@ const handleScroll = () => {
                     true // showOverlay = true
                   )
                 }
-
               />
             </div>
           ))}
         </div>
 
+
+
         {showLeftFade && <div className={styles.fadeLeft} />}
 {showRightFade && <div className={styles.fadeRight} />}
+
+{(isRTL ? showLeftFade : showRightFade) && (
+  <div className={styles.scrollButton}>
+    <CircledIconButton 
+      onClick={handleScrollClick}
+      iconName={isRTL ? "arrow_left" : "arrow_right"}
+      iconSize={20}
+    />
+  </div>
+)}
+
 
       </div>
        <div className={styles.bottom_fade}></div> 

@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./CircleActionButton.module.css";
 import Icon from "../../Icons/Icon";
+
 interface CircledIconButtonProps {
   onClick: () => void;
   iconName: string;
   iconSize?: number;
-  size?: number;
+  size?: number; // This controls the button's width/height
 }
 
 const CircledIconButton: React.FC<CircledIconButtonProps> = ({
@@ -15,7 +16,11 @@ const CircledIconButton: React.FC<CircledIconButtonProps> = ({
   size
 }) => {
   return (
-    <div className={styles.circledButton} onClick={onClick}>
+    <div
+      className={styles.circledButton}
+      onClick={onClick}
+      style={size ? { width: size, height: size } : undefined}
+    >
       <Icon name={iconName} size={iconSize} />
     </div>
   );

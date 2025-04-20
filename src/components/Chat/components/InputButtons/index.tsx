@@ -4,6 +4,7 @@
   import { useTranslation } from 'react-i18next';
 import { useConversation } from '../../../../app/context/conversationContext';
 import { useManualActionRequests } from '../../../../app/hooks/useManualActionRequests';
+import CircledIconButton from '../../../Buttons/CircleActionButton';
   const InputButtons = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.dir() === 'rtl';
@@ -71,6 +72,20 @@ const {threadId} = useConversation();
         window.removeEventListener("resize", updateFades);
       };
     }, [updateFades]);
+
+
+
+
+const scrollAmount = 150; // px to scroll on each click
+
+const handleScrollClick = () => {
+  if (!scrollRef.current) return;
+  scrollRef.current.scrollBy({
+    left: isRTL ? -scrollAmount : scrollAmount,
+    behavior: 'smooth',
+  });
+};
+
   
     return (
       <div className={styles.wrapper}>
@@ -85,6 +100,17 @@ const {threadId} = useConversation();
             </button>
           ))}
         </div>
+
+{/* 
+<div className={styles.scrollButton}>
+        <CircledIconButton 
+onClick={handleScrollClick}
+iconName="arrow_right"
+iconSize = {16}
+size={34}
+/></div> */}
+
+
       </div>
     );
   };

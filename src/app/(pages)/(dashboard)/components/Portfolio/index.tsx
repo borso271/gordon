@@ -11,10 +11,10 @@ import ValueTrend from "../../../../../components/ValueTrend";
 import { useTranslation } from "react-i18next";
 import { PortfolioItem } from "../../../../../interfaces";
 import { useManualActionRequests } from "../../../../hooks/useManualActionRequests";
+
 type Props = {
   portfolio: any;
 };
-
 
 const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
   const { t } = useTranslation();
@@ -24,7 +24,7 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
   const [filter, setFilter] = useState<"all" | "stock" | "crypto" | "etf">("all");
 
   
-  const {handleOuterSummarize} = useManualActionRequests()
+  const {handleOuterSummarize} = useManualActionRequests();
   const handleSort = (key: keyof PortfolioItem) => { // Use keyof
     if (key === sortKey) {
       setSortAsc(!sortAsc);
@@ -122,6 +122,7 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
           {/* ——— data rows ——— */}
           {sorted.map((item) => (
             <div key={item.symbol_id} className={styles.gridRow}>
+               <div className={styles.rowBackground}> {/* NEW WRAPPER FOR STYLING */}
               <div className={styles.gridCell} data-label={t('portfolio_table.headers.name')}>
                 <SymbolTitle {...item} />
               </div>
@@ -160,6 +161,7 @@ const PortfolioTable: React.FC<Props> = ({ portfolio }) => {
 
               <div className={styles.gridCell} data-label={t('portfolio_table.headers.actions')}>
                 <ActionsPart item={item} />
+              </div>
               </div>
             </div>
           ))}

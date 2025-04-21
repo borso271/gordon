@@ -18,21 +18,19 @@
     ,
 
     "suggestions": {
-    "top_gainers_losers": "Latest News About Nasdaq",
+    "top_gainers_losers": "What are the the Latest News About Nasdaq?",
+    "prompt_1": "What are the best Performing ETFs This Week?",
     "good_investment": "What Makes a Good Investment?",
     "latest_market_news": "What Are the Latest News on the Market?",
     "upcoming_ipos_sa": "What are the upcoming IPOs in Saudi Arabia?",
     "bullish_market": "What is a Bullish Market?",
-    "prompt_1": "Best Performing ETFs This Week",
-    "prompt_2": "Undervalued Tech Stocks",
+    "prompt_2": "What are some undervalued Tech Stocks?",
     "prompt_3": "Compare Apple and Microsoft",
-
     "portfolio_review": "How is my portfolio performing?",
     "rebalance_portfolio": "How should I rebalance my portfolio?",
     "diversify_portfolio": "How do I diversify my investments?",
     "evaluate_stock": "Is Apple still a good investment?",
     "asset_allocation": "What's the ideal asset allocation?"
-
   }
     ,
 

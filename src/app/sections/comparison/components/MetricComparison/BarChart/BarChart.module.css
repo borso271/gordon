@@ -28,6 +28,7 @@
   }
   
   .barWrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -47,3 +48,33 @@
     background: transparent;
   }
   
+ 
+
+
+
+.valueLabel {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+ 
+
+
+
+
+  color: #FFF;
+
+
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 140%; /* 19.6px */
+
+
+  white-space: nowrap; /* Prevent label text from wrapping */
+  z-index: 2; /* Ensure label is above zero line and potentially bars */
+  /* Optional background/padding for better readability */
+  /* background-color: rgba(255, 255, 255, 0.7); */
+  /* padding: 1px 3px; */
+  /* border-radius: 2px; */
+  pointer-events: none; /* Prevent label from interfering with bar hover/tooltips */
+}

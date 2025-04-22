@@ -571,15 +571,15 @@ return (
 {/* <CompareTest></CompareTest> */}
 
 {/* <PickPair></PickPair> */}
-
+{/* 
 <TestSymbolDropdown/>
-<KnowledgeBrowser/>
+<KnowledgeBrowser/> */}
 
 {/* <PickPair/> */}
 
 {/* <Loading/> */}
    {/* <AssetsWithInsight data={staticTestResults}/> */}
-      {/* <MetricComparison rawData={dataForComparisonTable}/> */}
+      <MetricComparison rawData={dataForComparisonTable}/>
 
       {/* <ComparisonHeader snapshots={snapshots}/> */}
 

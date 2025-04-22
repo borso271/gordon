@@ -76,7 +76,7 @@ const slug = (str: string): string =>
 
 const MetricComparison: React.FC<MetricComparisonProps> = ({
   rawData,
-  maxHeight = 200,
+  maxHeight = 140,
 }) => {
   /* ------------------------------------------------------------------ */
   /* i18n                                                                */

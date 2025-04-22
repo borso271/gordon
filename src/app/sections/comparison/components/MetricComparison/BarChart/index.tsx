@@ -31,6 +31,55 @@ const computeRange = (min: number, max: number): [number, number] => {
     return [effectiveMin, effectiveMax];
 };
 
+function formatValueWithCommas(value: number | string): string {
+  // If value is already a number, format it directly
+  if (typeof value === 'number') {
+    return value.toLocaleString();
+  }
+
+  // If it's a string containing a percent, return as-is
+  if (typeof value === 'string' && value.includes('%')) {
+    return value;
+  }
+
+  // Try parsing to number and formatting
+  const numericValue = parseFloat(value);
+  if (!isNaN(numericValue)) {
+    return numericValue.toLocaleString();
+  }
+
+  // Fallback for unrecognized input
+  return value.toString();
+}
+
+
+function formatLargeNumber(value: number | string): string {
+  // If it's a string and contains %, return as-is
+  if (typeof value === 'string' && value.includes('%')) {
+    return value;
+  }
+
+  // Convert to number
+  const num = typeof value === 'number' ? value : parseFloat(value);
+  if (isNaN(num)) return value.toString();
+
+  const absNum = Math.abs(num);
+
+  if (absNum >= 1_000_000_000_000) {
+    return `${(num / 1_000_000_000_000).toFixed(2)} Trillions`;
+  } else if (absNum >= 1_000_000_000) {
+    return `${(num / 1_000_000_000).toFixed(2)} Billions`;
+  } else if (absNum >= 1_000_000) {
+    return `${(num / 1_000_000).toFixed(2)} Millions`;
+  } else if (absNum >= 1_000) {
+    return num.toLocaleString(); // fallback to comma formatting for thousands
+  } else {
+    return num.toString();
+  }
+}
+
+
+
 const computeZeroHeight = (chartAreaHeight: number, rangeMin: number, rangeMax: number): number => {
   const totalRange = rangeMax - rangeMin;
 
@@ -189,7 +238,7 @@ const BarChart: React.FC<BarChartProps> = ({
                 />
                  {/* Value Label */}
                 <div className={styles.valueLabel} style={labelStyle}>
-                  {displayValue}
+                  {formatLargeNumber(displayValue)}
                 </div>
               </div>
             );
